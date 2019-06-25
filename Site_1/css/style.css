@@ -1,0 +1,158 @@
+
+/* CONTENTS LIST
+
+1. GENERAL
+2. HEADER
+3. MAIN-AREA
+4. FOOTER
+
+*/
+
+
+/* 1. GENERAL properties */
+*{
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+body{
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.75vw;
+}
+
+/* 2. HEADER properties */
+
+header{
+    height: 100px;
+    background-color: red;
+    margin: 10px;
+}
+
+.navConteiner{
+    max-width: 1200;
+    padding: 0px 15px;
+    margin: 0 20px;
+    background-color:tan;
+    position: relative;
+    top: 40px;
+}
+
+nav{
+    /* padding: 40px; */
+    height: 30px;
+    top: 40px;
+}
+
+.ul1 li{
+    position: relative;
+    display: block;
+    float: left;
+    padding-left: 40px;
+    left: 30px;
+}
+
+.ul1{
+
+}
+
+/* 3. MAIN-AREA properties */
+
+main{
+
+}
+
+.mainConteiner{
+    background-color: #7084e2;
+    margin: 10px;
+    min-height: 700px;
+}
+
+.mainConteiner::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+aside{
+    position: relative;
+    margin: 0 10px 0;
+    width: 20%;
+    min-height: 300px;
+    float: left;
+    background-color:rgba(236, 240, 20, 0.596);
+}
+
+.divAside_1{
+    position: relative;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.74);
+    font-size: 3vw;
+    min-height: 100px;
+}
+
+.divAside_2{
+    position: relative;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.788);
+    font-size: 3vw;
+    min-height: 100px;
+}
+
+section{
+    float: left;
+    width: 50%;
+    min-height: 300px;
+    background-color: blue;
+}
+
+.classH3{
+    color: white;
+    text-align: center;
+    font-size: 3vw;
+}
+
+.innerdiv{
+    
+}
+
+article{
+    background-color: rgba(66, 245, 252, 0.7);
+    margin: 10px;
+    min-height: 100px;
+    font-size: 2em;
+}
+
+.asideRight{
+    /* position: relative;
+    left: 0.5vw; */
+    width: 26.5%;
+    margin: 0 10px 0;
+    background-color: rgba(212, 17, 212, 0.493);
+    float: left;
+    min-height: 300px;
+}
+
+/* 4. FOOTER properties */
+
+footer{
+    min-height: 100px;
+    background-color: yellow;
+    position: relative;
+    margin: 10px;
+}
+.footerConteiner{
+    max-width: 1200px;
+    padding: 0px 15px;
+    margin: 0 15px;
+    background-color:tan;
+    color: maroon;
+    position: relative;
+    top: 50px;
+    font-size: 2em;
+}
