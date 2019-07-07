@@ -12,11 +12,7 @@ main::after {
     clear: both;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1,h2,h3,h4,h5 {
     text-transform: uppercase;
     text-align: left;
 }
@@ -73,9 +69,7 @@ section {
     max-width: 1280px;
     box-sizing: border-box;
     margin: 0 auto;
-    /* background-color: #333; */
     padding: 110px 18px 110px 17px;
-    /* border: 3px solid rgb(151, 151, 151); */
 }
 
 section::after {
@@ -120,50 +114,39 @@ nav a:hover {
 }
 
 
-/* section-1====== */
+/* HOME SECTION=========== */
 
-.section-1-conteiner-left {
+.home-conteiner-left {
     width: 50%;
     float: left;
     text-align: justify;
-    /* background-color: green; */
 }
 
 h1 span {
     letter-spacing: 10px;
 }
 
-.section-1-conteiner-left p {
+.home-conteiner-left p {
     margin: 20px 107px 48px 0;
 }
 
-
-/* .section-1-conteiner-rigth {
-    min-height: 200px;
-    width: 47%;
-    float: right;
-    margin-left: 20px;
-    /* background-color: red; 
-
-
-}*/
-
-.section-1-video {
+.home-video {
     width: 550px;
     height: 355px;
     position: relative;
     float: right;
-    background-color: #c4c0b1;
     box-shadow: -10px -7px 80px -8px rgb(160, 160, 160);
+    background-color: #c4c0b1;
+
 }
 
 .videoPlay {
     width: 75px;
+    margin: -35px 0 0 -35px;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -35px 0 0 -35px;
 }
 
 .btn {
@@ -188,8 +171,8 @@ h1 span {
 
 .btn.red:hover {
     color: white;
-    background-color: rgb(248, 64, 64);
     box-shadow: 0 0 20px 1px rgba(248, 64, 64, 0.473);
+    background-color: rgb(248, 64, 64);
 }
 
 .btn.red:active {
@@ -204,8 +187,8 @@ h1 span {
 
 .btn.white:hover {
     color: red;
-    background-color: rgba(224, 210, 210, 0.5);
     box-shadow: 0 0 20px 1px rgba(209, 172, 172, 0.74);
+    background-color: rgba(224, 210, 210, 0.5);
 }
 
 .btn.white:active {
@@ -230,34 +213,27 @@ h1 span {
 /* MAIN ===================================*/
 
 
-/* main {
-    width: 80%;
-    margin: 0 auto;
-} */
+/* PROVIDING SECTION =========*/
 
-
-/* section-2 =====*/
-
-.section-2-conteiner-left {
+.providing-conteiner-left {
     width: 503px;
     float: left;
     text-align: justify;
-    /* background-color: green; */
 }
 
-.section-2-conteiner-left p {
+.providing-conteiner-left p {
     width: 500px;
     margin: 42px 0 51px 0;
     color: black;
 }
 
-.section-2-conteiner-rigth {
+.providing-conteiner-rigth {
     width: 615px;
     float: left;
     margin-left: 123px;
 }
 
-.section-2-conteiner-rigth::after {
+.providing-conteiner-rigth::after {
     content: "";
     display: block;
     clear: both;
@@ -300,11 +276,10 @@ h1 span {
 }
 
 
-/* section-3 ===== */
+/* PORTFOLIO SECTION ===== */
 
 .innerConteiner {
     width: 40%;
-    /* background-color: lightblue; */
     margin-bottom: 60px;
     margin-top: 0;
 }
@@ -344,24 +319,23 @@ h1 span {
 
 .hr2 {
     width: 150px;
-    background-color: red;
     height: 3px;
     border: transparent;
     border-radius: 5px;
+    background-color: red;
 }
 
 .hr3 {
     width: 150px;
-    background-color: red;
     height: 3px;
+    margin: 0;
     border: transparent;
     border-radius: 5px;
-    margin: 0;
+    background-color: red;
 }
 
 .tabConteiner {
     width: 80%;
-    margin: 0 auto;
     text-align: center;
     margin: 85px 125px 60px;
     word-spacing: 10px;
@@ -369,11 +343,11 @@ h1 span {
 }
 
 .tabConteiner a {
+    margin-right: 57px;
     font-weight: 600;
     font-size: 22px;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 57px;
     color: #585858;
 }
 
@@ -390,7 +364,6 @@ h1 span {
     font-size: 0;
     /* Чтобы не было пробелов */
     text-align: center;
-    /* background-color: cyan; */
 }
 
 .templateConteiner::after {
@@ -413,56 +386,53 @@ h1 span {
 }
 
 
-/* section-4 ===== */
+/* aboutUs CONTEINER ======= */
 
-.section-4 {
+.aboutUs {
     padding-top: 10px;
     padding-bottom: 113px;
 }
 
-.section-4-bottom {}
-
-.section-4-bottom::after {
+.aboutUs-bottom::after {
     content: "";
     display: block;
     clear: both;
 }
 
-.section-4-left {
+.aboutUs-left {
     width: 322px;
     height: 460px;
     float: left;
     background-color: #f5f0dd;
 }
 
-.section-4-right {
+.aboutUs-right {
     width: 855px;
     margin-left: 68px;
-    /* background-color: #c29e1c; */
     float: right;
 }
 
-.section-4-right h3 {
+.aboutUs-right h3 {
     margin: 5px 0 0 0;
 }
 
-.section-4-right p {
+.aboutUs-right p {
     margin: 22px 0 37px 0;
     width: 632px;
 }
 
-.section-4::after {
+.aboutUs::after {
     content: "";
     display: block;
     clear: both;
 }
 
 .socialLink {
+    margin-right: 20px;
+    letter-spacing: 2px;
     text-decoration: none;
     font-size: 18px;
     font-style: italic;
-    letter-spacing: 2px;
-    margin-right: 20px;
     color: #585858;
 }
 
@@ -470,27 +440,27 @@ h1 span {
     color: #a8a8a8;
 }
 
-.section-4-templateConteiner {
+.aboutUs-templateConteiner {
     margin: 60px auto 0;
     font-size: 0;
     /* Чтобы не было пробелов */
-    text-align: center;
+    text-align: left;
 }
 
-.section-4-templateConteiner::after {
+.aboutUs-templateConteiner::after {
     content: "";
     display: block;
     clear: both;
 }
 
-.section-4-template {
+.aboutUs-template {
     width: 197px;
     height: 216px;
     margin-left: 18px;
     display: inline-block;
     background-color: #f5f0dd;
     position: relative;
-    /* float: left; */
+    overflow: hidden;
 }
 
 .noMargin-sec-4-temp {
@@ -510,14 +480,14 @@ h1 span {
 }
 
 
-.section-4-template:hover .template-boxHower{
+.aboutUs-template:hover .template-boxHower{
     bottom: 0;
     opacity: .5;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
+    transition: .7s;
+    -webkit-transition: .7s;
+    -moz-transition: .7s;
+    -ms-transition: .7s;
+    -o-transition: .7s;
 }
 
 .template-boxHower span{
@@ -526,14 +496,8 @@ h1 span {
     color: white;
     text-transform: uppercase;
 }
-/* .section-4-right::after {
-    content: "";
-    display: block;
-    clear: both;
-} */
 
-
-/* section-5 ===== */
+/* section-form CONTAINER ===== */
 
 .section-form {
     text-align: center;
@@ -548,13 +512,13 @@ h1 span {
 .section-form h2 {
     text-transform: none;
     text-align: center;
-    color: white;
     letter-spacing: 2.5px;
+    color: white;
 }
 
 .section-form p {
-    color: white;
     margin: 23px 0 59px 0;
+    color: white;
 }
 
 .form1 {
@@ -565,16 +529,16 @@ h1 span {
 .input {
     padding: 0;
     margin: 0;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0 40px;
     border: none;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    font-family: 'Open Sans';
-    font-weight: 400;
-    font-size: 16px;
-    padding: 0 40px;
     color: #585858;
 }
 
@@ -602,48 +566,34 @@ h1 span {
     font-family: 'Open Sans';
     font-weight: 400;
     letter-spacing: 1px;
-    /* padding: 20px; */
     font-size: 18px;
 }
 
+/* getInTouch CONTEINER ======= */
 
-/* .subscribe-input {
-    font-weight: bold;
-    height: 45px;
-    width: 125px;
-    border: 0;
-    background-color: red;
-    color: white;
-    text-transform: uppercase;
-} */
-
-
-/* section-6 ===== */
-
-.section-6 {
+.getInTouch {
     max-width: none;
     width: 100%;
     margin: 0;
     padding: 100px 0 110px 0;
 }
 
-.section-6-center-conteiner {
+.getInTouch-center-conteiner {
     padding-top: 0;
     padding-bottom: 0;
 }
 
-.section-6-left {
+.getInTouch-left {
     width: 50%;
-    /* position: relative; */
     float: left;
 }
 
-.section-6-right {
+.getInTouch-right {
     width: 33%;
     float: right;
 }
 
-.section-6-bottom::after {
+.getInTouch-bottom::after {
     content: "";
     display: block;
     clear: both;
@@ -655,22 +605,21 @@ h1 span {
     float: right;
     position: relative;
     right: -105px;
-    /* margin-right: 110px; */
 }
 
 .input.textarea {
-    border: none;
-    margin-top: 46px;
     width: 100%;
-    box-sizing: border-box;
-    resize: none;
     height: 250px;
-    background-color: #e5e5e5;
+    margin-top: 46px;
     padding-top: 30px;
     padding-left: 60px;
+    border: none;
+    box-sizing: border-box;
+    resize: none;
     font-family: 'Open Sans';
     font-weight: 400;
     font-size: 16pt;
+    background-color: #e5e5e5;
 }
 
 .textarea::placeholder {
@@ -690,8 +639,6 @@ h1 span {
     height: 482px;
     float: left;
     position: relative;
-    /* padding-left: 208px; */
-    /* left: 208px; */
     background-color: #2d2d2d;
     color: rgb(199, 199, 199);
 }
@@ -703,15 +650,15 @@ h1 span {
 }
 
 .contactInfo {
-    position: absolute;
     width: 290px;
+    position: absolute;
     top: 50%;
+    left: 77px;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    left: 77px;
 }
 
 .contactInfo h5 {
@@ -734,10 +681,10 @@ footer::after {
 }
 
 .fotterWrapper {
-    box-sizing: border-box;
     width: 1280px;
     padding: 0 18px;
     margin: 0 auto;
+    box-sizing: border-box;
     position: relative;
     top: 50%;
     transform: translateY(-15%);
@@ -755,9 +702,9 @@ footer::after {
 
 .copyritingConteiner {
     width: 40%;
-    float: left;
     position: relative;
     top: 50%;
+    float: left;
     color: #9d9d9d;
 }
 
