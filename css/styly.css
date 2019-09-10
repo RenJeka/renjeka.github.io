@@ -7,7 +7,6 @@ html, body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  min-height: 800px;
   background-color: #ccc;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
