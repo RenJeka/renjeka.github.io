@@ -1,0 +1,19 @@
+html, body{
+	margin: 0;
+}
+
+.container{
+	display: flex;
+	width: 100%;
+	min-height: 800px;
+	background-color: #ccc;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+.item{
+	width: 100px;
+	height: 100px;
+	background-color: lightcoral;
+	margin: 0 10px;
+}
