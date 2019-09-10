@@ -58,5 +58,18 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
+  border-radius: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container-inner .item a {
+  font-size: 1.5rem;
+  padding: 0 10px;
 }
 /*# sourceMappingURL=styly.css.map */
