@@ -20,10 +20,43 @@ html, body {
           align-items: center;
 }
 
-.item {
-  width: 100px;
-  height: 100px;
+.container-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #eee;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 700px;
+}
+
+.container-inner .top-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 4px;
+  word-spacing: 10px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.container-inner .top-text h1, .container-inner .top-text h2 {
+  padding: 13px;
+}
+
+.container-inner .item {
+  width: 200px;
+  height: 200px;
   background-color: lightcoral;
-  margin: 0 10px;
+  margin: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=styly.css.map */

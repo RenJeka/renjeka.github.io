@@ -5,9 +5,11 @@ window.addEventListener("load", function () {
 
 	var mainContainer = $(".container");
 
-	mainContainer.style.height = window.innerHeight + "px";
+	mainContainer.style.minHeight = window.innerHeight + "px";
 
-
+	window.addEventListener("resize", function () {
+		mainContainer.style.minHeight = window.innerHeight + "px";
+	});
 
 
 	
