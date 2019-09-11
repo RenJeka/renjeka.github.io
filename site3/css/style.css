@@ -1,0 +1,221 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: arial,  sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn {
+  width: 300px;
+  height: 60px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  margin-top: 25px;
+}
+
+header {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(46, 106, 184, 0.5))), url("../img/bg.png");
+  background-image: linear-gradient(rgba(46, 106, 184, 0.5) rgba(0, 0, 0, 0.5)), url("../img/bg.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 700px;
+}
+
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  padding-top: 20px;
+  text-transform: uppercase;
+}
+
+.logo img {
+  margin-right: 10px;
+}
+
+.main-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 150px;
+}
+
+.main-top h1 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 24px;
+  letter-spacing: 5px;
+  line-height: 2;
+}
+
+.main-top h1 span {
+  display: block;
+  font-size: 30px;
+}
+
+.main-top button.btn-top {
+  background-color: #fff;
+}
+
+.main-steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+section {
+  line-height: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  section .main-steps {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  section .main-center img {
+    width: 100%;
+  }
+}
+
+section h2, section h3, section h4 {
+  text-transform: uppercase;
+  padding: 3rem 0;
+}
+
+section h2 {
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-top: 30px;
+}
+
+section h4 {
+  padding-bottom: 2rem;
+}
+
+.step {
+  width: 250px;
+}
+
+.step_img {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.main-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.main-center img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.main-center .btn-bottom {
+  background-color: #1D36CC;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.main-center h2 {
+  font-weight: bold;
+}
+
+.main-center h3 {
+  margin-top: 50px;
+}
+
+.main-center p {
+  line-height: 2;
+  width: 70%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-bottom: 40px;
+}
+
+.btn-wrapper {
+  position: relative;
+}
+
+.btn-wrapper .message {
+  padding: 20px;
+  color: brown;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 18px;
+  position: absolute;
+  width: 100%;
+}
+
+footer {
+  margin-top: 150px;
+  background-color: #1D36CC;
+  padding: 85px 0;
+  text-align: center;
+  color: #fff;
+}
+/*# sourceMappingURL=style.css.map */
