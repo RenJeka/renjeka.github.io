@@ -4,11 +4,14 @@ $ItemsSize: 200px;
 html, body{
 	margin: 0;
 }
+*{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .container{
 	display: flex;
 	width: 100%;
-	background-color: #ccc;
+	background-color: #363636;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
@@ -19,12 +22,15 @@ html, body{
 		flex-flow: row wrap;
 		justify-content: center;
 		min-height: 700px;
+		border-radius:1%;
+		width: 70%;
+
 		// min-height: 70%;
 		.top-text{
 			h1,h2{
 				padding: 13px;
 			}
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			
 			letter-spacing: 4px;
 			word-spacing: 10px;
 			width: 100%;
@@ -36,19 +42,36 @@ html, body{
 	
 		}
 	
+		.container-items{
+			display: flex;
+			// background-color: #eee;
+			flex-flow: row wrap;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+		}
 		.item{
 			width: $ItemsSize;
 			height: $ItemsSize;
-			background-color: lightcoral;
+			background-color: rgb(168, 168, 168);
 			margin: 10px;
 			align-items: center;
 			text-align: center;
-			border-radius: 10%;
+			border-radius: 50%;
 			display: flex;
 			justify-content: center;
-			a{
+			span{
 				font-size: 1.5rem;
 				padding: 0 10px;
+			}
+			&:hover{
+				box-shadow: 0 0 5px rgba(0,0,0,0.7);
+				cursor: pointer;
+			}
+			&:active{
+				width: ($ItemsSize - 10px);
+				height: ($ItemsSize - 10px);
+				background-color: rgb(214, 214, 214);
 			}
 		}
 	}
