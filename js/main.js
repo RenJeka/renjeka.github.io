@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
 	var mainContainer = $(".container");
 
 	var items = document.querySelectorAll(".item");
+	var socialIcons = document.querySelectorAll(".social-icons img");
 
 	mainContainer.style.minHeight = window.innerHeight + "px";
 
@@ -15,6 +16,12 @@ window.addEventListener("load", function () {
 
 	for (let i = 0; i< items.length; i++) {
 		items[i].addEventListener("click", function () {
+			window.location.href = this.dataset.href;
+		});
+	}
+
+	for (let j = 0; j< socialIcons.length; j++) {
+		socialIcons[j].addEventListener("click", function () {
 			window.location.href = this.dataset.href;
 		});
 	}
