@@ -12,7 +12,8 @@ html, body {
   display: flex;
   width: 100%;
   background-color: #363636;
-  background-image: url(../img/bg.jpg);
+  background-image: url(../img/bg-poly-blue.jpg);
+  background-repeat: repeat;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -38,7 +39,7 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   min-height: 700px;
-  border-radius: 1%;
+  border-radius: 10px;
   width: 90%;
 }
 
@@ -67,22 +68,56 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 100%;
 }
 
-.container-inner .item {
+.container-inner .item-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 360px;
+  background-color: pink;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 0 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container-inner .item-card h3 {
+  text-align: center;
+}
+
+.container-inner .item-card .card-discription {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.container-inner .item-card .item {
   width: 350px;
   height: 200px;
   background-color: #a8a8a8;
-  margin: 10px;
+  margin: 10px 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  border-radius: 5%;
+  border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,18 +128,18 @@ html, body {
   background-size: cover;
 }
 
-.container-inner .item span {
+.container-inner .item-card .item span {
   font-size: 1.5rem;
   padding: 0 10px;
 }
 
-.container-inner .item:hover {
+.container-inner .item-card .item:hover {
   -webkit-box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
           box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
   cursor: pointer;
 }
 
-.container-inner .item:active {
+.container-inner .item-card .item:active {
   width: 340px;
   height: 190px;
   background-color: #d6d6d6;
