@@ -1,5 +1,7 @@
-# renjeka.github.io
-My_Sites_Repository
-This is my site. Everybody can visit it.
+# About repository
+Here's my portfolio repository.
 
-https://renjeka.github.io/Site2/  — portfolio#1
+Sorry if it's poor or non-modern, I'm just learning. But from day to day it will come better and more presentable.
+
+# Visit my portfolio =)
+https://renjeka.github.io
