@@ -1,4 +1,5 @@
-$ItemsSize: 200px;
+$ItemsSize_w: 350px;
+$ItemsSize_h: 200px;
 
 
 html, body{
@@ -24,7 +25,7 @@ html, body{
 		justify-content: center;
 		min-height: 700px;
 		border-radius:1%;
-		width: 70%;
+		width: 90%;
 
 		// min-height: 70%;
 		.top-text{
@@ -52,8 +53,8 @@ html, body{
 			width: 100%;
 		}
 		.item{
-			width: $ItemsSize;
-			height: $ItemsSize;
+			width: $ItemsSize_w;
+			height: $ItemsSize_h;
 			background-color: rgb(168, 168, 168);
 			margin: 10px;
 			align-items: center;
@@ -61,17 +62,21 @@ html, body{
 			border-radius: 5%;
 			display: flex;
 			justify-content: center;
+			background-position: center;
+			background-size: cover;
 			span{
 				font-size: 1.5rem;
 				padding: 0 10px;
 			}
 			&:hover{
-				box-shadow: 0 0 5px rgba(0,0,0,0.7);
+				box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
 				cursor: pointer;
+				// width: ($ItemsSize_w  + 3px);
+				// height: ($ItemsSize_h + 3px);
 			}
 			&:active{
-				width: ($ItemsSize - 10px);
-				height: ($ItemsSize - 10px);
+				width: ($ItemsSize_w - 10px);
+				height: ($ItemsSize_h - 10px);
 				background-color: rgb(214, 214, 214);
 			}
 		}

@@ -39,7 +39,7 @@ html, body {
           justify-content: center;
   min-height: 700px;
   border-radius: 1%;
-  width: 70%;
+  width: 90%;
 }
 
 .container-inner .top-text {
@@ -74,7 +74,7 @@ html, body {
 }
 
 .container-inner .item {
-  width: 200px;
+  width: 350px;
   height: 200px;
   background-color: #a8a8a8;
   margin: 10px;
@@ -89,6 +89,8 @@ html, body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-position: center;
+  background-size: cover;
 }
 
 .container-inner .item span {
@@ -97,13 +99,13 @@ html, body {
 }
 
 .container-inner .item:hover {
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
+          box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
   cursor: pointer;
 }
 
 .container-inner .item:active {
-  width: 190px;
+  width: 340px;
   height: 190px;
   background-color: #d6d6d6;
 }
