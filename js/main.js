@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
 
 	for (let j = 0; j< socialIcons.length; j++) {
 		socialIcons[j].addEventListener("click", function () {
-			window.location.href = this.dataset.href;
+			window.open (this.dataset.href);
 		});
 	}
 	

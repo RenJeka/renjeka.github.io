@@ -3,7 +3,7 @@ html, body {
 }
 
 * {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -71,7 +71,21 @@ html, body {
   width: 100%;
 }
 
-.container-inner .item-card {
+.container-inner .container-items h2 {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container-inner .container-items .separator {
+  width: 80%;
+  height: 2.5px;
+  background-color: rgba(219, 219, 219, 0.7);
+  border-radius: 5px;
+  margin: 25px 0;
+}
+
+.container-inner .container-items .item-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -82,21 +96,21 @@ html, body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  width: 360px;
-  background-color: pink;
-  margin: 5px;
-  border-radius: 5px;
+  width: 310px;
+  background-color: rgba(255, 255, 240, 0.5);
+  margin: 0 25px 25px;
+  border-radius: 12px;
   padding: 0 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-.container-inner .item-card h3 {
+.container-inner .container-items .item-card h3 {
   text-align: center;
 }
 
-.container-inner .item-card .card-discription {
+.container-inner .container-items .item-card .card-discription {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -108,8 +122,8 @@ html, body {
           justify-content: flex-start;
 }
 
-.container-inner .item-card .item {
-  width: 350px;
+.container-inner .container-items .item-card .item {
+  width: 300px;
   height: 200px;
   background-color: #a8a8a8;
   margin: 10px 0;
@@ -128,20 +142,20 @@ html, body {
   background-size: cover;
 }
 
-.container-inner .item-card .item span {
+.container-inner .container-items .item-card .item span {
   font-size: 1.5rem;
   padding: 0 10px;
 }
 
-.container-inner .item-card .item:hover {
+.container-inner .container-items .item-card .item:hover {
   -webkit-box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
           box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
   cursor: pointer;
 }
 
-.container-inner .item-card .item:active {
-  width: 340px;
-  height: 190px;
+.container-inner .container-items .item-card .item:active {
+  width: 300px;
+  height: 200px;
   background-color: #d6d6d6;
 }
 
@@ -155,6 +169,11 @@ html, body {
           flex-flow: row wrap;
   -ms-flex-line-pack: center;
       align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   width: 100%;
   height: 150px;
   background-color: #fff;
@@ -162,16 +181,39 @@ html, body {
   margin-top: 15px;
   background-image: url(../img/footer_bg-2.jpg);
   padding: 10px 0;
-  font-size: 40px;
-  font-weight: bold;
 }
 
-.container footer p {
-  width: 70%;
+.container footer .title {
   margin: 0;
   padding-left: 50px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.container footer .contacts {
+  height: 90%;
+  width: 30%;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.container footer .contacts h4 {
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.container footer .contacts p {
+  font-size: 15px;
+  margin: 5px 5px;
+  padding-left: 10px;
+  width: 100%;
+}
+
+.container footer .contacts p span {
+  margin-left: 10px;
 }
 
 .container footer .social-icons {
@@ -184,22 +226,109 @@ html, body {
           flex-flow: row wrap;
   -ms-flex-line-pack: center;
       align-content: center;
-  width: 30%;
   height: 40%;
+  margin-left: 100px;
 }
 
 .container footer .social-icons img {
   height: 85%;
-  margin-left: 5px;
+  margin-left: 20px;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 
 .container footer .social-icons img:hover {
-  height: 103%;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   cursor: pointer;
 }
 
 .container footer .social-icons img:active {
-  height: 95%;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
   cursor: pointer;
+}
+
+@media screen and (max-width: 860px) {
+  .container footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-line-pack: stretch;
+        align-content: stretch;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 200px;
+    background-color: #fff;
+    color: #fff;
+    margin-top: 15px;
+    background-image: url(../img/footer_bg-2.jpg);
+    padding: 10px 0;
+  }
+  .container footer .title {
+    width: 100%;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-size: 5vw;
+    font-weight: bold;
+  }
+  .container footer .contacts {
+    height: 100px;
+    width: 50%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 0;
+  }
+  .container footer .contacts h4 {
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  .container footer .contacts p {
+    font-size: 2.5vw;
+    margin: 5px 5px;
+    padding-left: 10px;
+    width: 100%;
+  }
+  .container footer .contacts p span {
+    margin-left: 10px;
+  }
+  .container footer .social-icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    height: 30;
+    width: 15%;
+  }
+  .container footer .social-icons img {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+    -webkit-transition: .2s;
+    transition: .2s;
+  }
+  .container footer .social-icons img:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    cursor: pointer;
+  }
+  .container footer .social-icons img:active {
+    -webkit-transform: scale(0.95);
+            transform: scale(0.95);
+    cursor: pointer;
+  }
 }
 /*# sourceMappingURL=styly.css.map */
