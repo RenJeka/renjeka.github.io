@@ -11,8 +11,8 @@ html, body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  background-color: #363636;
-  background-image: url(../img/bg-poly-blue.jpg);
+  background: -webkit-gradient(linear, left bottom, left top, from(#1c92d2), to(#f2fcfe));
+  background: linear-gradient(to top, #1c92d2, #f2fcfe);
   background-repeat: repeat;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -30,7 +30,6 @@ html, body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.7);
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
@@ -97,9 +96,8 @@ html, body {
       -ms-flex-pack: start;
           justify-content: flex-start;
   width: 310px;
-  background-color: rgba(255, 255, 240, 0.5);
+  background-color: rgba(255, 255, 240, 0.7);
   margin: 0 25px 25px;
-  border-radius: 12px;
   padding: 0 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -310,12 +308,16 @@ html, body {
             flex-flow: column;
     -ms-flex-line-pack: center;
         align-content: center;
-    height: 30;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 100px;
     width: 15%;
+    margin-left: 20px;
   }
   .container footer .social-icons img {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     margin-left: 20px;
     -webkit-transition: .2s;
     transition: .2s;
