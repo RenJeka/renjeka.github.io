@@ -78,7 +78,7 @@ html, body{
 				width: $ItemsSize_w+10px;
 				background-color: rgba(255, 255, 240, .7);
 				margin:0 25px 25px;
-				// border-radius: 12px;
+				border-radius: 3px;
 				padding: 0 10px;
 				align-items: center;
 				h3{
@@ -97,7 +97,7 @@ html, body{
 					margin: 10px 0 ;
 					align-items: center;
 					text-align: center;
-					border-radius: 10px;
+					// border-radius: 10px;
 					display: flex;
 					justify-content: center;
 					background-position: center;
@@ -132,16 +132,16 @@ html, body{
 		justify-content: space-around;
 		width: 100%;
 		height: 150px;
-		background-color: #fff;
 		color: #fff;
 		margin-top: 15px;
 		background-image: url(../img/footer_bg-2.jpg);
-		// background-color: pink;
+		background-image: url(../img/footer_3.svg);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 		padding: 10px 0;	
 		
 		.title{
-			// background-color: #ccc;
-			// width: 30%;
 			margin: 0;
 			padding-left: 50px;
 			box-sizing: border-box;
@@ -174,7 +174,6 @@ html, body{
 			display:flex;
 			flex-flow: row wrap;
 			align-content: center;
-			// background-color: lightblue;
 			height: 40%;
 			margin-left: 100px;
 			img{
@@ -202,15 +201,11 @@ html, body{
 		display:flex;
 		flex-flow: row wrap;
 		align-content: stretch;
-		// align-items: center;
 		justify-content: center;
 		width: 100%;
 		height: 200px;
-		background-color: #fff;
 		color: #fff;
 		margin-top: 15px;
-		background-image: url(../img/footer_bg-2.jpg);
-		// background-color: pink;
 		padding: 10px 0;	
 		
 		.title{
@@ -219,6 +214,7 @@ html, body{
 			text-align: center;
 			box-sizing: border-box;
 			font-size: 5vw;
+			padding: 0;
 			font-weight: bold;
 
 		}

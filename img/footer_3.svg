@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 173.5">
+  <title>Монтажная область 11</title>
+  <g id="Слой_2" data-name="Слой 2">
+    <g>
+      <path d="M1920,0V173.5L636,119.58528Z" style="fill: #1b9bb3"/>
+      <path d="M1920,173.5H0l636-53.91472Z" style="fill: #0c7fcc"/>
+      <path d="M0,173.5V86.75l636,32.83528Z" style="fill: #3969a9"/>
+      <rect x="69" y="0.91645" width="1750" height="3.7491" rx="1.87455" style="fill: #3969a9"/>
+    </g>
+  </g>
+</svg>
