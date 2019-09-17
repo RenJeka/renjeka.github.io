@@ -1,55 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проект_1</title>
-    <link rel="stylesheet" href="css/style.css">
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <!--создаем клас стиля — ссылка без формата(для того, чтобы убрать подчеркивание)-->
 
-</head>
-<body>
-
-    <header>
-        <div class="navConteiner">
-            <nav class="nav1">
-                <ul class="ul1">
-                    <li> <a href="#"> Главная</a></li>
-                    <li> <a href="#"> Галлерея</a></li>
-                    <li> <a href="#"> Портфолио</a></li>
-                    <li> <a href="#"> Контакты</a></li>
-                    <li> <a href="#"> О нас</a></li>
-                </ul>
-            </nav>
+            <style type="text/css">
+            a{
+                color: black;
+            }
+            div{
+                margin: 10%;
+                text-align:justify;
+                font-size: 150%;
+            }
+            .no_underline{
+                text-decoration:none;
+            }
+        
+        </style> 
+    </head>
+    <body>
+		
+		<h1 style="text-align: center; margin-top:100px; text-transform: uppercase;">Страница на чистом HTML5</h1>
+        <div>
+            <h2>HTML</h2>
+            <p>
+                Язык <b>HTML</b> интерпретируегся <a href="https://ru.wikipedia.org/wiki/браузер" target="_blank">браузерами</a>; полученный в результате интерпретации
+                форматированный текст отображается на экране монитора компьютера или Мобильного устройства.
+                Язык <i>HTML</i> до 5-ой версии определялся как приложение <a href="https://ru.wikipedia.org/wiki/SGML" target="_blank">SGML</a>  (стандартного обобщённого языка
+                разметки по стандарту <a href="https://ru.wikipedia.org/wiki/ISO" target="_blank">ISO</a> 8879). Спецификации HTML5 формулируются в
+                терминах <a href="https://ru.wikipedia.org/wiki/Document_Object_Model" target="_blank">DOM</a > (объектной модели документа). <br/>
+                Язык <i><a href="https://ru.wikipedia.org/wiki/XHTML" target="_blank">XHTML</a></i> является более строгим вариантом HTML, он следует синтаксису <a href="https://ru.wikipedia.org/wiki/XML" target="_blank">XML</a> является
+                приложением языка XML в области разметки гипертекста.<br/>
+                Bo всемирной паутине НТМL-страницы, как правило, передаются браузерам от сервера по
+                протоколам <i><a href="https://ru.wikipedia.org/wiki/HTTP" target="_blank">HTTP</a></i> или <i><a href="https://ru.wikipedia.org/wiki/HTTPS" target="_blank">HTTPS</a></i>, в виде простого текста или с использованием <a href="https://ru.wikipedia.org/wiki/шифрование" target="_blank">шифрования</a>.
+            </p>
+            
+            <h2>Общее представление</h2>
+    
+            <p>
+                Язык HTML был разработан <i><a href="https://ru.wikipedia.org/wiki/Великобритания" target="_blank">британским</a></i> учёным <b><a href="https://ru.wikipedia.org/wiki/Бернерс-Ли,_Тим" target="_blank">Тимом Бернерсом-Ли</a></b> приблизительно в <i><a href="https://ru.wikipedia.org/wiki/1986_%D0%B3%D0%BE%D0%B4" target="_blank">1986</a></i>—
+                <i><a href="https://ru.wikipedia.org/wiki/1991_%D0%B3%D0%BE%D0%B4" target="_blank">1991 годах</a></i> B стенах <i><a href="https://ru.wikipedia.org/wiki/%D0%A6%D0%95%D0%A0%D0%9D" target="_blank">ЦЕРНа</a></i> B <i><a href="https://ru.wikipedia.org/wiki/%D0%96%D0%B5%D0%BD%D0%B5%D0%B2%D0%B0" target="_blank">Женеве</a></i> в <i><a href="https://ru.wikipedia.org/wiki/%D0%A8%D0%B2%D0%B5%D0%B9%D1%86%D0%B0%D1%80%D0%B8%D1%8F" target="_blank">Швейцарии</a></i>. HTML создавался как язык для обмена научной
+                и технической документацией, пригодный для использования людьми, не являющимися
+                специалистами в области <i><a href="https://ru.wikipedia.org/wiki/Вёрстка" target="_blank">вёрстки</a></i>. HTML успешно справлялся с проблемой сложности SGML путём
+                определения небольшого набора структурных и <b><a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D0%BA%D0%B0" target="_blank">семантических</a></b> элементов _ дескрипторов.
+                Дескрипторы также часто называют «<i><b><a href="https://ru.wikipedia.org/wiki/Тег_(языки_разметки)" target="_blank">тегами</a></b></i>». С помощью HTML можно легко создать
+                относительно простой, но красиво оформленный документ. Помимо упрощения структуры
+                документа, в HTML внесена поддержка <i><a href="https://ru.wikipedia.org/wiki/Гипертекст" target="_blank">гипертекста</a></i>. <i><a href="https://ru.wikipedia.org/wiki/Мультимедиа" target="_blank">Мультимедийные</a></i> возможности были
+                добавлены позже.<br/>
+                Изначально язык HTML был задуман и создан как средство структурирования и форматирования
+                документов без их привязки к средствам воспроизведения (отображения). В идеале, текст с
+                разметкой HTML должен был без стилистических и структурных искажений воспроизводиться на
+                оборудовании с различной технической оснащённостью (цветной экран современного компьютера,
+                монохромный экран органайзера, ограниченный по размерам экран мобильного телефона или
+                устройства и программы голосового воспроизведения текстов). Однако современное применение
+                HTML очень далеко от его изначальной задачи. Например, тег &lt;table&gt; предназначен для создания в
+                документах таблиц, но иногда используется и для оформления размещения элементов на странице.
+                С течением времени основная идея платформо независимости языка HTML была принесена в
+                жертву современным потребностям в мультимедийном и графическом оформлении.<br/>
+                Браузеры <br/>
+                Текстовые документы, содержащие разметку на языке HTML (такие документы традиционно
+                имеют <i><a href="https://ru.wikipedia.org/wiki/Расширение_имени_файла" target="_blank">расширение</a></i> <b>.html</b> или <b>.htm</b>), обрабатываются специальными <i><a href="https://ru.wikipedia.org/wiki/Прикладное_программное_обеспечение" target="_blank">приложениями</a></i>, которые
+                отображают документ в его форматированном виде. Такие приложения, называемые «браузерами»
+                или «интернет-обозревателями», обычно предоставляют пользователю удобный <i><a href="https://ru.wikipedia.org/wiki/Интерфейс_пользователя" target="_blank">интерфейс</a></i> для
+                запроса <i><a href="https://ru.wikipedia.org/wiki/Веб-страница" target="_blank">веб-страниц</a></i>, их просмотра (и вывода на иные внешние устройства) и, при необходимости,
+                отправки введённых пользователем данных на сервер. Наиболее популярными на сегодняшний день
+                браузерами являются <b><i><a class="no_underline" href="https://ru.wikipedia.org/wiki/Google_Chrome" target="_blank">Google Chrome</a></i></b>, <i><b><a class="no_underline" href="https://ru.wikipedia.org/wiki/Mozilla_Firefox" target="_blank">Mozilla Firefox</a></b></i>, <i><b><a class="no_underline" href="https://ru.wikipedia.org/wiki/Opera" target="_blank">Opera</b></i>,<i><b> <a class="no_underline" href="https://ru.wikipedia.org/wiki/Internet_Explorer" target="_blank">Internet Explorer</a></b></i> и <i><b><a class="no_underline" href="https://ru.wikipedia.org/wiki/Safari" target="_blank">Safari</a></b></i>.
+            </p>
         </div>
-    </header>
-
-    <main>
-        <div class="mainConteiner">
-            <aside>
-                <div class="divAside_1">Some left-side Banner-1</div>
-                <div class="divAside_2">Some left-side  Banner-2</div>
-            </aside>
-            <section> <h3 class="classH3">This is main section for article</h3>
-                <div class="innerdiv">
-                    <article>Article1</article>
-                    <article>Article2</article>
-                    <article>Article3</article>
-                    <article>Article4</article>
-                    <article>Article5</article>
-                </div>
-
-            </section>
-            <div class="asideRight"> 
-                    <div class="divAside_1">Some right-side Banner-1</div>
-                    <div class="divAside_2">Some right-side Banner-2</div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footerConteiner">Here is some footer text</div>
-
-    </footer>
-
-</body>
+        
+    </body>
 </html>
