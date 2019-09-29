@@ -1,11 +1,6 @@
-import { tableWorker } from './module1';
+import { tableWorker } from './tableWorker';
+import {$} from './myHelperLib'
 window.addEventListener("load", () =>{
-	function $(selector) {
-		return document.querySelector(selector);
-	}
-
-
-	//============================================================================
 	// Начало программы — вызов функции
 
 	let myTable1 = $('.myTable1');
