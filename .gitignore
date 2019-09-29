@@ -1,2 +1,3 @@
 # Убрать из репозитория папку "node_modules"
 
+/node_modules/ 
