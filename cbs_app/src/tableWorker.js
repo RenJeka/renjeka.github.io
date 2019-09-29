@@ -3,26 +3,48 @@
 // Добавлять строки, редактировать, ...
 
 export let tableWorker = {
-	// Функция, которая добавляет ряды и ячейки в таблицу
-	addRow(table, numberOfRows, numberOfCells, textInCell) {
+	// Метод, который добавляет ряды с ячейками в таблицу
+	addRow(table, numberOfRows = 1, numberOfCells, textInCell = "") {
+		
+		let arrayofRows = [];
 
-		// Цикл добавляеи по 1-й строке то кол-во, которое мы укажем (numberOfRows)
-		for (let i = 0; i < numberOfRows; i++) {
-			let row = document.createElement("tr")
-			table.appendChild(row)
+		function add() {
+			// Цикл добавляеи по 1-й строке то кол-во, которое мы укажем (numberOfRows)
+			for (let i = 0; i < numberOfRows; i++) {
+				let row = document.createElement("tr")
+				table.appendChild(row)
 
-			// Цикл добавляет по 1-й ячейке то кол-во, которое мы укажем (numberOfCells)
-			for (let j = 0; j < numberOfCells; j++) {
-				let cell = document.createElement("td")
-				row.appendChild(cell)
+				// Цикл добавляет по 1-й ячейке то кол-во, которое мы укажем (numberOfCells)
+				for (let j = 0; j < numberOfCells; j++) {
+					let cell = document.createElement("td")
+					row.appendChild(cell)
 
-				// Добавляем текст в ячейку переданным параметром
-				cell.innerHTML = textInCell;
+					// Добавляем текст в ячейку переданным параметром
+					cell.innerHTML = textInCell;
+				}
+				arrayofRows.push(row);
 			}
+			return arrayofRows;
 		}
+
+		if (numberOfCells == undefined) {
+			numberOfCells = table.rows[0].cells.length;
+		}
+
+		if (numberOfRows == 1) {
+
+			let row = add()
+			return row[0];
+			
+		}
+		
+		return add();
+		
+		// Нучно, чтобы эта функция возвращала индекс ряда
+		// return indexOfThisRow
 	},
 	// -----------------------------------------------------------------------------------
-	// Функция заполняет одну указанную ячейку в указанном ряде таблицы. Данные берутся с переданного объекта. Функция переберает объект на подходящее свойство и помещает значение этого свойства в ячейку таблицы. Нужна для функции addInfoInRow
+	// Метод заполняет одну указанную ячейку в указанном ряде таблицы. Данные берутся с переданного объекта. Функция переберает объект на подходящее свойство и помещает значение этого свойства в ячейку таблицы. Нужна для функции addInfoInRow
 	addInfoInCell(table, object, indexOfRow, indexOfCell ) {
 
 		for (const key in object) {
@@ -35,7 +57,7 @@ export let tableWorker = {
 		}
 	},
 	// -----------------------------------------------------------------------------------
-	// Функция вычисляет, какой заголовок находиться над указанной ячейкой (Заголовок колонки). Нужна для функции "addInfoInCell"
+	// Метод вычисляет, какой заголовок находиться над указанной ячейкой (Заголовок колонки). Нужна для функции "addInfoInCell"
 	whatHead(table, indexOfCell) {
 
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].innerHTML;

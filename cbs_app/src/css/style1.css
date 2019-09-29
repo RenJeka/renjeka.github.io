@@ -9,3 +9,15 @@
 	width: 100px;
 	text-align: center;
 }
+
+.bookInputs{
+
+}
+
+.bookInputs-valid{
+	background-color: green;
+}
+
+.bookInputs-invalid{
+	background-color: red;
+}
