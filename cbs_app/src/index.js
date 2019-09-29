@@ -12,22 +12,21 @@ window.addEventListener("load", () =>{
 
 		for (let i = 0; i < numberOfRows; i++) {
 			let row = document.createElement("tr")
-			let cell = document.createElement("td")
+			
 			console.dir(row);
-			console.dir(cell);
-			for (let j = 0; j < numberOfCells; j++) {
-				row.cells.push(cell)
-				row.cells[j].innerText = textInCell;
-				
-			}
+			// console.dir(cell);
+			// row.appendChild(cell)
 			table.appendChild(row)
+			for (let j = 0; j < numberOfCells; j++) {
+				let cell = document.createElement("td")
+				row.appendChild(cell)
+				cell.innerHTML = textInCell;
+	
+			}
 			
 		}
 	}
 
 	addRow(myTable1,3,3, "any")
-
-
-
 
 })
