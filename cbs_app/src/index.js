@@ -1,36 +1,28 @@
 import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib'
 import { Book } from './books';
-import { invalidStylist } from './formHandler';
+import { invalidStylist, addToLocalStorage } from './formHandler';
 
 window.addEventListener("load", () =>{
-	// Начало программы — вызов функции
 
 	let myTable1 = $('.myTable1');
 	
-	console.dir(myTable1);
-	console.log(myTable1.rows);
+	// console.dir(myTable1);
+	// console.log(myTable1.rows);
+	// console.log(tableWorker.addRow(myTable1,3,3, "any"));
 
-	console.log(tableWorker.addRow(myTable1,3,3, "any"));
+	// TODO [Спросить] -Как лучше поместить данный обработчик в отдельный модуль, чтобы он работал корректно.
 
-	// console.log(whatHead(myTable1,3));
-
-	let book1 ={
-		id:332,
-		name: "book1",
-		author: "Jeka",
-		pages: 225,
-		somedata: "hihihi"
-
-	}
+	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 	
-	// addInfoInCell(myTable1, book1, 4,3);
-	tableWorker.addInfoInRow(myTable1,1,book1);
-	
+	// ♦ Продумать, как будет реализовываться проверка на валидность.  
+	// ♦ Поместить все объекты "book" в массив и реализовать их перебор с помощью кнопок (данные выводятся в форму). 
+	// ♦ Добавить функцию - парсинг объекта с "Local Storage" (объекты записываются в массив arrayOfBooks)
+	// ♦ Реализовать заполнение таблицы напрямую с массива "arrayOfBooks"
 
+	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
-	// // TODO При  нажатии на кнопку первый раз — всё срабатывает как нужно, но кода нажимаю второй раз → не создается 
-	// Обработчик события на клик-------------------------------------------------------
+ 	// Обработчик события на клик-----------------------------------------------
 	$('#addBook').addEventListener("click", () => {
 
 		let newRow;
@@ -38,10 +30,10 @@ window.addEventListener("load", () =>{
 		let  arrayOfInputs = document.querySelectorAll('#form-book input');
 		console.dir(arrayOfInputs);
 
-		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом)
+		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом). Эта проверка (этот цикл) должна запускаться первой!
 		for (let i = 0; i < arrayOfInputs.length; i++) {
 
-			// Сама проверка
+			// Сама проверка. Если длина "value" хоть одного (первого попавшивося) у инпута == 0 — тогда применяется стиль (invalid) и обработчик завершает работу.
 			if(arrayOfInputs[i].value.length == 0){
 
 				invalidStylist(arrayOfInputs);
@@ -49,16 +41,24 @@ window.addEventListener("load", () =>{
 			}
 		}
 
-		// Цикл перебирает все поля для ввода (инпуты), и создает такие-же свойства у объекта book (название свойста соответствует ID инпута)
+		// Этот цикл заполняет объект "book". Он перебирает все поля для ввода (инпуты), и создает такие-же свойства у объекта book (название свойста соответствует ID инпута)
 		for (let i = 0; i < arrayOfInputs.length; i++) {
 
 			book[arrayOfInputs[i].getAttribute("id")] = arrayOfInputs[i].value;
 
-			arrayOfInputs[i].value = "";
-			arrayOfInputs[i].className = "bookInputs-valid" 
+			// Очищение полей. Тут идет проверка на то, чтобы поле не было типа "hidden", так как это системное поле и его нельзя очищать. 
+			if (arrayOfInputs[i].type != "hidden") {
+
+				arrayOfInputs[i].value = "";
+				arrayOfInputs[i].className = "bookInputs-valid" 
+			}
+			
 		}
 		
 		console.dir(book);
+
+		addToLocalStorage(book);
+
 		//  В конце работы обработчика мы создаем новую строку с помощью импортированного объекта "tableWorker", и добавляем информацию с настроенного ранее объекта "book"
 		newRow = tableWorker.addRow(myTable1);
 		tableWorker.addInfoInRow(myTable1,newRow.rowIndex,book)
