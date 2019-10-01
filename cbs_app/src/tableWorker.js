@@ -3,7 +3,52 @@
 // Добавлять строки, редактировать, ...
 
 export let tableWorker = {
-	// -----------------------------------------------------------------------------------
+
+	// -----------------------------------------------------------------
+	// Метод заполняет указанную таблицу, указанным массивом объектов. Получает на вход таблицу и массив с данными, либо ключ (по которому лежит массив с данными в LocalStorage).
+	// TODO • Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
+	fillTable(table, keyOrArrayOfObjects) {
+
+		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
+		if (typeof keyOrArrayOfObjects == "string") {
+			
+			let arrayofData = this.getTableData(keyOrArrayOfObjects);
+
+			for (let i = 0; i < arrayofData.length; i++) {
+
+				this.addInfoInRow(
+					table, 
+					this.addRow(table).rowIndex, 
+					arrayofData[i]
+				);
+			}
+			return;
+			
+		// Если в параметре (№2) указан объект с данными — метод заполняет таблицу этим объектом.
+		}else if(typeof keyOrArrayOfObjects == "object"){
+
+			for (let i = 0; i < arrayOfObjects.length; i++) {
+				this.addInfoInRow(
+					table, 
+					this.addRow(table).rowIndex, 
+					arrayofData[i]
+				);
+			}
+			return;
+		}
+		
+	},
+
+	// ---------------------------------------------------------------------
+	// Метод получает данные с LocalStorage для заполнения таблицы. Нужно передать ключ от объекта в LocalStorage. Возвращает распарсенный массив объектов, которым можно заполнить таблицу.
+	getTableData(key){
+
+		let jsonObject = window.localStorage.getItem(key);
+
+		return JSON.parse(jsonObject)
+	},
+
+	// ---------------------------------------------------------------------
 	// Метод, который добавляет ряды с ячейками в таблицу
 	addRow(table, numberOfRows = 1, numberOfCells, textInCell = "") {
 		
@@ -47,7 +92,18 @@ export let tableWorker = {
 		// Метод возвращает массив с созданными рядами (массив созданных рядов)
 		return add();
 	},
-	// -----------------------------------------------------------------------------------
+
+	// ------------------------------------------------------------------------------
+	// Это основной метод, который заполняет целый ряд таблицы. Использует метод "addInfoInCell".
+	addInfoInRow(table, indexOfRow, object) {
+
+		for (let k = 0; k < table.rows[indexOfRow].cells.length; k++) {
+
+			this.addInfoInCell(table, object, indexOfRow, k)
+		}
+	},
+
+	// ---------------------------------------------------------------------------
 	// Метод заполняет одну указанную ячейку в указанном ряде таблицы. Данные берутся с переданного объекта. Функция переберает объект на подходящее свойство и помещает значение этого свойства в ячейку таблицы. Нужна для функции addInfoInRow
 	addInfoInCell(table, object, indexOfRow, indexOfCell ) {
 
@@ -60,69 +116,12 @@ export let tableWorker = {
 			}
 		}
 	},
-	// -----------------------------------------------------------------------------------
+	// -----------------------------------------------------------------------------
 	// Метод вычисляет, какой заголовок находиться над указанной ячейкой (Заголовок колонки). Нужна для функции "addInfoInCell"
 	whatHead(table, indexOfCell) {
 
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].innerHTML;
 		return nameOfTableHead;
 	},
-	// -----------------------------------------------------------------------------------
-	// Это основной метод, который заполняет целый ряд таблицы. Использует метод "addInfoInCell".
-	addInfoInRow(table, indexOfRow, object) {
-
-		for (let k = 0; k < table.rows[indexOfRow].cells.length; k++) {
-
-			this.addInfoInCell(table, object, indexOfRow, k)
-		}
-	},
-	// -----------------------------------------------------------------------------------
-
-	// Метод заполняет указанную таблицу, указанным массивом объектов. Получает на вход таблицу и массив с данными, либо ключ (по которому лежит массив с данными в LocalStorage).
-	// TODO • Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
-	fillTable(table, keyOrArrayOfObjects) {
-
-
-		if (typeof keyOrArrayOfObjects == "string") {
-			
-			let arrayofData = this.getTableData(keyOrArrayOfObjects);
-
-			for (let i = 0; i < arrayofData.length; i++) {
-
-				this.addInfoInRow(
-					table, 
-
-					// TODO — Тут необходимо создать новую строку (фун-я "addRow") → и поместить индекс этой новой строки в функцию "addInfoInRow" (2-й аргумент) чтобы добавить информацию именно в эту (созданную) строку
-					table.rows.indexOf(this.addRow(table)), 
-					arrayofData[i]
-				);
-			}
-			return;
-			
-		}else if(typeof keyOrArrayOfObjects == "object"){
-
-			for (let i = 0; i < arrayOfObjects.length; i++) {
-				this.addInfoInRow(
-					table, 
-
-					// TODO — аналогично
-					table.rows.indexOf(this.addRow(table)), 
-					arrayofData[i]
-				);
-			}
-			return;
-		}
-		
-	},
-
-	// Метод получает данные с LocalStorage для заполнения таблицы. Нужно передать ключ от объекта в LocalStorage. Возвращает распарсенный массив объектов, которым можно заполнить таблицу.
-	getTableData(key){
-
-		let jsonObject = window.localStorage.getItem(key);
-
-		return JSON.parse(jsonObject)
-	}
-
-
 }
 

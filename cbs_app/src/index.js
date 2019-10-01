@@ -10,11 +10,6 @@ window.addEventListener("load", () =>{
 	console.dir(myTable1);
 	tableWorker.fillTable(myTable1,"Book-Library");
 	
-	// console.log(myTable1.rows);
-	// console.log(tableWorker.addRow(myTable1,3,3, "any"));
-
-	// TODO [Спросить] -Как лучше поместить данный обработчик в отдельный модуль, чтобы он работал корректно.
-
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 	
 	// ♦ Продумать, как будет реализовываться проверка на валидность.  

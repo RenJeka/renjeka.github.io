@@ -16,6 +16,9 @@ function invalidStylist(arrayOfInputs) {
 // Функция добавляет переданный ей объект в локальное хранилище (Local Storage). Функция преображает объект в JSON-объект и создает ключ
 function addToLocalStorage(object, id) {
 
+	// if () {
+		
+	// }
 	let jsonObject = JSON.stringify(object);
 
 	window.localStorage.setItem(id, jsonObject);
@@ -69,8 +72,8 @@ function addBookHandler(table) {
 		addToLocalStorage(bookLibrary, localStorageKey);
 
 		//  В конце работы обработчика мы создаем новую строку с помощью импортированного объекта "tableWorker", и добавляем информацию с настроенного ранее объекта "book"
-		newRow = tableWorker.addRow(table);
-		tableWorker.addInfoInRow(table,newRow.rowIndex,book);
+		// newRow = tableWorker.addRow(table);
+		// tableWorker.addInfoInRow(table,newRow.rowIndex,book);
 		return localStorageKey;
 }
 
