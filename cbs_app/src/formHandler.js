@@ -1,7 +1,7 @@
 // Эта библиотека отвечает за обработку данных с форм
 import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib';
-import { Book } from './books';
+import { Book, bookLibrary } from './books';
 
 
 // Функция для стилизации инпутов в стиль "invalid". Мы передаем на вход массив с инпутами, и функция их стилизует.
@@ -14,26 +14,26 @@ function invalidStylist(arrayOfInputs) {
 }
 
 // Функция добавляет переданный ей объект в локальное хранилище (Local Storage). Функция преображает объект в JSON-объект и создает ключ
-function addToLocalStorage(object) {
-	let id = getID(object);
+function addToLocalStorage(object, id) {
 
 	let jsonObject = JSON.stringify(object);
 
 	window.localStorage.setItem(id, jsonObject);
 }
 
-// Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
-function getID(object) {
+// // Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
+// function getID(object) {
 
-	return object.objtype + "-" + object.id;
+// 	return object.objtype + "-" + object.id;
 	
-}
+// }
 
-
+// Обработчик событий при нажатии на кнопку "addBook". Берет с формы данные и записывает в LocalStorage. Возвращает ключ от данных в LocalStorage.
 function addBookHandler(table) {
-	let newRow;
+		let newRow;
 		let book = new Book;
-		let  arrayOfInputs = document.querySelectorAll('#form-book input');
+		let arrayOfInputs = document.querySelectorAll('#form-book input');
+		let localStorageKey = "Book-Library"; // Ключ, по которому записываются значения в LocalStorage
 		console.dir(arrayOfInputs);
 
 		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом). Эта проверка (этот цикл) должен запускаться первой!
@@ -61,13 +61,17 @@ function addBookHandler(table) {
 			
 		}
 		
+		bookLibrary.push(book);
+		console.dir( bookLibrary);
+
 		console.dir(book);
 
-		addToLocalStorage(book);
+		addToLocalStorage(bookLibrary, localStorageKey);
 
 		//  В конце работы обработчика мы создаем новую строку с помощью импортированного объекта "tableWorker", и добавляем информацию с настроенного ранее объекта "book"
 		newRow = tableWorker.addRow(table);
-		tableWorker.addInfoInRow(table,newRow.rowIndex,book)
+		tableWorker.addInfoInRow(table,newRow.rowIndex,book);
+		return localStorageKey;
 }
 
 

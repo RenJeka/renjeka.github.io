@@ -40,6 +40,7 @@ export let tableWorker = {
 		if (numberOfRows == 1) {
 
 			let row = add()
+			// Если кол-во строк установленно по умолчанию (1) — данный метод возвращает эту строку.
 			return row[0];
 		}
 		
@@ -77,11 +78,50 @@ export let tableWorker = {
 	},
 	// -----------------------------------------------------------------------------------
 
-	fillTable(table) {
+	// Метод заполняет указанную таблицу, указанным массивом объектов. Получает на вход таблицу и массив с данными, либо ключ (по которому лежит массив с данными в LocalStorage).
+	// TODO • Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
+	fillTable(table, keyOrArrayOfObjects) {
 
-		let arrayOfObjects
+
+		if (typeof keyOrArrayOfObjects == "string") {
+			
+			let arrayofData = this.getTableData(keyOrArrayOfObjects);
+
+			for (let i = 0; i < arrayofData.length; i++) {
+
+				this.addInfoInRow(
+					table, 
+
+					// TODO — Тут необходимо создать новую строку (фун-я "addRow") → и поместить индекс этой новой строки в функцию "addInfoInRow" (2-й аргумент) чтобы добавить информацию именно в эту (созданную) строку
+					table.rows.indexOf(this.addRow(table)), 
+					arrayofData[i]
+				);
+			}
+			return;
+			
+		}else if(typeof keyOrArrayOfObjects == "object"){
+
+			for (let i = 0; i < arrayOfObjects.length; i++) {
+				this.addInfoInRow(
+					table, 
+
+					// TODO — аналогично
+					table.rows.indexOf(this.addRow(table)), 
+					arrayofData[i]
+				);
+			}
+			return;
+		}
+		
+	},
+
+	// Метод получает данные с LocalStorage для заполнения таблицы. Нужно передать ключ от объекта в LocalStorage. Возвращает распарсенный массив объектов, которым можно заполнить таблицу.
+	getTableData(key){
+
+		let jsonObject = window.localStorage.getItem(key);
+
+		return JSON.parse(jsonObject)
 	}
-
 
 
 }
