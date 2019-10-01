@@ -1,6 +1,7 @@
 // Эта библиотека отвечает за обработку данных с форм
-
+import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib';
+import { Book } from './books';
 
 
 // Функция для стилизации инпутов в стиль "invalid". Мы передаем на вход массив с инпутами, и функция их стилизует.
@@ -29,4 +30,45 @@ function getID(object) {
 }
 
 
-export {invalidStylist, addToLocalStorage};
+function addBookHandler(table) {
+	let newRow;
+		let book = new Book;
+		let  arrayOfInputs = document.querySelectorAll('#form-book input');
+		console.dir(arrayOfInputs);
+
+		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом). Эта проверка (этот цикл) должен запускаться первой!
+		for (let i = 0; i < arrayOfInputs.length; i++) {
+
+			// Сама проверка. Если длина "value" хоть одного (первого попавшивося) у инпута == 0 — тогда применяется стиль (invalid) и обработчик завершает работу.
+			if(arrayOfInputs[i].value.length == 0){
+
+				invalidStylist(arrayOfInputs);
+				return false;
+			}
+		}
+
+		// Этот цикл заполняет объект "book". Он перебирает все поля для ввода (инпуты), и создает такие-же свойства у объекта book (название свойста соответствует ID инпута)
+		for (let i = 0; i < arrayOfInputs.length; i++) {
+
+			book[arrayOfInputs[i].getAttribute("id")] = arrayOfInputs[i].value;
+
+			// Очищение полей. Тут идет проверка на то, чтобы поле не было типа "hidden", так как это системное поле и его нельзя очищать. 
+			if (arrayOfInputs[i].type != "hidden") {
+
+				arrayOfInputs[i].value = "";
+				arrayOfInputs[i].className = "bookInputs-valid" 
+			}
+			
+		}
+		
+		console.dir(book);
+
+		addToLocalStorage(book);
+
+		//  В конце работы обработчика мы создаем новую строку с помощью импортированного объекта "tableWorker", и добавляем информацию с настроенного ранее объекта "book"
+		newRow = tableWorker.addRow(table);
+		tableWorker.addInfoInRow(table,newRow.rowIndex,book)
+}
+
+
+export {invalidStylist, addToLocalStorage, addBookHandler};
