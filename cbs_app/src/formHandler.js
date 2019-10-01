@@ -16,12 +16,21 @@ function invalidStylist(arrayOfInputs) {
 // Функция добавляет переданный ей объект в локальное хранилище (Local Storage). Функция преображает объект в JSON-объект и создает ключ
 function addToLocalStorage(object, id) {
 
-	// if () {
-		
-	// }
-	let jsonObject = JSON.stringify(object);
+	let tempData;
+	let tempJSON = localStorage.getItem(id);
 
-	window.localStorage.setItem(id, jsonObject);
+	// Если у нас уже есть такой JSON-объект — функция добавляет наш объект (который мы передали в параметре) — в готовый массив объектов. Если еще нет JSON-объекта — создаем новый.
+	if (tempJSON) {
+		
+		tempData = JSON.parse(tempJSON);
+		tempData.push(object);
+		tempJSON = JSON.stringify(tempData);
+		localStorage.setItem(id,tempJSON);
+		return;
+
+	}
+	
+	window.localStorage.setItem(id, JSON.stringify(object));
 }
 
 // // Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
