@@ -34,7 +34,7 @@ export let tableWorker = {
 		// Если в параметре (№2) указан объект с данными — метод заполняет таблицу этим объектом.
 		}else if(typeof keyOrArrayOfObjects == "object"){
 
-			for (let i = 0; i < arrayOfObjects.length; i++) {
+			for (let i = 0; i < keyOrArrayOfObjects.length; i++) {
 				this.addInfoInRow(
 					table, 
 					this.addRow(table).rowIndex, 

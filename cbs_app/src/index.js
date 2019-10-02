@@ -23,8 +23,8 @@ window.addEventListener("load", () =>{
  	// Обработчик события на клик по кнопке "addBook"
 	$('#addBook').addEventListener("click", () => {
 	
-		tableWorker.fillTable(myTable1, addBookHandler(myTable1));
+		tableWorker.fillTable(myTable1, addBookHandler(myTable1).localStorageKey);
 		
 	})
 
-})
+});
