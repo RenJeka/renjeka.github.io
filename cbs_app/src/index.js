@@ -1,7 +1,7 @@
 import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib'
 import { Book } from './books';
-import { invalidStylist, addToLocalStorage, addBookHandler } from './formHandler';
+import { addToLocalStorage, addBookHandler } from './formHandler';
 
 window.addEventListener("load", () =>{
 
@@ -23,7 +23,7 @@ window.addEventListener("load", () =>{
  	// Обработчик события на клик по кнопке "addBook"
 	$('#addBook').addEventListener("click", () => {
 	
-		tableWorker.fillTable(myTable1,addBookHandler(myTable1));
+		tableWorker.fillTable(myTable1, addBookHandler(myTable1));
 		
 	})
 

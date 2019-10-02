@@ -124,7 +124,7 @@ export let tableWorker = {
 			if (object.hasOwnProperty(key)) {
 				if (key.toLowerCase() === this.whatHead(table, indexOfCell).toLowerCase()){
 					table.rows[indexOfRow].cells[indexOfCell].innerHTML = object[key];
-					console.dir(key);
+					// console.dir(key);
 				}
 			}
 		}
