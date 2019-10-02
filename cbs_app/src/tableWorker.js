@@ -1,6 +1,6 @@
 
 // Тут находятся все функции для работы с таблицами.
-// Добавлять строки, редактировать, ...
+// Добавлять строки, редактировать,удалять, заполнять таблицу
 
 export let tableWorker = {
 
@@ -63,7 +63,7 @@ export let tableWorker = {
 
 	// ---------------------------------------------------------------------
 	// Метод, который добавляет ряды с ячейками в таблицу
-	addRow(table, numberOfRows = 1, numberOfCells, textInCell = "") {
+	addRow(table, data, numberOfRows = 1, numberOfCells) {
 		
 		let arrayofRows = [];
 
@@ -72,18 +72,27 @@ export let tableWorker = {
 		function add() {
 			// Цикл добавляеи по 1-й строке то кол-во, которое мы укажем (numberOfRows)
 			for (let i = 0; i < numberOfRows; i++) {
+
 				let row = document.createElement("tr")
 				table.appendChild(row)
 
 				// Цикл добавляет по 1-й ячейке то кол-во, которое мы укажем (numberOfCells)
 				for (let j = 0; j < numberOfCells; j++) {
+
 					let cell = document.createElement("td")
 					row.appendChild(cell)
 
 					// Добавляем текст в ячейку переданным параметром
-					cell.innerHTML = textInCell;
+					// cell.innerHTML = textInCell;
 				}
 				arrayofRows.push(row);
+
+				if (data) {
+					
+					// ! Исправить эту ошибку " Cannot read property 'addInfoInRow' of undefined "
+
+					this.addInfoInRow(table,row.rowIndex,data);
+				}
 			}
 			return arrayofRows;
 		}

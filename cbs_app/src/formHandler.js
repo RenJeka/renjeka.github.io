@@ -14,7 +14,7 @@ function addBookHandler(table) {
 	console.dir(arrayOfInputs);
 
 	// Проверка валидации
-	if (validate (arrayOfInputs) ==false) {
+	if (validate(arrayOfInputs) == false) {
 		return false;
 	}
 

@@ -23,7 +23,13 @@ window.addEventListener("load", () =>{
  	// Обработчик события на клик по кнопке "addBook"
 	$('#addBook').addEventListener("click", () => {
 	
-		tableWorker.fillTable(myTable1, addBookHandler(myTable1).localStorageKey);
+		let returnedObject =  addBookHandler(myTable1);
+
+		// Тут прописывается логика, если есть ошибка в валидации
+		if (returnedObject == false) {
+			return false;
+		}
+		tableWorker.addRow(myTable1, returnedObject.addedObject);
 		
 	})
 
