@@ -18,6 +18,7 @@ function addToLocalStorage(object, id) {
 
 	let tempData;
 	let tempJSON = localStorage.getItem(id);
+	let firstArray = [];
 
 	// Если у нас уже есть такой JSON-объект — функция добавляет наш объект (который мы передали в параметре) — в готовый массив объектов. Если еще нет JSON-объекта — создаем новый.
 	if (tempJSON) {
@@ -28,9 +29,12 @@ function addToLocalStorage(object, id) {
 		localStorage.setItem(id,tempJSON);
 		return;
 
+	}else{
+		firstArray.push(object);
+		window.localStorage.setItem(id, JSON.stringify(firstArray));
+		return;
 	}
 	
-	window.localStorage.setItem(id, JSON.stringify(object));
 }
 
 // // Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
@@ -48,10 +52,10 @@ function addBookHandler(table) {
 		let localStorageKey = "Book-Library"; // Ключ, по которому записываются значения в LocalStorage
 		console.dir(arrayOfInputs);
 
-		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом). Эта проверка (этот цикл) должен запускаться первой!
+		// Проверка, чтобы все необходимые поля были заполнены (минимум 1 символом). Эта проверка (этот цикл) должен запускаться первым!
 		for (let i = 0; i < arrayOfInputs.length; i++) {
 
-			// Сама проверка. Если длина "value" хоть одного (первого попавшивося) у инпута == 0 — тогда применяется стиль (invalid) и обработчик завершает работу.
+			// Сама проверка. Если в инпут не ввели данные— тогда применяется стиль (invalid) и обработчик завершает работу.
 			if(arrayOfInputs[i].value.length == 0){
 
 				invalidStylist(arrayOfInputs);
@@ -70,15 +74,15 @@ function addBookHandler(table) {
 				arrayOfInputs[i].value = "";
 				arrayOfInputs[i].className = "bookInputs-valid" 
 			}
-			
 		}
 		
-		bookLibrary.push(book);
-		console.dir( bookLibrary);
+		// bookLibrary.push(book);
+		// console.dir( bookLibrary);
 
-		console.dir(book);
+		// console.dir(book);
+		// console.log(localStorageKey);
 
-		addToLocalStorage(bookLibrary, localStorageKey);
+		addToLocalStorage(book, localStorageKey);
 
 		//  В конце работы обработчика мы создаем новую строку с помощью импортированного объекта "tableWorker", и добавляем информацию с настроенного ранее объекта "book"
 		// newRow = tableWorker.addRow(table);
@@ -86,5 +90,9 @@ function addBookHandler(table) {
 		return localStorageKey;
 }
 
+
+function validate(params) {
+	
+}
 
 export {invalidStylist, addToLocalStorage, addBookHandler};

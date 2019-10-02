@@ -8,11 +8,17 @@ export let tableWorker = {
 	// Метод заполняет указанную таблицу, указанным массивом объектов. Получает на вход таблицу и массив с данными, либо ключ (по которому лежит массив с данными в LocalStorage).
 	// TODO • Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
 	// TODO Переделать функцию, которая заполняет таблицу.
+
 	fillTable(table, keyOrArrayOfObjects) {
 
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
+			// Проверка на незаполненную таблицу
+			if (this.getTableData(keyOrArrayOfObjects) ===false) {
+				return false;
+			}
+
 			let arrayofData = this.getTableData(keyOrArrayOfObjects);
 
 			for (let i = 0; i < arrayofData.length; i++) {
@@ -44,9 +50,15 @@ export let tableWorker = {
 	// Метод получает данные с LocalStorage для заполнения таблицы. Нужно передать ключ от объекта в LocalStorage. Возвращает распарсенный массив объектов, которым можно заполнить таблицу.
 	getTableData(key){
 
-		let jsonObject = window.localStorage.getItem(key);
+		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
+		if (localStorage.getItem(key)) {
+			let jsonObject = window.localStorage.getItem(key);
 
-		return JSON.parse(jsonObject)
+			return JSON.parse(jsonObject)
+		}else {
+			return false;
+		}
+		
 	},
 
 	// ---------------------------------------------------------------------
