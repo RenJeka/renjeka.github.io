@@ -20,15 +20,18 @@ window.addEventListener("load", () =>{
 
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
- 	// Обработчик события на клик по кнопке "addBook"
-	$('#addBook').addEventListener("click", () => {
-	
+ 	
+	$('#addBook').addEventListener("click", function() {
+
+		// Обработчик события на клик по кнопке "addBook"
 		let returnedObject =  addBookHandler(myTable1);
 
-		// Тут прописывается логика, если есть ошибка в валидации
+		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
 		if (returnedObject == false) {
 			return false;
 		}
+
+		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(myTable1, returnedObject.addedObject);
 		
 	})
