@@ -1,7 +1,7 @@
 import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib'
 import { Book } from './books';
-import { addToLocalStorage, addBookHandler } from './formHandler';
+import { formHandler } from './formHandler';
 
 window.addEventListener("load", () =>{
 
@@ -21,10 +21,10 @@ window.addEventListener("load", () =>{
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
  	
-	$('#addBook').addEventListener("click", function() {
+	$('#addBook').addEventListener("click", function(e) {
 
 		// Обработчик события на клик по кнопке "addBook"
-		let returnedObject =  addBookHandler(myTable1);
+		let returnedObject =  formHandler.addBookHandler(e);
 
 		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
 		if (returnedObject == false) {
@@ -33,7 +33,6 @@ window.addEventListener("load", () =>{
 
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(myTable1, returnedObject.addedObject);
-		
 	})
 
 });

@@ -81,7 +81,7 @@ export let tableWorker = {
 	 * @return {arrayofRows} Возвращает созданный массив строк (либо 1 строку) с данными.
 	 */
 
-	addRow: function (table, data, numberOfRows = 1, numberOfCells) {
+	addRow(table, data, numberOfRows = 1, numberOfCells) {
 		console.log(this);
 
 		let arrayofRows = [];
