@@ -107,8 +107,6 @@ export let tableWorker = {
 
 				if (data) {
 
-					// ! Исправить эту ошибку " Cannot read property 'addInfoInRow' of undefined ". Виноват контекст вызываемой функции (underfine) 
-
 					context.addInfoInRow(table, row.rowIndex, data);
 				}
 			}

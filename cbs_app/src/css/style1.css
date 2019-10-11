@@ -18,6 +18,9 @@
 
 }
 
+.bookInputs-clean{
+	background-color: white;
+}
 .bookInputs-valid{
 	background-color: green;
 }
