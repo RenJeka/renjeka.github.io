@@ -5,6 +5,7 @@ import {tableWorker} from './tableWorker';
 
 
 export let formHandler = {
+
 	
 	// --------------------------------------------------------------------------
 	/**
@@ -39,21 +40,50 @@ export let formHandler = {
 
 		}
 
-		// Этот цикл заполняет объект "object". Он перебирает все поля для ввода (инпуты), и создает такие-же свойства у объекта object (название свойста соответствует ID инпута). Можно реализовать заполнение объекта через конструктор класса Book в book.js
-		for (let i = 0; i < formElements.length; i++) {
+		this.fillObject(object, formElements, localStorageKey);
 
-			object[formElements[i].getAttribute("id")] = formElements[i].value;
+	
+		// for (let i = 0; i < formElements.length; i++) {
 
-		}
+		// 	object[formElements[i].getAttribute("id")] = formElements[i].value;
+
+		// }
+		//Если находим дубликат объекта - метод заканчивает работу.
 		if (this.findDublicate(object, localStorageKey)) {
 			return false;
 		}
 		
+		//Чистим все поля для заполнения
 		this.cleanInput(currentForm);
+		
 		// Добавляем настроенный объект в "localStorage"
 		this.addToLocalStorage(object, localStorageKey);
 
 		return {localStorageKey: localStorageKey, addedObject: object};
+	},
+
+	// --------------------------------------------------------------------------
+	/**
+	 * Метод для заполнения объекта значениями с полей ввода в форме (input)
+	 * @todo реализовать заполнение объекта через конструктор класса Book в book.js
+	 * @param {object} object Пустой объект, который необходимо заполнить
+	 * @param {formElements[]} formElements Массив элементов, с которых берется значения
+	 * @param {string} localStorageKey Ключ от локального хранилища (для нахождения ID)
+	 * @return {object} Возвращает заполненный объект
+	 */
+	fillObject(object, formElements, localStorageKey){
+
+		// Добавляем новый "id"
+		let currentId = "idd"
+		object[currentId] = this.getID(localStorageKey, currentId);
+		for (let i = 0; i < formElements.length; i++) {
+
+			// Создаем свойство у объекта с таким же именем, как и значение "id" в input
+			object[formElements[i].getAttribute("id")] = formElements[i].value;
+
+		}
+		
+		return object;
 	},
 	// --------------------------------------------------------------------------
 	/**
@@ -62,16 +92,19 @@ export let formHandler = {
 	 * @param {object} form форма, поля в которой необходимо очистить
 	 * @return Ничего не возвращает
 	 */
+
 	cleanInput(form){
 
 		for (let i = 0; i < form.elements.length; i++) {
-			if (form.elements[i].type != "hidden" ||form.elements[i].localName != "button") {
+			
+			// Если поле скрытое, или элемент формы — кнопка, то пропускаем и не очищаем эти элементы
+			if (!(form.elements[i].type == "hidden" || form.elements[i].localName == "button" )) {
 				form.elements[i].value = "";
 				form.elements[i].className = "bookInputs-clean" ;
 			}
 		}
 
-		// Если поле скрытое, или элемент формы — кнопка, то пропускаем и не очищаем эти элементы
+		
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Вариант1
 		// for (const key in form.elements) {
@@ -116,7 +149,10 @@ export let formHandler = {
 	findDublicate(object, localStorageKey){
 		let localStorageArray = tableWorker.getTableData(localStorageKey);
 
-		// Тут производится сравнение по полю "id". Если есть совподение — считается, что найден дубликат и метод выводит сообщение.
+		if (localStorageArray == false) {
+			return false;
+		}
+		// Тут производится сравнение по полю "id". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
 		let flag = localStorageArray.some(item =>item.id == object.id);
 		if (flag) {
 			alert ("такая запись уже есть");
@@ -186,16 +222,36 @@ export let formHandler = {
 			window.localStorage.setItem(id, JSON.stringify(firstArray));
 			return;
 		}
+	},
+	/**
+	 *  Функция формирует уникальный  id  для нового объекта.
+	 * @param {string} localStorageKey ключ от локального хранилища.
+	 * @param {string} field поле у объекта, по которому считается уникальное значение. (Сейчас подразумевается, что поле типа {number})
+	 * @return {number} Возращает новое значение "id", которого еще не было (самое большое текущее "id" +1)
+	 */
+	getID(localStorageKey, field) {
+
+		let tableData = tableWorker.getTableData(localStorageKey);
+		let currentId = 0;
+		if (tableData) {
+			// ищем самое большое значение "id"
+			tableData.forEach(element => {
+				if( parseInt(element.field)  > currentId){
+					currentId  = parseInt(element.field)
+				}
+			});
+			return currentId + 1;
+		}else{
+			return 1;
+		}
+		
 	}
+
+// --------------------------------------------------------------------------
 }
 
 // --------------------------------------------------------------------------
-	// TODO — Реализовать уникальный ID
-	// // Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
-	// function getID(object) {
+	// // TODO — Реализовать уникальный ID
+	// // // Функция формирует специфический ID для записи в "Local Storage". Используется функцией "addToLocalStorage"
 
-	// 	return object.objtype + "-" + object.id;
-		
-	// }
-
-// --------------------------------------------------------------------------
+	
