@@ -96,7 +96,7 @@ export let formHandler = {
 	cleanInput(form){
 
 		for (let i = 0; i < form.elements.length; i++) {
-			
+
 			// Если поле скрытое, или элемент формы — кнопка, то пропускаем и не очищаем эти элементы
 			if (!(form.elements[i].type == "hidden" || form.elements[i].localName == "button" )) {
 				form.elements[i].value = "";
@@ -236,8 +236,9 @@ export let formHandler = {
 		if (tableData) {
 			// ищем самое большое значение "id"
 			tableData.forEach(element => {
-				if( parseInt(element.field)  > currentId){
-					currentId  = parseInt(element.field)
+				
+				if( parseInt(element[field])  > currentId){
+					currentId  = parseInt(element[field])
 				}
 			});
 			return currentId + 1;
