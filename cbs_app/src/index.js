@@ -32,5 +32,4 @@ window.addEventListener("load", () =>{
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(myTable1, returnedObject.addedObject);
 	})
-
 });
