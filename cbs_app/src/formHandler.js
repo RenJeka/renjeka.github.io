@@ -94,7 +94,7 @@ export let formHandler = {
 			// Если поле скрытое, или элемент формы — кнопка, то пропускаем и не очищаем эти элементы
 			if (!(form.elements[i].type == "hidden" || form.elements[i].localName == "button" )) {
 				form.elements[i].value = "";
-				form.elements[i].className = "bookInputs-clean" ;
+				form.elements[i].className = "inputs-clean" ;
 			}
 		}
 
@@ -105,7 +105,7 @@ export let formHandler = {
 		// 	if (form.elements.hasOwnProperty(key)) {
 		// 		if (key.type != "hidden" || key.localName != "button") {
 		// 			key.value = "";
-		// 			key.className = "bookInputs-clean" 
+		// 			key.className = "inputs-clean" 
 		// 		}
 		// 	}
 		// }
@@ -113,7 +113,7 @@ export let formHandler = {
 		// form.elements.forEach(element => {
 		// 	if (element.type != "hidden" || element.localName != "button") {
 		// 		element.value = "";
-		// 		element.className = "bookInputs-clean" 
+		// 		element.className = "inputs-clean" 
 		// 	}
 		// });
 
@@ -173,11 +173,11 @@ export let formHandler = {
 			// Сама проверка. Если в инпут не ввели данные— тогда применяется стиль (invalid) и обработчик завершает работу.
 			if(arrayOfElements[i].value.length == 0){
 
-				arrayOfElements[i].className = "bookInputs-invalid";
+				arrayOfElements[i].className = "inputs-invalid";
 				counterOfInvalid++;
 			}else{
 				
-				arrayOfElements[i].className = "bookInputs-valid";
+				arrayOfElements[i].className = "inputs-valid";
 			}
 		}
 

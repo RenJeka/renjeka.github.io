@@ -14,17 +14,17 @@
 	text-align: center;
 }
 
-.bookInputs{
+.form-input{
 
 }
 
-.bookInputs-clean{
+.inputs-clean{
 	background-color: white;
 }
-.bookInputs-valid{
+.inputs-valid{
 	background-color: green;
 }
 
-.bookInputs-invalid{
+.inputs-invalid{
 	background-color: red;
 }

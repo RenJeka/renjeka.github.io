@@ -11,7 +11,7 @@
 
 	<h1 class="title">Мои Книги</h1>
 
-	<table class="myTable1">
+	<table id="table-books" class="myTable1">
 
 		<thead>
 			<th data-object-key-bind ="id">Id</th>
@@ -23,29 +23,28 @@
 
 	</table>
 
-	<br>
 	<form action="" id="form-book" name="form-book">
 
 		<input type="hidden" id="objtype" value="book" data-local-storage-key="Book-Library">
 
 		<p>
 			<label for="id">ID:</label>
-			<input type="text" id="id" class="bookInputs">
+			<input type="text" id="id" class="form-input">
 		</p>
 
 		<p>
 			<label for="id">Name:</label>
-			<input type="text" id="name" class="bookInputs">
+			<input type="text" id="name" class="form-input">
 		</p>
 
 		<p>
 			<label for="id">Author:</label>
-			<input type="text" id="author" class="bookInputs">
+			<input type="text" id="author" class="form-input">
 		</p>
 
 		<p>
 			<label for="genre">Genre:</label>
-			<select id="genre" class="bookInputs">
+			<select id="genre" class="form-input">
 				<option selected value="Жанр 1">Жанр 1</option>
 				<option value="Жанр 2">Жанр 2</option>
 				<option value="Жанр 3">Жанр 3</option>
@@ -55,7 +54,7 @@
 		</p>
 
 		<p>
-			<button type="button" id="addBook">addBook</button>
+			<button type="button" id="add">Добавить книгу</button>
 		</p>
 	</form>
 
