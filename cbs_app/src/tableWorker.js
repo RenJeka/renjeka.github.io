@@ -156,9 +156,11 @@ export let tableWorker = {
 
 		for (const key in object) {
 			if (object.hasOwnProperty(key)) {
-				if (key.toLowerCase() === this.whatHead(table, indexOfCell).toLowerCase()){
+
+				// Если ключ объекта равняется тому, что вернул метот "whatHead" — значение из объекта заполняется в заранее заданную ячейку
+				if (key.toLowerCase() === this.whatObjectKey(table, indexOfCell).toLowerCase()){
+
 					table.rows[indexOfRow].cells[indexOfCell].innerHTML = object[key];
-					// console.dir(key);
 				}
 			}
 		}
@@ -171,9 +173,10 @@ export let tableWorker = {
 	 * @return {String}  Возвращает название заголовка над ячейкой.
 	 * @see addInfoInCell
 	 */
-	whatHead(table, indexOfCell) {
+	whatObjectKey(table, indexOfCell) {
 
-		let nameOfTableHead = table.rows[0].cells[indexOfCell].innerHTML;
+		// Получаем значение из атрибута "data-object-key-bind" в заголовочной ячейки
+		let nameOfTableHead = table.rows[0].cells[indexOfCell].dataset.objectKeyBind;
 		return nameOfTableHead;
 	},
 }

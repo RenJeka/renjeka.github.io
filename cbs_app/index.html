@@ -14,30 +14,12 @@
 	<table class="myTable1">
 
 		<thead>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Author</th>
+			<th data-object-key-bind ="id">Id</th>
+			<th data-object-key-bind ="name">Имя</th>
+			<th data-object-key-bind ="author">Автор</th>
+			<th data-object-key-bind ="genre">Жарн</th>
 		</thead>
-		<!-- <tr>
-			<td>Hello 1.1</td>
-			<td>Hello 1.2</td>
-			<td>Hello 1.3</td>
-		</tr>
-		<tr>
-			<td>Hello 1.1</td>
-			<td>Hello 1.2</td>
-			<td>Hello 1.3</td>
-		</tr>
-		<tr>
-			<td>Hello 1.1</td>
-			<td>Hello 1.2</td>
-			<td>Hello 1.3</td>
-		</tr>
-		<tr>
-			<td>Hello 1.1</td>
-			<td>Hello 1.2</td>
-			<td>Hello 1.3</td>
-		</tr> -->
+
 
 	</table>
 
@@ -62,9 +44,22 @@
 		</p>
 
 		<p>
+			<label for="genre">Genre:</label>
+			<select id="genre" class="bookInputs">
+				<option selected value="Жанр 1">Жанр 1</option>
+				<option value="Жанр 2">Жанр 2</option>
+				<option value="Жанр 3">Жанр 3</option>
+				<option value="Жанр 4">Жанр 4</option>
+				<option value="Жанр 5">Жанр 5</option>
+			</select>
+		</p>
+
+		<p>
 			<button type="button" id="addBook">addBook</button>
 		</p>
 	</form>
+
+	<a href="./src/pages/add_genre.html" class="">Добавить жанр</a>
 
 	<script src="dist/main.js">
 			

@@ -18,10 +18,10 @@ window.addEventListener("load", () =>{
 
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
- 	
+	
 	$('#addBook').addEventListener("click", function(e) {
-
-		// Обработчик события на клик по кнопке "addBook"
+		
+		// Запускаем обработчик события на клик по кнопке "addBook" и получаем возращаемый объект, который записался в базу данных.
 		let returnedObject =  formHandler.addBookHandler(e);
 
 		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
@@ -32,4 +32,6 @@ window.addEventListener("load", () =>{
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(myTable1, returnedObject.addedObject);
 	})
+
+	$
 });

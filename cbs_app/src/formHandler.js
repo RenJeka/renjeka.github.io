@@ -42,12 +42,6 @@ export let formHandler = {
 
 		this.fillObject(object, formElements, localStorageKey);
 
-	
-		// for (let i = 0; i < formElements.length; i++) {
-
-		// 	object[formElements[i].getAttribute("id")] = formElements[i].value;
-
-		// }
 		//Если находим дубликат объекта - метод заканчивает работу.
 		if (this.findDublicate(object, localStorageKey)) {
 			return false;
