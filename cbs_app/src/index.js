@@ -1,15 +1,15 @@
 import { tableWorker } from './tableWorker';
-import {$} from './myHelperLib'
+import {$, tag} from './myHelperLib'
 import { Book } from './books';
 import { formHandler } from './formHandler';
 
 window.addEventListener("load", () =>{
 
 	let myTable1 = $('.myTable1');
-
 	console.dir(myTable1);
 	tableWorker.fillTable(myTable1,"Book-Library");
-	
+
+
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 	
 	// ♦ Продумать, как будет реализовываться проверка на валидность.  
@@ -31,7 +31,13 @@ window.addEventListener("load", () =>{
 
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(myTable1, returnedObject.addedObject);
-	})
+	});
 
-	$
+	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь -- вешается обработчик событий. 
+	for (let i = 1; i < myTable1.rows.length; i++) {
+		myTable1.rows[i].addEventListener('click', function () {
+			console.dir(this);
+		});
+	}
+
 });

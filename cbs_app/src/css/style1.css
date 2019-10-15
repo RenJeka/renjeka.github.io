@@ -28,3 +28,8 @@
 .bookInputs-invalid{
 	background-color: red;
 }
+
+tr:hover{
+	background: #ccc;
+	cursor: pointer;
+}

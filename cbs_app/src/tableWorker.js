@@ -14,13 +14,13 @@ export let tableWorker = {
 	 * @param {Array} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
 	 * @return {void} Ничего не возвращает
 	 */
-	fillTable(table, keyOrArrayOfObjects) {
+	fillTable(table, keyOrArrayOfObjects, filterMark) {
 
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
 			// Проверка на незаполненную таблицу
-			if (this.getTableData(keyOrArrayOfObjects) ===false) {
+			if (this.getTableData(keyOrArrayOfObjects, filterMark) ===false) {
 				return false;
 			}
 
@@ -57,13 +57,23 @@ export let tableWorker = {
 	 * @param {String} key ключ от объекта в LocalStorage
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-	getTableData(key){
+	getTableData(key, filterMark = 'id'){
 
+		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "filterMark" 
+		function compare(a, b) {
+			if (a > b) return 1; // если первое значение больше второго
+			if (a == b) return 0; // если равны
+			if (a < b) return -1; // если первое значение меньше второго
+		  }
 		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (localStorage.getItem(key)) {
+
 			let jsonObject = window.localStorage.getItem(key);
 
-			return JSON.parse(jsonObject)
+			jsonObject =  JSON.parse(jsonObject);
+
+			jsonObject.sort()
+
 		}else {
 			return false;
 		}
