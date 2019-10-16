@@ -3,7 +3,12 @@ let path = require('path');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let conf = {
-	entry: './src/index.js',
+	//! необходимо создать несколько точек входа и подключить каждую точку входа к отдельному html -файлу
+	entry: {
+		index: './src/index.js',
+		indexGenre: './src/indexGenre.js'
+	},
+	// ! Соответственно создать и несколько точек выхода
 	output:{
 		path: path.resolve(__dirname, './dist'),
 		filename: 'main.js',
