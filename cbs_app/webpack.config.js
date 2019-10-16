@@ -11,7 +11,7 @@ let conf = {
 	// ! Соответственно создать и несколько точек выхода
 	output:{
 		path: path.resolve(__dirname, './dist'),
-		filename: 'main.js',
+		filename: '[name].js',
 		publicPath: 'dist/'
 	},
 	devServer:{
