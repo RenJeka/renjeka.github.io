@@ -12,14 +12,15 @@ export let tableWorker = {
 	 * @description  Метод заполняет указанную таблицу, взяв данные с LocalStorage по ключу, либо указанным массивом объектов.
 	 * @param {Object} table Таблица, кототую необходимо заполнить
 	 * @param {Array} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
+	 * @param {string} sortMark поле, по которому будет происходить сортировка объектов
 	 * @return {void} Ничего не возвращает
 	 */
-	fillTable(table, keyOrArrayOfObjects, filterMark) {
+	fillTable(table, keyOrArrayOfObjects, sortMark) {
 
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
-			let arrayofData = this.getTableData(keyOrArrayOfObjects);
+			let arrayofData = this.getTableData(keyOrArrayOfObjects, sortMark);
 
 			// Проверка на незаполненную таблицу
 			if (arrayofData == false) {
@@ -57,14 +58,14 @@ export let tableWorker = {
 	 * @param {String} key ключ от объекта в LocalStorage
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-	getTableData(key, filterMark = 'id'){
+	getTableData(key, sortMark = 'id'){
 
-		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "filterMark" 
-		// function compare(a, b) {
-		// 	if (a > b) return 1; // если первое значение больше второго
-		// 	if (a == b) return 0; // если равны
-		// 	if (a < b) return -1; // если первое значение меньше второго
-		//   }
+		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "sortMark" 
+		function compare(a, b) {
+			if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
+			if (a[sortMark] == b[sortMark]) return 0; // если равны
+			if (a[sortMark] < b[sortMark]) return -1; // если первое значение меньше второго
+		  }
 
 
 		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
@@ -74,7 +75,7 @@ export let tableWorker = {
 
 			jsonObject =  JSON.parse(jsonObject);
 
-			jsonObject.sort()
+			jsonObject.sort(compare)
 			return jsonObject;
 
 		}else {
@@ -190,5 +191,10 @@ export let tableWorker = {
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].dataset.objectKeyBind;
 		return nameOfTableHead;
 	},
+	cleanTable(table){
+		while (table.rows.length > 1) {
+			table.deleteRow(table.rows.length-1);
+		}
+	}
 }
 

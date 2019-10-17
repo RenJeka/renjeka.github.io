@@ -13,7 +13,6 @@ window.addEventListener("load", () =>{
 	
 	// ♦ Продумать, как будет реализовываться проверка на валидность.  
 	// ♦ Поместить все объекты "book" в массив и реализовать их перебор с помощью кнопок (данные выводятся в форму). 
-	// ♦ Реализовать автоматическое заполнение ID f объекте
 
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
@@ -33,8 +32,14 @@ window.addEventListener("load", () =>{
 	});
 
 	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь -- вешается обработчик событий. 
-	for (let i = 1; i < myTable1.rows.length; i++) {
+	// TODO Реализовать так, чтобы вся логика находилась в файле "tableWorker.js"
+	for (let i = 0; i < myTable1.rows.length; i++) {
 		myTable1.rows[i].addEventListener('click', function () {
+
+			if (this.rowIndex == 0) {
+				tableWorker.cleanTable(myTable1);
+				tableWorker.fillTable(myTable1,"Book-Library");
+			}
 			console.log(`Индекс строки =  ${this.rowIndex}`);
 		});
 	}

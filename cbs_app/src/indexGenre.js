@@ -20,7 +20,7 @@ window.addEventListener("load", ()=>{
 
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(table, returnedObject.addedObject);
-		tableWorker
+		// tableWorker
 
 	})
 })
