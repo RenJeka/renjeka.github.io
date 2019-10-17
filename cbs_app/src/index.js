@@ -35,7 +35,7 @@ window.addEventListener("load", () =>{
 	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь -- вешается обработчик событий. 
 	for (let i = 1; i < myTable1.rows.length; i++) {
 		myTable1.rows[i].addEventListener('click', function () {
-			console.dir(this);
+			console.log(`Индекс строки =  ${this.rowIndex}`);
 		});
 	}
 

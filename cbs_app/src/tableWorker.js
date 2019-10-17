@@ -95,8 +95,6 @@ export let tableWorker = {
 	 */
 
 	addRow(table, data, numberOfRows = 1, numberOfCells) {
-		console.log(this);
-
 		let arrayofRows = [];
 
 		// Эта функция собственно и добавляет ряд, ячейки и текст в таблицу. Принимает контекст, и возвращает массив с созданными строками

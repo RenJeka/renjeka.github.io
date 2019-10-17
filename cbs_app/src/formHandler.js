@@ -76,13 +76,17 @@ export let formHandler = {
 		// Добавляем новый "id"
 		let currentId = "idd"
 		object[currentId] = this.getID(localStorageKey, currentId);
+
+		// Перебор значений массива formElements чтобы взять с каждого элемента значение "value"
+		// TODO Переделать этот перебор через forEach(или подобную), если это возможно.
 		for (let i = 0; i < formElements.length; i++) {
 
-			// Создаем свойство у объекта с таким же именем, как и значение "id" в input
-			object[formElements[i].getAttribute("id")] = formElements[i].value;
-
+			// Если элемент формы не имеет атрибута 'ignore'-- заполняем объект, если атрибут имеется -- игнорируем заполнения объекта
+			if (formElements[i].hasAttribute('ignore') == false) {
+				// Создаем свойство у объекта с таким же именем, как и значение "id" в input
+				object[formElements[i].getAttribute("id")] = formElements[i].value;
+			} 
 		}
-		
 		return object;
 	},
 	// --------------------------------------------------------------------------
