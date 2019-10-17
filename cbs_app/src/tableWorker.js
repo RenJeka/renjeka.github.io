@@ -60,6 +60,9 @@ export let tableWorker = {
 	 */
 	getTableData(key, sortMark = 'id'){
 
+		let flag;
+
+
 		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "sortMark" 
 		function compare(a, b) {
 			if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
@@ -75,8 +78,15 @@ export let tableWorker = {
 
 			jsonObject =  JSON.parse(jsonObject);
 
-			jsonObject.sort(compare)
-			return jsonObject;
+			flag = jsonObject.some((element)=>element.hasOwnProperty(sortMark));
+			
+			if (flag) {
+				jsonObject.sort(compare)
+				return jsonObject;
+			}else{
+				throw "Ключ, переданный для сортировки — не верный. Такого свойства у объекта нет."
+			}
+
 
 		}else {
 			return false;
