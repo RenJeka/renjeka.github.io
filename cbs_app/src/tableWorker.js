@@ -17,6 +17,9 @@ export let tableWorker = {
 	 */
 	fillTable(table, keyOrArrayOfObjects, sortMark) {
 
+		if (sortMark == undefined) {
+			sortMark = this.whatObjectKey(table, 0);
+		}
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
@@ -58,10 +61,9 @@ export let tableWorker = {
 	 * @param {String} key ключ от объекта в LocalStorage
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-	getTableData(key, sortMark = 'id'){
+	getTableData(key, sortMark){
 
 		let flag;
-
 
 		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "sortMark" 
 		function compare(a, b) {
@@ -79,7 +81,7 @@ export let tableWorker = {
 			jsonObject =  JSON.parse(jsonObject);
 
 			flag = jsonObject.some((element)=>element.hasOwnProperty(sortMark));
-			
+
 			if (flag) {
 				jsonObject.sort(compare)
 				return jsonObject;
