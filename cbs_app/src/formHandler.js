@@ -19,6 +19,7 @@ export let formHandler = {
 
 		let currentForm = event.target.form;
 		let formElements = currentForm.elements;
+		let dublicateKey = "idd" // Ключ, по которому будет происходить поиск дубликатов (по умолчанию = 'idd')
 
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate(formElements) == false) {
@@ -49,7 +50,7 @@ export let formHandler = {
 		this.fillObject(object, formElements, localStorageKey);
 
 		//Если находим дубликат объекта - метод заканчивает работу.
-		if (this.findDublicate(object, localStorageKey)) {
+		if (this.findDublicate(object, localStorageKey, dublicateKey)) {
 			return false;
 		}
 		
@@ -150,14 +151,14 @@ export let formHandler = {
 	 * @param {string} localStorageKey 
 	 * @return {boolean} true, если метод нашел повторную запись, false — если не нашел.
 	 */
-	findDublicate(object, localStorageKey){
+	findDublicate(object, localStorageKey, dublicateKey = "idd"){
 		let localStorageArray = tableWorker.getTableData(localStorageKey);
 
 		if (localStorageArray == false) {
 			return false;
 		}
-		// Тут производится сравнение по полю "id". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
-		let flag = localStorageArray.some(item =>item.id == object.id);
+		// Тут производится сравнение по полю "dublicateKey". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
+		let flag = localStorageArray.some(item =>item[dublicateKey] == object[dublicateKey]);
 		if (flag) {
 			alert ("такая запись уже есть");
 		}

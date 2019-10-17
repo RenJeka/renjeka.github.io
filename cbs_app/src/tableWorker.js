@@ -19,12 +19,12 @@ export let tableWorker = {
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
+			let arrayofData = this.getTableData(keyOrArrayOfObjects);
+
 			// Проверка на незаполненную таблицу
-			if (this.getTableData(keyOrArrayOfObjects, filterMark) ===false) {
+			if (arrayofData == false) {
 				return false;
 			}
-
-			let arrayofData = this.getTableData(keyOrArrayOfObjects);
 
 			for (let i = 0; i < arrayofData.length; i++) {
 
