@@ -33,6 +33,9 @@ tr:hover{
 	background: #ccc;
 	cursor: pointer;
 }
+tr:active{
+	background: rgb(151, 151, 151);
+}
 
 .aaa{
 	background-color: green;
