@@ -1,6 +1,5 @@
 import { tableWorker } from './tableWorker';
 import {$, tag} from './myHelperLib'
-import { Book } from './books';
 import { formHandler } from './formHandler';
 
 window.addEventListener("load", () =>{

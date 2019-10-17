@@ -1,6 +1,8 @@
 // Эта библиотека отвечает за обработку данных с форм
 import {$} from './myHelperLib';
-import { Book, bookLibrary } from './books';
+import { Book, bookLibrary } from './books.class';
+import { Genre } from './genres.class';
+import { Author } from './genres.class';
 import {tableWorker} from './tableWorker';
 
 
@@ -36,6 +38,10 @@ export let formHandler = {
 
 			case "author":
 				object =  new Author;
+				break;
+
+			case "genre":
+				object =  new Genre;
 				break;
 
 		}

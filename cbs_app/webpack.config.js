@@ -3,12 +3,10 @@ let path = require('path');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let conf = {
-	//! необходимо создать несколько точек входа и подключить каждую точку входа к отдельному html -файлу
 	entry: {
 		index: './src/index.js',
 		indexGenre: './src/indexGenre.js'
 	},
-	// ! Соответственно создать и несколько точек выхода
 	output:{
 		path: path.resolve(__dirname, './dist'),
 		filename: '[name].js',
@@ -37,6 +35,7 @@ let conf = {
 			}
 		]
 	},
+	// TODO Разобраться с SplitChunksPlugin, и выделить общие  файлы, которые участвуют во всех бандлах, -- в отдельный chunk
 	plugins: [
 		new ExtractTextPlugin("styles.css"),
 	],

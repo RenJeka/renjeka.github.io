@@ -60,11 +60,13 @@ export let tableWorker = {
 	getTableData(key, filterMark = 'id'){
 
 		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "filterMark" 
-		function compare(a, b) {
-			if (a > b) return 1; // если первое значение больше второго
-			if (a == b) return 0; // если равны
-			if (a < b) return -1; // если первое значение меньше второго
-		  }
+		// function compare(a, b) {
+		// 	if (a > b) return 1; // если первое значение больше второго
+		// 	if (a == b) return 0; // если равны
+		// 	if (a < b) return -1; // если первое значение меньше второго
+		//   }
+
+
 		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (localStorage.getItem(key)) {
 
@@ -73,6 +75,7 @@ export let tableWorker = {
 			jsonObject =  JSON.parse(jsonObject);
 
 			jsonObject.sort()
+			return jsonObject;
 
 		}else {
 			return false;

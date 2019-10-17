@@ -8,7 +8,7 @@ window.addEventListener("load", ()=>{
 
 	tableWorker.fillTable(table,"Genres-Library");
 
-	$(".add").addEventListener("click", ()=>{
+	$("#add").addEventListener("click", (e)=>{
 
 		// Запускаем обработчик события на клик по кнопке "add" и получаем возращаемый объект, который записался в базу данных.
 		let returnedObject =  formHandler.addBookHandler(e);
