@@ -38,6 +38,7 @@ let conf = {
 	// TODO Разобраться с SplitChunksPlugin, и выделить общие  файлы, которые участвуют во всех бандлах, -- в отдельный chunk
 	plugins: [
 		new ExtractTextPlugin("styles.css"),
+		// new ExtractTextPlugin("styles.css", {allChunks:true}),
 	],
 	devtool: 'sourcemap'
 }

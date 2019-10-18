@@ -17,9 +17,6 @@ export let tableWorker = {
 	 */
 	fillTable(table, keyOrArrayOfObjects, sortMark) {
 
-		if (sortMark == undefined) {
-			sortMark = this.whatObjectKey(table, 0);
-		}
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
@@ -85,9 +82,13 @@ export let tableWorker = {
 			if (flag) {
 				jsonObject.sort(compare)
 				return jsonObject;
+			}else if(sortMark == undefined){
+				return jsonObject;
+				
 			}else{
 				throw "Ключ, переданный для сортировки — не верный. Такого свойства у объекта нет."
 			}
+
 
 
 		}else {
