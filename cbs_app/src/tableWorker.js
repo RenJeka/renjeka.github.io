@@ -12,15 +12,15 @@ export let tableWorker = {
 	 * @description  Метод заполняет указанную таблицу, взяв данные с LocalStorage по ключу, либо указанным массивом объектов.
 	 * @param {Object} table Таблица, кототую необходимо заполнить
 	 * @param {Array} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
-	 * @param {string} sortMark поле, по которому будет происходить сортировка объектов
+	 * @param {Array} sort rest-параметр. Для сортировки массива. [<по какому полю сортировка>:string, <прямая или обратная сортировка:boolean>]
 	 * @return {void} Ничего не возвращает
 	 */
-	fillTable(table, keyOrArrayOfObjects, sortMark) {
-
+	fillTable(table, keyOrArrayOfObjects, ...sort) {
+	
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
-			let arrayofData = this.getTableData(keyOrArrayOfObjects, sortMark);
+			let arrayofData = this.getTableData(keyOrArrayOfObjects, sort);
 
 			// Проверка на незаполненную таблицу
 			if (arrayofData == false) {
@@ -56,17 +56,28 @@ export let tableWorker = {
 	/**
 	 * Метод позволяет получить данные с LocalStorage для заполнения таблицы.  
 	 * @param {String} key ключ от объекта в LocalStorage
+	 * @param {String} Поле объекта, по которому будет производится сортировка
+	 * @param {Boolean} Флаг для направления сортировки (прямая или обратная сортировка)
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-	getTableData(key, sortMark){
 
-		let flag;
+	
+	getTableData(key, [sortMark, sortDirection]){   // ! sortDirection
+
+		// let isSortMark;
 
 		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "sortMark" 
 		function compare(a, b) {
-			if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
-			if (a[sortMark] == b[sortMark]) return 0; // если равны
-			if (a[sortMark] < b[sortMark]) return -1; // если первое значение меньше второго
+			if (sortDirection) {
+				if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
+				if (a[sortMark] == b[sortMark]) return 0; // если равны
+				if (a[sortMark] < b[sortMark]) return -1; // если первое значение меньше второго
+			}else{
+				if (a[sortMark] < b[sortMark]) return 1; 
+				if (a[sortMark] == b[sortMark]) return 0;
+				if (a[sortMark] > b[sortMark]) return -1;
+			}
+			
 		  }
 
 
@@ -77,9 +88,9 @@ export let tableWorker = {
 
 			jsonObject =  JSON.parse(jsonObject);
 
-			flag = jsonObject.some((element)=>element.hasOwnProperty(sortMark));
+			// isSortMark = jsonObject.some((element)=>element.hasOwnProperty(sortMark));
 
-			if (flag) {
+			if (sortMark) {
 				jsonObject.sort(compare)
 				return jsonObject;
 			}else if(sortMark == undefined){

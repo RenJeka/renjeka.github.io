@@ -3,11 +3,14 @@ import { tableWorker } from './tableWorker.js';
 import { $ } from './myHelperLib.js';
 import { formHandler } from './formHandler.js';
 
+
+
 window.addEventListener("load", ()=>{
 	console.dir(document.forms[0])
 	console.dir(document.forms[0].elements)
 	let currentTable = $('#table-authors');
 	let localStorageKey = formHandler.getLocalStorageKey();
+	let sortingFlag = false;
 
 	tableWorker.fillTable(currentTable,localStorageKey);
 
@@ -30,10 +33,14 @@ window.addEventListener("load", ()=>{
 	for (let i = 0; i < currentTable.rows.length; i++) {
 		currentTable.rows[i].addEventListener('click', function (e) {
 
+			let sortMark = e.target.dataset.objectKeyBind;
+
 			if (this.rowIndex == 0) {
 
+				sortingFlag = !sortingFlag;
+
  				tableWorker.cleanTable(currentTable);
-				tableWorker.fillTable(currentTable,localStorageKey, e.target.dataset.objectKeyBind);
+				tableWorker.fillTable(currentTable,localStorageKey, sortMark, sortingFlag);
 			}
 			console.log(`Индекс строки =  ${this.rowIndex}`);
 		});

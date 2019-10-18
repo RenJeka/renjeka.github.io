@@ -7,6 +7,7 @@ window.addEventListener("load", () =>{
 	console.dir(document.forms[0].elements)
 	let currentTable = $('#table-books');
 	let localStorageKey = formHandler.getLocalStorageKey();
+	let sortingFlag = false;
 
 	// // Находим localStorageKey (Ключ для базы данных в LocalStorage)
 	// for (let i = 0; i < document.forms[0].elements.length; i++) {
@@ -32,6 +33,7 @@ window.addEventListener("load", () =>{
 	
 	$('#addBook').addEventListener("click", function(e) {
 		
+
 		// Запускаем обработчик события на клик по кнопке "addBook" и получаем возращаемый объект, который записался в базу данных.
 		let returnedObject =  formHandler.addBookHandler(e);
 
@@ -49,10 +51,14 @@ window.addEventListener("load", () =>{
 	for (let i = 0; i < currentTable.rows.length; i++) {
 		currentTable.rows[i].addEventListener('click', function (e) {
 
+			let sortMark = e.target.dataset.objectKeyBind;
+
 			if (this.rowIndex == 0) {
 
+				sortingFlag = !sortingFlag;
+
  				tableWorker.cleanTable(currentTable);
-				tableWorker.fillTable(currentTable,localStorageKey, e.target.dataset.objectKeyBind);
+				tableWorker.fillTable(currentTable,localStorageKey, sortMark, sortingFlag);
 			}
 			console.log(`Индекс строки =  ${this.rowIndex}`);
 		});

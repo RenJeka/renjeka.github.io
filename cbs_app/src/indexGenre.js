@@ -5,8 +5,10 @@ import { formHandler } from './formHandler.js';
 
 window.addEventListener("load", ()=>{
 	let currentTable = $("#table-genres");
+	let localStorageKey = formHandler.getLocalStorageKey();
+	let sortingFlag = false;
 
-	tableWorker.fillTable(currentTable,"Genres-Library");
+	tableWorker.fillTable(currentTable,localStorageKey);
 
 	$("#add").addEventListener("click", (e)=>{
 
@@ -23,4 +25,20 @@ window.addEventListener("load", ()=>{
 		// tableWorker
 
 	})
+
+	for (let i = 0; i < currentTable.rows.length; i++) {
+		currentTable.rows[i].addEventListener('click', function (e) {
+
+			let sortMark = e.target.dataset.objectKeyBind;
+
+			if (this.rowIndex == 0) {
+
+				sortingFlag = !sortingFlag;
+
+ 				tableWorker.cleanTable(currentTable);
+				tableWorker.fillTable(currentTable,localStorageKey, sortMark, sortingFlag);
+			}
+			console.log(`Индекс строки =  ${this.rowIndex}`);
+		});
+	}
 })
