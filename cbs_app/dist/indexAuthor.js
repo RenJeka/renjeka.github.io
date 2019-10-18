@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/indexAuthor.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -453,50 +453,31 @@ var Genre = exports.Genre = function Genre() {
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/indexAuthor.js":
+/*!****************************!*\
+  !*** ./src/indexAuthor.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _tableWorker = __webpack_require__(/*! ./tableWorker */ "./src/tableWorker.js");
+var _tableWorker = __webpack_require__(/*! ./tableWorker.js */ "./src/tableWorker.js");
 
-var _myHelperLib = __webpack_require__(/*! ./myHelperLib */ "./src/myHelperLib.js");
+var _myHelperLib = __webpack_require__(/*! ./myHelperLib.js */ "./src/myHelperLib.js");
 
-var _formHandler = __webpack_require__(/*! ./formHandler */ "./src/formHandler.js");
+var _formHandler = __webpack_require__(/*! ./formHandler.js */ "./src/formHandler.js");
 
 window.addEventListener("load", function () {
 	console.dir(document.forms[0]);
 	console.dir(document.forms[0].elements);
-	var currentTable = (0, _myHelperLib.$)('#table-books');
+	var currentTable = (0, _myHelperLib.$)('#table-author');
 	var localStorageKey = _formHandler.formHandler.getLocalStorageKey();
-
-	// // Находим localStorageKey (Ключ для базы данных в LocalStorage)
-	// for (let i = 0; i < document.forms[0].elements.length; i++) {
-	// 	if (document.forms[0].elements[i].dataset.hasOwnProperty("localStorageKey")) {
-	// 		localStorageKey = document.forms[0].elements[i].dataset.localStorageKey;
-	// 	}
-	// }
 
 	_tableWorker.tableWorker.fillTable(currentTable, localStorageKey);
 
-	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-	// ♦ Задержка строки (через флаг, после нажатия на строку,  строка будет подсвечиваться (эта строка сейчас активна)). На основе этого будет удаление и изменение текущего объекта.
-	// ♦ Подвязать жанры, значениее которых будет передаваться в поля ввода
-	// ♦ реализовать перебор объектов с помощью кнопок (данные выводятся в форму). 
-	// ♦ Добавить возможность изменить объект (перезаписать) (кнопка "Изменить")
-	// ♦ Добавить возможность удалить объект  () (кнопка "Удалить")
-	// ♦ Реализовать поиск . Пока по 1 полю. Фун-я fillTable перезаполняет таблицу с учетом поиска на каждое событие onKeyPress. Посмотреть как это реализовывалось на практической по ангуляру.
-	// ♦ Продумать, как будет реализовываться валидация полей по заданным регулярным выражениям (можно РВ поместить в атрибуты).  
-
-	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-
-
-	(0, _myHelperLib.$)('#addBook').addEventListener("click", function (e) {
+	(0, _myHelperLib.$)('#add').addEventListener("click", function (e) {
 
 		// Запускаем обработчик события на клик по кнопке "addBook" и получаем возращаемый объект, который записался в базу данных.
 		var returnedObject = _formHandler.formHandler.addBookHandler(e);
@@ -780,4 +761,4 @@ var tableWorker = exports.tableWorker = {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=indexAuthor.js.map

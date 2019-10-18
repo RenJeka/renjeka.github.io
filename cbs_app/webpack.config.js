@@ -5,7 +5,8 @@ let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let conf = {
 	entry: {
 		index: './src/index.js',
-		indexGenre: './src/indexGenre.js'
+		indexGenre: './src/indexGenre.js',
+		indexAuthor: './src/indexAuthor.js'
 	},
 	output:{
 		path: path.resolve(__dirname, './dist'),

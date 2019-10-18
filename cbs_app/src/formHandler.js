@@ -2,7 +2,7 @@
 import {$} from './myHelperLib';
 import { Book, bookLibrary } from './books.class';
 import { Genre } from './genres.class';
-import { Author } from './genres.class';
+import { Author } from './authors.class';
 import {tableWorker} from './tableWorker';
 
 
