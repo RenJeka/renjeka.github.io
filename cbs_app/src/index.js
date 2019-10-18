@@ -15,7 +15,7 @@ window.addEventListener("load", () =>{
 	// 		localStorageKey = document.forms[0].elements[i].dataset.localStorageKey;
 	// 	}
 	// }
-
+	formHandler.checkForm();
 	tableWorker.fillTable(currentTable,localStorageKey);
 
 

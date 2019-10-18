@@ -11,7 +11,7 @@ export let tableWorker = {
 	 * @todo Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
 	 * @description  Метод заполняет указанную таблицу, взяв данные с LocalStorage по ключу, либо указанным массивом объектов.
 	 * @param {Object} table Таблица, кототую необходимо заполнить
-	 * @param {Array} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
+	 * @param {String} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
 	 * @param {Array} sort rest-параметр. Для сортировки массива. [<по какому полю сортировка>:string, <прямая или обратная сортировка:boolean>]
 	 * @return {void} Ничего не возвращает
 	 */
@@ -37,8 +37,8 @@ export let tableWorker = {
 			}
 			return;
 			
-		// Если в параметре (№2) указан объект с данными — метод заполняет таблицу этим объектом.
-		}else if(typeof keyOrArrayOfObjects == "object"){
+		// Если в параметре (№2) указан массив с данными (массив с объектами) — метод заполняет таблицу этим объектом.
+		}else if(typeof keyOrArrayOfObjects == "Array"){
 
 			for (let i = 0; i < keyOrArrayOfObjects.length; i++) {
 				this.addInfoInRow(

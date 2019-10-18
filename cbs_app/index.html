@@ -14,13 +14,13 @@
 	<table id="table-books" class="myTable1">
 
 		<thead>
-			<th data-object-key-bind ="name">Название книги</th>
-			<th data-object-key-bind ="page_num">Количество страниц</th>
-			<th data-object-key-bind ="genre">Жанр</th>
-			<th data-object-key-bind ="author">Автор</th>
+			<th data-object-key-bind ="name">Название книги &#9660;</th>
+			<th data-object-key-bind ="page_num">Количество страниц &#9660;</th>
+			<th data-object-key-bind ="genre">Жанр &#9660;</th>
+			<th data-object-key-bind ="author">Автор &#9660;</th>
 		</thead>
 
-
+ 
 	</table>
 
 	<br>
@@ -45,7 +45,7 @@
 
 		<p>
 			<label for="genre">Жанр</label>
-			<select id="genre" class="bookInputs">
+			<select id="genre" class="bookInputs" data-object-property-bind = "genre">
 				<option selected value="Жанр 1">Жанр 1</option>
 				<option value="Жанр 2">Жанр 2</option>
 				<option value="Жанр 3">Жанр 3</option>

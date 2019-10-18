@@ -270,6 +270,42 @@ export let formHandler = {
 		}
 
 		throw "Метод не смог найти поле с id == 'objtype' и value == '<название вашего объекта>'. Убедитесь что оно есть "
+	},
+
+	/**
+	 * Метод находит поле для ввода, у которого есть привязка к данным в базе данных.Использует метод "fillInput"
+	 * @param {*} form Форма, поля которой необходимо проверить на привязку данных
+	 */
+	// ! Реализовать подвязку сначала к конкретному массиву объектов в базе данных, а потом к конкретному свойству в объекте. Сейчас метод работает неправильно, сравнивая значение id элемента и находя массив в LocalStorage с таким-же названием (+-library). Таким алгоритмом берутся и лишние массивы тоже
+	checkForm(form = document.forms[0]){
+		for (let i = 0; i < form.elements.length; i++) {
+			let aaa = form.elements[i].id + "-library"
+
+			if (window.localStorage.getItem(aaa)) {
+				this.fillInput(form.elements[i], window.localStorage.getItem(aaa));
+			}
+		}
+	},
+
+	/**
+	 * Метод, который заполняет элемент формы значениями с массива
+	 * @param {*} element Елемент формы, который необходимо заполнить
+	 * @param {*} arrayOfObjects Массив объектов, из которых нужно взять необходимое значение
+	 */
+	fillInput(element, arrayOfObjects){
+
+		let bindingKey = element.dataset.objectPropertyBind;
+		if (element.options) {
+			console.dir(element.options);
+			for (let i = 0; i < arrayOfObjects.length; i++) {
+				let optionElement = document.createElement("option");
+
+				// todo Сделать, чтобы в свойство "value" помещалось id элемента.
+				optionElement.value = arrayOfObjects[i].idd
+				optionElement.innerHTML = arrayOfObjects[i][bindingKey]
+				element.appendChild(optionElement)
+			}
+		}
 	}
 
 // --------------------------------------------------------------------------
