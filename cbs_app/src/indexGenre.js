@@ -4,9 +4,9 @@ import { $ } from './myHelperLib.js';
 import { formHandler } from './formHandler.js';
 
 window.addEventListener("load", ()=>{
-	let table = $("#table-genres");
+	let currentTable = $("#table-genres");
 
-	tableWorker.fillTable(table,"Genres-Library");
+	tableWorker.fillTable(currentTable,"Genres-Library");
 
 	$("#add").addEventListener("click", (e)=>{
 
@@ -19,7 +19,7 @@ window.addEventListener("load", ()=>{
 		}
 
 		// Добавляем ряд с данными в таблицу
-		tableWorker.addRow(table, returnedObject.addedObject);
+		tableWorker.addRow(currentTable, returnedObject.addedObject);
 		// tableWorker
 
 	})

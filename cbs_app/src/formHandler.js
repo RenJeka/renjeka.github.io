@@ -20,6 +20,7 @@ export let formHandler = {
 		let currentForm = event.target.form;
 		let formElements = currentForm.elements;
 		let dublicateKey = "idd" // Ключ, по которому будет происходить поиск дубликатов (по умолчанию = 'idd')
+		let localStorageKey = this.getLocalStorageKey(currentForm); // Ключ, по которому записываются значения в LocalStorage
 
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate(formElements) == false) {
@@ -28,7 +29,6 @@ export let formHandler = {
 
 		let currentObject = this.getObjectType(currentForm); 
 		let object;
-		let localStorageKey = currentObject.localStorageKey; // Ключ, по которому записываются значения в LocalStorage
 
 
 		switch (currentObject.objtype) {
@@ -139,7 +139,7 @@ export let formHandler = {
 	getObjectType(form){
 		for (let i = 0; i < form.elements.length; i++) {
 			if (form.elements[i].id == "objtype") {
-				return {objtype:form.elements[i].value , localStorageKey:form.elements[i].dataset.localStorageKey }   //form.elements[i].value
+				return {objtype:form.elements[i].value , localStorageKey:this.getLocalStorageKey(form) }   //form.elements[i].value
 			}
 		}
 		throw "Не найдено поле ввода  <input type='hidden'> с указанием типа объекта, который будет передан в базу данный. Добавьте в вашу форму поле <input type='hidden' id='objtype' value=''>  В поле value='' укажите тип объекта, который будет добавлен в базу данных"
@@ -229,7 +229,7 @@ export let formHandler = {
 		}
 	},
 	/**
-	 *  Функция формирует уникальный  id  для нового объекта.
+	 *  Метод формирует уникальный  id  для нового объекта.
 	 * @param {string} localStorageKey ключ от локального хранилища.
 	 * @param {string} field поле у объекта, по которому считается уникальное значение. (Сейчас подразумевается, что поле типа {number})
 	 * @return {number} Возращает новое значение "id", которого еще не было (самое большое текущее "id" +1)
@@ -251,6 +251,25 @@ export let formHandler = {
 			return 1;
 		}
 		
+	},
+
+	/**
+	 * Метод формирует ключ для LocalStorage.
+	 * @param {object} form Форма, в которую вводятся данные об объекте (1 форма - 1 объект). По умолчанию "document.forms[0]"
+	 * @return {string} Возвращает созданный ключ для LocalStorage.
+	 */
+	getLocalStorageKey(form = document.forms[0]){
+
+		//Находим в форме поле ввода с id == "objtype" (это поле типа  "hidden")
+		for (let i = 0; i < form.elements.length; i++) {
+			if (form.elements[i].id == "objtype") {
+				
+				// Возвращаем созданный  ключ
+				return form.elements[i].value + "-library"
+			}
+		}
+
+		throw "Метод не смог найти поле с id == 'objtype' и value == '<название вашего объекта>'. Убедитесь что оно есть "
 	}
 
 // --------------------------------------------------------------------------

@@ -4,20 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Example</title>
+	<title>Мои Книги</title>
 	<link rel="stylesheet" href="src/css/style1.css">
 </head>
 <body>
 
 	<h1 class="title">Мои Книги</h1>
 
-	<table class="myTable1">
+	<table id="table-books" class="myTable1">
 
 		<thead>
-			<th data-object-key-bind ="id">Id</th>
-			<th data-object-key-bind ="name">Имя</th>
-			<th data-object-key-bind ="author">Автор</th>
+			<th data-object-key-bind ="name">Название книги</th>
+			<th data-object-key-bind ="page_num">Количество страниц</th>
 			<th data-object-key-bind ="genre">Жанр</th>
+			<th data-object-key-bind ="author">Автор</th>
 		</thead>
 
 
@@ -26,25 +26,25 @@
 	<br>
 	<form action="" id="form-book" name="form-book">
 
-		<input type="hidden" id="objtype" value="book" data-local-storage-key="Book-Library">
+		<input type="hidden" id="objtype" value="book">
 
 		<p>
-			<label for="id">ID:</label>
-			<input type="text" id="id" class="bookInputs">
-		</p>
-
-		<p>
-			<label for="id">Name:</label>
+			<label for="id">Название книги</label>
 			<input type="text" id="name" class="bookInputs">
 		</p>
 
 		<p>
-			<label for="id">Author:</label>
+			<label for="page_num">Количество страниц</label>
+			<input type="text" id="page_num" class="bookInputs">
+		</p>
+
+		<p>
+			<label for="author">Автор</label>
 			<input type="text" id="author" class="bookInputs">
 		</p>
 
 		<p>
-			<label for="genre">Genre:</label>
+			<label for="genre">Жанр</label>
 			<select id="genre" class="bookInputs">
 				<option selected value="Жанр 1">Жанр 1</option>
 				<option value="Жанр 2">Жанр 2</option>
@@ -55,11 +55,12 @@
 		</p>
 
 		<p>
-			<button type="button" id="addBook" ignore >addBook</button>
+			<button type="button" id="addBook" ignore >Добавить книгу</button>
 		</p>
 	</form>
 
 	<a href="./src/pages/add_genre.html" class="">Добавить жанр</a>
+	<a href="./src/pages/add_author.html" class="">Добавить Автора</a>
 
 	<script src="dist/index.js">
 			
