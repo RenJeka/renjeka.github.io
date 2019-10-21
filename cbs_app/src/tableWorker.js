@@ -56,17 +56,18 @@ export let tableWorker = {
 	/**
 	 * Метод позволяет получить данные с LocalStorage для заполнения таблицы.  
 	 * @param {String} key ключ от объекта в LocalStorage
-	 * @param {String} Поле объекта, по которому будет производится сортировка
-	 * @param {Boolean} Флаг для направления сортировки (прямая или обратная сортировка)
+	 * @param {String} sortMark Поле объекта, по которому будет производится сортировка
+	 * @param {Boolean} sortDirection Флаг для направления сортировки (прямая или обратная сортировка)
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
 
-	
-	getTableData(key, [sortMark, sortDirection]){   // ! sortDirection
-
+	getTableData(key, ...rest){ 
+		//TODO реализовать три нижние строчки через деструктивное присваивание 
+	// getTableData(key, [sortMark, sortDirection]){ 
+		let sortMark = rest[0];
+		let sortDirection = rest[1];
 		// let isSortMark;
 
-		// ! Закончил тут. Вернуть этой функцией отсотрированный массив по критерию "sortMark" 
 		function compare(a, b) {
 			if (sortDirection) {
 				if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
@@ -76,10 +77,8 @@ export let tableWorker = {
 				if (a[sortMark] < b[sortMark]) return 1; 
 				if (a[sortMark] == b[sortMark]) return 0;
 				if (a[sortMark] > b[sortMark]) return -1;
-			}
-			
+			}	
 		  }
-
 
 		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (localStorage.getItem(key)) {
@@ -99,8 +98,6 @@ export let tableWorker = {
 			}else{
 				throw "Ключ, переданный для сортировки — не верный. Такого свойства у объекта нет."
 			}
-
-
 
 		}else {
 			return false;
