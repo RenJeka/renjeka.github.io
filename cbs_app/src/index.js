@@ -30,11 +30,10 @@ window.addEventListener("load", () =>{
 
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
-	
+	// Обработчик событий по нажатии на кнопку "addBook"
 	$('#addBook').addEventListener("click", function(e) {
 		
-
-		// Запускаем обработчик события на клик по кнопке "addBook" и получаем возращаемый объект, который записался в базу данных.
+		//получаем возращаемый объект, который записался в базу данных.
 		let returnedObject =  formHandler.addBookHandler(e);
 
 		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
@@ -46,7 +45,8 @@ window.addEventListener("load", () =>{
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
 
-	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь -- вешается обработчик событий. 
+	// Обработчик выбора строк.
+	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь, вешается обработчик событий. 
 	// TODO Реализовать так, чтобы вся логика находилась в файле "tableWorker.js"
 	for (let i = 0; i < currentTable.rows.length; i++) {
 		currentTable.rows[i].addEventListener('click', function (e) {
@@ -63,5 +63,15 @@ window.addEventListener("load", () =>{
 			console.log(`Индекс строки =  ${this.rowIndex}`);
 		});
 	}
+
+
+	// Обработчик поиска
+
+	$('#input-search').addEventListener("keyup", (e)=>{
+		// console.dir(e.target);
+		console.dir(tableWorker.search(e.target, localStorageKey, e.target.dataset.searchObjectProperty));
+		tableWorker.cleanTable(currentTable);
+		tableWorker.fillTable(currentTable, tableWorker.search(e.target, localStorageKey, e.target.dataset.searchObjectProperty))
+	})
 
 });

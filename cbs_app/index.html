@@ -29,7 +29,7 @@
 		<input type="hidden" id="objtype" value="book">
 
 		<p>
-			<label for="id">Название книги</label>
+			<label for="name">Название книги</label>
 			<input type="text" id="name" class="bookInputs">
 		</p>
 
@@ -57,6 +57,11 @@
 
 	<a href="./src/pages/add_genre.html" class="">Добавить жанр</a>
 	<a href="./src/pages/add_author.html" class="">Добавить Автора</a>
+
+	<p>
+		<label for="input-search">Найти книгу</label>
+		<input type="text" id="input-search" data-search-object-property="name">
+	</p>
 
 	<script src="dist/index.js">
 			

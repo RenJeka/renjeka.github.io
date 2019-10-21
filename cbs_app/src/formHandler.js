@@ -307,10 +307,11 @@ export let formHandler = {
 				for (let i = 0; i < arrayOfObjects.length; i++) {
 					let optionElement = document.createElement("option");
 
-					// todo Сделать, чтобы в свойство "value" помещалось id элемента.
-					optionElement.value = arrayOfObjects[i].idd
-					optionElement.innerHTML = arrayOfObjects[i][bindingKey]
-					element.appendChild(optionElement)
+					// todo Сделать, чтобы в свойство "value" помещалось id_genre свойство. (Привязка осуществлялась по id объекта а не по его свойству)
+					// optionElement.value = arrayOfObjects[i].idd
+					optionElement.value = arrayOfObjects[i][bindingKey];
+					optionElement.innerHTML = arrayOfObjects[i][bindingKey];
+					element.appendChild(optionElement);
 				}
 				break;
 		

@@ -38,13 +38,13 @@ export let tableWorker = {
 			return;
 			
 		// Если в параметре (№2) указан массив с данными (массив с объектами) — метод заполняет таблицу этим объектом.
-		}else if(typeof keyOrArrayOfObjects == "Array"){
+		}else if(typeof keyOrArrayOfObjects == "object"){
 
 			for (let i = 0; i < keyOrArrayOfObjects.length; i++) {
 				this.addInfoInRow(
 					table, 
 					this.addRow(table).rowIndex, 
-					arrayofData[i]
+					keyOrArrayOfObjects[i]
 				);
 			}
 			return;
@@ -221,8 +221,27 @@ export let tableWorker = {
 	},
 	cleanTable(table){
 		while (table.rows.length > 1) {
-			table.deleteRow(table.rows.length-1);
+			table.deleteRow(table.rows.length - 1);
 		}
+	},
+
+	/**
+	 * Метод фильтрует массив по значению input.value, и возвращает отфильтрованный массив
+	 * @param {object} input Элемент, в который вводится фильтрирующее значение.
+	 * @param {string} localStorageKey Ключ от локального хранилища, где лежат данные для фильтрации
+	 * @param {string} objectProperty свойство (название свойства) объекта, по которому будет фильтрация.
+	 * @return {Array} Возвращает отфильтнованный массив.
+	 */
+	search(input, localStorageKey, objectProperty){
+
+		let data = this.getTableData(localStorageKey);
+		if(data){
+			return data.filter(element => element[objectProperty].includes(input.value.trim().toLocaleLowerCase()))
+		}else{
+			console.log ("Не удалось найти массив с данными")
+			return false;
+		}
+		
 	}
 }
 
