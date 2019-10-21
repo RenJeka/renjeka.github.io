@@ -61,11 +61,18 @@ export let tableWorker = {
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
 
-	getTableData(key, ...rest){ 
+	getTableData(key, sortArray){ 
 		//TODO реализовать три нижние строчки через деструктивное присваивание 
 	// getTableData(key, [sortMark, sortDirection]){ 
-		let sortMark = rest[0];
-		let sortDirection = rest[1];
+		let sortMark
+		let sortDirection
+		if (sortArray) {
+			sortMark = sortArray[0];
+			sortDirection = sortArray[1]
+		}else{
+			sortMark = undefined;
+			sortDirection = undefined;
+		}
 		// let isSortMark;
 
 		function compare(a, b) {
