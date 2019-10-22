@@ -48,7 +48,8 @@ window.addEventListener("load", () =>{
 
 	// Запускаем обработчик выбора строк  
 	let aaa = tableWorker.rowSelectHandler(currentTable, localStorageKey, tableData);
-
+	console.dir("Результат = " + aaa);
+	
 	// TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
 	if (Array.isArray(aaa)) {
 		console.log("Массив");
