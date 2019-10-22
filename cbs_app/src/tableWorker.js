@@ -49,7 +49,6 @@ export let tableWorker = {
 			}
 			return;
 		}
-		
 	},
 
 	// ---------------------------------------------------------------------------
@@ -109,7 +108,6 @@ export let tableWorker = {
 		}else {
 			return false;
 		}
-		
 	},
 
 	// ---------------------------------------------------------------------------
@@ -242,6 +240,34 @@ export let tableWorker = {
 			return false;
 		}
 		
+	},
+
+	/**
+	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
+	 * @param {object} table Таблица, на которую необходимо повесить обработчик.
+	 * @param {String} localStorageKey Ключ от базы данных (localStorage), с которой берутся данные для заполнения таблицы
+	 * @return {object} Возвращает строку (объект), на которую кликнул пользователь. 
+	 */
+	rowSelectHandler(table, localStorageKey){
+		let sortFlag = false; // Флаг для сортировки таблицы (чтобы сортировка была в 2)
+		let sortMark; // маркер сортировки (название свойства объекта, по которому будет происходить сортировка)
+
+		table.addEventListener("click", (e)=>{
+
+			sortMark = e.target.dataset.objectKeyBind;
+
+			// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
+			if (sortMark) {
+				sortFlag = !sortFlag;
+				// Очищаем всю таблицу
+				this.cleanTable(table);
+				// Заполняе новыми значениями (с учетом сортировки)
+				this.fillTable(table,localStorageKey, sortMark, sortFlag);
+			}else{
+				console.dir(e.target.parentElement.rowIndex)
+				return e.target.parentElement;
+			}
+		})	
 	}
 }
 

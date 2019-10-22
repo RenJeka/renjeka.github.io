@@ -1,11 +1,3 @@
-	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-	
-	// ♦ Продумать, как будет реализовываться проверка на валидность.  
-	// ♦ реализовать перебор с помощью кнопок (данные выводятся в форму). 
-
-	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-
-
 import { tableWorker } from './tableWorker';
 import {$, tag} from './myHelperLib'
 import { formHandler } from './formHandler';
@@ -54,24 +46,9 @@ window.addEventListener("load", () =>{
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
 
-	// Обработчик выбора строк.
-	// Выбор определенной строки. Тут перебираются все строки и на конкретную строку, которую выбрал пользователь, вешается обработчик событий. 
-	// TODO Реализовать так, чтобы вся логика находилась в файле "tableWorker.js"
-	for (let i = 0; i < currentTable.rows.length; i++) {
-		currentTable.rows[i].addEventListener('click', function (e) {
 
-			let sortMark = e.target.dataset.objectKeyBind;
-
-			if (this.rowIndex == 0) {
-
-				sortingFlag = !sortingFlag;
-
- 				tableWorker.cleanTable(currentTable);
-				tableWorker.fillTable(currentTable,localStorageKey, sortMark, sortingFlag);
-			}
-			console.log(`Индекс строки =  ${this.rowIndex}`);
-		});
-	}
+	// Запускаем обработчик выбора строк, который  
+	tableWorker.rowSelectHandler(currentTable, localStorageKey);
 
 	// Обработчик поиска
 	$('#input-search').addEventListener("keyup", (e)=>{
@@ -81,5 +58,8 @@ window.addEventListener("load", () =>{
 		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search"
 		tableWorker.fillTable(currentTable, tableWorker.search(e.target, localStorageKey, e.target.dataset.searchObjectProperty))
 	})
+
+
+	
 
 });
