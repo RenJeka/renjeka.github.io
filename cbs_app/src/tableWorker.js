@@ -3,7 +3,7 @@
 // Добавлять строки, редактировать,удалять, заполнять таблицу
 
 /** @module tableWorker */
-
+let rrr = 0;
 export let tableWorker = {
 
 	// ---------------------------------------------------------------------------
@@ -120,7 +120,6 @@ export let tableWorker = {
 	 * @param {Number} numberOfCells Кол-во ячеек в ряде (По умолчанию высчитывается по кол-ву ячеек в заголовке (thead))
 	 * @return {arrayofRows} Возвращает созданный массив строк (либо 1 строку) с данными.
 	 */
-
 	addRow(table, data, numberOfRows = 1, numberOfCells) {
 		let arrayofRows = [];
 
@@ -130,6 +129,8 @@ export let tableWorker = {
 			for (let i = 0; i < numberOfRows; i++) {
 
 				let row = document.createElement("tr")
+				row.dataset.myid = rrr;
+				rrr++
 				table.appendChild(row)
 
 				// Цикл добавляет по 1-й ячейке то кол-во, которое мы укажем (numberOfCells)
@@ -248,7 +249,8 @@ export let tableWorker = {
 	 * @param {String} localStorageKey Ключ от базы данных (localStorage), с которой берутся данные для заполнения таблицы
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
-	rowSelectHandler(table, localStorageKey, tableData){
+	info: null,
+	rowSelectHandler(table, localStorageKey, tableData, callback){
 		let sortFlag = false, // Флаг для сортировки таблицы (чтобы сортировка была в 2)
 			sortMark; // маркер сортировки (название свойства объекта, по которому будет происходить сортировка)
 
@@ -257,20 +259,27 @@ export let tableWorker = {
 		table.addEventListener("click", (e)=>{
 
 			sortMark = e.target.dataset.objectKeyBind;
-			console.dir(e.target.tagName)
+			console.dir(e.target)
 			// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
 			if (sortMark && e.target.tagName == "TH") {
 				sortFlag = !sortFlag;
 				// Очищаем всю таблицу
 				this.cleanTable(table);
 				// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
-				return this.fillTable(table,localStorageKey, sortMark, sortFlag);
-
+				this.info = this.fillTable(table,localStorageKey, sortMark, sortFlag);
+				callback(this.fillTable(table,localStorageKey, sortMark, sortFlag))
 			}else if(e.target.tagName == "TD"){
 				// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
-				return tableData[e.target.parentElement.rowIndex]
+				console.dir(tableData);
+				callback(tableData[e.target.parentElement.rowIndex])
+				this.info = tableData[e.target.parentElement.rowIndex]
 			}
+			console.log(this);
+			return this;
 		})	
+	}
+	, ff(param){
+		console.log('hi', param);
 	}
 }
 

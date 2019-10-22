@@ -45,11 +45,27 @@ window.addEventListener("load", () =>{
 		// Добавляем ряд с данными в таблицу
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
-
+//==========================================================================================
 	// Запускаем обработчик выбора строк  
-	let aaa = tableWorker.rowSelectHandler(currentTable, localStorageKey, tableData);
+	let aaa = tableWorker.rowSelectHandler(currentTable, localStorageKey, tableData, name);
+	// let njnj = tableWorker.ff(tableWorker.info);
 	console.dir("Результат = " + aaa);
 	
+	function name(params) {
+		console.log(params)
+		if (Array.isArray(params)) {
+			console.log("Массив");
+			
+		}else if(params instanceof Object){
+			
+			console.log("Объект");
+		}else{
+			
+			console.log("Что-то другое");
+		}
+	}
+
+
 	// TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
 	if (Array.isArray(aaa)) {
 		console.log("Массив");
