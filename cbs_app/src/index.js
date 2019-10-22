@@ -7,7 +7,7 @@ window.addEventListener("load", () =>{
 	console.dir(document.forms[0].elements)
 	let currentTable 	= $('#table-books'),
 		localStorageKey = formHandler.getLocalStorageKey(),
-		sortingFlag 	= false;
+		tableData		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
 
 	/*
 		// Находим localStorageKey (Ключ для базы данных в LocalStorage)
@@ -21,8 +21,8 @@ window.addEventListener("load", () =>{
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formHandler.checkForm();
 
-	// Заполняем текущую таблицу данными из localStorage
-	tableWorker.fillTable(currentTable,localStorageKey);
+	// Заполняем текущую таблицу данными из localStorage. Возращаем массив с данными.
+	tableData = tableWorker.fillTable(currentTable,localStorageKey);
 
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 	// ♦ Задержка строки (через флаг, после нажатия на строку,  строка будет подсвечиваться (эта строка сейчас активна)). На основе этого будет удаление и изменение текущего объекта.
@@ -46,20 +46,27 @@ window.addEventListener("load", () =>{
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
 
+	// Запускаем обработчик выбора строк  
+	let aaa = tableWorker.rowSelectHandler(currentTable, localStorageKey, tableData);
 
-	// Запускаем обработчик выбора строк, который  
-	tableWorker.rowSelectHandler(currentTable, localStorageKey);
+	// TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
+	if (Array.isArray(aaa)) {
+		console.log("Массив");
+		
+	}else if(aaa instanceof Object){
+		
+		console.log("Объект");
+	}else{
+		
+		console.log("Что-то другое");
+	}
 
 	// Обработчик поиска
 	$('#input-search').addEventListener("keyup", (e)=>{
 		// Очищаем текущую таблицу
 		tableWorker.cleanTable(currentTable);
 
-		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search"
-		tableWorker.fillTable(currentTable, tableWorker.search(e.target, localStorageKey, e.target.dataset.searchObjectProperty))
+		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
+		tableData = tableWorker.fillTable(currentTable, tableWorker.search(e.target, localStorageKey, e.target.dataset.searchObjectProperty))
 	})
-
-
-	
-
 });

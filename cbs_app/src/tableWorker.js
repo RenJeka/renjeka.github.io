@@ -13,29 +13,29 @@ export let tableWorker = {
 	 * @param {Object} table Таблица, кототую необходимо заполнить
 	 * @param {String} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
 	 * @param {Array} sort rest-параметр. Для сортировки массива. [<по какому полю сортировка>:string, <прямая или обратная сортировка:boolean>]
-	 * @return {void} Ничего не возвращает
+	 * @return {void} Возвращает массив с данными, которыми была заполнена таблица.
 	 */
 	fillTable(table, keyOrArrayOfObjects, ...sort) {
 	
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
-			let arrayofData = this.getTableData(keyOrArrayOfObjects, sort);
+			let arrayOfData = this.getTableData(keyOrArrayOfObjects, sort);
 
 			// Проверка на незаполненную таблицу
-			if (arrayofData == false) {
+			if (arrayOfData == false) {
 				return false;
 			}
 
-			for (let i = 0; i < arrayofData.length; i++) {
+			for (let i = 0; i < arrayOfData.length; i++) {
 
 				this.addInfoInRow(
 					table, 
 					this.addRow(table).rowIndex, 
-					arrayofData[i]
+					arrayOfData[i]
 				);
 			}
-			return;
+			return arrayOfData;
 			
 		// Если в параметре (№2) указан массив с данными (массив с объектами) — метод заполняет таблицу этим объектом.
 		}else if(typeof keyOrArrayOfObjects == "object"){
@@ -47,7 +47,7 @@ export let tableWorker = {
 					keyOrArrayOfObjects[i]
 				);
 			}
-			return;
+			return keyOrArrayOfObjects;
 		}
 	},
 
@@ -246,26 +246,29 @@ export let tableWorker = {
 	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
 	 * @param {object} table Таблица, на которую необходимо повесить обработчик.
 	 * @param {String} localStorageKey Ключ от базы данных (localStorage), с которой берутся данные для заполнения таблицы
-	 * @return {object} Возвращает строку (объект), на которую кликнул пользователь. 
+	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
-	rowSelectHandler(table, localStorageKey){
-		let sortFlag = false; // Флаг для сортировки таблицы (чтобы сортировка была в 2)
-		let sortMark; // маркер сортировки (название свойства объекта, по которому будет происходить сортировка)
+	rowSelectHandler(table, localStorageKey, tableData){
+		let sortFlag = false, // Флаг для сортировки таблицы (чтобы сортировка была в 2)
+			sortMark; // маркер сортировки (название свойства объекта, по которому будет происходить сортировка)
+
+			// TODO Проблемма: что вернуть? Изначально идея была -- чтобы вернуть объект которым была заполнена строка (объект с массива объектов в Базе данных). Но, если следовать первому условию (мы кликнули на заголовочную ячейку) -- то таблица отсортировалась, и у нас новый массив с данными. Его нужно вернуть туда, откуда этот метод вызывался. А потом при повторном вызове этого метода, но уже когда произошел клик по строке с данными, принять этот массив данных (tableData) и вернуть конкретный объект. Т.е. по идее тут 2 разных return: Один с массивом объектов (при клике по заголовку), и другой -- просто с 1 объектом (при клике на строке с данными)
 
 		table.addEventListener("click", (e)=>{
 
 			sortMark = e.target.dataset.objectKeyBind;
-
+			console.dir(e.target.tagName)
 			// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
-			if (sortMark) {
+			if (sortMark && e.target.tagName == "TH") {
 				sortFlag = !sortFlag;
 				// Очищаем всю таблицу
 				this.cleanTable(table);
-				// Заполняе новыми значениями (с учетом сортировки)
-				this.fillTable(table,localStorageKey, sortMark, sortFlag);
-			}else{
-				console.dir(e.target.parentElement.rowIndex)
-				return e.target.parentElement;
+				// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
+				return this.fillTable(table,localStorageKey, sortMark, sortFlag);
+
+			}else if(e.target.tagName == "TD"){
+				// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
+				return tableData[e.target.parentElement.rowIndex]
 			}
 		})	
 	}
