@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Example</title>
+	<title>Мои Книги</title>
 	<link rel="stylesheet" href="src/css/style1.css">
 </head>
 <body>
@@ -14,53 +14,55 @@
 	<table id="table-books" class="myTable1">
 
 		<thead>
-			<th data-object-key-bind ="id">Id</th>
-			<th data-object-key-bind ="name">Имя</th>
-			<th data-object-key-bind ="author">Автор</th>
-			<th data-object-key-bind ="genre">Жарн</th>
+			<th data-object-key-bind ="name">Название книги &#9660;</th>
+			<th data-object-key-bind ="page_num">Количество страниц &#9660;</th>
+			<th data-object-key-bind ="genre">Жанр &#9660;</th>
+			<th data-object-key-bind ="author">Автор &#9660;</th>
 		</thead>
 
-
+ 
 	</table>
 
 	<form action="" id="form-book" name="form-book">
 
-		<input type="hidden" id="objtype" value="book" data-local-storage-key="Book-Library">
+		<input type="hidden" id="objtype" value="book">
 
 		<p>
-			<label for="id">ID:</label>
-			<input type="text" id="id" class="form-input">
+			<label for="name">Название книги</label>
+			<input type="text" id="name" class="bookInputs">
 		</p>
 
 		<p>
-			<label for="id">Name:</label>
-			<input type="text" id="name" class="form-input">
+			<label for="page_num">Количество страниц</label>
+			<input type="text" id="page_num" class="bookInputs">
 		</p>
 
 		<p>
-			<label for="id">Author:</label>
-			<input type="text" id="author" class="form-input">
+			<label for="author">Автор</label>
+			<input type="text" id="author" class="bookInputs">
 		</p>
 
 		<p>
-			<label for="genre">Genre:</label>
-			<select id="genre" class="form-input">
-				<option selected value="Жанр 1">Жанр 1</option>
-				<option value="Жанр 2">Жанр 2</option>
-				<option value="Жанр 3">Жанр 3</option>
-				<option value="Жанр 4">Жанр 4</option>
-				<option value="Жанр 5">Жанр 5</option>
+			<label for="genre">Жанр</label>
+			<select id="genre" class="bookInputs" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library">
+
 			</select>
 		</p>
 
 		<p>
-			<button type="button" id="add">Добавить книгу</button>
+			<button type="button" id="addBook" ignore >Добавить книгу</button>
 		</p>
 	</form>
 
 	<a href="./src/pages/add_genre.html" class="">Добавить жанр</a>
+	<a href="./src/pages/add_author.html" class="">Добавить Автора</a>
 
-	<script src="dist/main.js">
+	<p>
+		<label for="input-search">Найти книгу</label>
+		<input type="text" id="input-search" data-search-object-property="name">
+	</p>
+
+	<script src="dist/index.js">
 			
 	</script>
 	

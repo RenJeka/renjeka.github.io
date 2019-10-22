@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Добавить автора</title>
+	<link rel="stylesheet" href="../css/style1.css">
+</head>
+<body>
+
+	<h1 class="title">Добавить автора</h1>
+
+	<table id="table-authors" class="myTable1">
+
+		<thead>
+			<th data-object-key-bind ="l_name">Фамилия &#9660;</th>
+			<th data-object-key-bind ="f_name">Имя &#9660;</th>
+			<th data-object-key-bind ="patronymic">Отчество &#9660;</th>
+			<th data-object-key-bind ="birth_date">Дата Рождения &#9660;</th>
+			<th data-object-key-bind ="book_list">Список книг &#9660;</th>
+		</thead>
+
+
+	</table>
+
+	<br>
+	<form action="" id="form-authors" name="form-authors">
+
+		<input type="hidden" id="objtype" value="author" >
+
+		<p>
+			<label for="l_name">Фамилия</label>
+			<input type="text" id="l_name" class="bookInputs">
+		</p>
+
+		<p>
+			<label for="f_name">Имя</label>
+			<input type="text" id="f_name" class="bookInputs">
+		</p>
+
+		<p>
+			<label for="patronymic">Отчество</label>
+			<input type="text" id="patronymic" class="bookInputs">
+		</p>
+
+		<p>
+			<label for="birth_date">Дата Рождения</label>
+			<input type="date" id="birth_date" class="bookInputs">
+		</p>
+
+		<p>
+			<label for="book_list">Список книг</label>
+			<select id="book_list" class="bookInputs">
+				<option selected value="Книга 1">Книга 1</option>
+				<option value="Книга 2">Книга 2</option>
+				<option value="Книга 3">Книга 3</option>
+				<option value="Книга 4">Книга 4</option>
+				<option value="Книга 5">Книга 5</option>
+			</select>
+		</p>
+
+		<p>
+			<button type="button" id="add" ignore >Добавить Автора</button>
+		</p>
+	</form>
+
+	<a href="../../index.html" class="">На главную</a>
+
+	<script src="../../dist/indexAuthor.js">
+			
+	</script>
+	
+</body>
+</html>

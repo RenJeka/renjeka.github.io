@@ -11,20 +11,21 @@ export let tableWorker = {
 	 * @todo Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
 	 * @description  Метод заполняет указанную таблицу, взяв данные с LocalStorage по ключу, либо указанным массивом объектов.
 	 * @param {Object} table Таблица, кототую необходимо заполнить
-	 * @param {Array} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
+	 * @param {String} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
+	 * @param {Array} sort rest-параметр. Для сортировки массива. [<по какому полю сортировка>:string, <прямая или обратная сортировка:boolean>]
 	 * @return {void} Ничего не возвращает
 	 */
-	fillTable(table, keyOrArrayOfObjects) {
-
+	fillTable(table, keyOrArrayOfObjects, ...sort) {
+	
 		// Если в параметре (№2) указан ключ — метод достает значения из LocalStorage и заполняет таблицу.
 		if (typeof keyOrArrayOfObjects == "string") {
 			
+			let arrayofData = this.getTableData(keyOrArrayOfObjects, sort);
+
 			// Проверка на незаполненную таблицу
-			if (this.getTableData(keyOrArrayOfObjects) ===false) {
+			if (arrayofData == false) {
 				return false;
 			}
-
-			let arrayofData = this.getTableData(keyOrArrayOfObjects);
 
 			for (let i = 0; i < arrayofData.length; i++) {
 
@@ -36,14 +37,14 @@ export let tableWorker = {
 			}
 			return;
 			
-		// Если в параметре (№2) указан объект с данными — метод заполняет таблицу этим объектом.
+		// Если в параметре (№2) указан массив с данными (массив с объектами) — метод заполняет таблицу этим объектом.
 		}else if(typeof keyOrArrayOfObjects == "object"){
 
 			for (let i = 0; i < keyOrArrayOfObjects.length; i++) {
 				this.addInfoInRow(
 					table, 
 					this.addRow(table).rowIndex, 
-					arrayofData[i]
+					keyOrArrayOfObjects[i]
 				);
 			}
 			return;
@@ -55,15 +56,56 @@ export let tableWorker = {
 	/**
 	 * Метод позволяет получить данные с LocalStorage для заполнения таблицы.  
 	 * @param {String} key ключ от объекта в LocalStorage
+	 * @param {String} sortMark Поле объекта, по которому будет производится сортировка
+	 * @param {Boolean} sortDirection Флаг для направления сортировки (прямая или обратная сортировка)
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-	getTableData(key){
+
+	getTableData(key, sortArray){ 
+		//TODO реализовать три нижние строчки через деструктивное присваивание 
+	// getTableData(key, [sortMark, sortDirection]){ 
+		let sortMark
+		let sortDirection
+		if (sortArray) {
+			sortMark = sortArray[0];
+			sortDirection = sortArray[1]
+		}else{
+			sortMark = undefined;
+			sortDirection = undefined;
+		}
+		// let isSortMark;
+
+		function compare(a, b) {
+			if (sortDirection) {
+				if (a[sortMark] > b[sortMark]) return 1; // если первое значение больше второго
+				if (a[sortMark] == b[sortMark]) return 0; // если равны
+				if (a[sortMark] < b[sortMark]) return -1; // если первое значение меньше второго
+			}else{
+				if (a[sortMark] < b[sortMark]) return 1; 
+				if (a[sortMark] == b[sortMark]) return 0;
+				if (a[sortMark] > b[sortMark]) return -1;
+			}	
+		  }
 
 		// Если есть JSON-данные по переданному ключу (аргумент "key" в LocalStorage) — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (localStorage.getItem(key)) {
+
 			let jsonObject = window.localStorage.getItem(key);
 
-			return JSON.parse(jsonObject)
+			jsonObject =  JSON.parse(jsonObject);
+
+			// isSortMark = jsonObject.some((element)=>element.hasOwnProperty(sortMark));
+
+			if (sortMark) {
+				jsonObject.sort(compare)
+				return jsonObject;
+			}else if(sortMark == undefined){
+				return jsonObject;
+				
+			}else{
+				throw "Ключ, переданный для сортировки — не верный. Такого свойства у объекта нет."
+			}
+
 		}else {
 			return false;
 		}
@@ -82,8 +124,6 @@ export let tableWorker = {
 	 */
 
 	addRow(table, data, numberOfRows = 1, numberOfCells) {
-		console.log(this);
-
 		let arrayofRows = [];
 
 		// Эта функция собственно и добавляет ряд, ячейки и текст в таблицу. Принимает контекст, и возвращает массив с созданными строками
@@ -179,5 +219,29 @@ export let tableWorker = {
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].dataset.objectKeyBind;
 		return nameOfTableHead;
 	},
+	cleanTable(table){
+		while (table.rows.length > 1) {
+			table.deleteRow(table.rows.length - 1);
+		}
+	},
+
+	/**
+	 * Метод фильтрует массив по значению input.value, и возвращает отфильтрованный массив
+	 * @param {object} input Элемент, в который вводится фильтрирующее значение.
+	 * @param {string} localStorageKey Ключ от локального хранилища, где лежат данные для фильтрации
+	 * @param {string} objectProperty свойство (название свойства) объекта, по которому будет фильтрация.
+	 * @return {Array} Возвращает отфильтнованный массив.
+	 */
+	search(input, localStorageKey, objectProperty){
+
+		let data = this.getTableData(localStorageKey);
+		if(data){
+			return data.filter(element => element[objectProperty].includes(input.value.trim().toLocaleLowerCase()))
+		}else{
+			console.log ("Не удалось найти массив с данными")
+			return false;
+		}
+		
+	}
 }
 

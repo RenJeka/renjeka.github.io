@@ -3,10 +3,14 @@ let path = require('path');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let conf = {
-	entry: './src/index.js',
+	entry: {
+		index: './src/index.js',
+		indexGenre: './src/indexGenre.js',
+		indexAuthor: './src/indexAuthor.js'
+	},
 	output:{
 		path: path.resolve(__dirname, './dist'),
-		filename: 'main.js',
+		filename: '[name].js',
 		publicPath: 'dist/'
 	},
 	devServer:{
@@ -32,8 +36,10 @@ let conf = {
 			}
 		]
 	},
+	// TODO Разобраться с SplitChunksPlugin, и выделить общие  файлы, которые участвуют во всех бандлах, -- в отдельный chunk
 	plugins: [
 		new ExtractTextPlugin("styles.css"),
+		// new ExtractTextPlugin("styles.css", {allChunks:true}),
 	],
 	devtool: 'sourcemap'
 }

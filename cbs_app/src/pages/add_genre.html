@@ -4,19 +4,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>add genre</title>
-	<h1>Добавьте свой собственный жанр</h1>
-
-	<a href="../../index.html">На главную</a>
-
-	<table>
-		<thead>
-			<th data-object-key-bind = "genre">Список жанров</th>
-		</thead>
-	</table>
+	<title>Добавить Жанр</title>
+	<link rel="stylesheet" href="../css/style1.css">
 
 </head>
 <body>
+	<h1>Добавьте свой собственный жанр</h1>
+
+	<table id="table-genres" class="myTable1">
+		<thead>
+			<th data-object-key-bind = "genre">Список жанров &#9660;</th>
+		</thead>
+	</table>
+
+	<form action="" id="form-genres" name="form-genres">
+
+		<input type="hidden" id="objtype" value="genre" >
+
+		<p>
+			<label for="genre">Жанр</label>
+			<input type="text" id="genre" class="form-input">
+		</p>
 	
+		<p>
+			<button type="button" id="add" ignore>addBook</button>
+		</p>
+	</form>
+
+	<a href="../../index.html">На главную</a>
+
+	<script src="../../dist/indexGenre.js"></script>
 </body>
 </html>

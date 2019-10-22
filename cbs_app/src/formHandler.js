@@ -1,6 +1,8 @@
 // Эта библиотека отвечает за обработку данных с форм
 import {$} from './myHelperLib';
-import { Book, bookLibrary } from './books';
+import { Book, bookLibrary } from './books.class';
+import { Genre } from './genres.class';
+import { Author } from './authors.class';
 import {tableWorker} from './tableWorker';
 
 
@@ -17,6 +19,8 @@ export let formHandler = {
 
 		let currentForm = event.target.form;
 		let formElements = currentForm.elements;
+		let dublicateKey = "idd" // Ключ, по которому будет происходить поиск дубликатов (по умолчанию = 'idd')
+		let localStorageKey = this.getLocalStorageKey(currentForm); // Ключ, по которому записываются значения в LocalStorage
 
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate(formElements) == false) {
@@ -25,7 +29,6 @@ export let formHandler = {
 
 		let currentObject = this.getObjectType(currentForm); 
 		let object;
-		let localStorageKey = currentObject.localStorageKey; // Ключ, по которому записываются значения в LocalStorage
 
 
 		switch (currentObject.objtype) {
@@ -38,12 +41,16 @@ export let formHandler = {
 				object =  new Author;
 				break;
 
+			case "genre":
+				object =  new Genre;
+				break;
+
 		}
 
 		this.fillObject(object, formElements, localStorageKey);
 
 		//Если находим дубликат объекта - метод заканчивает работу.
-		if (this.findDublicate(object, localStorageKey)) {
+		if (this.findDublicate(object, localStorageKey, dublicateKey)) {
 			return false;
 		}
 		
@@ -70,13 +77,17 @@ export let formHandler = {
 		// Добавляем новый "id"
 		let currentId = "idd"
 		object[currentId] = this.getID(localStorageKey, currentId);
+
+		// Перебор значений массива formElements чтобы взять с каждого элемента значение "value"
+		// TODO Переделать этот перебор через forEach(или подобную), если это возможно.
 		for (let i = 0; i < formElements.length; i++) {
 
-			// Создаем свойство у объекта с таким же именем, как и значение "id" в input
-			object[formElements[i].getAttribute("id")] = formElements[i].value;
-
+			// Если элемент формы не имеет атрибута 'ignore'-- заполняем объект, если атрибут имеется -- игнорируем заполнения объекта
+			if (formElements[i].hasAttribute('ignore') == false) {
+				// Создаем свойство у объекта с таким же именем, как и значение "id" в input
+				object[formElements[i].getAttribute("id")] = formElements[i].value;
+			} 
 		}
-		
 		return object;
 	},
 	// --------------------------------------------------------------------------
@@ -128,7 +139,7 @@ export let formHandler = {
 	getObjectType(form){
 		for (let i = 0; i < form.elements.length; i++) {
 			if (form.elements[i].id == "objtype") {
-				return {objtype:form.elements[i].value , localStorageKey:form.elements[i].dataset.localStorageKey }   //form.elements[i].value
+				return {objtype:form.elements[i].value , localStorageKey:this.getLocalStorageKey(form) }   //form.elements[i].value
 			}
 		}
 		throw "Не найдено поле ввода  <input type='hidden'> с указанием типа объекта, который будет передан в базу данный. Добавьте в вашу форму поле <input type='hidden' id='objtype' value=''>  В поле value='' укажите тип объекта, который будет добавлен в базу данных"
@@ -140,14 +151,14 @@ export let formHandler = {
 	 * @param {string} localStorageKey 
 	 * @return {boolean} true, если метод нашел повторную запись, false — если не нашел.
 	 */
-	findDublicate(object, localStorageKey){
+	findDublicate(object, localStorageKey, dublicateKey = "idd"){
 		let localStorageArray = tableWorker.getTableData(localStorageKey);
 
 		if (localStorageArray == false) {
 			return false;
 		}
-		// Тут производится сравнение по полю "id". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
-		let flag = localStorageArray.some(item =>item.id == object.id);
+		// Тут производится сравнение по полю "dublicateKey". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
+		let flag = localStorageArray.some(item =>item[dublicateKey] == object[dublicateKey]);
 		if (flag) {
 			alert ("такая запись уже есть");
 		}
@@ -218,7 +229,7 @@ export let formHandler = {
 		}
 	},
 	/**
-	 *  Функция формирует уникальный  id  для нового объекта.
+	 *  Метод формирует уникальный  id  для нового объекта.
 	 * @param {string} localStorageKey ключ от локального хранилища.
 	 * @param {string} field поле у объекта, по которому считается уникальное значение. (Сейчас подразумевается, что поле типа {number})
 	 * @return {number} Возращает новое значение "id", которого еще не было (самое большое текущее "id" +1)
@@ -240,6 +251,73 @@ export let formHandler = {
 			return 1;
 		}
 		
+	},
+
+	/**
+	 * Метод формирует ключ для LocalStorage.
+	 * @param {object} form Форма, в которую вводятся данные об объекте (1 форма - 1 объект). По умолчанию "document.forms[0]"
+	 * @return {string} Возвращает созданный ключ для LocalStorage.
+	 */
+	getLocalStorageKey(form = document.forms[0]){
+
+		//Находим в форме поле ввода с id == "objtype" (это поле типа  "hidden")
+		for (let i = 0; i < form.elements.length; i++) {
+			if (form.elements[i].id == "objtype") {
+				
+				// Возвращаем созданный  ключ
+				return form.elements[i].value + "-library"
+			}
+		}
+
+		throw "Метод не смог найти поле с id == 'objtype' и value == '<название вашего объекта>'. Убедитесь что оно есть "
+	},
+
+	/**
+	 * Метод находит поле для ввода, у которого есть привязка к данным в базе данных.Использует метод "fillInput"
+	 * @param {*} form Форма, поля которой необходимо проверить на привязку данных
+	 */
+	// ! Реализовать подвязку сначала к конкретному массиву объектов в базе данных, а потом к конкретному свойству в объекте. Сейчас метод работает неправильно, сравнивая значение id элемента и находя массив в LocalStorage с таким-же названием (+ строка "-library"). Таким алгоритмом берутся и лишние массивы тоже, которые как-же называются, как и 
+	checkForm(form = document.forms[0]){
+
+		// Перебираем все элементы формы
+		for (let i = 0; i < form.elements.length; i++) {
+
+			let localStorageKeyBind = form.elements[i].dataset.localStorageKeyBind;
+			let objectPropertyBind = form.elements[i].dataset.objectPropertyBind;
+
+			if (localStorageKeyBind || objectPropertyBind) {
+				this.fillInput(form.elements[i], tableWorker.getTableData(localStorageKeyBind))
+			}
+		}
+	},
+
+	/**
+	 * Метод, который заполняет элемент формы значениями с массива
+	 * @param {*} element Елемент формы, который необходимо заполнить
+	 * @param {*} arrayOfObjects Массив объектов, из которых нужно взять необходимое значение
+	 */
+	fillInput(element, arrayOfObjects){
+
+		let bindingKey = element.dataset.objectPropertyBind;
+		let elementType = element.tagName.toLowerCase();
+
+		switch (elementType) {
+			case "select":
+				console.dir(element.options);
+				for (let i = 0; i < arrayOfObjects.length; i++) {
+					let optionElement = document.createElement("option");
+
+					// todo Сделать, чтобы в свойство "value" помещалось id_genre свойство. (Привязка осуществлялась по id объекта а не по его свойству)
+					// optionElement.value = arrayOfObjects[i].idd
+					optionElement.value = arrayOfObjects[i][bindingKey];
+					optionElement.innerHTML = arrayOfObjects[i][bindingKey];
+					element.appendChild(optionElement);
+				}
+				break;
+		
+			default:
+				break;
+		}
 	}
 
 // --------------------------------------------------------------------------

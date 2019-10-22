@@ -6,10 +6,13 @@
 .myTable1 td{
 	padding: 5px;
 	border: 1px solid gray;
-	width: 100px;
+	/* width: 100px; */
+	/* min-height: 50px; */
 	text-align: center;
 }
-
+.myTable1 th{
+	min-height: 50px;
+}
 .title{
 	text-align: center;
 }
@@ -27,4 +30,16 @@
 
 .inputs-invalid{
 	background-color: red;
+}
+
+tr:hover{
+	background: #ccc;
+	cursor: pointer;
+}
+tr:active{
+	background: rgb(151, 151, 151);
+}
+
+.aaa{
+	background-color: green;
 }
