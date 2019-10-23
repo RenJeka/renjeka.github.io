@@ -58,12 +58,19 @@ window.addEventListener("load", () =>{
 			console.log("Массив");
 			console.dir("returnValue = ");
 			console.dir(returnValue);
+			console.dir("tableData = ");
+			console.dir(tableData);
 			tableData = returnValue;
+			console.dir("Changed tableData = ");
+			console.dir(tableData);
 			
 		}else if(returnValue instanceof Object){
 			console.log("Объект");
 			console.dir("returnValue = ");
 			console.dir(returnValue);
+			console.dir("tableData = ");
+			console.dir(tableData);
+
 	
 		}else{
 			console.log("Что-то другое");

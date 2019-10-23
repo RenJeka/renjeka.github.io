@@ -251,29 +251,36 @@ export let tableWorker = {
 	rowSelectHandler(table, localStorageKey, tableData, callback){
 		let sortFlag = false, // Флаг для сортировки таблицы (чтобы сортировка была в 2)
 			sortMark, // маркер сортировки (название свойства объекта, по которому будет происходить сортировка)
-			tempFunc = callback || function () {};
+			tempFunc = callback || function () {},
+			returnValue;
+			console.log ("tableData in outer", tableData)
+			
 			// TODO Проблемма: что вернуть? Изначально идея была -- чтобы вернуть объект которым была заполнена строка (объект с массива объектов в Базе данных). Но, если следовать первому условию (мы кликнули на заголовочную ячейку) -- то таблица отсортировалась, и у нас новый массив с данными. Его нужно вернуть туда, откуда этот метод вызывался. А потом при повторном вызове этого метода, но уже когда произошел клик по строке с данными, принять этот массив данных (tableData) и вернуть конкретный объект. Т.е. по идее тут 2 разных return: Один с массивом объектов (при клике по заголовку), и другой -- просто с 1 объектом (при клике на строке с данными)
+			
+			table.addEventListener("click", (e)=>{
+				
+				sortMark = e.target.dataset.objectKeyBind;
+				// console.dir(e.target.tagName)
+				
+				// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
+				if (sortMark && e.target.tagName == "TH") {
+					sortFlag = !sortFlag;
+					// Очищаем всю таблицу
+					console.dir(table)
+					this.cleanTable(table);
+					// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
+					returnValue = this.fillTable(table,localStorageKey, sortMark, sortFlag);
+					tableData = returnValue;
+					
+				}else if(e.target.tagName == "TD"){
+					// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 
-		table.addEventListener("click", (e)=>{
-			let returnValue;
-
-			sortMark = e.target.dataset.objectKeyBind;
-			console.dir(e.target.tagName)
-			// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
-			if (sortMark && e.target.tagName == "TH") {
-				sortFlag = !sortFlag;
-				// Очищаем всю таблицу
-				console.dir(table)
-				this.cleanTable(table);
-				// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
-				return this.fillTable(table,localStorageKey, sortMark, sortFlag);
-
-			}else if(e.target.tagName == "TD"){
-				// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
-				returnValue = tableData[e.target.parentElement.rowIndex -1]
-				tempFunc(returnValue);
-				return tableData;
+					// ! Здесь проблемма. "tableData" берется со старых данных, на момент, когда единожды была вызвана ф-я "rowSelectHandler". "tableData" сдесь не обновляется.
+					console.log ("tableData in inner func", tableData)
+					returnValue = tableData[e.target.parentElement.rowIndex -1]
 			}
+
+			tempFunc(returnValue);
 			
 		})	
 	}
