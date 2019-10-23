@@ -3,6 +3,7 @@ import {$, tag} from './myHelperLib'
 import { formHandler } from './formHandler';
 
 window.addEventListener("load", () =>{
+
 	console.dir(document.forms[0])
 	console.dir(document.forms[0].elements)
 	let currentTable 	= $('#table-books'),
@@ -47,19 +48,26 @@ window.addEventListener("load", () =>{
 	});
 
 	// Запускаем обработчик выбора строк  
-	let aaa = tableWorker.rowSelectHandler(currentTable, localStorageKey, tableData);
-	console.dir("Результат = " + aaa);
 	
+	tableWorker.rowSelectHandler(currentTable, localStorageKey,tableData, testFunc)
+
 	// TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
-	if (Array.isArray(aaa)) {
-		console.log("Массив");
-		
-	}else if(aaa instanceof Object){
-		
-		console.log("Объект");
-	}else{
-		
-		console.log("Что-то другое");
+	function testFunc(returnValue) {
+
+		if (Array.isArray(returnValue)) {
+			console.log("Массив");
+			console.dir("returnValue = ");
+			console.dir(returnValue);
+			tableData = returnValue;
+			
+		}else if(returnValue instanceof Object){
+			console.log("Объект");
+			console.dir("returnValue = ");
+			console.dir(returnValue);
+	
+		}else{
+			console.log("Что-то другое");
+		}
 	}
 
 	// Обработчик поиска

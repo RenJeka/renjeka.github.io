@@ -7,4 +7,18 @@ function tag(tagName) {
 	return document.getElementsByTagName(tagName);
 }
 
-export {$, tag };
+function testFunc(returnValue) {
+	if (Array.isArray(returnValue)) {
+		console.log("Массив");
+		console.dir(returnValue);
+		
+	}else if(returnValue instanceof Object){
+		console.log("Объект");
+		console.dir(returnValue);
+
+	}else{
+		console.log("Что-то другое");
+	}
+}
+
+export {$, tag, testFunc};
