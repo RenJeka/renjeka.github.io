@@ -275,7 +275,7 @@ export let tableWorker = {
 				}else if(e.target.tagName == "TD"){
 					// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 
-					// ! Здесь проблемма. "tableData" берется со старых данных, на момент, когда единожды была вызвана ф-я "rowSelectHandler". "tableData" сдесь не обновляется.
+					// ! Здесь проблемма. "tableData" берется со старых данных, на момент, когда единожды была вызвана ф-я "rowSelectHandler". "tableData" сдесь не обновляется. Такая-же ситуация, если происходит поиск (сортировка). "tableData" остается старым
 					console.log ("tableData in inner func", tableData)
 					returnValue = tableData[e.target.parentElement.rowIndex -1]
 			}
