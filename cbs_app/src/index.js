@@ -1,6 +1,7 @@
 import { tableWorker } from './tableWorker';
 import {$, tag} from './myHelperLib'
 import { formHandler } from './formHandler';
+import { Table } from './table.class';
 
 window.addEventListener("load", () =>{
 
@@ -8,8 +9,11 @@ window.addEventListener("load", () =>{
 	console.dir(document.forms[0].elements)
 	let currentTable 	= $('#table-books'),
 		localStorageKey = formHandler.getLocalStorageKey(),
-		tableData		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
+		tableData;		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
 
+	let tableBook = new Table('#table-books',document.forms[0]);
+
+	console.dir(tableBook);
 	/*
 		// Находим localStorageKey (Ключ для базы данных в LocalStorage)
 	for (let i = 0; i < document.forms[0].elements.length; i++) {

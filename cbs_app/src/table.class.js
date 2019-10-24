@@ -1,6 +1,6 @@
 import { $ } from "./myHelperLib";
-import { formHandler } from "../formHandler";
-import { tableWorker } from "../tableWorker";
+import { formHandler } from "./formHandler";
+import { tableWorker } from "./tableWorker";
 
 
 /**
@@ -20,13 +20,14 @@ export class Table{
 	/**
 	 * Конструктор. Создает объект -- таблица, которая подвязывается под 1 HTML-таблицу
 	 * @param {String} currentTable CSS -селектор для нахождения нужной (связанной таблицы)
-	 * @param {String} localStorageKey Ключ от локального храни
+	 * @param {object} form форма, к которой привязана данная таблица.
 	 * @param {Array} tableData -- Массив объектов, которыми будет заполнятся таблица
 	 * @param {Array} arrayOfObservers --Список подписчиков
 	 */
-	constructor(currentTable,localStorageKey,tableData){
+	constructor(currentTable,form,tableData){
 		this.currentTable = $(currentTable);
-		this.localStorageKey = formHandler.getLocalStorageKey(localStorageKey);
+		this.boundForm = form;
+		this.localStorageKey = formHandler.getLocalStorageKey(form);
 		this.tableData = tableData;
 		this.arrayOfObservers = [];
 	}
