@@ -47,6 +47,7 @@ window.addEventListener("load", () =>{
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
 
+	//! ТЕКУЩАЯ РАБОТА
 	// Запускаем обработчик выбора строк  
 	
 	tableWorker.rowSelectHandler(currentTable, localStorageKey,tableData, testFunc)
