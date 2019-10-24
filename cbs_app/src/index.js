@@ -1,28 +1,17 @@
 import { tableWorker } from './tableWorker';
-import {$, tag} from './myHelperLib'
+import {$} from './myHelperLib'
 import { formHandler } from './formHandler';
 import { Table } from './table.class';
 
 window.addEventListener("load", () =>{
 
-	console.dir(document.forms[0])
-	console.dir(document.forms[0].elements)
 	let currentTable 	= $('#table-books'),
 		localStorageKey = formHandler.getLocalStorageKey(),
 		tableData;		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
 
 	let tableBook = new Table('#table-books',document.forms[0]);
+	tableBook.addObserver(tableWorker);
 
-	console.dir(tableBook);
-	/*
-		// Находим localStorageKey (Ключ для базы данных в LocalStorage)
-	for (let i = 0; i < document.forms[0].elements.length; i++) {
-		if (document.forms[0].elements[i].dataset.hasOwnProperty("localStorageKey")) {
-			localStorageKey = document.forms[0].elements[i].dataset.localStorageKey;
-		}
-	}
-	*/
-	
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formHandler.checkForm();
 
@@ -37,7 +26,7 @@ window.addEventListener("load", () =>{
 	// ♦ Продумать, как будет реализовываться валидация полей по заданным регулярным выражениям (можно РВ поместить в атрибуты).  
 	// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
-	// Обработчик событий по нажатии на кнопку "addBook"
+	// ОБРАБОТЧИК КНОПКИ "addBook"
 	$('#addBook').addEventListener("click", function(e) {
 		
 		//получаем возращаемый объект, который записался в базу данных.
@@ -51,9 +40,7 @@ window.addEventListener("load", () =>{
 		tableWorker.addRow(currentTable, returnedObject.addedObject);
 	});
 
-	//! ТЕКУЩАЯ РАБОТА
-	// Запускаем обработчик выбора строк  
-	
+	// ОБРАБОТЧИК ВЫБОРА СТРОК 
 	tableWorker.rowSelectHandler(currentTable, localStorageKey,tableData, testFunc)
 
 	// TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
@@ -76,13 +63,12 @@ window.addEventListener("load", () =>{
 			console.dir("tableData = ");
 			console.dir(tableData);
 
-	
 		}else{
 			console.log("Что-то другое");
 		}
 	}
 
-	// Обработчик поиска
+	// ОБРАБОТЧИК ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{
 		// Очищаем текущую таблицу
 		tableWorker.cleanTable(currentTable);
