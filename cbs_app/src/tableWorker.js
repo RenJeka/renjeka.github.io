@@ -283,6 +283,11 @@ export let tableWorker = {
 			tempFunc(returnValue);
 			
 		})	
+	},
+
+	observerUpdate(table, localStorageKey, tableData){
+		
+		rowSelectHandler(table, localStorageKey, tableData);
 	}
 }
 

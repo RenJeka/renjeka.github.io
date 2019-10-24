@@ -44,7 +44,7 @@ export class Table{
 	 */
 	notify(){
 		this.arrayOfObservers.forEach(element => {
-			element.update()
+			element.observerUpdate(this.currentTable, this.localStorageKey, this.tableData)
 		});
 	}
 
