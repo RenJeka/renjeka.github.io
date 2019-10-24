@@ -286,8 +286,8 @@ export let tableWorker = {
 	},
 
 	observerUpdate(table, localStorageKey, tableData){
-		
-		rowSelectHandler(table, localStorageKey, tableData);
+
+		this.rowSelectHandler(table, localStorageKey, tableData);
 	}
 }
 

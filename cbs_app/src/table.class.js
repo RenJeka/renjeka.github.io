@@ -49,15 +49,15 @@ export class Table{
 		});
 	}
 
-	fillTable(){
+	fillTable(sortMark,sortDirection){
 
-		if (this.currentTable && this.localStorageKey) {
-
-			this.tableData = tableWorker.fillTable(this.currentTable, this.localStorageKey)
-
-		}else if (this.currentTable && this.tableData) {
+		if (this.currentTable && this.tableData) {
 
 			this.tableData = tableWorker.fillTable(this.currentTable, this.tableData)
+
+		}else if (this.currentTable && this.localStorageKey) {
+
+			this.tableData = tableWorker.fillTable(this.currentTable, this.localStorageKey)
 
 		}else{
 			if (currentTable == false) {
