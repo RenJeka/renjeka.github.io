@@ -318,12 +318,35 @@ export class Table{
 	 * @param {String} localStorageKey Ключ от базы данных (localStorage), с которой берутся данные для заполнения таблицы
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
-	rowSelectHandler(callback){
-		let tempFunc = callback || function () {},
-		returnValue; // Значение, которое возвращает этот метод.
-		console.log("Запуск rowSelectHandler");
+	rowSelectHandler(e){
+		let returnValue; // Значение, которое возвращает этот метод.
 		
+		this.sortMark = e.target.dataset.objectKeyBind;
 			
+		// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
+		if (this.sortMark && e.target.tagName == "TH") {
+
+			this.sortDirection = !this.sortDirection;
+			
+			// Сортируем текущие данные. (Учитывая потерю контекста)
+			this.tableData.sort(this.compare1.bind(this));
+
+			// Очищаем всю таблицу
+			this.cleanTable();
+
+			// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
+			returnValue = this.fillTable();
+			this.tableData = returnValue;
+			
+		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
+		}else if(e.target.tagName == "TD"){
+
+			console.dir(this)
+			console.dir(this.tableData)
+			returnValue = this.tableData[e.target.parentElement.rowIndex -1];
+		}
+
+		console.dir(returnValue);
 		//#region
 		// TODO Проблемма: что вернуть? Изначально идея была -- чтобы вернуть объект которым была заполнена строка (объект с массива объектов в Базе данных). Но, если следовать первому условию (мы кликнули на заголовочную ячейку) -- то таблица отсортировалась, и у нас новый массив с данными. Его нужно вернуть туда, откуда этот метод вызывался. А потом при повторном вызове этого метода, но уже когда произошел клик по строке с данными, принять этот массив данных (tableData) и вернуть конкретный объект. Т.е. по идее тут 2 разных return: Один с массивом объектов (при клике по заголовку), и другой -- просто с 1 объектом (при клике на строке с данными)
 		//#endregion
@@ -331,32 +354,21 @@ export class Table{
 		// Основной метод -- обработчик событий на клик
 		this.currentTable.addEventListener("click", (e)=>{
 
-			this.sortMark = e.target.dataset.objectKeyBind;
-			
-			// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
-			if (this.sortMark && e.target.tagName == "TH") {
-
-				this.sortDirection = !this.sortDirection;
-				
-				// Сортируем текущие данные. (Учитывая потерю контекста)
-				this.tableData.sort(this.compare1.bind(this));
-
-				// Очищаем всю таблицу
-				this.cleanTable();
-
-				// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
-				returnValue = this.fillTable();
-				this.tableData = returnValue;
-				
-			// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
-			}else if(e.target.tagName == "TD"){
-
-				returnValue = this.tableData[e.target.parentElement.rowIndex -1];
-			}
-
-			tempFunc(returnValue);
-			console.dir(returnValue);
 		})	
+	}
+
+	/**
+	 * 
+	 * @callback callbackHandler Функция, которая ставится в качестве обработчика на нажатие по таблице. (По умолчанию this.rowSelectHandler)
+	 */
+	tableClickHandler(callbackHandler){
+
+		if (callbackHandler) {
+			this.currentTable.addEventListener("click", callbackHandler)	
+		}else{
+			
+			this.currentTable.addEventListener("click", this.rowSelectHandler.bind(this))	
+		}
 	}
 
 // -----------------------------------------------------------------------------
@@ -365,7 +377,8 @@ export class Table{
 	 */
 	observerUpdate(){
 		// Список запускающих методов
-		this.rowSelectHandler();
+		this.currentTable.removeEventListener("click", this.rowSelectHandler.bind(this))
+		this.tableClickHandler();
 	}
 
 	/**

@@ -29,7 +29,7 @@ window.addEventListener("load", () =>{
 	tableBook.fillTable();
 
 	//Сообщаем наблюдателям об изменении
-	tableBook.notify();
+	// tableBook.notify();
 
 	////===========================================================================================
 	// ОБРАБОТЧИК КНОПКИ "addBook"
@@ -62,7 +62,7 @@ window.addEventListener("load", () =>{
 
 
 	// ОБРАБОТЧИК ВЫБОРА СТРОК 
-	tableBook.rowSelectHandler()
+	tableBook.tableClickHandler()
 
 	//#region
 	// //===========================================================================================
