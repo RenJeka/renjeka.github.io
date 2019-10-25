@@ -195,7 +195,7 @@ export let tableWorker = {
 		for (const key in object) {
 			if (object.hasOwnProperty(key)) {
 
-				// Если ключ объекта равняется тому, что вернул метот "whatHead" — значение из объекта заполняется в заранее заданную ячейку
+				// Если ключ объекта равняется тому, что вернул метот "whatObjectKey" — значение из объекта заполняется в заранее заданную ячейку
 				if (key.toLowerCase() === this.whatObjectKey(table, indexOfCell).toLowerCase()){
 
 					table.rows[indexOfRow].cells[indexOfCell].innerHTML = object[key];
@@ -218,6 +218,12 @@ export let tableWorker = {
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].dataset.objectKeyBind;
 		return nameOfTableHead;
 	},
+
+
+// ======================================================================================
+// ======================================================================================
+// ======================================================================================
+
 
 	// -----------------------------------------------------------------------------
 	/**

@@ -17,46 +17,52 @@ window.addEventListener("load", () =>{
 	// 	localStorageKey = formHandler.getLocalStorageKey(),
 	// 	tableData;		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
 
+	// Создаем объект "tableBook" типа "Table"
 	let tableBook = new Table('#table-books',document.forms[0]);
 
+	// Добавляем наблюдателей (наблюдателям будет идти рассылка после изменения параметров, изначально параметр "tableData")
 	tableBook.addObserver(tableWorker);
 
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formHandler.checkForm();
 
+	// Заполняем таблицу
 	tableBook.fillTable();
-	tableBook.notify();
+
+	//Сообщаем наблюдателям об изменении
+	// tableBook.notify();
 
 
 	// // Заполняем текущую таблицу данными из localStorage. Возращаем массив с данными.
 	// tableData = tableWorker.fillTable(currentTable,localStorageKey);
 
 	////===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "addBook"
-	$('#addBook').addEventListener("click", function(e) {
+	// // ОБРАБОТЧИК КНОПКИ "addBook"
+	// $('#addBook').addEventListener("click", function(e) {
 		
-		//получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект )
-		let returnedObject =  formHandler.addBookHandler(e);
-		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
-		if (returnedObject == false) {
-			return false;
-		}
-		// Добавляем ряд с данными в таблицу
-		tableWorker.addRow(tableBook.currentTable, returnedObject.addedObject);
-	});
+	// 	//получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект )
+	// 	let returnedObject =  formHandler.addBookHandler(e);
+	// 	// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
+	// 	if (returnedObject == false) {
+	// 		return false;
+	// 	}
+	// 	// Добавляем ряд с данными в таблицу
+	// 	tableWorker.addRow(tableBook.currentTable, returnedObject.addedObject);
+	// });
 
 	//===========================================================================================
-	// ОБРАБОТЧИК ПОИСКА
-	$('#input-search').addEventListener("keyup", (e)=>{
-		// Очищаем текущую таблицу
-		tableWorker.cleanTable(tableBook.currentTable);
+	// // ОБРАБОТЧИК ПОИСКА
+	// $('#input-search').addEventListener("keyup", (e)=>{
+	// 	// Очищаем текущую таблицу
+	// 	tableWorker.cleanTable(tableBook.currentTable);
 
-		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
-		tableBook.tableData = tableWorker.search(e.target, tableBook.localStorageKey, e.target.dataset.searchObjectProperty);
-		tableBook.notify()
-		tableBook.fillTable()
-	})
+	// 	// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
+	// 	tableBook.tableData = tableWorker.search(e.target, tableBook.localStorageKey, e.target.dataset.searchObjectProperty);
+	// 	tableBook.notify()
+	// 	tableBook.fillTable()
+	// })
 
+	//#region
 	// //===========================================================================================
 	// // ОБРАБОТЧИК ВЫБОРА СТРОК 
 	// tableWorker.rowSelectHandler(tableBook.currentTable, tableBook.localStorageKey,tableData, testFunc)
@@ -85,6 +91,7 @@ window.addEventListener("load", () =>{
 	// 		console.log("Что-то другое");
 	// 	}
 	// }
+	//#endregion
 
 
 
