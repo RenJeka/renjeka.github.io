@@ -37,7 +37,6 @@ window.addEventListener("load", () =>{
 		
 		//получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект )
 		let returnedObject =  formHandler.addBookHandler(e);
-
 		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
 		if (returnedObject == false) {
 			return false;

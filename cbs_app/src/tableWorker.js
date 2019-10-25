@@ -4,6 +4,8 @@
 
 /** @module tableWorker */
 
+	// TODO брать таблицу из моего созданного объекта
+
 export let tableWorker = {
 
 	// ---------------------------------------------------------------------------
@@ -59,7 +61,6 @@ export let tableWorker = {
 	 * @param {Boolean} sortDirection Флаг для направления сортировки (прямая или обратная сортировка)
 	 * @return {Object} Возвращает распарсенный массив объектов, которым можно заполнить таблицу (jsonObject)
 	 */
-
 	getTableData(key, sortArray){ 
 		//TODO реализовать три нижние строчки через деструктивное присваивание 
 	// getTableData(key, [sortMark, sortDirection]){ 
@@ -120,7 +121,6 @@ export let tableWorker = {
 	 * @param {Number} numberOfCells Кол-во ячеек в ряде (По умолчанию высчитывается по кол-ву ячеек в заголовке (thead))
 	 * @return {arrayofRows} Возвращает созданный массив строк (либо 1 строку) с данными.
 	 */
-
 	addRow(table, data, numberOfRows = 1, numberOfCells) {
 		let arrayofRows = [];
 
@@ -203,6 +203,7 @@ export let tableWorker = {
 			}
 		}
 	},
+
 	// -----------------------------------------------------------------------------
 	/**
 	 * Метод вычисляет, какой заголовок находиться над указанной ячейкой (Заголовок колонки). Нужен для работы метода "addInfoInCell"
@@ -217,12 +218,21 @@ export let tableWorker = {
 		let nameOfTableHead = table.rows[0].cells[indexOfCell].dataset.objectKeyBind;
 		return nameOfTableHead;
 	},
+
+	// -----------------------------------------------------------------------------
+	/**
+	 * Метод полностью очищает таблицу 
+	 * @param {object} table Таблица, которую нужно очистить
+	 */
 	cleanTable(table){
+
+		// Проходимся циклом по всей таблице, и удаляем каждую строку стандартным методом "deleteRow"
 		while (table.rows.length > 1) {
 			table.deleteRow(table.rows.length - 1);
 		}
 	},
 
+	// -----------------------------------------------------------------------------
 	/**
 	 * Метод фильтрует массив по значению input.value, и возвращает отфильтрованный массив
 	 * @param {object} input Элемент, в который вводится фильтрирующее значение.
@@ -242,6 +252,7 @@ export let tableWorker = {
 		
 	},
 
+	// -----------------------------------------------------------------------------
 	/**
 	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
 	 * @param {object} table Таблица, на которую необходимо повесить обработчик.
@@ -277,7 +288,9 @@ export let tableWorker = {
 
 					// ! Здесь проблемма. "tableData" берется со старых данных, на момент, когда единожды была вызвана ф-я "rowSelectHandler". "tableData" сдесь не обновляется. Такая-же ситуация, если происходит поиск (сортировка). "tableData" остается старым
 					console.log ("tableData in inner func", tableData)
-					returnValue = tableData[e.target.parentElement.rowIndex -1]
+					returnValue = tableData[e.target.parentElement.rowIndex -1];
+					console.dir(returnValue);
+					
 			}
 
 			tempFunc(returnValue);
@@ -285,8 +298,16 @@ export let tableWorker = {
 		})	
 	},
 
+	// -----------------------------------------------------------------------------
+	/**
+	 * Метод update паттерна Observer
+	 * @param {object} table Текущая таблица (для запуска других методов)
+	 * @param {string} localStorageKey Ключ от localStorage (для запуска других методов)
+	 * @param {Array} tableData Обновленные данные (для запуска других методов)
+	 */
 	observerUpdate(table, localStorageKey, tableData){
 
+		// Список запускающих методов
 		this.rowSelectHandler(table, localStorageKey, tableData);
 	}
 }
