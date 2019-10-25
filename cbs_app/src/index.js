@@ -6,7 +6,6 @@
 // ♦ Продумать, как будет реализовываться валидация полей по заданным регулярным выражениям (можно РВ поместить в атрибуты).  
 // TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
-import { tableWorker } from './tableWorker';
 import {$} from './myHelperLib'
 import { formHandler } from './formHandler';
 import { Table } from './table.class';
@@ -20,8 +19,8 @@ window.addEventListener("load", () =>{
 	// Создаем объект "tableBook" типа "Table"
 	let tableBook = new Table('#table-books',document.forms[0]);
 
-	// Добавляем наблюдателей (наблюдателям будет идти рассылка после изменения параметров, изначально параметр "tableData")
-	tableBook.addObserver(tableWorker);
+	// // Добавляем наблюдателей (наблюдателям будет идти рассылка после изменения параметров, изначально параметр "tableData")
+	// tableBook.addObserver(tableWorker);
 
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formHandler.checkForm();
@@ -30,7 +29,7 @@ window.addEventListener("load", () =>{
 	tableBook.fillTable();
 
 	//Сообщаем наблюдателям об изменении
-	// tableBook.notify();
+	tableBook.notify();
 
 
 	// // Заполняем текущую таблицу данными из localStorage. Возращаем массив с данными.

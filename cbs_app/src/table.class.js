@@ -1,6 +1,5 @@
 import { $ } from "./myHelperLib";
 import { formHandler } from "./formHandler";
-import { tableWorker } from "./tableWorker";
 
 
 /**
@@ -54,9 +53,6 @@ export class Table{
 	/**
 	 * @todo Необходимо реализовать перегрузку функции, чтобы она принимала либо массив, либо строку-"ключ" LocalStorage  (Подробнее — https://habr.com/ru/post/86403/)
 	 * @description  Метод заполняет указанную таблицу, взяв данные с LocalStorage по ключу, либо указанным массивом объектов.
-	 * @param {Object} table Таблица, кототую необходимо заполнить
-	 * @param {String} keyOrArrayOfObjects Ключ либо массив с данными (с объектами)
-	 * @param {Array} sort rest-параметр. Для сортировки массива. [<по какому полю сортировка>:string, <прямая или обратная сортировка:boolean>]
 	 * @return {void} Возвращает массив с данными, которыми была заполнена таблица.
 	 */
 	fillTable(sortMark,sortDirection) {
@@ -86,11 +82,8 @@ export class Table{
 			}
 
 			// Заполняем таблицу данными
-			for (let i = 0; i < this.tableData.length; i++) {  // ? ForEach? 
-
-				for (let i = 0; i < this.tableData.length; i++) { // ? ForEach? 
-					this.addRows(this.tableData[i]).rowIndex; 
-				}
+			for (let i = 0; i < this.tableData.length; i++) { // ? ForEach? 
+				this.addRows(this.tableData[i]).rowIndex; 
 			}
 
 			//Возвращаем массив, которым заполнили таблицу
@@ -249,6 +242,9 @@ export class Table{
 				if (key.toLowerCase() === this.getTableColumnHead(indexOfCell).toLowerCase()){
 
 					this.currentTable.rows[indexOfRow].cells[indexOfCell].innerHTML = object[key];
+
+					// Возвращаем заполненную ячейку
+					return this.currentTable.rows[indexOfRow].cells[indexOfCell]
 				}
 			}
 		}
