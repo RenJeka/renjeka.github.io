@@ -31,6 +31,7 @@ export class Table{
 		this.arrayOfObservers = [];
 		this.sortMark;
 		this.sortDirection = false;
+		this.myCounter = 0;
 	}
 
 	/**
@@ -63,8 +64,19 @@ export class Table{
 		console.dir(this);
 		console.dir(this.currentTable);
 		
-		this.currentTable.removeEventListener("click", this.rowSelectHandler.bind(this))
-		this.tableClickHandler();
+		this.currentTable.removeEventListener("click", this.rowSelectHandler)
+
+
+		// TODO Разобраться с обработчиком событий. 
+		// Необходимо поставить обработчик событий на нажатие строчки, но с обновлением через Observer. 
+		// Необходимо удалить старый и установить новый обработчик, как только данные в таблице изменятся. (меняется значение TableData)
+		// Необходимо установить маркер на количество обработчиков событий, чтобы понять -- сколько я запускаю иенно ОБРАБОТЧИКОВ а не фенкция, которую этот обработчик запускает. 
+		// Попробовать поэксперементировать со стрелочной функцией и контекстом, чтобы он не терялся.
+		
+		
+
+		// this.currentTable.addEventListener("click", this.rowSelectHandler)
+		// this.tableClickHandler();
 		console.dir(this.currentTable);
 		console.dir(window);
 		
@@ -336,6 +348,10 @@ export class Table{
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
 	rowSelectHandler(e){
+		this.myCounter ++;
+		console.log(this.myCounter);
+		console.dir(e.target);
+
 		let returnValue; // Значение, которое возвращает этот метод.
 		
 		this.sortMark = e.target.dataset.objectKeyBind;
@@ -382,8 +398,7 @@ export class Table{
 
 		if (callbackHandler) {
 			this.currentTable.addEventListener("click", callbackHandler)	
-		}else{
-			
+		}else{	
 			this.currentTable.addEventListener("click", this.rowSelectHandler.bind(this))	
 		}
 	}
