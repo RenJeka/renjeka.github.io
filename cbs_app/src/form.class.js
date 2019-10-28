@@ -16,16 +16,17 @@ export class Form{
 		this.currentForm = currentForm;
 		this.idName = idName;
 		this.dataArray = [];
+		this.localStorageKey = this.getLocalStorageKey("-library");
+		this.needAddToLocalStorege = true;
 
 		if (dataArray) {
 			this.dataArray = dataArray;
 			this.needAddToLocalStorege = false;
-		}else{
+
+		}else if(window.localStorage.getItem(this.localStorageKey)){
 			this.dataArray = JSON.parse(window.localStorage.getItem(this.localStorageKey));
-			this.needAddToLocalStorege = true;
 		}
 
-		this.localStorageKey = this.getLocalStorageKey("-library");
 		this.currentObject; // Текущий (последний) объект, который заполнялся.
 	}
 
@@ -174,7 +175,7 @@ export class Form{
 
 		let flag;
 
-		if (this.dataArray == false) {
+		if (!(this.dataArray)) {
 			return false;
 		}
 		// Тут производится сравнение по полю "dublicateKey". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
@@ -330,24 +331,29 @@ export class Form{
 		let bindingKey = element.dataset.objectPropertyBind;
 		let elementType = element.tagName.toLowerCase();
 
-		switch (elementType) {
+		if (arrayOfObjects) {
+			switch (elementType) {
 
-			// пока метод реализован только чтобы заполнять <select> 
-			case "select":
-				for (let i = 0; i < arrayOfObjects.length; i++) {
-					let optionElement = document.createElement("option");
-
-					// todo Сделать, чтобы в свойство "value" помещалось id_genre свойство. (Привязка осуществлялась по id объекта а не по его свойству)
-					// optionElement.value = arrayOfObjects[i].idd
-					optionElement.value = arrayOfObjects[i][bindingKey];
-					optionElement.innerHTML = arrayOfObjects[i][bindingKey];
-					element.appendChild(optionElement);
-				}
-				return element;
-				break;
-
-			default:
-				break;
+				// пока метод реализован только чтобы заполнять <select> 
+				case "select":
+					for (let i = 0; i < arrayOfObjects.length; i++) {
+						let optionElement = document.createElement("option");
+	
+						// todo Сделать, чтобы в свойство "value" помещалось id_genre свойство. (Привязка осуществлялась по id объекта а не по его свойству)
+						// optionElement.value = arrayOfObjects[i].idd
+						optionElement.value = arrayOfObjects[i][bindingKey];
+						optionElement.innerHTML = arrayOfObjects[i][bindingKey];
+						element.appendChild(optionElement);
+					}
+					return element;
+					break;
+	
+				default:
+					break;
+			}
+		}else{
+			return false;
 		}
+		
 	}
 }

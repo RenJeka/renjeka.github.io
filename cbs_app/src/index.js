@@ -37,7 +37,7 @@ window.addEventListener("load", () =>{
 	// ОБРАБОТЧИК КНОПКИ "addBook"
 	$('#addBook').addEventListener("click", function() {
 
-		returnedObject = formBook.addBookHandler();
+		 let returnedObject = formBook.addBookHandler();
 
 		if (returnedObject == false) {
 			return false;
