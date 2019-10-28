@@ -9,6 +9,7 @@
 import {$} from './myHelperLib'
 import { formHandler } from './formHandler';
 import { Table } from './table.class';
+import { Form } from './form.class';
 
 window.addEventListener("load", () =>{
 
@@ -17,13 +18,14 @@ window.addEventListener("load", () =>{
 	// 	tableData;		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
 
 	// Создаем объект "tableBook" типа "Table"
-	let tableBook = new Table('#table-books',document.forms[0]);
+	let formBook = new Form(document.forms[0], "id");
+	let tableBook = new Table('#table-books',formBook.currentForm);
+
+	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
+	formBook.checkForm();
 
 	// Добавляем наблюдателей (наблюдателям будет идти рассылка после изменения параметров, изначально параметр "tableData")
 	tableBook.addObserver(tableBook);
-
-	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
-	formHandler.checkForm();
 
 	// Заполняем таблицу
 	tableBook.fillTable();
@@ -31,20 +33,27 @@ window.addEventListener("load", () =>{
 	//Сообщаем наблюдателям об изменении
 	// tableBook.notify();
 
-	////===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "addBook"
-	$('#addBook').addEventListener("click", function(e) {
+	$('#addBook').addEventListener("click", function() {
+		tableBook.addRows(formBook.addBookHandler())
 		
-		// получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект)
-		let returnedObject =  formHandler.addBookHandler(e);
-
-		// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
-		if (returnedObject == false) {
-			return false;
-		}
-		// Добавляем ряд с данными в таблицу
-		tableBook.addRows(returnedObject.addedObject);
 	});
+
+
+	////===========================================================================================
+	// // ОБРАБОТЧИК КНОПКИ "addBook"
+	// $('#addBook').addEventListener("click", function(e) {
+		
+	// 	console.dir(e);
+	// 	// получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект)
+	// 	let returnedObject =  formHandler.addBookHandler(e);
+
+	// 	// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
+	// 	if (returnedObject == false) {
+	// 		return false;
+	// 	}
+	// 	// Добавляем ряд с данными в таблицу
+	// 	tableBook.addRows(returnedObject.addedObject);
+	// });
 
 	//===========================================================================================
 	// ОБРАБОТЧИК ПОИСКА

@@ -138,10 +138,7 @@ export class Table{
 
 		let jsonObject = window.localStorage.getItem(this.localStorageKey);
 		let flag;
-
-		// Определяем функцию для сравнения (как будет сортироваться массив)
-
-
+		
 		// Если есть JSON-данные по переданному ключу — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (jsonObject) {
 
