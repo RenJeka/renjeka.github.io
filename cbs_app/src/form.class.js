@@ -33,7 +33,7 @@ export class Form{
 	/**
 	 * Метод подписчика, обновляет данные "this.dataArray"
 	 */
-	update(dataArray){
+	observerUpdate(dataArray){
 		this.dataArray = dataArray;
 	}
 
