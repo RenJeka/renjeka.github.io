@@ -65,7 +65,7 @@ window.addEventListener("load", () =>{
 	tableBook.tableClickHandler()
 
 	//! ===============================================================
-	/* TODO Работа над методом "rowSelectHandler"
+	/* TODO Работа над методом "rowSelectHandler" / "tableClickHandler"
 
 			При сортировке (поиске и выборе строки) вызывается несколько 
 		обработчиков событий на клик.

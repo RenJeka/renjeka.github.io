@@ -49,6 +49,23 @@ export class Table{
 			element.observerUpdate(this.currentTable, this.localStorageKey, this.tableData)
 		});
 	}
+	
+// -----------------------------------------------------------------------------
+	/**
+	 * Метод update паттерна Observer
+	 */
+	observerUpdate(){
+		// Список запускающих методов
+		debugger;
+		console.dir(this);
+		console.dir(this.currentTable);
+		
+		this.currentTable.removeEventListener("click", this.rowSelectHandler.bind(this))
+		this.tableClickHandler();
+		console.dir(this.currentTable);
+		console.dir(window);
+		
+	}
 
 // ---------------------------------------------------------------------------
 	/**
@@ -371,15 +388,6 @@ export class Table{
 		}
 	}
 
-// -----------------------------------------------------------------------------
-	/**
-	 * Метод update паттерна Observer
-	 */
-	observerUpdate(){
-		// Список запускающих методов
-		this.currentTable.removeEventListener("click", this.rowSelectHandler.bind(this))
-		this.tableClickHandler();
-	}
 
 	/**
 	 * Метод, который передается в сортировку массива.
