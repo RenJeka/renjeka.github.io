@@ -2,8 +2,6 @@ import { Book} from './books.class';
 import { Genre } from './genres.class';
 import { Author } from './authors.class';
 
-
-
 export class Form{
 
 	/**

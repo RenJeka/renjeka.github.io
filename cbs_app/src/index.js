@@ -13,10 +13,6 @@ import { Form } from './form.class';
 
 window.addEventListener("load", () =>{
 
-	// let currentTable 	= $('#table-books'),
-	// 	localStorageKey = formHandler.getLocalStorageKey(),
-	// 	tableData;		// Здесь хранятся данные (массив с объектами), которыми в текущий момент заполнена таблица.
-
 	// Создаем объект "tableBook" типа "Table"
 	let formBook = new Form(document.forms[0], "id");
 	let tableBook = new Table('#table-books',formBook.currentForm);
@@ -25,7 +21,7 @@ window.addEventListener("load", () =>{
 	formBook.checkForm();
 
 	// Добавляем наблюдателей (наблюдателям будет идти рассылка после изменения параметров, изначально параметр "tableData")
-	tableBook.addObserver(tableBook);
+	tableBook.addObservers(tableBook, formBook);
 
 	// Заполняем таблицу
 	tableBook.fillTable();
@@ -78,36 +74,5 @@ window.addEventListener("load", () =>{
 		(перезаписывать их при изменении значения "tableData" )
 	*/
 	//! ===============================================================
-
-
-	//#region
-	// //===========================================================================================
-
-
-	// // TODO реализовать, чтобы работало (Чтобы if-ы срабатывали после срабатывания функции "tableWorker.rowSelectHandler")
-	// function testFunc(returnValue) {
-
-	// 	if (Array.isArray(returnValue)) {
-	// 		console.log("Массив");
-	// 		console.dir("returnValue = ");
-	// 		console.dir(returnValue);
-	// 		console.dir("tableData = ");
-	// 		console.dir(tableData);
-	// 		tableData = returnValue;
-	// 		console.dir("Changed tableData = ");
-	// 		console.dir(tableData);
-			
-	// 	}else if(returnValue instanceof Object){
-	// 		console.log("Объект");
-	// 		console.dir("returnValue = ");
-	// 		console.dir(returnValue);
-	// 		console.dir("tableData = ");
-	// 		console.dir(tableData);
-
-	// 	}else{
-	// 		console.log("Что-то другое");
-	// 	}
-	// }
-	//#endregion
 
 });

@@ -35,10 +35,13 @@ export class Table{
 
 	/**
 	 * Метод добавляет подписчика в массив подписчиков (паттерн Observer)
-	 * @param {object} observer Подписчик на изменения свойства "tableData"
+	 * @param {object} observers (rest-параметр) Подписчики (наблюдатели) за изменениями
 	 */
-	addObserver(observer){
-		this.arrayOfObservers.push(observer);
+	addObservers(...observers){
+		observers.forEach(element => {
+			this.arrayOfObservers.push(element);
+		});
+		
 	}
 
 	/**
@@ -138,7 +141,7 @@ export class Table{
 
 		let jsonObject = window.localStorage.getItem(this.localStorageKey);
 		let flag;
-		
+
 		// Если есть JSON-данные по переданному ключу — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (jsonObject) {
 
