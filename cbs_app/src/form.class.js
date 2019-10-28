@@ -10,11 +10,12 @@ export class Form{
 	 * @constructor Конструктор класса "Form". Создает объект -- Форма
 	 * @param {object} currentForm  Текущая <HTML>-форма, которая привязывается к данному объекту
 	 * @param {String} idName название ID для идентификации каждого объекта
-	 * @param {Array} dataArray Массив данных, (набор объектов, что заполняется в форме). По умолчанию данные записываются в  localStorage.
+	 * @param {Array} dataArray (не обязательный) Массив данных, (набор объектов, что заполняется в форме). По умолчанию данные записываются в  localStorage.
 	 */
 	constructor(currentForm, idName, dataArray){
 		this.currentForm = currentForm;
 		this.idName = idName;
+		this.dataArray = [];
 
 		if (dataArray) {
 			this.dataArray = dataArray;
@@ -25,7 +26,6 @@ export class Form{
 		}
 
 		this.localStorageKey = this.getLocalStorageKey("-library");
-		this.dataArray = [];
 		this.currentObject; // Текущий (последний) объект, который заполнялся.
 	}
 
@@ -40,18 +40,18 @@ export class Form{
 
 // --------------------------------------------------------------------------
 	/**
-	 * Обработчик событий при нажатии на кнопку "addBook". Берет с формы данные и записывает в LocalStorage.
-	 * @return {currentObject}  Возвращает заполненный объект;
+	 * Обработчик событий при нажатии на кнопку "addBook". Берет с формы данные и записывает в базу данных.
+	 * @param {string} dublicateKey Ключ, по которому будет происходить поиск дубликатов (по умолчанию дубликатом считается объект с таким-же ID)
+	 * @return {object} Возвращает заполненный объект;
 	 */
-	addBookHandler() {
-
-		let dublicateKey = this.idName // Ключ, по которому будет происходить поиск дубликатов (по умолчанию дубликатом считается объект с таким-же ID)
+	addBookHandler(dublicateKey = this.idName) {
 
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate() == false) {
 			return false;
 		}
 
+		// Проверка и создание объекта нужного типа. 
 		switch (this.getObjectType()) {
 
 			case "book":
@@ -68,19 +68,21 @@ export class Form{
 
 		}
 
+		// Заполняем созданный объект
 		this.fillObject();
 
-		//Если находим дубликат объекта - метод заканчивает работу.
+		// Поиск дубликатов. Если находим дубликат объекта - метод заканчивает работу.
 		if (this.findDublicate(dublicateKey)) { 
 			return false;
 		}
 		
-		//Чистим все поля для заполнения
+		// Очистка полей ввода формы
 		this.cleanInput();
 		
-		// Добавляем настроенный объект в "localStorage"
+		// Добавляем настроенный объект в базу данных.
 		this.addToDatabase();
 
+		//Возвращаем созданный объект
 		return this.currentObject;
 	}
 	
@@ -88,21 +90,22 @@ export class Form{
 // --------------------------------------------------------------------------
 	/**
 	 * Метод для заполнения объекта значениями с полей ввода в форме (input)
-	 * @todo реализовать заполнение объекта через конструктор класса Book в book.js
 	 * @param {object} currentObject Пустой объект, который необходимо заполнить
 	 * @return {void} Ничего не возвращает
 	 */
 	fillObject(){
 
-		// Добавляем новый "id"
 		let elements = this.currentForm.elements;
+
+		// Создаем и заполняем ID объекта
 		this.currentObject[this.idName] = this.getID(this.idName);
 
-		// Перебор значений массива "elements" чтобы взять с каждого элемента значение "value"
+		// Перебираем все поля ввода
 		for (let i = 0; i < elements.length; i++) {
 
 			// Если элемент формы не имеет атрибута 'ignore'-- заполняем объект, если атрибут имеется -- игнорируем заполнения объекта
 			if (elements[i].hasAttribute('ignore') == false) {
+
 				// Создаем свойство у объекта с таким же именем, как и значение "id" в input
 				this.currentObject[elements[i].getAttribute("id")] = elements[i].value;
 			} 
@@ -127,8 +130,6 @@ export class Form{
 			}
 		}
 
-		
-
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Вариант1
 		// for (const key in form.elements) {
 		// 	if (form.elements.hasOwnProperty(key)) {
@@ -151,9 +152,8 @@ export class Form{
 
 // --------------------------------------------------------------------------
 	/**
-	 * Метод устанавливает, какой объект должен заполнятся в форме. Для работы метода в форме должно быть поле <input type='hidden' id='objtype' value=''>, иначе метод выбросит исключение.
-	 * @param {object} form форма, которая предназначена для ввода данных об объекте.
-	 * @return {string} Возвращает название объекта, которое заполняетсяв текущую форму
+	 * Метод устанавливает, объект какого типа заполнятся в форме. Для работы метода в форме должно быть поле <input type='hidden' id='objtype' value=''>, иначе метод выбросит исключение.
+	 * @return {string} Возвращает тип объекта, который заполняется в текущую форму
 	 */
 	getObjectType(){
 		for (let i = 0; i < this.currentForm.elements.length; i++) {
@@ -166,9 +166,9 @@ export class Form{
 
 // --------------------------------------------------------------------------
 	/**
-	 * Метод проверяет дубликаты объектов. В случае нахождения дубликата выводит ошибку.
-	 * @param {currentObject} object текущий объект, который по которому ищется дубликат.
-	 * @return {boolean} true, если метод нашел повторную запись, false — если не нашел.
+	 * Метод проверяет дубликаты объектов. В случае нахождения дубликата выводит сообщение.
+	 * @param {string} dublicateKey название поля объекта, по которобу будет происходить поиск дубликатов. 
+	 * @return {boolean} true, если дубликат найден, false — если не нашел.
 	 */
 	findDublicate(dublicateKey = this.idName){
 

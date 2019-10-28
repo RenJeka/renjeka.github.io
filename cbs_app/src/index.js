@@ -33,27 +33,19 @@ window.addEventListener("load", () =>{
 	//Сообщаем наблюдателям об изменении
 	// tableBook.notify();
 
+	//===========================================================================================
+	// ОБРАБОТЧИК КНОПКИ "addBook"
 	$('#addBook').addEventListener("click", function() {
-		tableBook.addRows(formBook.addBookHandler())
+
+		returnedObject = formBook.addBookHandler();
+
+		if (returnedObject == false) {
+			return false;
+		}
+		tableBook.addRows(returnedObject);
 		
 	});
 
-
-	////===========================================================================================
-	// // ОБРАБОТЧИК КНОПКИ "addBook"
-	// $('#addBook').addEventListener("click", function(e) {
-		
-	// 	console.dir(e);
-	// 	// получаем возврат функции в виде объекта с 2-мя свойствами (ключ от LocalStorage и новый (созданный) объект)
-	// 	let returnedObject =  formHandler.addBookHandler(e);
-
-	// 	// Если есть ошибка в валидации — возвращаем "false", и клик не дает результата (не записывает данные и не модифицирует таблицу )
-	// 	if (returnedObject == false) {
-	// 		return false;
-	// 	}
-	// 	// Добавляем ряд с данными в таблицу
-	// 	tableBook.addRows(returnedObject.addedObject);
-	// });
 
 	//===========================================================================================
 	// ОБРАБОТЧИК ПОИСКА
