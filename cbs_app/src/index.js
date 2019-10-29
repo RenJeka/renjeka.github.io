@@ -14,7 +14,7 @@ window.addEventListener("load", () =>{
 
 	// Создаем объект "tableBook" типа "Table"
 	let formBook = new Form(document.forms[0], "id");
-	let tableBook = new Table('#table-books',formBook.currentForm);
+	let tableBook = new Table('#table-books',formBook);
 
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formBook.checkForm();
