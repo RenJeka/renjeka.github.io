@@ -50,7 +50,7 @@ export class Table{
 	 */
 	notify(){
 		this.arrayOfObservers.forEach(element => {
-			element.observerUpdate(this.currentTable, this.localStorageKey, this.tableData)
+			element.observerUpdate({currentTable: this.currentTable, localStorageKey: this.localStorageKey, tableData: this.tableData})
 		});
 	}
 	
@@ -158,7 +158,7 @@ export class Table{
 			if (jsonObject.some((elem)=>elem[this.sortMark])) {
 
 				//Возвращаем отсортированный массив по заранее заданной функции
-				return jsonObject.sort(this.compare1) 
+				return jsonObject.sort(this.sortFunc1) 
 
 			// Если нет значения для сортировки "this.sortMark" — Возвращаем неотсортированный массив.
 			}else if(this.sortMark == undefined){
@@ -369,7 +369,7 @@ export class Table{
 			this.sortDirection = !this.sortDirection;
 			
 			// Сортируем текущие данные. (Учитывая потерю контекста)
-			this.tableData.sort(this.compare1.bind(this));
+			this.tableData.sort(this.sortFunc1.bind(this));
 
 			// Очищаем всю таблицу
 			this.cleanTable();
@@ -377,24 +377,25 @@ export class Table{
 			// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
 			returnedValue = this.fillTable();
 			this.tableData = returnedValue;
+			console.log(`tableData = `, this.tableData);
+			console.log(`LocalStorArray: `, this.formObject.dataArray);
 			
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(e.target.tagName == "TD"){
 			returnedValue = this.tableData[e.target.parentElement.rowIndex -1];
 			this.selectedObject = returnedValue;
+			console.log(`selectedObject = `, this.selectedObject);
+			console.log(`LocalStorArray: `, this.formObject.dataArray);
 		}
-		console.dir(this.selectedObject);
 	}
 
-
-
-
 	/**
-	 * Метод, который передается в сортировку массива.
-	 * @param {*} a 
-	 * @param {*} b 
+	 * Метод, который передается в сортировку массива. Сортирует значения по возрастанию, либо по убыванию в зависимости от значения "this.sortDirection".
+	 * 
+	 * @param {object} a Первый параметр для сравнения со вторым
+	 * @param {object} b Второй параметр для сравнения с первым.
 	 */
-	compare1(a, b) { 
+	sortFunc1(a, b) { 
 
 		if (this.sortDirection) {
 			if (a[this.sortMark] >  b[this.sortMark]) return 1; // если первое значение больше второго

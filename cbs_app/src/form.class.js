@@ -33,8 +33,8 @@ export class Form{
 	/**
 	 * Метод подписчика, обновляет данные "this.dataArray"
 	 */
-	observerUpdate(dataArray){
-		this.dataArray = dataArray;
+	observerUpdate({currentTable, localStorageKey, tableData}){
+		// this.dataArray = dataArray;
 	}
 
 // --------------------------------------------------------------------------
