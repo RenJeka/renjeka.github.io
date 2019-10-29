@@ -31,7 +31,7 @@ export class Table{
 		this.arrayOfObservers = [];
 		this.sortMark;
 		this.sortDirection = false;
-		this.myCounter = 0;
+		this.otherRowSelectHandler;
 	}
 
 	/**
@@ -59,26 +59,24 @@ export class Table{
 	 * Метод update паттерна Observer
 	 */
 	observerUpdate(){
-		// Список запускающих методов
-		debugger;
-		console.dir(this);
-		console.dir(this.currentTable);
-		
-		this.currentTable.removeEventListener("click", this.rowSelectHandler)
 
+		// this.currentTable.removeEventListener("click", this.rowSelectHandler)
+
+		if (this.otherRowSelectHandler) {
+			this.currentTable.addEventListener("click", (e)=>{
+				this.otherRowSelectHandler(e)
+			}, {once:true})
+		}else{
+			this.currentTable.addEventListener("click",(e)=>{
+				this.rowSelectHandler(e);
+			}, {once:true})	
+		}
 
 		// TODO Разобраться с обработчиком событий. 
 		// Необходимо поставить обработчик событий на нажатие строчки, но с обновлением через Observer. 
 		// Необходимо удалить старый и установить новый обработчик, как только данные в таблице изменятся. (меняется значение TableData)
 		// Необходимо установить маркер на количество обработчиков событий, чтобы понять -- сколько я запускаю иенно ОБРАБОТЧИКОВ а не фенкция, которую этот обработчик запускает. 
 		// Попробовать поэксперементировать со стрелочной функцией и контекстом, чтобы он не терялся.
-		
-		
-
-		// this.currentTable.addEventListener("click", this.rowSelectHandler)
-		// this.tableClickHandler();
-		console.dir(this.currentTable);
-		console.dir(window);
 		
 	}
 
@@ -321,8 +319,6 @@ export class Table{
 	 * @return {Array} Возвращает отфильтнованный массив.
 	 */
 	search(input, objectProperty){
-		console.log("search запущен");
-		console.log(input.value);
 		this.tableData = this.getTableData();
 
 		if(this.tableData){
@@ -341,6 +337,28 @@ export class Table{
 		
 	}
 
+
+// -----------------------------------------------------------------------------
+
+	/**
+	 * Метод запускает обработчик события по клику на строку. Можно подвесить свой обработчик (callbackHandler)
+	 * @callback callbackHandler Функция, которая ставится в качестве обработчика на нажатие по таблице. (По умолчанию this.rowSelectHandler)
+	 */
+	tableClickHandler(callbackHandler){
+
+		this.otherRowSelectHandler = callbackHandler;
+
+		if (this.otherRowSelectHandler) {
+			this.currentTable.addEventListener("click", (e)=>{
+				this.otherRowSelectHandler(e)
+			}, {once:true})
+		}else{
+			this.currentTable.addEventListener("click",(e)=>{
+				this.rowSelectHandler(e);
+			}, {once:true})	
+		}
+	}
+
 // -----------------------------------------------------------------------------
 	/**
 	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
@@ -348,9 +366,6 @@ export class Table{
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
 	rowSelectHandler(e){
-		this.myCounter ++;
-		console.log(this.myCounter);
-		console.dir(e.target);
 
 		let returnValue; // Значение, которое возвращает этот метод.
 		
@@ -373,35 +388,13 @@ export class Table{
 			
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(e.target.tagName == "TD"){
-
-			console.dir(this)
-			console.dir(this.tableData)
 			returnValue = this.tableData[e.target.parentElement.rowIndex -1];
 		}
-
 		console.dir(returnValue);
-		//#region
-		// TODO Проблемма: что вернуть? Изначально идея была -- чтобы вернуть объект которым была заполнена строка (объект с массива объектов в Базе данных). Но, если следовать первому условию (мы кликнули на заголовочную ячейку) -- то таблица отсортировалась, и у нас новый массив с данными. Его нужно вернуть туда, откуда этот метод вызывался. А потом при повторном вызове этого метода, но уже когда произошел клик по строке с данными, принять этот массив данных (tableData) и вернуть конкретный объект. Т.е. по идее тут 2 разных return: Один с массивом объектов (при клике по заголовку), и другой -- просто с 1 объектом (при клике на строке с данными)
-		//#endregion
-		
-		// Основной метод -- обработчик событий на клик
-		this.currentTable.addEventListener("click", (e)=>{
-
-		})	
+		this.observerUpdate();
 	}
 
-	/**
-	 * 
-	 * @callback callbackHandler Функция, которая ставится в качестве обработчика на нажатие по таблице. (По умолчанию this.rowSelectHandler)
-	 */
-	tableClickHandler(callbackHandler){
 
-		if (callbackHandler) {
-			this.currentTable.addEventListener("click", callbackHandler)	
-		}else{	
-			this.currentTable.addEventListener("click", this.rowSelectHandler.bind(this))	
-		}
-	}
 
 
 	/**

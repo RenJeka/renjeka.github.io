@@ -7,7 +7,6 @@
 // TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
 import {$} from './myHelperLib'
-import { formHandler } from './formHandler';
 import { Table } from './table.class';
 import { Form } from './form.class';
 
@@ -39,6 +38,7 @@ window.addEventListener("load", () =>{
 			return false;
 		}
 		tableBook.addRows(returnedObject);
+		tableBook.notify();
 		
 	});
 
