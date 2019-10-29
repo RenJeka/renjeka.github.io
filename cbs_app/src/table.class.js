@@ -1,7 +1,6 @@
 import { $ } from "./myHelperLib";
 import { formHandler } from "./formHandler";
 
-
 /**
  * Класс для создания объекта "Таблица"
  * Объект таблица является Наблюдаемым объектом (Observable)
@@ -32,6 +31,7 @@ export class Table{
 		this.sortMark;
 		this.sortDirection = false;
 		this.otherRowSelectHandler;
+		this.selectedObject;
 	}
 
 	/**
@@ -63,13 +63,9 @@ export class Table{
 		// this.currentTable.removeEventListener("click", this.rowSelectHandler)
 
 		if (this.otherRowSelectHandler) {
-			this.currentTable.addEventListener("click", (e)=>{
-				this.otherRowSelectHandler(e)
-			}, {once:true})
+			this.currentTable.onclick = this.otherRowSelectHandler.bind(this);
 		}else{
-			this.currentTable.addEventListener("click",(e)=>{
-				this.rowSelectHandler(e);
-			}, {once:true})	
+			this.currentTable.onclick = this.rowSelectHandler.bind(this);
 		}
 
 		// TODO Разобраться с обработчиком событий. 
@@ -349,13 +345,9 @@ export class Table{
 		this.otherRowSelectHandler = callbackHandler;
 
 		if (this.otherRowSelectHandler) {
-			this.currentTable.addEventListener("click", (e)=>{
-				this.otherRowSelectHandler(e)
-			}, {once:true})
+			this.currentTable.onclick = this.otherRowSelectHandler.bind(this);
 		}else{
-			this.currentTable.addEventListener("click",(e)=>{
-				this.rowSelectHandler(e);
-			}, {once:true})	
+			this.currentTable.onclick = this.rowSelectHandler.bind(this);
 		}
 	}
 
@@ -367,7 +359,7 @@ export class Table{
 	 */
 	rowSelectHandler(e){
 
-		let returnValue; // Значение, которое возвращает этот метод.
+		let returnedValue; // Значение, которое возвращает этот метод.
 		
 		this.sortMark = e.target.dataset.objectKeyBind;
 			
@@ -383,15 +375,15 @@ export class Table{
 			this.cleanTable();
 
 			// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
-			returnValue = this.fillTable();
-			this.tableData = returnValue;
+			returnedValue = this.fillTable();
+			this.tableData = returnedValue;
 			
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(e.target.tagName == "TD"){
-			returnValue = this.tableData[e.target.parentElement.rowIndex -1];
+			returnedValue = this.tableData[e.target.parentElement.rowIndex -1];
+			this.selectedObject = returnedValue;
 		}
-		console.dir(returnValue);
-		this.observerUpdate();
+		console.dir(this.selectedObject);
 	}
 
 
