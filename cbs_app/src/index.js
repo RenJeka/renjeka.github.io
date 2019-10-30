@@ -12,8 +12,10 @@ import { Form } from './form.class';
 
 window.addEventListener("load", () =>{
 
-	// Создаем объект "tableBook" типа "Table"
+	// Создаем объект "formBook" класса "Form"
 	let formBook = new Form(document.forms[0], "id");
+
+	// Создаем объект "tableBook" класса "Table"
 	let tableBook = new Table('#table-books',formBook);
 
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
@@ -45,7 +47,7 @@ window.addEventListener("load", () =>{
 	//===========================================================================================
 	// ОБРАБОТЧИК ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{
-
+		console.log(`sortDirection с начала = `, tableBook.sortDirection);
 		// Очищаем текущую таблицу
 		tableBook.cleanTable();
 
@@ -53,7 +55,7 @@ window.addEventListener("load", () =>{
 		tableBook.tableData = tableBook.search(e.target, e.target.dataset.searchObjectProperty);
 		tableBook.notify()
 		tableBook.fillTable()
-
+		console.log(`sortDirection в конце = `, tableBook.sortDirection);
 	})
 
 	// ОБРАБОТЧИК ВЫБОРА СТРОК 

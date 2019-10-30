@@ -145,8 +145,7 @@ export class Table{
 	 */
 	getTableData() { 
 
-		let jsonObject = window.localStorage.getItem(this.localStorageKey);
-		let flag;
+		let jsonObject = localStorage.getItem(this.localStorageKey);
 
 		// Если есть JSON-данные по переданному ключу — тогда возвращаем подготовленные данные, если JSON не найден — возвращаем false.
 		if (jsonObject) {
@@ -158,7 +157,7 @@ export class Table{
 			if (jsonObject.some((elem)=>elem[this.sortMark])) {
 
 				//Возвращаем отсортированный массив по заранее заданной функции
-				return jsonObject.sort(this.sortFunc1) 
+				return jsonObject.sort(this.sortFunc1.bind(this)) 
 
 			// Если нет значения для сортировки "this.sortMark" — Возвращаем неотсортированный массив.
 			}else if(this.sortMark == undefined){
@@ -315,16 +314,19 @@ export class Table{
 	 * @return {Array} Возвращает отфильтнованный массив.
 	 */
 	search(input, objectProperty){
+		let tempVariable;
 		this.tableData = this.getTableData();
 
 		if(this.tableData){
 
-			return this.tableData.filter(element => {
+			tempVariable = this.tableData.filter(element => {
+
 				// Переводим значение свойства объекта в нижний регистр 
-				let tempProperty = element[objectProperty].trim().toLocaleLowerCase();
+				let tempProperty = element[objectProperty].trim().toLowerCase();
 				// Если "tempProperty" содержит то, что мы ввели в "input" -- значит это искомое значение.
-				return tempProperty.includes(input.value.trim().toLocaleLowerCase());
+				return tempProperty.includes(input.value.trim().toLowerCase());
 			});
+			return tempVariable;
 			  
 		}else{
 			console.log ("Не удалось найти массив с данными")
@@ -359,6 +361,8 @@ export class Table{
 	 */
 	rowSelectHandler(e){
 
+		console.log(`e = `, e);
+		console.log(`sortDirection с начала = `, this.sortDirection);
 		let returnedValue; // Значение, которое возвращает этот метод.
 		
 		this.sortMark = e.target.dataset.objectKeyBind;
@@ -387,6 +391,7 @@ export class Table{
 			console.log(`selectedObject = `, this.selectedObject);
 			console.log(`LocalStorArray: `, this.formObject.dataArray);
 		}
+		console.log(`sortDirection в конце = `, this.sortDirection);
 	}
 
 	/**
