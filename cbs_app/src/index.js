@@ -13,10 +13,12 @@ import { Form } from './form.class';
 window.addEventListener("load", () =>{
 
 	// Создаем объект "formBook" класса "Form"
-	let formBook = new Form(document.forms[0], "id");
+	let formBook = new Form(document.forms[0], "id", tableBook);
 
 	// Создаем объект "tableBook" класса "Table"
 	let tableBook = new Table('#table-books',formBook);
+
+	formBook.tableObject = tableBook;
 
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formBook.checkForm();
@@ -39,6 +41,7 @@ window.addEventListener("load", () =>{
 		if (returnedObject == false) {
 			return false;
 		}
+		tableBook.tableData.push(returnedObject);
 		tableBook.addRows(returnedObject);
 		tableBook.notify();
 		
@@ -72,6 +75,14 @@ window.addEventListener("load", () =>{
 		}else{
 			alert("Нечего удалять. Выберите пожалуйста строку.")
 		}
+		
+	});
+
+	//===========================================================================================
+	// ОБРАБОТЧИК КНОПКИ "clearInputs"
+	$('#cleanInputs').addEventListener("click", function() {
+
+		formBook.cleanInputs();
 		
 	});
 

@@ -17,6 +17,10 @@ export class Form{
 		this.localStorageKey = this.getLocalStorageKey("-library");
 		this.needAddToLocalStorege = true;
 
+		// TODO Как сделать так, чтобы объекты 2 разных классов знали друг о друге сразу, через конструктор. (И нужно ли вообще это?)
+		// this.tableObject = tableObject;
+		// this.tableObject;
+
 		if (dataArray) {
 			this.dataArray = dataArray;
 			this.needAddToLocalStorege = false;
@@ -78,7 +82,7 @@ export class Form{
 		}
 		
 		// Очистка полей ввода формы
-		this.cleanInput();
+		this.cleanInputs();
 		
 		// Добавляем настроенный объект в базу данных.
 		this.addToDatabase();
@@ -95,8 +99,11 @@ export class Form{
  	 * @return {void} Ничего не возвращает
 	 */
 	fillObject(id){
-
+		
 		let elements = this.currentForm.elements;
+
+		// Очищаем старый "this.lastFilledObject"
+		for (var prop in this.lastFilledObject) delete this.lastFilledObject[prop];
 
 		// Если мы передали "id" заполняемого объекта -- используем его в качестве id, если нет --генерируем новый id
 		if (id) {
@@ -127,7 +134,7 @@ export class Form{
 	 * @return Ничего не возвращает
 	 */
 
-	cleanInput(){
+	cleanInputs(){
 
 		for (let i = 0; i < this.currentForm.elements.length; i++) {
 
@@ -451,7 +458,5 @@ export class Form{
 			}
 		}
 	}
- 
-
 
 }

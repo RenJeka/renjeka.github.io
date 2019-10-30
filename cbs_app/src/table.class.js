@@ -394,6 +394,8 @@ export class Table{
 
 		// по окончанию метода запускаем метод паттерна "observer" -- notify() чтобы обновить все данные.
 		this.notify();
+
+		// ! При первом добавлении объектов, и при дальнейшем выборе их возвращается "returnedValue" = underfined
 		console.log(returnedValue);
 		return returnedValue;
 
