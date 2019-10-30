@@ -24,8 +24,8 @@ export class Form{
 		}else if(window.localStorage.getItem(this.localStorageKey)){
 			this.dataArray = JSON.parse(window.localStorage.getItem(this.localStorageKey));
 		}
-
-		this.currentObject; // Текущий (последний) объект, который заполнялся.
+		this.lastFilledObject; // Последний (текущий) объект, который заполнялся.
+		this.selectedObject; // Объект, который в текущий момент выбран в таблице.
 	}
 
 // --------------------------------------------------------------------------
@@ -33,7 +33,8 @@ export class Form{
 	/**
 	 * Метод подписчика, обновляет данные "this.dataArray"
 	 */
-	observerUpdate({currentTable, localStorageKey, tableData}){
+	observerUpdate({currentTable, localStorageKey, tableData,selectedObject}){
+		this.selectedObject = selectedObject
 		// this.dataArray = dataArray;
 	}
 
@@ -54,15 +55,15 @@ export class Form{
 		switch (this.getObjectType()) {
 
 			case "book":
-				this.currentObject =  new Book;
+				this.lastFilledObject =  new Book;
 				break;
 
 			case "author":
-				this.currentObject =  new Author;
+				this.lastFilledObject =  new Author;
 				break;
 
 			case "genre":
-				this.currentObject =  new Genre;
+				this.lastFilledObject =  new Genre;
 				break;
 
 		}
@@ -82,14 +83,13 @@ export class Form{
 		this.addToDatabase();
 
 		//Возвращаем созданный объект
-		return this.currentObject;
+		return this.lastFilledObject;
 	}
 	
 
 // --------------------------------------------------------------------------
 	/**
 	 * Метод для заполнения объекта значениями с полей ввода в форме (input)
-	 * @param {object} currentObject Пустой объект, который необходимо заполнить
 	 * @return {void} Ничего не возвращает
 	 */
 	fillObject(){
@@ -97,7 +97,7 @@ export class Form{
 		let elements = this.currentForm.elements;
 
 		// Создаем и заполняем ID объекта
-		this.currentObject[this.idName] = this.getID(this.idName);
+		this.lastFilledObject[this.idName] = this.getID(this.idName);
 
 		// Перебираем все поля ввода
 		for (let i = 0; i < elements.length; i++) {
@@ -106,7 +106,7 @@ export class Form{
 			if (elements[i].hasAttribute('ignore') == false) {
 
 				// Создаем свойство у объекта с таким же именем, как и значение "id" в input
-				this.currentObject[elements[i].getAttribute("id")] = elements[i].value;
+				this.lastFilledObject[elements[i].getAttribute("id")] = elements[i].value;
 			} 
 		}
 	}
@@ -177,7 +177,7 @@ export class Form{
 			return false;
 		}
 		// Тут производится сравнение по полю "dublicateKey". Если есть совпадение — считается, что найден дубликат и метод выводит сообщение.
-		flag = this.dataArray.some(item =>item[dublicateKey] == this.currentObject[dublicateKey]);
+		flag = this.dataArray.some(item =>item[dublicateKey] == this.lastFilledObject[dublicateKey]);
 		if (flag) {
 			alert ("такая запись уже есть");
 		}
@@ -222,18 +222,67 @@ export class Form{
 		}
 	}
 
+
+// --------------------------------------------------------------------------
+	/**
+	 * Метод перезаписывает Local Storage переданным в параметре объектом.
+	 * @param {Array} newArray новый массив данных, которым нужно перезаписать Local Storage
+	 * @return {Array} Возращает новый, перезаписанный массив с Local Storage
+	 */
+	overwriteLocalStorage(newArray){
+
+		if (this.needAddToLocalStorege) {
+			localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
+			return JSON.parse(localStorage.getItem(this.localStorageKey))
+		}else{
+			console.warn(`Свойство ${this}.needAddToLocalStorege в значении ${this.needAddToLocalStorege}. Не удалось записать в Local Storage`); 
+			return newArray;
+		}
+		
+	}
+
 // --------------------------------------------------------------------------
 	/**
 	 * Метод  добавляет переданный ей объект в локальное хранилище (Local Storage).
 	 * @return {void} Ничего не возвращает
 	 */
-	addToDatabase() {
+	addToDatabase(object = this.lastFilledObject) {
 
-		this.dataArray.push(this.currentObject);
+		// Добавляем переданный объект "object" в масиив данных "this.dataArray"
+		this.dataArray.push(object);
 
-		if (this.needAddToLocalStorege) {
-			localStorage.setItem(this.localStorageKey, JSON.stringify(this.dataArray));
-		}
+		// Перезаписываем LocalStorage
+		return overwriteLocalStorage(this.dataArray);
+		
+	}
+
+// --------------------------------------------------------------------------
+	/**
+	 * Метод, который удаляет объект "object"
+	 * @param {object} object Объект, который необходимо удалить. По умолчанию "this.selectedObject"
+	 * @return {Array} Возвращает актуальный массив данных с  
+	 */
+	deleteObject(object = this.selectedObject){
+		
+		this.dataArray.splice(this.findObject(object), 1);
+		return this.overwriteLocalStorage(this.dataArray);
+		
+	}
+	
+// --------------------------------------------------------------------------
+	/**
+	 * Метод находит индекс переданного объекта "object" в массиве данных.
+	 * @param {object} object Объект, который нужно найти в массиве данных.
+	 */
+	findObject(object){
+
+		let aaa =  this.dataArray.findIndex((item)=>{
+			// Если совпадают значения "id" в переданном объекте и в массиве данных -- возращаем индекс. 
+			return item[this.idName] == object[this.idName]
+		})
+
+		return aaa;
+
 	}
 
 // --------------------------------------------------------------------------
@@ -354,4 +403,7 @@ export class Form{
 		}
 		
 	}
+
+
+
 }

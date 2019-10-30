@@ -29,7 +29,7 @@ export class Table{
 		this.tableData = tableData;
 		this.arrayOfObservers = [];
 		this.sortMark;
-		this.sortDirection = false;
+		this.sortDirection = true;
 		this.otherRowSelectHandler;
 		this.selectedObject;
 	}
@@ -50,8 +50,9 @@ export class Table{
 	 */
 	notify(){
 		this.arrayOfObservers.forEach(element => {
-			element.observerUpdate({currentTable: this.currentTable, localStorageKey: this.localStorageKey, tableData: this.tableData})
+			element.observerUpdate({currentTable: this.currentTable, localStorageKey: this.localStorageKey, tableData: this.tableData, selectedObject: this.selectedObject})
 		});
+		console.log(`selectedObject = `, this.selectedObject);
 	}
 	
 // -----------------------------------------------------------------------------
@@ -356,19 +357,17 @@ export class Table{
 // -----------------------------------------------------------------------------
 	/**
 	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
-	 * @param {String} localStorageKey Ключ от базы данных (localStorage), с которой берутся данные для заполнения таблицы
+	 * @param {object} eventObject Объект события, который передается при клике.
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
-	rowSelectHandler(e){
+	rowSelectHandler(eventObject){
 
-		console.log(`e = `, e);
-		console.log(`sortDirection с начала = `, this.sortDirection);
 		let returnedValue; // Значение, которое возвращает этот метод.
 		
-		this.sortMark = e.target.dataset.objectKeyBind;
+		this.sortMark = eventObject.target.dataset.objectKeyBind;
 			
 		// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
-		if (this.sortMark && e.target.tagName == "TH") {
+		if (this.sortMark && eventObject.target.tagName == "TH") {
 
 			this.sortDirection = !this.sortDirection;
 			
@@ -381,17 +380,17 @@ export class Table{
 			// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
 			returnedValue = this.fillTable();
 			this.tableData = returnedValue;
-			console.log(`tableData = `, this.tableData);
-			console.log(`LocalStorArray: `, this.formObject.dataArray);
+			this.selectedObject = null;
 			
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
-		}else if(e.target.tagName == "TD"){
-			returnedValue = this.tableData[e.target.parentElement.rowIndex -1];
+		}else if(eventObject.target.tagName == "TD"){
+			returnedValue = this.tableData[eventObject.target.parentElement.rowIndex -1];
 			this.selectedObject = returnedValue;
-			console.log(`selectedObject = `, this.selectedObject);
-			console.log(`LocalStorArray: `, this.formObject.dataArray);
 		}
-		console.log(`sortDirection в конце = `, this.sortDirection);
+		this.notify();
+		console.log(returnedValue);
+		return returnedValue;
+
 	}
 
 	/**

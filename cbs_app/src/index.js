@@ -34,7 +34,7 @@ window.addEventListener("load", () =>{
 	// ОБРАБОТЧИК КНОПКИ "addBook"
 	$('#addBook').addEventListener("click", function() {
 
-		 let returnedObject = formBook.addBookHandler();
+		let returnedObject = formBook.addBookHandler();
 
 		if (returnedObject == false) {
 			return false;
@@ -43,11 +43,19 @@ window.addEventListener("load", () =>{
 		tableBook.notify();
 		
 	});
+	//===========================================================================================
+	// ОБРАБОТЧИК КНОПКИ "delete"
+	$('#delete').addEventListener("click", function() {
+
+		tableBook.cleanTable();
+		tableBook.tableData = formBook.deleteObject();
+		tableBook.notify()
+		tableBook.fillTable();
+	});
 
 	//===========================================================================================
 	// ОБРАБОТЧИК ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{
-		console.log(`sortDirection с начала = `, tableBook.sortDirection);
 		// Очищаем текущую таблицу
 		tableBook.cleanTable();
 
@@ -55,7 +63,6 @@ window.addEventListener("load", () =>{
 		tableBook.tableData = tableBook.search(e.target, e.target.dataset.searchObjectProperty);
 		tableBook.notify()
 		tableBook.fillTable()
-		console.log(`sortDirection в конце = `, tableBook.sortDirection);
 	})
 
 	// ОБРАБОТЧИК ВЫБОРА СТРОК 
