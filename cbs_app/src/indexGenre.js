@@ -23,6 +23,14 @@ window.addEventListener("load", ()=>{
 		tableGenre.notify();
 	   
    });
+	// ОБРАБОТЧИК КНОПКИ "delete"
+	$('#delete').addEventListener("click", function() {
+
+		tableGenre.cleanTable();
+		tableGenre.tableData = formGenre.deleteObject();
+		tableGenre.notify()
+		tableGenre.fillTable();
+	});
 
    	// ОБРАБОТЧИК ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{

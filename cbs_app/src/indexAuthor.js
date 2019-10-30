@@ -24,6 +24,15 @@ window.addEventListener("load", ()=>{
 	   
    });
 
+	// ОБРАБОТЧИК КНОПКИ "delete"
+	$('#delete').addEventListener("click", function() {
+
+		tableAuthor.cleanTable();
+		tableAuthor.tableData = formAuthor.deleteObject();
+		tableAuthor.notify()
+		tableAuthor.fillTable();
+	});
+
    	// ОБРАБОТЧИК ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{
 
