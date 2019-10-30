@@ -24,7 +24,7 @@ export class Form{
 		}else if(window.localStorage.getItem(this.localStorageKey)){
 			this.dataArray = JSON.parse(window.localStorage.getItem(this.localStorageKey));
 		}
-		this.lastFilledObject; // Последний (текущий) объект, который заполнялся.
+		this.lastFilledObject = {}; // Последний (текущий) объект, который заполнялся.
 		this.selectedObject; // Объект, который в текущий момент выбран в таблице.
 	}
 
@@ -91,15 +91,23 @@ export class Form{
 // --------------------------------------------------------------------------
 	/**
 	 * Метод для заполнения объекта значениями с полей ввода в форме (input)
-	 * @return {void} Ничего не возвращает
+	 * @param {number} id id объекта, который будет заполняется. (По умолчанию генерируется новый)
+ 	 * @return {void} Ничего не возвращает
 	 */
-	fillObject(){
+	fillObject(id){
 
 		let elements = this.currentForm.elements;
 
-		// Создаем и заполняем ID объекта
-		this.lastFilledObject[this.idName] = this.getID(this.idName);
-
+		// Если мы передали "id" заполняемого объекта -- используем его в качестве id, если нет --генерируем новый id
+		if (id) {
+			let TEST = parseInt(id);
+			console.log(this.lastFilledObject);
+			this.lastFilledObject[this.idName] = TEST;
+		}else{
+			// Создаем и заполняем ID объекта
+			this.lastFilledObject[this.idName] = this.getID();
+		}
+		
 		// Перебираем все поля ввода
 		for (let i = 0; i < elements.length; i++) {
 
@@ -249,34 +257,59 @@ export class Form{
 		this.dataArray.push(object);
 
 		// Перезаписываем LocalStorage
-		return overwriteLocalStorage(this.dataArray);
+		return this.overwriteLocalStorage(this.dataArray);
 	}
 
 // --------------------------------------------------------------------------
 	/**
 	 * Метод, который удаляет объект "object"
 	 * @param {object} object Объект, который необходимо удалить. По умолчанию "this.selectedObject"
-	 * @return {Array} Возвращает актуальный массив данных с  
+	 * @return {Array} Возвращает актуальный массив данных. 
 	 */
 	deleteObject(object = this.selectedObject){
 		
-		this.dataArray.splice(this.findObject(object), 1);
-		return this.overwriteLocalStorage(this.dataArray);
+		if (object) {
+			this.dataArray.splice(this.findObject(object), 1);
+			return this.overwriteLocalStorage(this.dataArray);
+		}else{
+			return false;
+		}
+		
+	}
+	
+// --------------------------------------------------------------------------
+	/**
+	 * Метод, который изменяет объект "object"
+	 * @param {object} object Объект, который необходимо изменить. По умолчанию "this.selectedObject"
+	 * @return {Array} Возвращает актуальный массив данных. 
+	 */
+	changeObject(object = this.selectedObject){
+		
+		if (object) {
+			this.fillObject(object[this.idName])
+			this.dataArray[this.findObject(object)] = this.lastFilledObject;
+			return this.overwriteLocalStorage(this.dataArray);
+		} else {
+			return false;
+		}
+
 	}
 	
 // --------------------------------------------------------------------------
 	/**
 	 * Метод находит индекс переданного объекта "object" в массиве данных.
+	 * @todo Как реализовать проверку на наличие объекта в массиве (Array.includes()) ?
 	 * @param {object} object Объект, который нужно найти в массиве данных.
+	 * @return {number} Возвращает индекс объекта, который был передан в параметр.
 	 */
 	findObject(object){
 
-		let aaa =  this.dataArray.findIndex((item)=>{
+		return  this.dataArray.findIndex((item)=>{
 			// Если совпадают значения "id" в переданном объекте и в массиве данных -- возращаем индекс. 
 			return item[this.idName] == object[this.idName]
 		})
 
-		return aaa;
+
 	}
 
 // --------------------------------------------------------------------------
@@ -395,7 +428,7 @@ export class Form{
 
 	/**
 	 * Метод заполняет поля текущей формы значениями из объекта
-	 * @param {object} fillingObject 
+	 * @param {object} fillingObject Объект для заполнения формы. 
 	 */
 	fillForm(fillingObject){
 

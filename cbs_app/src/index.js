@@ -43,14 +43,36 @@ window.addEventListener("load", () =>{
 		tableBook.notify();
 		
 	});
+	
+	//===========================================================================================
+	// ОБРАБОТЧИК КНОПКИ "change"
+	$('#change').addEventListener("click", function() {
+
+		let newArray = formBook.changeObject();
+		if (newArray) {
+			tableBook.cleanTable();
+			tableBook.tableData = newArray;
+			tableBook.notify()
+			tableBook.fillTable();
+		}else{
+			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
+		}
+	});
+
 	//===========================================================================================
 	// ОБРАБОТЧИК КНОПКИ "delete"
 	$('#delete').addEventListener("click", function() {
 
-		tableBook.cleanTable();
-		tableBook.tableData = formBook.deleteObject();
-		tableBook.notify()
-		tableBook.fillTable();
+		let newArray = formBook.deleteObject();
+		if (newArray) {
+			tableBook.cleanTable();
+			tableBook.tableData = newArray;
+			tableBook.notify()
+			tableBook.fillTable();
+		}else{
+			alert("Нечего удалять. Выберите пожалуйста строку.")
+		}
+		
 	});
 
 	//===========================================================================================
