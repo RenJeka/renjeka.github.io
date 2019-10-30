@@ -102,14 +102,12 @@ export class Form{
 		
 		let elements = this.currentForm.elements;
 
-		// Очищаем старый "this.lastFilledObject"
+		// Очищаем свойство "this.lastFilledObject" от старых значений. 
 		for (var prop in this.lastFilledObject) delete this.lastFilledObject[prop];
 
 		// Если мы передали "id" заполняемого объекта -- используем его в качестве id, если нет --генерируем новый id
 		if (id) {
-			let TEST = parseInt(id);
-			console.log(this.lastFilledObject);
-			this.lastFilledObject[this.idName] = TEST;
+			this.lastFilledObject[this.idName] = parseInt(id);
 		}else{
 			// Создаем и заполняем ID объекта
 			this.lastFilledObject[this.idName] = this.getID();
