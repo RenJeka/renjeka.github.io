@@ -47,3 +47,7 @@ tr:active{
 button {
 	background-color: #fff;
 }
+
+.row-selected{
+	background-color: blue;
+}

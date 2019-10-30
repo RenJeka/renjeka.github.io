@@ -33,9 +33,10 @@ export class Form{
 	/**
 	 * Метод подписчика, обновляет данные "this.dataArray"
 	 */
-	observerUpdate({currentTable, localStorageKey, tableData,selectedObject}){
+	observerUpdate({currentTable, localStorageKey, tableData, selectedObject}){
 		this.selectedObject = selectedObject
 		// this.dataArray = dataArray;
+		// console.log(`selectedObject = `, this.selectedObject);
 	}
 
 // --------------------------------------------------------------------------
@@ -145,8 +146,6 @@ export class Form{
 		// 		element.className = "inputs-clean" 
 		// 	}
 		// });
-
-
 	}
 
 // --------------------------------------------------------------------------
@@ -222,7 +221,6 @@ export class Form{
 		}
 	}
 
-
 // --------------------------------------------------------------------------
 	/**
 	 * Метод перезаписывает Local Storage переданным в параметре объектом.
@@ -238,7 +236,6 @@ export class Form{
 			console.warn(`Свойство ${this}.needAddToLocalStorege в значении ${this.needAddToLocalStorege}. Не удалось записать в Local Storage`); 
 			return newArray;
 		}
-		
 	}
 
 // --------------------------------------------------------------------------
@@ -253,7 +250,6 @@ export class Form{
 
 		// Перезаписываем LocalStorage
 		return overwriteLocalStorage(this.dataArray);
-		
 	}
 
 // --------------------------------------------------------------------------
@@ -266,7 +262,6 @@ export class Form{
 		
 		this.dataArray.splice(this.findObject(object), 1);
 		return this.overwriteLocalStorage(this.dataArray);
-		
 	}
 	
 // --------------------------------------------------------------------------
@@ -282,7 +277,6 @@ export class Form{
 		})
 
 		return aaa;
-
 	}
 
 // --------------------------------------------------------------------------
@@ -310,7 +304,6 @@ export class Form{
 		}else{
 			return 1;
 		}
-		
 	}
 
 // --------------------------------------------------------------------------
@@ -385,25 +378,47 @@ export class Form{
 				case "select":
 					for (let i = 0; i < arrayOfObjects.length; i++) {
 						let optionElement = document.createElement("option");
-	
-						// todo Сделать, чтобы в свойство "value" помещалось id_genre свойство. (Привязка осуществлялась по id объекта а не по его свойству)
-						// optionElement.value = arrayOfObjects[i].idd
+
 						optionElement.value = arrayOfObjects[i][bindingKey];
 						optionElement.innerHTML = arrayOfObjects[i][bindingKey];
 						element.appendChild(optionElement);
 					}
 					return element;
-					break;
 	
 				default:
 					break;
 			}
 		}else{
 			return false;
-		}
-		
+		}	
 	}
 
+	/**
+	 * Метод заполняет поля текущей формы значениями из объекта
+	 * @param {object} fillingObject 
+	 */
+	fillForm(fillingObject){
+
+		// Перебираем все элементы формы
+		for (let i = 0; i < this.currentForm.elements.length; i++) {
+
+			// Если поле не скрытое, или элемент формы — не кнопка
+			if (!(this.currentForm.elements[i].type == "hidden" || this.currentForm.elements[i].localName == "button" )) {
+
+				// перебираем все свойства объекта "fillingObject"
+				for (const key in fillingObject) {
+
+					// Если название свойства объекта соответсвует значению "id" в input-те
+					if (key == this.currentForm.elements[i].id){
+
+						// тогда заполняем поле значением со свойсва объекта.
+						this.currentForm.elements[i].value = fillingObject[key];
+					}
+				}
+			}
+		}
+	}
+ 
 
 
 }

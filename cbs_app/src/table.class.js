@@ -52,7 +52,7 @@ export class Table{
 		this.arrayOfObservers.forEach(element => {
 			element.observerUpdate({currentTable: this.currentTable, localStorageKey: this.localStorageKey, tableData: this.tableData, selectedObject: this.selectedObject})
 		});
-		console.log(`selectedObject = `, this.selectedObject);
+		// console.log(`selectedObject = `, this.selectedObject);
 	}
 	
 // -----------------------------------------------------------------------------
@@ -357,6 +357,7 @@ export class Table{
 // -----------------------------------------------------------------------------
 	/**
 	 * Метод обрабатывает клик по строке. Его задача отсортировать таблицу, если клик был по заголовку, и вернуть строку, если клик был по любой другой строке
+	 * @todo Ножна ли тут переменная "returnedValue" ?
 	 * @param {object} eventObject Объект события, который передается при клике.
 	 * @return {object} Возвращщает массив с данными после сортировки, либо объект, на который кликнул пользователь.
 	 */
@@ -377,21 +378,45 @@ export class Table{
 			// Очищаем всю таблицу
 			this.cleanTable();
 
-			// Заполняе новыми значениями (с учетом сортировки), и возвращаем массив данных.
+			// Заполняе новыми значениями (с учетом сортировки)
 			returnedValue = this.fillTable();
 			this.tableData = returnedValue;
 			this.selectedObject = null;
-			
+
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(eventObject.target.tagName == "TD"){
 			returnedValue = this.tableData[eventObject.target.parentElement.rowIndex -1];
 			this.selectedObject = returnedValue;
+			this.formObject.fillForm(this.selectedObject)
+
+			this.setClassToElement(eventObject.target.parentElement, "row-selected")
 		}
+
+		// по окончанию метода запускаем метод паттерна "observer" -- notify() чтобы обновить все данные.
 		this.notify();
 		console.log(returnedValue);
 		return returnedValue;
 
 	}
+
+	/**
+	 * Метод, который проходится по таблице и применяет стиль к 1 конкретному ряду (строке).
+	 * @param {object} row Ряд к которому необходимо применить клас
+	 * @param {string} applyingСlass css клас, который нужно применить к ряду.
+	 */
+	setClassToElement(row, applyingСlass){
+		for (let i = 0; i<this.currentTable.rows.length ; i++) {
+			this.currentTable.rows[i].className = "";
+			if (this.currentTable.rows[i] == row) {
+				this.currentTable.rows[i].className = applyingСlass;
+			}
+		}
+	}
+
+
+	//=============================================
+	//  TODO Как установить правильно класс элементу,    
+	//=============================================
 
 	/**
 	 * Метод, который передается в сортировку массива. Сортирует значения по возрастанию, либо по убыванию в зависимости от значения "this.sortDirection".
