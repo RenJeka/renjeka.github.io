@@ -11,10 +11,10 @@ window.addEventListener("load", ()=>{
 	tableAuthor.addObservers(tableAuthor, formAuthor);
 	tableAuthor.fillTable();
 
-	// ОБРАБОТЧИК КНОПКИ "addBook"
+	// ОБРАБОТЧИК КНОПКИ "add"
 	$('#add').addEventListener("click", function() {
 
-		let returnedObject = formAuthor.addBookHandler();
+		let returnedObject = formAuthor.addButtonHandler();
 
 		if (returnedObject == false) {
 		   return false;

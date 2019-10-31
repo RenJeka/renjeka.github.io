@@ -1,6 +1,6 @@
-import { Book} from './books.class';
-import { Genre } from './genres.class';
-import { Author } from './authors.class';
+import { Book} from './objectsClasses/books.class';
+import { Genre } from './objectsClasses/genres.class';
+import { Author } from './objectsClasses/authors.class';
 
 /**
  * Класс для создания объекта "Форма"
@@ -67,7 +67,7 @@ export class Form{
 	 * @param {string} dublicateKey Ключ, по которому будет происходить поиск дубликатов (по умолчанию дубликатом считается объект с таким-же ID)
 	 * @return {object} Возвращает заполненный объект;
 	 */
-	addBookHandler(dublicateKey = this.idName) {
+	addButtonHandler(dublicateKey = this.idName) {
 
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate() == false) {

@@ -31,10 +31,10 @@ window.addEventListener("load", () =>{
 	// tableBook.notify();
 
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "addBook"
-	$('#addBook').addEventListener("click", function() {
+	// ОБРАБОТЧИК КНОПКИ "add"
+	$('#add').addEventListener("click", function() {
 
-		let returnedObject = formBook.addBookHandler();
+		let returnedObject = formBook.addButtonHandler();
 
 		if (returnedObject == false) {
 			return false;
