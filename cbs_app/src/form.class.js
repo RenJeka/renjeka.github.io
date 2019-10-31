@@ -288,11 +288,17 @@ export class Form{
 	 * @param {object} object Объект, который необходимо изменить. По умолчанию "this.selectedObject"
 	 * @return {Array} Возвращает актуальный массив данных. 
 	 */
-	changeObject(object = this.selectedObject){
+	editObject(object = this.selectedObject){
+
+		let copiedObject; // Переменная, чтобы склонировать объект "this.lastFilledObject"
 		
 		if (object) {
 			this.fillObject(object[this.idName])
-			this.dataArray[this.findObject(object)] = this.lastFilledObject;
+
+			// Клонируем объект "this.lastFilledObject", для того, чтобы избавиться от копирования по ссылке.
+			copiedObject = Object.assign({},this.lastFilledObject)
+
+			this.dataArray[this.findObject(object)] = copiedObject; 
 			return this.overwriteLocalStorage(this.dataArray);
 		} else {
 			return false;
@@ -302,6 +308,7 @@ export class Form{
 	
 // --------------------------------------------------------------------------
 	/**
+	 * @todo delete TEST variable;
 	 * Метод находит индекс переданного объекта "object" в массиве данных.
 	 * @todo Как реализовать проверку на наличие объекта в массиве (Array.includes()) ?
 	 * @param {object} object Объект, который нужно найти в массиве данных.
@@ -309,10 +316,11 @@ export class Form{
 	 */
 	findObject(object){
 
-		return  this.dataArray.findIndex((item)=>{
+		let TEST =   this.dataArray.findIndex((item)=>{
 			// Если совпадают значения "id" в переданном объекте и в массиве данных -- возращаем индекс. 
 			return item[this.idName] == object[this.idName]
 		})
+		return TEST;
 
 
 	}

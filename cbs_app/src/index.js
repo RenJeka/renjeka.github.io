@@ -48,10 +48,10 @@ window.addEventListener("load", () =>{
 	});
 	
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "change"
-	$('#change').addEventListener("click", function() {
+	// ОБРАБОТЧИК КНОПКИ "edit"
+	$('#edit').addEventListener("click", function() {
 
-		let newArray = formBook.changeObject();
+		let newArray = formBook.editObject();
 		if (newArray) {
 			tableBook.cleanTable();
 			tableBook.tableData = newArray;
