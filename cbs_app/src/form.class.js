@@ -14,7 +14,15 @@ export class Form{
 		this.currentForm = currentForm;
 		this.idName = idName;
 		this.dataArray = [];
+
+		/**	
+		 * @property Ключ от localStorage, где хранится массив данных с объектами, которые представлены в данной таблице
+		 */
 		this.localStorageKey = this.getLocalStorageKey("-library");
+
+		/**	
+		 * @property Нужно ли добавлять данные в LocalStorege (true -нужно, false -не нужно)
+		 */
 		this.needAddToLocalStorege = true;
 
 		// TODO Как сделать так, чтобы объекты 2 разных классов знали друг о друге сразу, через конструктор. (И нужно ли вообще это?)
@@ -28,24 +36,31 @@ export class Form{
 		}else if(window.localStorage.getItem(this.localStorageKey)){
 			this.dataArray = JSON.parse(window.localStorage.getItem(this.localStorageKey));
 		}
-		this.lastFilledObject = {}; // Последний (текущий) объект, который заполнялся.
-		this.selectedObject; // Объект, который в текущий момент выбран в таблице.
+		/**	
+		 * @property Последний (текущий) объект, который заполнялся.
+		 */
+		this.lastFilledObject = {}; 
+
+		/**	
+		 * @property Объект, который в текущий момент выбран в таблице.
+		 */
+		this.selectedObject;
 	}
 
 // --------------------------------------------------------------------------
 
 	/**
-	 * Метод подписчика, обновляет данные "this.dataArray"
+	 * @param {object} Принимает объект с 4 свойсвами (свойства объекта класса Table) : currentTable - текущая таблица, tableData - текущий массив, которым заполнена таблица, selectedObject - текущий выбранный объект в таблице
+	 * Метод подписчика, обновляет данные "this.selectedObject"
+	 * @return {void} Ничего не возвращает
 	 */
-	observerUpdate({currentTable, localStorageKey, tableData, selectedObject}){
+	observerUpdate({currentTable, tableData, selectedObject}){
 		this.selectedObject = selectedObject
-		// this.dataArray = dataArray;
-		// console.log(`selectedObject = `, this.selectedObject);
 	}
 
 // --------------------------------------------------------------------------
 	/**
-	 * Обработчик событий при нажатии на кнопку "addBook". Берет с формы данные и записывает в базу данных.
+	 * Обработчик событий при нажатии на кнопку добавления объекта в базу данных. Берет с формы данные и записывает в базу данных.
 	 * @param {string} dublicateKey Ключ, по которому будет происходить поиск дубликатов (по умолчанию дубликатом считается объект с таким-же ID)
 	 * @return {object} Возвращает заполненный объект;
 	 */
@@ -70,7 +85,6 @@ export class Form{
 			case "genre":
 				this.lastFilledObject =  new Genre;
 				break;
-
 		}
 
 		// Заполняем созданный объект
@@ -96,11 +110,13 @@ export class Form{
 	/**
 	 * Метод для заполнения объекта значениями с полей ввода в форме (input)
 	 * @param {number} id id объекта, который будет заполняется. (По умолчанию генерируется новый)
- 	 * @return {void} Ничего не возвращает
+ 	 * @return {object} Возвращает заполненный объект
 	 */
 	fillObject(id){
 		
-		let elements = this.currentForm.elements;
+		let elements = this.currentForm.elements, // Список эллементов формы
+			fillableObject; // Объект, который будет заполнен и возвращен методом.
+
 
 		// Очищаем свойство "this.lastFilledObject" от старых значений. 
 		for (var prop in this.lastFilledObject) delete this.lastFilledObject[prop];
@@ -123,6 +139,10 @@ export class Form{
 				this.lastFilledObject[elements[i].getAttribute("id")] = elements[i].value;
 			} 
 		}
+
+		// Клонируем объект, чтобы метод смог его вернуть;
+		fillableObject = Object.assign({},this.lastFilledObject)
+		return fillableObject;
 	}
 
 // --------------------------------------------------------------------------
@@ -200,14 +220,13 @@ export class Form{
 
 	//TODO Посмотреть метод validate
 	/**
-	 * Метод проверяет чтобы все необходимые поля были заполнены (минимум 1 символом). 
-	 * 
+	 * Метод проверяет форму на валидность (чтобы все необходимые поля были заполнены минимум 1 символом). 
 	 * @return {boolean} "true", если все поля валидные. "false", если хотя-бы 1 поле не прошло проверку (тогда и форма считается не валидной)
 	 */
 	validate() {
 		
-		let counterOfInvalid = 0;
-		let elements = this.currentForm.elements;
+		let counterOfInvalid = 0, // Счетчик полей, которые не прошли валидацию
+			elements = this.currentForm.elements; // Список элементов формы
 
 		for (let i = 0; i < elements.length; i++) {
 
@@ -218,11 +237,10 @@ export class Form{
 			// Сама проверка. Если в инпут не ввели данные— тогда применяется стиль (invalid) и обработчик завершает работу.
 			if(elements[i].value.length == 0){
 
-				elements[i].className = "inputs-invalid";
+				elements[i].className = "inputs-invalid"; // Присваеваем класс, стилизующий невалидное поле.
 				counterOfInvalid++;
 			}else{
-				
-				elements[i].className = "inputs-valid";
+				elements[i].className = "inputs-valid"; // Присваеваем класс, стилизующий валидное поле.
 			}
 		}
 
@@ -245,7 +263,7 @@ export class Form{
 		if (this.needAddToLocalStorege) {
 			localStorage.setItem(this.localStorageKey, JSON.stringify(newArray));
 			return JSON.parse(localStorage.getItem(this.localStorageKey))
-		}else{
+		}else{ // Случай, если мы не работаем с localStorage, но метод был вызван.
 			console.warn(`Свойство ${this}.needAddToLocalStorege в значении ${this.needAddToLocalStorege}. Не удалось записать в Local Storage`); 
 			return newArray;
 		}
@@ -253,7 +271,7 @@ export class Form{
 
 // --------------------------------------------------------------------------
 	/**
-	 * Метод  добавляет переданный ей объект в локальное хранилище (Local Storage).
+	 * Метод  добавляет переданный в параметре объект -- в Local Storage.
 	 * @return {void} Ничего не возвращает
 	 */
 	addToDatabase(object = this.lastFilledObject) {
@@ -267,9 +285,9 @@ export class Form{
 
 // --------------------------------------------------------------------------
 	/**
-	 * Метод, который удаляет объект "object"
+	 * Метод, который удаляет объект из базы данных, который был передан в параметре.
 	 * @param {object} object Объект, который необходимо удалить. По умолчанию "this.selectedObject"
-	 * @return {Array} Возвращает актуальный массив данных. 
+	 * @return {Array} Возвращает актуальный массив данных. (или false, если нет объекта для удаления)
 	 */
 	deleteObject(object = this.selectedObject){
 		
@@ -279,12 +297,11 @@ export class Form{
 		}else{
 			return false;
 		}
-		
 	}
 	
 // --------------------------------------------------------------------------
 	/**
-	 * Метод, который изменяет объект "object"
+	 * Метод, который изменяет объект в базе данных, который был передан в параметре.
 	 * @param {object} object Объект, который необходимо изменить. По умолчанию "this.selectedObject"
 	 * @return {Array} Возвращает актуальный массив данных. 
 	 */
@@ -308,31 +325,26 @@ export class Form{
 	
 // --------------------------------------------------------------------------
 	/**
-	 * @todo delete TEST variable;
-	 * Метод находит индекс переданного объекта "object" в массиве данных.
-	 * @todo Как реализовать проверку на наличие объекта в массиве (Array.includes()) ?
+	 * Метод находит индекс переданного в параметре объекта в текущем массиве данных (dataArray)
 	 * @param {object} object Объект, который нужно найти в массиве данных.
 	 * @return {number} Возвращает индекс объекта, который был передан в параметр.
 	 */
 	findObject(object){
 
-		let TEST =   this.dataArray.findIndex((item)=>{
+		return  this.dataArray.findIndex((item)=>{
 			// Если совпадают значения "id" в переданном объекте и в массиве данных -- возращаем индекс. 
 			return item[this.idName] == object[this.idName]
 		})
-		return TEST;
-
-
 	}
 
 // --------------------------------------------------------------------------
 	/**
-	 *  Метод формирует уникальный  id  для нового объекта.
+	 *  Метод формирует уникальный идентификатор для нового объекта.
 	 * @return {number} Возращает новое значение "id", которого еще не было (самое большое текущее "id" +1)
 	 */
 	getID() {
 
-		let currentId = 0;
+		let currentId = 0; // Текущий "id"
 
 		// Если у нас присудствует массив с данными, то...
 		if (this.dataArray) {
@@ -356,7 +368,7 @@ export class Form{
 
 	/**
 	 * Метод формирует ключ для LocalStorage.
-	 * @param {string} postfix Часть, которая указывается в названии ключа после типа объекта для создания имени ключа LocalStorage (по умолчанию "-library")
+	 * @param {string} postfix Постфикс (Часть, которая указывается в названии ключа после типа объекта для создания имени ключа LocalStorage (по умолчанию "-library"))
 	 * @return {string} Возвращает созданный ключ для LocalStorage.
 	 */
 	getLocalStorageKey(postfix = "-library"){
@@ -377,7 +389,7 @@ export class Form{
 
 	/**
 	 * Метод находит поле для ввода, у которого есть привязка к данным в базе данных и заполняет данными.
-	 * @return {void} Метод ничего не возвращает
+	 * @return {void} Ничего не возвращает
 	 */
 	checkForm(){
 
@@ -414,8 +426,8 @@ export class Form{
 	 */
 	fillInput(element, arrayOfObjects){
 
-		let bindingKey = element.dataset.objectPropertyBind;
-		let elementType = element.tagName.toLowerCase();
+		let bindingKey = element.dataset.objectPropertyBind; // Свойство объекта, из которого необходимо взять значение и заполнить в элемент.
+		let elementType = element.tagName.toLowerCase(); // Тип  DOM-элемента
 
 		if (arrayOfObjects) {
 			switch (elementType) {
@@ -430,7 +442,6 @@ export class Form{
 						element.appendChild(optionElement);
 					}
 					return element;
-	
 				default:
 					break;
 			}
@@ -440,8 +451,9 @@ export class Form{
 	}
 
 	/**
-	 * Метод заполняет поля текущей формы значениями из объекта
+	 * Метод заполняет поля текущей формы (всей формы) значениями из объекта
 	 * @param {object} fillingObject Объект для заполнения формы. 
+	 * @return {void} Ничего не возвращает
 	 */
 	fillForm(fillingObject){
 
@@ -464,5 +476,4 @@ export class Form{
 			}
 		}
 	}
-
 }

@@ -50,7 +50,7 @@ export class Table{
 	 */
 	notify(){
 		this.arrayOfObservers.forEach(element => {
-			element.observerUpdate({currentTable: this.currentTable, localStorageKey: this.localStorageKey, tableData: this.tableData, selectedObject: this.selectedObject})
+			element.observerUpdate({currentTable: this.currentTable, tableData: this.tableData, selectedObject: this.selectedObject})
 		});
 		// console.log(`selectedObject = `, this.selectedObject);
 	}
