@@ -2,10 +2,13 @@ import { Book} from './books.class';
 import { Genre } from './genres.class';
 import { Author } from './authors.class';
 
+/**
+ * Класс для создания объекта "Форма"
+ */
 export class Form{
 
 	/**
-	 * @constructor Конструктор класса "Form". Создает объект -- Форма
+	 * Конструктор класса "Form". Создает объект -- Форма, который подвязывается под под 1 HTML -форму.
 	 * @param {object} currentForm  Текущая <HTML>-форма, которая привязывается к данному объекту
 	 * @param {String} idName название ID для идентификации каждого объекта
 	 * @param {Array} dataArray (не обязательный) Массив данных, (набор объектов, что заполняется в форме). По умолчанию данные записываются в  localStorage.
@@ -16,12 +19,12 @@ export class Form{
 		this.dataArray = [];
 
 		/**	
-		 * @property Ключ от localStorage, где хранится массив данных с объектами, которые представлены в данной таблице
+		 * Ключ от localStorage, где хранится массив данных с объектами, которые которые обрабатывает данная форма.
 		 */
 		this.localStorageKey = this.getLocalStorageKey("-library");
 
 		/**	
-		 * @property Нужно ли добавлять данные в LocalStorege (true -нужно, false -не нужно)
+		 * Нужно ли добавлять данные в LocalStorege (true -нужно, false -не нужно)
 		 */
 		this.needAddToLocalStorege = true;
 
@@ -37,12 +40,12 @@ export class Form{
 			this.dataArray = JSON.parse(window.localStorage.getItem(this.localStorageKey));
 		}
 		/**	
-		 * @property Последний (текущий) объект, который заполнялся.
+		 * Последний (текущий) объект, который заполнялся.
 		 */
 		this.lastFilledObject = {}; 
 
 		/**	
-		 * @property Объект, который в текущий момент выбран в таблице.
+		 * Объект, который в текущий момент выбран в таблице.
 		 */
 		this.selectedObject;
 	}
