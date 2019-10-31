@@ -20,16 +20,42 @@ window.addEventListener("load", ()=>{
 			return false;
 		}
 		tableGenre.addRows(returnedObject);
-		tableGenre.notify();
-	   
+		tableGenre.notify(); 
    });
+
+    // ОБРАБОТЧИК КНОПКИ "edit"
+	$('#edit').addEventListener("click", function() {
+
+		let newArray = formGenre.editObject();
+		if (newArray) {
+			tableGenre.cleanTable();
+			tableGenre.tableData = newArray;
+			tableGenre.notify()
+			tableGenre.fillTable();
+		}else{
+			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
+		}
+	});
+
 	// ОБРАБОТЧИК КНОПКИ "delete"
 	$('#delete').addEventListener("click", function() {
 
-		tableGenre.cleanTable();
-		tableGenre.tableData = formGenre.deleteObject();
-		tableGenre.notify()
-		tableGenre.fillTable();
+		let newArray = formGenre.deleteObject();
+		if (newArray) {
+			tableGenre.cleanTable();
+			tableGenre.tableData = newArray;
+			tableGenre.notify()
+			tableGenre.fillTable();
+		}else{
+			alert("Нечего удалять. Выберите пожалуйста строку.")
+		}
+	});
+
+	// ОБРАБОТЧИК КНОПКИ "clearInputs"
+	$('#cleanInputs').addEventListener("click", function() {
+
+		formGenre.cleanInputs();
+		
 	});
 
    	// ОБРАБОТЧИК ПОИСКА
@@ -42,7 +68,6 @@ window.addEventListener("load", ()=>{
 		tableGenre.tableData = tableGenre.search(e.target, e.target.dataset.searchObjectProperty);
 		tableGenre.notify()
 		tableGenre.fillTable()
-
 	})
 
 	// ОБРАБОТЧИК ВЫБОРА СТРОК 
