@@ -233,17 +233,25 @@ export class Form{
 
 		for (let i = 0; i < elements.length; i++) {
 
-			//Этим "if" обрабатывается исключение (те элементы формы, которые не нужно валидировать)
-			if (elements[i].localName == "button") {
-				continue;
-			}
-			// Сама проверка. Если в инпут не ввели данные— тогда применяется стиль (invalid) и обработчик завершает работу.
-			if(elements[i].value.length == 0){
+			let pattern 	 = elements[i].dataset.pattern, // регуляр. выраж., по которому будет происходить проверка валидации.
+				message 	 = elements[i].dataset.message, // Сообщение, которое выводится в случае невалидности элемента
+				boundId		 = elements[i].dataset.boundId, // id элемента, в который выводить сообщении
+				boundElement = document.querySelector(`#${boundId}`), // элемент, в который будет выводится сообщение
+				valid 		 = elements[i].value.search(pattern); // соответствие введеного значения -- паттерну
 
-				elements[i].className = "inputs-invalid"; // Присваеваем класс, стилизующий невалидное поле.
-				counterOfInvalid++;
-			}else{
-				elements[i].className = "inputs-valid"; // Присваеваем класс, стилизующий валидное поле.
+			// Валидацию будет проходить только тот элемент, у которого имеется свойство "pattern"
+			if (pattern) {
+
+				if (valid == -1) {
+
+					elements[i].className = "inputs-invalid"
+
+					if (boundElement) boundElement.innerHTML = message;
+				
+					counterOfInvalid++;
+				}else{
+					elements[i].className = "inputs-valid"
+				}
 			}
 		}
 

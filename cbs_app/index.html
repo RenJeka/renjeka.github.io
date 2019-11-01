@@ -17,7 +17,6 @@
 			<th data-object-key-bind ="name">Название книги &#9660;</th>
 			<th data-object-key-bind ="page_num">Количество страниц &#9660;</th>
 			<th data-object-key-bind ="genre">Жанр &#9660;</th>
-			<th data-object-key-bind ="author">Автор &#9660;</th>
 		</thead>
 
  
@@ -29,23 +28,26 @@
 
 		<p>
 			<label for="name">Название книги</label>
-			<input type="text" id="name" class="bookInputs">
+			<input type="text" id="name" class="bookInputs" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
+			<p>
+				<span id="msgName"></span>
+			</p>
 		</p>
 
 		<p>
 			<label for="page_num">Количество страниц</label>
-			<input type="text" id="page_num" class="bookInputs">
-		</p>
-
-		<p>
-			<label for="author">Автор</label>
-			<input type="text" id="author" class="bookInputs">
-		</p>
+			<input type="text" id="page_num" class="bookInputs"  data-pattern ="\d+" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
+			<p>
+				<span id="msgPage_num"></span>
+			</p>
 
 		<p>
 			<label for="genre">Жанр</label>
-			<select id="genre" class="bookInputs" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library">
-
+			<p>
+				<span id="msgGenre"></span>
+			</p>
+			<select id="genre" class="bookInputs" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
+			
 			</select>
 		</p>
 
