@@ -118,7 +118,8 @@ export class Form{
 	fillObject(id){
 		
 		let elements = this.currentForm.elements, // Список эллементов формы
-			fillableObject; // Объект, который будет заполнен и возвращен методом.
+			fillableObject, // Объект, который будет заполнен и возвращен методом.
+			accumulateValues = ""; // Переменная, куда будут накапливаться значения в случае множественного выбора из <select>
 
 
 		// Очищаем свойство "this.lastFilledObject" от старых значений. 
@@ -134,12 +135,27 @@ export class Form{
 		
 		// Перебираем все поля ввода
 		for (let i = 0; i < elements.length; i++) {
-
+			// console.dir(elements[i]);
 			// Если элемент формы не имеет атрибута 'ignore'-- заполняем объект, если атрибут имеется -- игнорируем заполнения объекта
 			if (elements[i].hasAttribute('ignore') == false) {
 
-				// Создаем свойство у объекта с таким же именем, как и значение "id" в input
-				this.lastFilledObject[elements[i].getAttribute("id")] = elements[i].value;
+				// Если элемент типа "select" имеет атрибут "multiple" (Если присутствует множественный выбор)
+				if (elements[i].type == "select-multiple") {
+					
+					// Перебираем в данном элементы все выбранные <option>
+					for (let k = 0; k < elements[i].selectedOptions.length; k++) {
+
+						// и конкатенируем их в переменную "accumulateValues"
+						accumulateValues += `${elements[i].selectedOptions[k].value}, \n`;
+					}
+					// После этого создаем свойство в объекте и записываем результат конкатенации в это свойство.
+					this.lastFilledObject[elements[i].getAttribute("id")] = accumulateValues;
+
+				// Иначе просто создаем свойство у объекта с таким же именем, как и значение "id" в input
+				}else{
+					this.lastFilledObject[elements[i].getAttribute("id")] = elements[i].value;
+				}
+				
 			} 
 		}
 

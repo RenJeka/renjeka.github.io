@@ -21,6 +21,7 @@ window.addEventListener("load", ()=>{
 		}
 		tableAuthor.addRows(returnedObject);
 		tableAuthor.notify();
+		console.dir(formAuthor.currentForm.elements);
 	   
    });
 
