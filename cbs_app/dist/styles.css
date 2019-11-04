@@ -18,9 +18,9 @@
 .my-image{
 	width: 100px;
 	height: 100px;
-	background-image: url(dist/img/author-icon-small.jpg);
+	background-image: url(img/author-icon-small.jpg);
 	/* background-color: blue; */
-	background-size: cover;
+	background-size: contain;
 }
 .title{
 	text-align: center;

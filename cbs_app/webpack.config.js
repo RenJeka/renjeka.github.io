@@ -3,6 +3,7 @@
 let path = require('path'); // Подключение модуля, который позволяет найти  относительный путь
 
 let ExtractTextPlugin = require("extract-text-webpack-plugin"); // Подключение модуля "ExtractTextPlugin", который ...
+let HTMLWebpackPlugin = require("html-webpack-plugin");
 // ==================================================================
 
 
@@ -23,7 +24,7 @@ let JekaWebpackConfiguration = {
 	output:{
 		path: path.resolve(__dirname, './dist'), // Используем модуль "path" чтобы составить правильный относительный путь
 		filename: '[name].js', // Итоговое название (выходящего) файла. Название бандла
-		publicPath: 'dist/'
+		// publicPath: 'dist/'
 	},
 
 	// Свойство-объек настройки dev-server-а (сервера для разработки)
@@ -67,14 +68,18 @@ let JekaWebpackConfiguration = {
 					{
 						loader: 'file-loader',
 						options: {
-							name: '[path][name].[ext]',
-							outputPath: './img',
+							name: '[name].[ext]',
+							outputPath: 'img/',
 							useRelativePath: true,
-							publicPath:
+							publicPath: 'img/'
 						}
 					}
 				]
 			},
+			{
+				test:/\.html$/,
+				use: ['html-loader']
+			}
 		]
 	},
 	// TODO Разобраться с SplitChunksPlugin, и выделить общие  файлы, которые участвуют во всех бандлах, -- в отдельный chunk
@@ -83,6 +88,9 @@ let JekaWebpackConfiguration = {
 	plugins: [
 		new ExtractTextPlugin("styles.css"), 
 		// new ExtractTextPlugin("styles.css", {allChunks:true}),
+		new HTMLWebpackPlugin({
+			template: 'src/index.html'
+		})
 	],
 	devtool: 'sourcemap' // Настройка, которая позволяет создавать sourcemap в итоговой сборке
 }
