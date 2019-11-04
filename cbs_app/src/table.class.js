@@ -203,7 +203,7 @@ export class Table{
 			for (let i = 0; i < numberOfRows; i++) {
 
 				row = document.createElement("tr")
-				context.currentTable.appendChild(row)
+				context.currentTable.tBodies[0].appendChild(row)
 
 				// Цикл добавляет по 1-й ячейке то кол-во, которое мы укажем (numberOfCells)
 				for (let j = 0; j < numberOfCells; j++) {

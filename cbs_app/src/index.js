@@ -28,7 +28,7 @@ window.addEventListener("load", () =>{
 
 	// Заполняем таблицу
 	tableBook.fillTable();
-
+	console.dir(tableBook);
 	//Сообщаем наблюдателям об изменении
 	// tableBook.notify();
 

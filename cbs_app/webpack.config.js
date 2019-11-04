@@ -60,7 +60,21 @@ let JekaWebpackConfiguration = {
 					// fallback: "style-loader",
 					use: "css-loader" // Загрузчик, который специальным образом подключает css-файл ( вставляет в .js файл в тег <head>. CSS внутри JS)
 				})
-			}
+			},
+			{
+				test:/\.(jpg|png|svg|gif)$/,				
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[path][name].[ext]',
+							outputPath: './img',
+							useRelativePath: true,
+							publicPath:
+						}
+					}
+				]
+			},
 		]
 	},
 	// TODO Разобраться с SplitChunksPlugin, и выделить общие  файлы, которые участвуют во всех бандлах, -- в отдельный chunk

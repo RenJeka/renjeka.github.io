@@ -1,17 +1,26 @@
-.myTable1{
+/* .myTable1{
 	border: 1px solid black;
 	margin-left: 25px;
-}
+} */
 
-.myTable1 td{
+/* .myTable1 td{
 	padding: 5px;
 	border: 1px solid gray;
-	/* width: 100px; */
-	/* min-height: 50px; */
+
 	text-align: center;
-}
-.myTable1 th{
+} */
+
+
+/* .myTable1 th{
 	min-height: 50px;
+} */
+
+.my-image{
+	width: 100px;
+	height: 100px;
+	background-image: url(dist/img/author-icon-small.jpg);
+	/* background-color: blue; */
+	background-size: cover;
 }
 .title{
 	text-align: center;
@@ -33,11 +42,12 @@
 }
 
 tr:hover{
-	background: #ccc;
+	background: #ddd;
 	cursor: pointer;
 }
 tr:active{
 	background: rgb(151, 151, 151);
+	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 }
 
 .aaa{
@@ -49,7 +59,8 @@ button {
 }
 
 .row-selected{
-	background-color: blue;
+	background: rgb(151, 151, 151);
+	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 }/*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
