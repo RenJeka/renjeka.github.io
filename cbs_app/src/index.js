@@ -7,7 +7,9 @@ import {$} from './myHelperLib'
 import { Table } from './table.class';
 import { Form } from './form.class';
 import "./css/style1.css";
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./pages/add_author.html";
+import "./pages/add_genre.html";
 
 window.addEventListener("load", () =>{
 
