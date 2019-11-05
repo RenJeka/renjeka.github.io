@@ -141,7 +141,7 @@ export class Table{
 				throw `Не найдена связанная HTML-таблица. Пожалуйста добавьте HTML-таблицу в свойство ${this}.currentTable `;
 
 			// Если у нас нет ни массива с данными, ни ключа localStorage -- выброс исключения
-			}else if (this.localStorageKey == fasle && this.tableData == fasle) {
+			}else if (this.localStorageKey == false && this.tableData == false) {
 				
 				throw `Не найдены данные для заполнения HTML-таблицы. Пожалуйста добавте данные. Если у вас массив с данными -- добавьте этот массив в свойство  ${this}.tableData, если у вас данные в LocalStorage -- добавте ключ к данным в свойство ${this}.localStorageKey`;
 			}

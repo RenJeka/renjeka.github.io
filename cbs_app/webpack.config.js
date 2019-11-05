@@ -44,8 +44,16 @@ let JekaWebpackConfiguration = {
 			// Правило для обработки .js -файлов.
 			{
 				test:/\.js$/,				// регулярное выражение (к какому файлу применить правило)
-				loader: 'babel-loader',		// Какой загрузчик использовать для данного файла
-				exclude: '/node_modules/'	// Исключение из правил (не нужно папку "node_modules" прогонять через 'babel-loader')
+				use: [
+					{
+						loader: 'babel-loader',
+					},
+					// {
+					// 	loader: "source-map-loader",
+					// }
+				],		// Какой загрузчик использовать для данного файла
+				exclude: '/node_modules/',	// Исключение из правил (не нужно папку "node_modules" прогонять через 'babel-loader')
+				enforce: "pre",
 			},
 
 			// Правило для обработки .css -файлов. 
@@ -104,7 +112,7 @@ let JekaWebpackConfiguration = {
 						loader: 'file-loader',
 						// доп. параметры
 						options: {
-							name: 'pages/[name].[ext]',
+							name: '[name].[ext]',
 						}
 					}
 				],
@@ -130,7 +138,7 @@ let JekaWebpackConfiguration = {
 
 		new CleanWebpackPlugin(['dist'])
 	],
-	devtool: 'sourcemap' // Настройка, которая позволяет создавать sourcemap в итоговой сборке
+	devtool: 'source-map' // Настройка, которая позволяет создавать sourcemap в итоговой сборке
 }
 // ==================================================================
 
