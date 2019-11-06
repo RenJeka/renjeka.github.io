@@ -1,4 +1,4 @@
-import { $ } from './myHelperLib.js';
+import { $ } from './myHelperLib';
 import { Table } from './table.class';
 import { Form } from './form.class';
 import "./css/style1.css";
