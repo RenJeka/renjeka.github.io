@@ -8,8 +8,8 @@ import { Table } from './table.class';
 import { Form } from './form.class';
 import "./css/style1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./add_author.html";
-import "./add_genre.html";
+// import "./add_author.html";
+// import "./add_genre.html";
 
 window.addEventListener("load", () =>{
 
