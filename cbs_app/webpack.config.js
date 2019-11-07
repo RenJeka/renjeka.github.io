@@ -1,3 +1,14 @@
+
+/**
+ * @summary Суть конфигурации вебпака в том, что нужно сконфигурировать (создать) объект с настройками Вебпака и экспортировать этот объект. (Вебпак сам его заберет).
+ * @description Для каждого формата файла необходимо настроить ПРАВИЛА @see JekaWebpackConfiguration.module.rules (как именно будут обрабатываться эти файлы) + ЗАГРУЗЧИК @see JekaWebpackConfiguration.module.rules[любой_эллемент_массива]→use→loader, который мы прописываем в правилах и который будет обрабатывать наши файлы. Если этого не сделать -- вебпак не поймет, что необходимо делать с тем или инным форматом, и соответственно не обработает его. 
+ * Изначально конфигурационный файл пишется на Node.js, но его можно написать и на другом языке @see https://webpack.js.org/configuration/configuration-languages/
+ * Список основных опций конфигурации (свойств у объекта конфигурации) @see https://webpack.js.org/configuration/#options
+ * Генератор конфигационного файла @see https://createapp.dev/webpack
+ * Генератор конфигационного файла (Еще один) @see https://generatewebpackconfig.netlify.com/
+ * Создать файл конфигурации с помощью webpack cli (npx webpack-cli init) @see https://github.com/webpack/webpack-cli/tree/master/packages/init#cli-via-webpack-cli
+ */
+
 // Сначала подключаются плагины для указания их в настройках
 // ======================== ПЛАГИНЫ ================================
 let path = require('path'); // Подключение модуля, который позволяет найти  относительный путь
@@ -5,13 +16,6 @@ let path = require('path'); // Подключение модуля, которы
 let ExtractTextPlugin = require("extract-text-webpack-plugin"); // Подключение модуля "ExtractTextPlugin", который ...
 let HTMLWebpackPlugin = require("html-webpack-plugin");
 let CleanWebpackPlugin = require("clean-webpack-plugin");
-// ==================================================================
-
-
-/**
- * @summary Суть конфигурации вебпака в том, что нужно сконфигурировать (создать) объект с настройками Вебпака и экспортировать этот объект. (Вебпак сам его заберет).
- * @description Для каждого формата файла необходимо настроить ПРАВИЛА @see JekaWebpackConfiguration.module.rules (как именно будут обрабатываться эти файлы) + ЗАГРУЗЧИК @see JekaWebpackConfiguration.module.rules[любой_эллемент_массива]→use→loader, который мы прописываем в правилах и который будет обрабатывать наши файлы. Если этого не сделать -- вебпак не поймет, что необходимо делать с тем или инным форматом, и соответственно не обработает его. 
- */
 
 // ================= КОНФИГУРАЦИОННЫЙ ОБЪЕКТ ========================
 
@@ -73,7 +77,11 @@ let JekaWebpackConfiguration = {
 			{
 				test:/\.js$/, // регулярное выражение (к какому файлу применить правило)
 
-				// Указывается массив загрузчиков. Какой загрузчик использовать для данного файла
+				/**
+				 * @description Указывается массив загрузчиков. Какой загрузчик использовать для данного файла
+				 * Описание rules.use @see https://webpack.js.org/configuration/module/#ruleuse
+				 * Список загрузчиков для разных нужд @see https://webpack.js.org/loaders/
+				 */
 				use: [
 					{
 						loader: 'babel-loader',
@@ -117,8 +125,8 @@ let JekaWebpackConfiguration = {
 				test:/\.(jpg|png|svg|gif)$/,				
 				use: [
 					{
-						// обрабатываем это загрузчиком "file-loader"
 						loader: 'file-loader',
+
 						// доп. параметры
 						options: {
 							name: '[name].[ext]', // шаблон имени после обработки загрузчиком
@@ -128,6 +136,12 @@ let JekaWebpackConfiguration = {
 						}
 					}
 				]
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				use: [
+					'file-loader',
+				],
 			},
 
 			// // Правило для обработки .html-файлов

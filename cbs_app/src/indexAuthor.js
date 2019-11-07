@@ -1,6 +1,6 @@
 import { $ } from './myHelperLib';
-import { Table } from './table.class';
-import { Form } from './form.class';
+import { Table } from './generalClasses/table.class';
+import { Form } from './generalClasses/form.class';
 import "./css/style1.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "./index.html";

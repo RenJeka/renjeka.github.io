@@ -1,4 +1,4 @@
-import { $ } from "./myHelperLib";
+import { $ } from "../myHelperLib";
 
 /**
  * Класс для создания объекта "Таблица"

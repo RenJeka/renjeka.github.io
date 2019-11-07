@@ -1,6 +1,6 @@
-import { Book} from './objectsClasses/books.class';
-import { Genre } from './objectsClasses/genres.class';
-import { Author } from './objectsClasses/authors.class';
+import { Book} from '../objectsClasses/books.class';
+import { Genre } from '../objectsClasses/genres.class';
+import { Author } from '../objectsClasses/authors.class';
 
 /**
  * Класс для создания объекта "Форма"
