@@ -187,7 +187,11 @@ let JekaWebpackConfiguration = {
 		// 	template: 'src/index.html'
 		// }),
 
-		new CleanWebpackPlugin(['dist'])
+		// new CleanWebpackPlugin(['dist'])
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: ['./dist/*']
+			// cleanOnceBeforeBuildPatterns: ['./dist/*', '!*.html']
+		})
 	],
 //----------------------------------------------------------
 	/**
