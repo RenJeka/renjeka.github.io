@@ -188,9 +188,12 @@ let JekaWebpackConfiguration = {
 		// }),
 
 		// new CleanWebpackPlugin(['dist'])
+		
+		/**	
+		 * Плагин для очистки указанной директории про построении бандла. 
+		 */
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: ['./dist/*']
-			// cleanOnceBeforeBuildPatterns: ['./dist/*', '!*.html']
+			cleanOnceBeforeBuildPatterns: ['**/*', '!*.html'] // Исключаем (не удаляем) файлы .htnl в папке "dist"
 		})
 	],
 //----------------------------------------------------------

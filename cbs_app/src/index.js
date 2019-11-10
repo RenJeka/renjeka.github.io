@@ -17,7 +17,7 @@ window.addEventListener("load", () =>{
 	// let formBook = new Form(document.forms[0], "id", tableBook);
 	let formBook = new Form(document.forms[0], "id");
 
-	// Создаем объект "tableBook" класса "Table"
+	// Создаем объект "tableBook" класса "Table" 
 	let tableBook = new Table('#table-books',formBook);
 
 	// formBook.tableObject = tableBook;
