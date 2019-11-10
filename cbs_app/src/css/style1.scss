@@ -1,3 +1,6 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+
 @font-face{
 	font-family:'Comfortaa';
 	src: url('../fonts/Comfortaa-Regular.ttf');
@@ -57,8 +60,9 @@ tr:active{
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 }
 
-.aaa{
+.color-side{
 	background-color: green;
+	padding: 10px;
 }
 
 button {

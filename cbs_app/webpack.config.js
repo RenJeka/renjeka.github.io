@@ -101,7 +101,7 @@ let JekaWebpackConfiguration = {
 			 * 2. Когда применяется специальный плагин "extract-text-webpack-plugin" + 'css-loader' (В этом случае создается отдельный, общий! .css-файл, который нам необходимо подключить в .html-файле)
 			 */
 			{
-				test:/\.css$/,
+				test:/\.s[ac]ss$/i,
 				////-----------------------------------------------------------------------
 				// use: [
 					// 	// Загрузчик, который считывает данные с файла и возвращает их в корректном виде без интерпритации
@@ -114,7 +114,16 @@ let JekaWebpackConfiguration = {
 				// Для css- файлов используем плагин "ExtractTextPlugin"
 				use: ExtractTextPlugin.extract({
 					// fallback: "style-loader",
-					use: "css-loader" // Загрузчик, который специальным образом подключает css-файл ( вставляет в .js файл в тег <head>. (.css внутри .js))
+					use: [
+						{
+							loader: "css-loader", // Загрузчик, который специальным образом подключает css-файл ( вставляет в .js файл в тег <head>. (.css внутри .js))
+							options: {sourceMap: true}
+						},
+						{
+							loader: "sass-loader", // Загрузчик, который специальным образом подключает css-файл ( вставляет в .js файл в тег <head>. (.css внутри .js))
+							options: {sourceMap: true}
+						}
+					], 
 				})
 			},
 			
