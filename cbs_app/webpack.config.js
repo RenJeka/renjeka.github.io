@@ -200,15 +200,18 @@ let JekaWebpackConfiguration = {
 		// // Создаем экземпляр плагина "html-webpack-plugin"
 		new HTMLWebpackPlugin({
 			filename: 'index.html',
-			template: 'src/pages/index.html'
+			template: 'src/pages/index.html',
+			chunks: ['index', 'commonChunk'],
 		}),
 		new HTMLWebpackPlugin({
 			filename: 'add_genre.html',
-			template: 'src/pages/add_genre.html'
+			template: 'src/pages/add_genre.html',
+			chunks: ['add_genre', 'commonChunk'],
 		}),
 		new HTMLWebpackPlugin({
 			filename: 'add_author.html',
-			template: 'src/pages/add_author.html'
+			template: 'src/pages/add_author.html',
+			chunks: ['add_author', 'commonChunk'],
 		}),
 
 		// new CleanWebpackPlugin(['dist'])
