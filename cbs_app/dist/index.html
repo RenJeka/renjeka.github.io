@@ -11,78 +11,81 @@
 <body>
 	
 	<div class="container-fluid">
+		
 		<div class="row">
+
 			<div class="col-2 color-side">
+				<div class="my-image">
+					<img src="../src/img/theater.svg" alt="Book" srcset="">
+				</div>
 				<p>
 					<label for="input-search">Найти книгу по названию</label>
-					<input type="text" id="input-search" data-search-object-property="name">
-						
+					<input type="text" id="input-search" data-search-object-property="name">		
 				</p>
-			</div>
-			<div class="col-9">
-				<h1 class="title display-3">Мои Книги</h1>
-				<div class="my-image">Some text</div>
-				<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
-			</div>
 
-		</div>
-		<div class="row">
-			<div class="col-2 color-side">
-					<form action="" id="form-book" name="form-book">
-			
-							<input type="hidden" id="objtype" value="book">
-				
-							<p>
-								<label for="name">Название книги</label>
-								<input type="text" id="name" class="bookInputs" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
-								<p>
-									<span id="msgName"></span>
-								</p>
-							</p>
-				
-							<p>
-								<label for="page_num">Количество страниц</label>
-								<input type="text" id="page_num" class="bookInputs"  data-pattern ="\d+" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
-								<p>
-									<span id="msgPage_num"></span>
-								</p>
-				
-							<p>
-								<label for="genre">Жанр</label>
-								<p>
-									<span id="msgGenre"></span>
-								</p>
-								<select id="genre" class="bookInputs" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
-								
-								</select>
-							</p>
-				
-							<p>
-								<button type="button" id="add" ignore >Добавить книгу</button>
-							</p>
-				
-							<p>
-								<button type="button" id="edit" ignore >Изменить книгу</button>
-							</p>
-				
-							<p>
-								<button type="button" id="delete" ignore >Удалить книгу</button>
-							</p>
-							
-							<p>
-								<button type="button" id="cleanInputs" ignore >Очистить поля</button>
-							</p>
-						</form>
-				
-						<a href="./add_genre.html" class="">Добавить жанр</a>
-						<a href="./add_author.html" class="">Добавить Автора</a>
-			</div> <!-- .col -->
-
-			<div class="col-9">
+				<form action="" id="form-book" name="form-book">
+		
+					<input type="hidden" id="objtype" value="book">
+		
+					<p>
+						<label for="name">Название книги</label>
+						<input type="text" id="name" class="bookInputs" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
+						<p>
+							<span id="msgName"></span>
+						</p>
+					</p>
+		
+					<p>
+						<label for="page_num">Количество страниц</label>
+						<input type="text" id="page_num" class="bookInputs"  data-pattern ="\d+" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
+						<p>
+							<span id="msgPage_num"></span>
+						</p>
+		
+					<p>
+						<label for="genre">Жанр</label>
+						<p>
+							<span id="msgGenre"></span>
+						</p>
+						<select id="genre" class="bookInputs" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
+						
+						</select>
+					</p>
+		
+					<p>
+						<button type="button" id="add" ignore >Добавить книгу</button>
+					</p>
+		
+					<p>
+						<button type="button" id="edit" ignore >Изменить книгу</button>
+					</p>
+		
+					<p>
+						<button type="button" id="delete" ignore >Удалить книгу</button>
+					</p>
 					
-
-					<table id="table-books" class="myTable1 table ">
+					<p>
+						<button type="button" id="cleanInputs" ignore >Очистить поля</button>
+					</p>
+				</form>
 			
+					<a href="./add_genre.html" class="">Добавить жанр</a>
+					<a href="./add_author.html" class="">Добавить Автора</a>
+
+			</div> <!-- .col-2 -->
+
+
+			<div class="col-9">
+
+				<div class="row">
+					<h1 class="title display-3 align-self-center">Мои Книги</h1>
+
+					<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
+				</div> <!-- .row (title) -->
+				
+				<div class="row">
+					<table id="table-books" class="myTable1 table ">
+	
 						<thead class="thead-dark">
 							<tr >
 								<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
@@ -93,16 +96,14 @@
 						<tbody >
 			
 						</tbody>
-			
-				
-					</table>
-			</div> <!-- .col -->
-
-			
-		</div> <!-- .row -->
-
 	
-		
+					</table>
+				</div> <!-- .row (table) -->
+				
+
+			</div> <!-- .col-9 -->
+
+		</div> <!-- .row -->
 
 	</div> <!-- .container -->
 

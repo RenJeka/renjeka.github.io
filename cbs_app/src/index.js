@@ -7,6 +7,7 @@ import {$} from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import "./css/style1.scss";
+import "./img/theater.svg"
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "./add_author.html";
 // import "./add_genre.html";
