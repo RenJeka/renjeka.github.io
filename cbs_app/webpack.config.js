@@ -206,12 +206,12 @@ let JekaWebpackConfiguration = {
 		new HTMLWebpackPlugin({
 			filename: 'add_genre.html',
 			template: 'src/pages/add_genre.html',
-			chunks: ['add_genre', 'commonChunk'],
+			chunks: ['indexGenre', 'commonChunk'],
 		}),
 		new HTMLWebpackPlugin({
 			filename: 'add_author.html',
 			template: 'src/pages/add_author.html',
-			chunks: ['add_author', 'commonChunk'],
+			chunks: ['indexAuthor', 'commonChunk'],
 		}),
 
 		// new CleanWebpackPlugin(['dist'])
