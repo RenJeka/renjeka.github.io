@@ -28,8 +28,11 @@
 	height: 100px;
 	// background-image: url("../img/book.svg");
 	/* background-color: blue; */
-	background-size: cover;
-	align-content: center
+	// background-size: contain;
+	img{
+		width: 100%;
+		height: 100%;
+	}
 }
 .title{
 	text-align: center;
@@ -62,7 +65,8 @@ tr:active{
 }
 
 .color-side{
-	background-color: #BEC3C9;
+	// background-color: #BEC3C9;
+	background-color:#646F75;
 	padding: 10px;
 }
 

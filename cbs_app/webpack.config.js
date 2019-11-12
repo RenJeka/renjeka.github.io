@@ -94,6 +94,18 @@ let JekaWebpackConfiguration = {
 				enforce: "pre",
 			},
 
+			
+			// // Правило для обработки .html-файлов
+			{
+				test:/\.html$/,
+				use: [{
+					loader: 'html-loader',
+					// options: {
+					// 	attrs: ['img:src'],
+					// }
+				}]
+			},
+
 			/**
 			 * @description Правило для обработки .css -файлов. 
 			 * Для обработки .css файлов можно воспользоваться 2 подходами: 
@@ -153,11 +165,6 @@ let JekaWebpackConfiguration = {
 				],
 			},
 
-			// // Правило для обработки .html-файлов
-			// {
-			// 	test:/\.html$/,
-			// 	use: ['html-loader'] // используем загрузчик 'html-loader'
-			// },
 
 			// // Дополнительное правило для обработки .html-файлов. Правило для обработки дополнительных .html - файлов
 			// {
