@@ -26,9 +26,10 @@
 .my-image{
 	width: 100px;
 	height: 100px;
-	background-image: url("../img/author-icon-small.jpg");
+	// background-image: url("../img/book.svg");
 	/* background-color: blue; */
-	background-size: contain;
+	background-size: cover;
+	align-content: center
 }
 .title{
 	text-align: center;
@@ -61,7 +62,7 @@ tr:active{
 }
 
 .color-side{
-	background-color: green;
+	background-color: #BEC3C9;
 	padding: 10px;
 }
 
