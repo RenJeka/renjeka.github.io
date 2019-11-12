@@ -52,7 +52,7 @@ let JekaWebpackConfiguration = {
 			/**
 			 * @description Публичный путь. Это относительная ссылка на данный файл, которая будет подставлятся в браузер (webpack-dev-server возьмет эту ссылку и сработает правильно, даже если директории './dist' нет в наличии. Вебпак дев сервер её конкатенирует с остальным путем (добавляет эту строку в конец пути)) (разобраться зачем он нужен) 
 			 */
-			publicPath: 'dist/'
+			// publicPath: 'dist/'
 		},
 //----------------------------------------------------------
 	/**
@@ -198,10 +198,18 @@ let JekaWebpackConfiguration = {
 		// new ExtractTextPlugin("styles.css", {allChunks:true}),
 
 		// // Создаем экземпляр плагина "html-webpack-plugin"
-		// new HTMLWebpackPlugin({
-		// 	filename: 'index.html',
-		// 	template: 'src/index.html'
-		// }),
+		new HTMLWebpackPlugin({
+			filename: 'index.html',
+			template: 'src/pages/index.html'
+		}),
+		new HTMLWebpackPlugin({
+			filename: 'add_genre.html',
+			template: 'src/pages/add_genre.html'
+		}),
+		new HTMLWebpackPlugin({
+			filename: 'add_author.html',
+			template: 'src/pages/add_author.html'
+		}),
 
 		// new CleanWebpackPlugin(['dist'])
 		
@@ -209,7 +217,7 @@ let JekaWebpackConfiguration = {
 		 * Плагин для очистки указанной директории про построении бандла. 
 		 */
 		new CleanWebpackPlugin({
-			cleanOnceBeforeBuildPatterns: ['**/*', '!*.html'] // Исключаем (не удаляем) файлы .htnl в папке "dist"
+			// cleanOnceBeforeBuildPatterns: ['**/*', '!*.html'] // Исключаем (не удаляем) файлы .htnl в папке "dist"
 		})
 	],
 //----------------------------------------------------------
