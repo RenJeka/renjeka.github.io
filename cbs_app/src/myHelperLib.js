@@ -4,4 +4,10 @@ function $(selector) {
 	return document.querySelector(selector);
 }
 
-export {$};
+function changeClass(clickedElement, targetElement, classOpened){
+	clickedElement.addEventListener("click", () => {
+			targetElement.classList.toggle(classOpened)
+	});
+}
+
+export {$, changeClass};

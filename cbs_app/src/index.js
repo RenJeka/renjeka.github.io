@@ -3,7 +3,7 @@
 // ♦ Продумать, как будет реализовываться валидация полей по заданным регулярным выражениям (можно РВ поместить в атрибуты).  
 // TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
 
-import {$} from './myHelperLib';
+import {$, changeClass} from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import "./css/style1.scss";
@@ -13,6 +13,8 @@ import "./css/style1.scss";
 // import "./add_genre.html";
 
 window.addEventListener("load", () =>{
+
+	changeClass($(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open");
 
 	// Создаем объект "formBook" класса "Form"
 	// let formBook = new Form(document.forms[0], "id", tableBook);
