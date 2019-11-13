@@ -28,10 +28,14 @@ $topTitleMarginTopAndBottom: 15px;
 } */
 
 
-body{
-	
+html, body{
+	height: 100%;
 }
-.my-image{
+
+.main-row{
+	height: 100vw;
+}
+.logo{
 	// width: 100px;
 	height: $topTitleHeight;
 	// background-image: url("../img/book.svg");
@@ -73,6 +77,13 @@ body{
 	// border-color: #80bdff;
 	// box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+
+.form-header{
+	font-family:'Comfortaa' ;
+	font-size: 1,75em;
+	color: #d4e157;
+	text-align: center;
+}
 .form-input{
 
 }
@@ -97,13 +108,14 @@ tr:active{
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 }
 
-.color-side{
+.sidebar-left{
 	// background-color: #BEC3C9;
 	// background-color:#646F75;
 	// background-color:#979797;
 	background-color:#757575;
 	padding: 10px;
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
+	height: 100%;
 }
 
 button {
