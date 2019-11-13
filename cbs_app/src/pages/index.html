@@ -14,16 +14,13 @@
 		
 		<div class="row">
 
-			<div class="col-2 color-side">
+			<div class="col-3 color-side pt-0">
 				<div class="my-image">
-					<img src="../img/theater.svg" alt="Book" srcset="">
+					<img src="../img/book_2.svg" alt="Book">
 				</div>
-				<p>
-					<label for="input-search">Найти книгу по названию</label>
-					<input type="text" id="input-search" data-search-object-property="name">		
-				</p>
+				
 
-				<form action="" id="form-book" name="form-book">
+				<form id="form-book" name="form-book">
 		
 					<input type="hidden" id="objtype" value="book">
 		
@@ -77,27 +74,43 @@
 
 			<div class="col-9">
 
-				<div class="row">
-					<h1 class="title display-3 align-self-center">Мои Книги</h1>
+				<div class="row ">
+
+					<div class="col-9 p-0">
+						<h1 class="title display-3 d-flex justify-content-center">Мои Книги</h1>
+					</div> <!-- .col-9 -->
+
+					<div class="col-3  align-self-center search-wrapper">
+
+						<div class="input-group">
+							<label for = "input-search" class="search-icon" id="myInpSearch"></label>
+								<!-- <span class="input-group-text" id="myInpSearch">Найти</span> -->
+							<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
+						</div>
+
+					</div> <!-- .col-3 -->
 
 					<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
 				</div> <!-- .row (title) -->
 				
-				<div class="row">
-					<table id="table-books" class="myTable1 table ">
-	
-						<thead class="thead-dark">
-							<tr >
-								<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
-								<th scope ="col" data-object-key-bind ="page_num">Количество страниц &#9660;</th>
-								<th scope ="col" data-object-key-bind ="genre">Жанр &#9660;</th>
-							</tr>
-						</thead>
-						<tbody >
+				<div class="row justify-content-center">
+					<div class="col p-0">
+						<table id="table-books" class="myTable1 table ">
+
+								<thead class="thead-dark">
+									<tr >
+										<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
+										<th scope ="col" data-object-key-bind ="page_num">Количество страниц &#9660;</th>
+										<th scope ="col" data-object-key-bind ="genre">Жанр &#9660;</th>
+									</tr>
+								</thead>
+								<tbody >
+					
+								</tbody>
 			
-						</tbody>
-	
-					</table>
+							</table>
+					</div>
+					
 				</div> <!-- .row (table) -->
 				
 
@@ -109,8 +122,6 @@
 
 	<!-- <script src="commonChunk.js"></script> -->
 	<!-- <script src="index.js"></script> -->
-			
-	
-	
+
 </body>
 </html>
