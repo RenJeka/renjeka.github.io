@@ -42,8 +42,8 @@ html, body{
 	/* background-color: blue; */
 	// background-size: contain;
 	margin: $topTitleMarginTopAndBottom 0;
-	// transform: scale(1);
 	transition: 1s;
+	overflow: hidden;
 	min-height: 75px;
 }
 
@@ -61,25 +61,30 @@ html, body{
 	margin: 0 auto;
 	&:hover{
 		filter: drop-shadow(0 0 3px rgb(255, 129, 27));
+		// &:after{
+		// 	content: attr(data-title); /* Выводим текст */
+		// 	// position: absolute; /* Абсолютное позиционирование */
+		// 	// left: 0; right: 0; bottom: 5px; /* Положение подсказки */
+		// 	// z-index: 1; /* Отображаем подсказку поверх других элементов */
+		// 	// background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
+		// 	// color: #fff; /* Цвет текста */
+		// 	// text-align: center; /* Выравнивание текста по центру */
+		// 	// font-family: Arial, sans-serif; /* Гарнитура шрифта */
+		// 	// font-size: 11px; /* Размер текста подсказки */
+		// 	// padding: 5px 10px; /* Поля */
+		// 	// border: 1px solid #333; /* Параметры рамки */
+		// }
 	}
 	&:active{
 		filter: drop-shadow(0 0 3px rgb(70, 68, 66));
 	}
 }
 
-// .image-logo:hover ~ .wrapper-logo{
-// 	background-color: red;
-// }
-
-
-
-
 .title{
 	height: $topTitleHeight;
 	margin: $topTitleMarginTopAndBottom 0;
 	text-align: center;
 	font-family: 'Comfortaa';
-
 }
 
 .search-wrapper{
@@ -145,10 +150,10 @@ tr:active{
 	// height: 100%;
 	.sidebar-left-inner{
 		position: sticky;
-		top: 0;
+		top: 5px;
 		left: 0;
 		.image-arrow{
-			width: 2.8vw;
+			height: 75px;
 		}
 		.image-arrow:hover{
 			// text-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
