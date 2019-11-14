@@ -4,9 +4,11 @@ function $(selector) {
 	return document.querySelector(selector);
 }
 
-function changeClass(clickedElement, targetElement, classOpened){
+function changeClass(clickedElement, targetElement, ...classOpened){
 	clickedElement.addEventListener("click", () => {
-			targetElement.classList.toggle(classOpened)
+		for (let i = 0; i < classOpened.length; i++) {
+			targetElement.classList.toggle(classOpened[i])
+		}
 	});
 }
 

@@ -42,22 +42,37 @@ html, body{
 	/* background-color: blue; */
 	// background-size: contain;
 	margin: $topTitleMarginTopAndBottom 0;
+	// transform: scale(1);
+	transition: 1s;
+	min-height: 75px;
+}
+
+.wrapper-logo-open{
+	background-color: #858585;
+	min-height: 250px;
+	// overflow-y: auto;
+
+	// transform: scaleY(1.5);
 }
 
 .image-logo{
 	display: block;
 	height: $topTitleHeight;
 	margin: 0 auto;
+	&:hover{
+		filter: drop-shadow(0 0 3px rgb(255, 129, 27));
+	}
+	&:active{
+		filter: drop-shadow(0 0 3px rgb(70, 68, 66));
+	}
 }
 
 // .image-logo:hover ~ .wrapper-logo{
 // 	background-color: red;
 // }
 
-.wrapper-logo-open{
-	background-color: red;
-	height: 500px;
-}
+
+
 
 .title{
 	height: $topTitleHeight;
@@ -129,17 +144,19 @@ tr:active{
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 	// height: 100%;
 	.sidebar-left-inner{
-		// position: fixed;
+		position: sticky;
+		top: 0;
+		left: 0;
 		.image-arrow{
 			width: 2.8vw;
 		}
 		.image-arrow:hover{
 			// text-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
-			filter: drop-shadow(1px 1px 2px rgb(255, 129, 27));
+			filter: drop-shadow(1px 1px 2px #ff811b);
 		}
 		.image-arrow:active{
 			// text-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
-			filter: drop-shadow(1px 1px 2px rgb(255, 129, 27));
+			filter: drop-shadow(1px 1px 2px #ff811b);
 			filter: drop-shadow(-1px -1px 2px rgba(0,0,0,0.5));
 		}
 	}
