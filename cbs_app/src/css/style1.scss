@@ -110,36 +110,7 @@ html, body{
 	// box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.form-header{
-	font-family:'Comfortaa' ;
-	font-size: 1,75em;
-	color: #d4e157;
-	text-align: center;
-}
-.form-input{
-
-}
-
-.inputs-clean{
-	background-color: white;
-}
-.inputs-valid{
-	background-color: green;
-}
-
-.inputs-invalid{
-	background-color: red;
-}
-
-tr:hover{
-	background: #ddd;
-	cursor: pointer;
-}
-tr:active{
-	background: rgb(151, 151, 151);
-	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
-}
-
+// ======================= SIDEBAR ======================
 .sidebar-left{
 	// background-color: #BEC3C9;
 	// background-color:#646F75;
@@ -167,11 +138,71 @@ tr:active{
 	}
 }
 
-
-
-button {
-	background-color: #fff;
+// ===========================  FORM ==================
+.form-header{
+	font-family:'Comfortaa' ;
+	font-size: 1,75em;
+	color: #d4e157;
+	text-align: center;
 }
+.form-input{
+	width: 100%;
+	margin-right: 25px;
+}
+
+.input-lable{
+	font-family: 'Comfortaa';
+	color: #000000;
+	font-size: 16px;
+	margin-bottom: 0;
+}
+
+.input-wrapper{
+	margin-bottom: 0;
+}
+.inputs-clean{
+	background-color: white;
+}
+.inputs-valid{
+	// background-color: green;
+	border-color: rgb(44, 204, 11);
+	box-shadow: 0 0 0 0.2rem rgba(44, 196, 13, 0.5);
+}
+
+.inputs-invalid{
+	// background-color: red;
+	border-color: rgb(250, 58, 58);
+	box-shadow: 0 0 0 0.2rem rgba(224, 21, 21, 0.5);
+}
+.invalid-message{
+	min-height: 25px;
+	// max-width: 250px;
+	padding: 7px;
+	display: block;
+	color: rgb(161, 24, 24);
+	font-family: 'Comfortaa';
+	font-size: 14px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 4px;
+	display: none;
+	// transition: display 1s;
+}
+
+.button-form{
+	margin: 10px 0;
+}
+
+// ========================  TABLE =============================
+
+tr:hover{
+	background: #ddd;
+	cursor: pointer;
+}
+tr:active{
+	background: rgb(151, 151, 151);
+	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
+}
+
 
 .row-selected{
 	background: rgb(151, 151, 151);

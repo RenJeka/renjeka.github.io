@@ -174,11 +174,15 @@ export class Form{
 	cleanInputs(){
 
 		for (let i = 0; i < this.currentForm.elements.length; i++) {
+			let boundId		 = this.currentForm.elements[i].dataset.boundId; // id элемента, в который выводить сообщении
+			let boundElement = document.querySelector(`#${boundId}`); // элемент, в который будет выводится сообщение
 
 			// Если поле скрытое, или элемент формы — кнопка, то пропускаем и не очищаем эти элементы
 			if (!(this.currentForm.elements[i].type == "hidden" || this.currentForm.elements[i].localName == "button" )) {
 				this.currentForm.elements[i].value = "";
-				this.currentForm.elements[i].className = "inputs-clean" ;
+				this.currentForm.elements[i].classList.remove("inputs-invalid", "inputs-valid");
+				this.currentForm.elements[i].classList.add("inputs-clean");
+				boundElement.style.display = "none";
 			}
 		}
 
@@ -260,13 +264,14 @@ export class Form{
 
 				if (valid == -1) {
 
-					elements[i].className = "inputs-invalid"
+					elements[i].classList.add("inputs-invalid");
 
 					if (boundElement) boundElement.innerHTML = message;
+					if (boundElement) boundElement.style.display = "block";
 				
 					counterOfInvalid++;
 				}else{
-					elements[i].className = "inputs-valid"
+					elements[i].classList.add("inputs-valid");
 				}
 			}
 		}
