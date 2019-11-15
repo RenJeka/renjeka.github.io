@@ -10,45 +10,48 @@
 </head>
 <body>
 	
-	<div class="container-fluid">
+	<div class="container-fluid"> <!-- Основной контейнер (для всей программы) --> 
 		
-		<div class="row main-row">
+		<div class="row main-row">  <!-- Основной ряд (для всей программы) -->
 
-			<div class="col-3 sidebar-left pt-0">
-				<div class="container-fluid sidebar-left-inner p-0">
+			<div class="col-3 sidebar-left pt-0"> <!-- Колонка с сайдбаром -->
 
-					<div class=" row no-gutters wrapper-logo">
+				<div class="container-fluid sidebar-left-inner p-0"> <!-- Внутрений контейнер для сайдбара -->
 
-						<div class="container-fluid">
+					<div class=" row no-gutters wrapper-logo"> <!-- ряд меню -->
+
+						<div class="container-fluid"> <!-- Внутрений контейнер с меню -->
+
 							<div class="row">
 								<!-- <img class="image-arrow" src="../img/arrow-l.svg" alt="Arrow-left"> -->
 								<img class="image-logo" src="../img/book_3.svg" alt="Book">
 								<!-- <img class="image-arrow" src="../img/arrow-r.svg" alt="Arrow-right"> -->
-							</div>
+							</div> <!-- .row -->
 	
 							<div class="row .justify-content-center">
 								<a href="./add_genre.html" class="d-block w-100">
 									<img class="image-logo image-hide" src="../img/genre-2.svg" alt="Genre" data-title="Перейти к таблице Жанры" title="Перейти к таблице 'Жанры'">
 								</a>
-							</div>
+							</div> <!-- .row -->
 	
 							<div class="row .justify-content-center">
 								<a href="./add_author.html" class="d-block w-100">
 									<img class="image-logo image-hide" src="../img/author-3.svg" alt="Author" data-title="Перейти к таблице Авторы" title="Перейти к таблице 'Авторы'">
 								</a>
-							</div>
-						</div>
+							</div> <!-- .row -->
 
-					</div><!-- .row (logo) -->
+						</div> <!-- .container-fluid -->
+
+					</div><!-- .row (wrapper-logo) -->
 						
 					<hr>
 
-					<div class="row no-gutters justify-content-center">
+					<div class="row no-gutters justify-content-center"> <!-- Заголовок сверху формы -->
 						<h3 class="form-header">Добавить книгу</h3>
 					</div><!-- .row -->
 
 					<!-- ===================== START FORM========================= -->
-					<div class="row no-gutters pl-3"> 
+					<div class="row no-gutters pl-3"> <!-- Ряд с формой -->
 
 						<form id="form-book" class="form-input" name="form-book">
 		
@@ -74,50 +77,52 @@
 							</p>
 	
 						</form>
+
 					</div><!-- .row (form) -->
 					<!-- ===================== END FORM ========================= -->
 		
 					<!-- ===== START BUTTONS BLOCK ===== -->
-					<div class="row no-gutters justify-content-around">			
+					<div class="row no-gutters justify-content-around">	<!-- Ряд с кнопками под формой -->		
 							
 						<button class=" button-form btn btn-warning btn-sm" type="button" id="edit" ignore >Изменить книгу</button>
-
 						<button class=" button-form btn btn-light btn-sm" type="button" id="cleanInputs" ignore >Очистить поля</button>
-
 						<button class=" button-form btn btn-danger btn-sm" type="button" id="delete" ignore >Удалить книгу</button>
 						<button class=" button-form btn btn-success btn-sm" type="button" id="add" ignore >Добавить книгу</button>
 
 					</div><!-- .row -->
 					<!-- ===== END BUTTONS BLOCK ===== -->
-				</div>
-			</div> <!-- .col-3 -->
+
+				</div> <!-- .container (sidebar-left-inner) -->
+
+			</div> <!-- .col-3 (sidebar-left)-->
 
 
-			<div class="col-9">
+			<div class="col-9"> <!-- Основная колонка с таблицей -->
+				<!-- ================ START table-HEADER =================== -->
+				<div class="row"> <!-- Ряд с заголовком и строкой поиска -->
 
-				<div class="row">
-
-					<div class="col-8 p-0">
+					<div class="col-8 p-0"> <!-- Заголовок -->
 						<h1 class="title display-3 d-flex justify-content-center">Мои Книги</h1>
-					</div> <!-- .col-9 -->
+					</div> <!-- .col-8 -->
 
-					<div class="col-4  align-self-center search-wrapper">
-
+					<div class="col-4  align-self-center search-wrapper"> <!-- Поле поиска -->
 						<div class="input-group">
 							<label for = "input-search" class="search-icon" id="myInpSearch"></label>
 								<!-- <span class="input-group-text" id="myInpSearch">Найти</span> -->
 							<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
 						</div>
-
-					</div> <!-- .col-3 -->
+					</div> <!-- .col-4 -->
 
 					<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
 				</div> <!-- .row (title) -->
+				<!-- ================ END table-HEADER =================== -->
 				
-				<div class="row justify-content-center">
-					<div class="col p-0">
-						<table id="table-books" class="myTable1 table ">
+				<!-- ======================== START TABLE =========================== -->
+				<div class="row justify-content-center"> <!-- Ряд с таблицей -->
 
+					<div class="col p-0"> <!-- Колонка с таблицей -->
+
+						<table id="table-books" class="myTable1 table ">
 							<thead class="thead-dark">
 								<tr >
 									<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
@@ -125,16 +130,14 @@
 									<th scope ="col" data-object-key-bind ="genre">Жанр &#9660;</th>
 								</tr>
 							</thead>
-							<tbody >
-				
-							</tbody>
-			
+							<tbody> </tbody>
 						</table>
-					</div>
-					
-				</div> <!-- .row (table) -->
-				
 
+					</div> <!-- .col -->	
+
+				</div> <!-- .row (table) -->
+				<!-- ======================== END TABLE =========================== -->
+				
 			</div> <!-- .col-9 -->
 
 		</div> <!-- .row -->
