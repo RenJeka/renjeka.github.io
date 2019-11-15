@@ -1,4 +1,4 @@
-import { $ } from './myHelperLib';
+import { $, changeClass } from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import "./css/style1.scss";
@@ -13,6 +13,9 @@ window.addEventListener("load", ()=>{
 	formAuthor.checkForm();
 	tableAuthor.addObservers(tableAuthor, formAuthor);
 	tableAuthor.fillTable();
+
+	// Всплывающее меню
+	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open"); 
 
 	// ОБРАБОТЧИК КНОПКИ "add"
 	$('#add').addEventListener("click", function() {

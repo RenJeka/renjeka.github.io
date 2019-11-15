@@ -14,17 +14,19 @@ import "./css/style1.scss";
 
 window.addEventListener("load", () =>{
 
-	changeClass($(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open");
-
+	
 	// Создаем объект "formBook" класса "Form"
 	// let formBook = new Form(document.forms[0], "id", tableBook);
 	let formBook = new Form(document.forms[0], "id");
-
+	
 	// Создаем объект "tableBook" класса "Table" 
 	let tableBook = new Table('#table-books',formBook);
-
+	
 	// formBook.tableObject = tableBook;
 
+	// Всплывающее меню
+	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open"); 
+	
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formBook.checkForm();
 
@@ -48,7 +50,10 @@ window.addEventListener("load", () =>{
 		}
 		tableBook.tableData.push(returnedObject);
 		tableBook.addRows(returnedObject);
+		tableBook.nullifySelection();
 		tableBook.notify();
+		console.dir(tableBook);
+		console.dir(formBook);
 		
 	});
 	
@@ -62,6 +67,7 @@ window.addEventListener("load", () =>{
 			tableBook.tableData = newArray;
 			tableBook.notify()
 			tableBook.fillTable();
+			tableBook.currentTable.rows[tableBook.selectedRowIndex].className = "row-selected"
 		}else{
 			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
 		}
@@ -75,6 +81,7 @@ window.addEventListener("load", () =>{
 		if (newArray) {
 			tableBook.cleanTable();
 			tableBook.tableData = newArray;
+			tableBook.nullifySelection();
 			tableBook.notify()
 			tableBook.fillTable();
 		}else{
@@ -88,6 +95,7 @@ window.addEventListener("load", () =>{
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formBook.cleanInputs();
+		tableBook.nullifySelection();
 		
 	});
 

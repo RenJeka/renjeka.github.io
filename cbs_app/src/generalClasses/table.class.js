@@ -19,38 +19,52 @@ export class Table{
 
 		/**	
 		 * Привязанная форма под данную таблицу. Объект класса "Form".
+		 * @type {object}
 		 */
 		this.boundForm = formObject.currentForm;
 
 		/**
 		 * Ключ от localStorage, где хранится массив данных с объектами, которые представлены в данной таблице
+		 * @type {string}
 		 */
 		this.localStorageKey = formObject.localStorageKey
 
 		/**	
 		 * Список подписчиков (паттерн Observer)
+		 * @type {Array}
 		 */
 		this.arrayOfObservers = [];
 
 		/**
 		 * Свойство, которое содержит значение, по которому будут отсортированны данные в таблице
+		 * @type {string}
 		 */
 		this.sortMark;
 
 		/**
 		 * Свойство, которое содержит направление сортировки данных в таблице. (прямое или обратное)
+		 * @type {boolean}
 		 */
 		this.sortDirection = true;
 
 		/**	
 		 * Свойство, которое содержит пользовательский обработчик событий (при клике на строку таблицы)
+		 * @type {function}
 		 */
 		this.otherRowSelectHandler;
 
 		/**
-		 * Текущий объект, который в данный момент выделен пользователем в таблице
+		 * Индекс строки, которая в данный момент выделена пользователем в таблице. (DOM-элемент)
+		 * @type {number}
+		 */
+		this.selectedRowIndex = null;
+
+		/**
+		 * Объект, который привязан к текущей выделенной строку таблицы таблице
+		 * @type {object}
 		 */
 		this.selectedObject;
+
 	}
 
 	/**
@@ -370,8 +384,9 @@ export class Table{
 	rowSelectHandler(eventObject){
 
 		let returnedValue; // Значение, которое возвращает этот метод.
-		
-		this.sortMark = eventObject.target.dataset.objectKeyBind;
+
+		this.selectedRowIndex = eventObject.target.parentElement.rowIndex; // Записываем текущую выделенную строку
+		this.sortMark = eventObject.target.dataset.objectKeyBind; // Записываем название свойства для сортировки
 			
 		// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
 		if (this.sortMark && eventObject.target.tagName == "TH") {
@@ -387,15 +402,17 @@ export class Table{
 			// Заполняе новыми значениями (с учетом сортировки)
 			returnedValue = this.fillTable();
 			this.tableData = returnedValue;
+
+			this.selectedRowIndex = null;
 			this.selectedObject = null;
 
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(eventObject.target.tagName == "TD"){
-			returnedValue = this.tableData[eventObject.target.parentElement.rowIndex -1];
+			returnedValue = this.tableData[this.selectedRowIndex -1];
 			this.selectedObject = returnedValue;
 			this.formObject.fillForm(this.selectedObject)
 
-			this.setClassToElement(eventObject.target.parentElement, "row-selected")
+			this.setClassToElement(this.currentTable.rows[this.selectedRowIndex], "row-selected")
 		}
 
 		// по окончанию метода запускаем метод паттерна "observer" -- notify() чтобы обновить все данные.
@@ -413,7 +430,7 @@ export class Table{
 	 * @return {void} Ничего не возвращает
 	 */
 	setClassToElement(row, applyingСlass){
-		for (let i = 0; i<this.currentTable.rows.length ; i++) {
+		for (let i = 0; i < this.currentTable.rows.length ; i++) {
 			this.currentTable.rows[i].className = "";
 			if (this.currentTable.rows[i] == row) {
 				this.currentTable.rows[i].className = applyingСlass;
@@ -426,9 +443,10 @@ export class Table{
 	 * Метод, который передается в сортировку массива. Сортирует значения по возрастанию, либо по убыванию в зависимости от значения "this.sortDirection".
 	 * @param {object} a Первый параметр для сравнения со вторым
 	 * @param {object} b Второй параметр для сравнения с первым.
+	 * @return {void} Ничего не возвращает
 	 */
 	sortFunc1(a, b) { 
-
+		
 		if (this.sortDirection) {
 			if (a[this.sortMark] >  b[this.sortMark]) return 1; // если первое значение больше второго
 			if (a[this.sortMark] == b[this.sortMark]) return 0; // если равны
@@ -438,5 +456,22 @@ export class Table{
 			if (a[this.sortMark] == b[this.sortMark]) return 0;
 			if (a[this.sortMark] >  b[this.sortMark]) return -1;
 		}	
+	}
+	
+// -----------------------------------------------------------------------------
+	/**
+	 * Метод обнуляет выделенную строку в таблице и в форме
+	 * @return {void} Ничего не возвращает
+	 */
+	nullifySelection(){
+
+		if (this.selectedRowIndex != null && this.currentTable.rows[this.selectedRowIndex]) {
+
+			this.currentTable.rows[this.selectedRowIndex].classList.remove("row-selected");
+		}
+
+		this.formObject.selectedObject = null;
+		this.selectedRowIndex = null;
+		this.selectedObject = null;
 	}
 }

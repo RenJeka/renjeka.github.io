@@ -182,9 +182,14 @@ export class Form{
 				this.currentForm.elements[i].value = "";
 				this.currentForm.elements[i].classList.remove("inputs-invalid", "inputs-valid");
 				this.currentForm.elements[i].classList.add("inputs-clean");
-				boundElement.style.display = "none";
+				if (boundElement) {
+					boundElement.style.display = "none";
+				}
 			}
 		}
+		
+		// Очищаем последний выбранный объект;
+		this.selectedObject = null;
 
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Вариант1
 		// for (const key in form.elements) {
@@ -327,10 +332,15 @@ export class Form{
 		
 		if (object) {
 			this.dataArray.splice(this.findObject(object), 1);
+			
+			// Очищаем поля ввода.
+			this.cleanInputs();
+			this.selectedObject = null;
 			return this.overwriteLocalStorage(this.dataArray);
 		}else{
 			return false;
 		}
+
 	}
 	
 // --------------------------------------------------------------------------
