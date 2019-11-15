@@ -263,7 +263,7 @@ export class Form{
 			if (pattern) {
 
 				if (valid == -1) {
-
+					elements[i].classList.remove("inputs-valid");
 					elements[i].classList.add("inputs-invalid");
 
 					if (boundElement) boundElement.innerHTML = message;
@@ -271,6 +271,8 @@ export class Form{
 				
 					counterOfInvalid++;
 				}else{
+					boundElement.style.display = "none";
+					elements[i].classList.remove("inputs-invalid");
 					elements[i].classList.add("inputs-valid");
 				}
 			}
