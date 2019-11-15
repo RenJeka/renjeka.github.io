@@ -67,7 +67,7 @@ window.addEventListener("load", () =>{
 			tableBook.tableData = newArray;
 			tableBook.notify()
 			tableBook.fillTable();
-			tableBook.currentTable.rows[tableBook.selectedRowIndex].className = "row-selected"
+			// tableBook.currentTable.rows[tableBook.selectedRowIndex].className = "row-selected"
 		}else{
 			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
 		}

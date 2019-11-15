@@ -385,7 +385,7 @@ export class Table{
 
 		let returnedValue; // Значение, которое возвращает этот метод.
 
-		this.selectedRowIndex = eventObject.target.parentElement.rowIndex; // Записываем текущую выделенную строку
+		
 		this.sortMark = eventObject.target.dataset.objectKeyBind; // Записываем название свойства для сортировки
 			
 		// Проверка, если есть атрибут "objectKeyBind" у HTML элемента -- сортируем таблицу
@@ -408,11 +408,16 @@ export class Table{
 
 		// Если пользователь кликнул по строке с данными -- находим индекс строки и возвращаем объект с массива объектов (по этому индексу)
 		}else if(eventObject.target.tagName == "TD"){
+
+			this.selectedRowIndex = eventObject.target.parentElement.rowIndex; // Записываем индекс выделенной строки
+
 			returnedValue = this.tableData[this.selectedRowIndex -1];
 			this.selectedObject = returnedValue;
 			this.formObject.fillForm(this.selectedObject)
-
 			this.setClassToElement(this.currentTable.rows[this.selectedRowIndex], "row-selected")
+			
+			console.log(`selectedObject =  `, this.selectedObject);
+			console.dir(`this.selectedRowIndex = ${this.selectedRowIndex} `);
 		}
 
 		// по окончанию метода запускаем метод паттерна "observer" -- notify() чтобы обновить все данные.
