@@ -60,19 +60,19 @@
 							<p class="input-wrapper">
 								<label for="name" class="input-lable">Название книги</label>
 								<p id="msgName" class="invalid-message"></p>
-								<input type="text" id="name" class="bookInputs form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
+								<input type="text" id="name" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
 							</p>
 				
 							<p class="input-wrapper">
 								<label for="page_num" class="input-lable">Количество страниц</label>
 								<p id="msgPage_num" class="invalid-message"></p>
-								<input type="text" id="page_num" class="bookInputs form-control"  data-pattern ="\d+" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
+								<input type="text" id="page_num" class="form-control"  data-pattern ="\d+" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
 							</p>
 
 							<p class="input-wrapper">
 								<label for="genre" class="input-lable">Жанр</label>
 								<p id="msgGenre" class="invalid-message"></p>
-								<select id="genre" class="bookInputs form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
+								<select id="genre" class="form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
 								</select>
 							</p>
 	
@@ -122,7 +122,7 @@
 
 					<div class="col p-0"> <!-- Колонка с таблицей -->
 
-						<table id="table-books" class="myTable1 table ">
+						<table id="table-books" class="table">
 							<thead class="thead-dark">
 								<tr >
 									<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
