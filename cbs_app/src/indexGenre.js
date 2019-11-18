@@ -23,9 +23,9 @@ window.addEventListener("load", ()=>{
 		if (returnedObject == false) {
 			return false;
 		}
-		tableBook.tableData.push(returnedObject);
+		tableGenre.tableData.push(returnedObject);
 		tableGenre.addRows(returnedObject);
-		tableBook.nullifySelection();
+		tableGenre.nullifySelection();
 		tableGenre.notify(); 
    });
 
@@ -50,7 +50,7 @@ window.addEventListener("load", ()=>{
 		if (currentArray) {
 			tableGenre.cleanTable();
 			tableGenre.tableData = currentArray;
-			tableBook.nullifySelection();
+			tableGenre.nullifySelection();
 			tableGenre.notify()
 			tableGenre.fillTable();
 		}else{
@@ -62,7 +62,7 @@ window.addEventListener("load", ()=>{
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formGenre.cleanInputs();
-		tableBook.nullifySelection();
+		tableGenre.nullifySelection();
 		
 	});
 

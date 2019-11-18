@@ -23,9 +23,9 @@ window.addEventListener("load", ()=>{
 		if (returnedObject == false) {
 		   return false;
 		}
-		tableBook.tableData.push(returnedObject);
+		tableAuthor.tableData.push(returnedObject);
 		tableAuthor.addRows(returnedObject);
-		tableBook.nullifySelection();
+		tableAuthor.nullifySelection();
 		tableAuthor.notify();   
    });
 
@@ -50,7 +50,7 @@ window.addEventListener("load", ()=>{
 		if (currentArray) {
 			tableAuthor.cleanTable();
 			tableAuthor.tableData = currentArray;
-			tableBook.nullifySelection();
+			tableAuthor.nullifySelection();
 			tableAuthor.notify()
 			tableAuthor.fillTable();
 		}else{
@@ -62,7 +62,7 @@ window.addEventListener("load", ()=>{
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formAuthor.cleanInputs();
-		tableBook.nullifySelection();
+		tableAuthor.nullifySelection();
 		
 	});
 
