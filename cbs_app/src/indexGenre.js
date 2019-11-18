@@ -1,4 +1,4 @@
-import { $ } from './myHelperLib';
+import { $, changeClass } from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import './css/style1.scss';
