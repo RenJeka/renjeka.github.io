@@ -1,15 +1,30 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+$topTitleHeight: 75px;
+$topTitleMarginTopAndBottom: 15px;
+$logoSize: 75px;
+$media1: 1000px;
+$media2: 768px;
+// $media3: 400px;
 
 @font-face{
 	font-family:'Comfortaa';
 	src: url('../fonts/Comfortaa-Regular.ttf');
 }
 
+@mixin tablet {
+    @media screen and (max-width:$media1){
+        @content;
+    }
+}
+@mixin phone {
+    @media screen and (max-width:$media2){
+        @content;
+    }
+}
 
-$topTitleHeight: 75px;
-$topTitleMarginTopAndBottom: 15px;
-$logoSize: 75px;
+
+
 
 /* .myTable1{
 	border: 1px solid black;
@@ -87,6 +102,18 @@ html, body{
 	margin: $topTitleMarginTopAndBottom 0;
 	text-align: center;
 	font-family: 'Comfortaa';
+	font-size: 5rem;
+	
+}
+@include tablet{
+	.title{
+		font-size: 4rem;
+	}
+}
+@include phone{
+	.title{
+		font-size: 3rem;
+	}
 }
 
 .search-wrapper{
@@ -154,7 +181,7 @@ html, body{
 
 .input-lable{
 	font-family: 'Comfortaa';
-	color: #000000;
+	color: #dddddd;
 	font-size: 16px;
 	margin-bottom: 0;
 }
