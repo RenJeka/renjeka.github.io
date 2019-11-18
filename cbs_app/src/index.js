@@ -57,7 +57,7 @@ window.addEventListener("load", () =>{
 			// TODO Реализовать стилизацию при нажатии кнопки "edit". Выбранная строка должна сохранять стиль нажатого ряда.
 			// tableBook.currentTable.rows[tableBook.selectedRowIndex].className = "row-selected"
 		}else{
-			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
+			alert("Пожалуйста выберите строку и заполните правильно поля!")
 		}
 	});
 

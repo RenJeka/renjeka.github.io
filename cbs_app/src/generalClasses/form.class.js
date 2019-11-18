@@ -363,7 +363,7 @@ export class Form{
 
 		let copiedObject; // Переменная, чтобы склонировать объект "this.lastFilledObject"
 		
-		if (object) {
+		if (object && this.validate()) {
 			this.fillObject(object[this.idName])
 
 			// Клонируем объект "this.lastFilledObject", для того, чтобы избавиться от копирования по ссылке.

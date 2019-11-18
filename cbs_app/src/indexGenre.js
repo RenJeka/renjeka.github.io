@@ -39,7 +39,7 @@ window.addEventListener("load", ()=>{
 			tableGenre.notify()
 			tableGenre.fillTable();
 		}else{
-			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
+			alert("Пожалуйста выберите строку и заполните правильно поля!")
 		}
 	});
 
