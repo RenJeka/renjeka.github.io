@@ -13,8 +13,20 @@ export class Table{
 	 * @param {Array} tableData -- Массив объектов, которыми будет заполнятся таблица
 	 */
 	constructor(currentTable,formObject,tableData){
+
+		/**
+		 * Текущая (связанная DOM-таблица).
+		 */
 		this.currentTable = $(currentTable);
+
+		/**
+		 * Текущий объект формы(связанная форма).
+		 */
 		this.formObject = formObject;
+
+		/**
+		 * Данные, которые заполняются в таблицу.
+		 */
 		this.tableData = tableData;
 
 		/**	
@@ -333,7 +345,7 @@ export class Table{
 	/**
 	 * Метод поиска. Фильтрует массив по значению input.value, и возвращает его.
 	 * @param {object} input Элемент, в который вводится фильтрирующее значение.
-	 * @param {string} objectProperty свойство (название свойства) объекта, по которому будет происходить фильтрация.
+	 * @param {string} objectProperty Имя свойства объекта, по которому будет происходить фильтрация.
 	 * @return {Array} Возвращает отфильтнованный массив либо false, если массив не удалось найти.
 	 */
 	search(input, objectProperty){
