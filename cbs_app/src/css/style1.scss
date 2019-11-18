@@ -9,6 +9,7 @@
 
 $topTitleHeight: 75px;
 $topTitleMarginTopAndBottom: 15px;
+$logoSize: 75px;
 
 /* .myTable1{
 	border: 1px solid black;
@@ -44,12 +45,12 @@ html, body{
 	margin: $topTitleMarginTopAndBottom 0;
 	transition: 1s;
 	overflow: hidden;
-	min-height: 75px;
+	min-height: $logoSize + 15;
 }
 
 .wrapper-logo-open{
 	background-color: #858585;
-	min-height: 250px;
+	min-height: 300px;
 	// overflow-y: auto;
 
 	// transform: scaleY(1.5);
@@ -57,8 +58,9 @@ html, body{
 
 .image-logo{
 	display: block;
-	height: $topTitleHeight;
-	margin: 0 auto;
+	height: $logoSize;
+	width: $logoSize;
+	margin: 5px auto;
 	&:hover{
 		filter: drop-shadow(0 0 3px rgb(255, 129, 27));
 		// &:after{
