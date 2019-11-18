@@ -8,48 +8,121 @@
 
 </head>
 <body>
-	<h1>Добавьте свой собственный жанр</h1>
+	<div class="container-fluid"> <!-- Основной контейнер (для всей программы) --> 
+		
+		<div class="row main-row">  <!-- Основной ряд (для всей программы) -->
 
-	<table id="table-genres" class="myTable1 table">
-		<thead>
-			<th data-object-key-bind = "genre">Список жанров &#9660;</th>
-		</thead>
-		<tbody>
+			<div class="col-3 sidebar-left pt-0"> <!-- Колонка с сайдбаром -->
 
-		</tbody>
-	</table>
+				<div class="container-fluid sidebar-left-inner p-0"> <!-- Внутрений контейнер для сайдбара -->
 
-	<form action="" id="form-genres" name="form-genres">
+					<div class=" row no-gutters wrapper-logo"> <!-- ряд меню -->
 
-		<input type="hidden" id="objtype" value="genre" >
+						<div class="container-fluid"> <!-- Внутрений контейнер с меню -->
 
-		<p>
-			<label for="genre">Жанр</label>
-			<input type="text" id="genre" class="form-input">
-		</p>
+							<div class="row">
+								<!-- <img class="image-arrow" src="../img/arrow-l.svg" alt="Arrow-left"> -->
+								<img class="image-logo" src="../img/genre-2.svg" alt="Book">
+								<!-- <img class="image-arrow" src="../img/arrow-r.svg" alt="Arrow-right"> -->
+							</div> <!-- .row -->
 	
-		<p>
-			<button type="button" id="add" ignore>Добавить жанр</button>
-		</p>
+							<div class="row .justify-content-center">
+								<a href="./index.html" class="d-block w-100">
+									<img class="image-logo image-hide" src="../img/book_3.svg" alt="Genre" data-title="Перейти к таблице Жанры" title="Перейти к таблице 'Жанры'">
+								</a>
+							</div> <!-- .row -->
+	
+							<div class="row .justify-content-center">
+								<a href="./add_genre.html" class="d-block w-100">
+									<img class="image-logo image-hide" src="../img/author-3.svg" alt="Author" data-title="Перейти к таблице Авторы" title="Перейти к таблице 'Авторы'">
+								</a>
+							</div> <!-- .row -->
 
-		<p>
-			<button type="button" id="edit" ignore >Изменить Автора</button>
-		</p>
+						</div> <!-- .container-fluid -->
 
-		<p>
-			<button type="button" id="delete" ignore >Удалить жанр</button>
-		</p>
-		<p>
-			<button type="button" id="cleanInputs" ignore >Очистить поля</button>
-		</p>
-	</form>
+					</div><!-- .row (wrapper-logo) -->
+						
+					<hr>
 
-	<p>
-		<label for="input-search">Найти жанр</label>
-		<input type="text" id="input-search" data-search-object-property="genre">
-	</p>	
+					<div class="row no-gutters justify-content-center"> <!-- Заголовок сверху формы -->
+						<h3 class="form-header">Добавить Жанр</h3>
+					</div><!-- .row -->
 
-	<a href="./index.html">На главную</a>
+					<!-- ===================== START FORM========================= -->
+					<div class="row no-gutters pl-3"> <!-- Ряд с формой -->
+
+						<form id="form-genres" class="form-input" name="form-genres">
+		
+							<input type="hidden" id="objtype" value="genre">
+				
+							<p class="input-wrapper">
+								<label for="genre" class="input-lable">Название книги</label>
+								<p id="msgGenre" class="invalid-message"></p>
+								<input type="text" id="genre" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести жанр" data-bound-id="msgGenre">
+							</p>
+						</form>
+
+					</div><!-- .row (form) -->
+					<!-- ===================== END FORM ========================= -->
+		
+					<!-- ===== START BUTTONS BLOCK ===== -->
+					<div class="row no-gutters justify-content-around">	<!-- Ряд с кнопками под формой -->		
+							
+						<button class=" button-form btn btn-warning btn-sm" type="button" id="edit" ignore >Изменить жанр</button>
+						<button class=" button-form btn btn-light btn-sm" type="button" id="cleanInputs" ignore >Очистить поля</button>
+						<button class=" button-form btn btn-danger btn-sm" type="button" id="delete" ignore >Удалить жанр</button>
+						<button class=" button-form btn btn-success btn-sm" type="button" id="add" ignore >Добавить жанр</button>
+
+					</div><!-- .row -->
+					<!-- ===== END BUTTONS BLOCK ===== -->
+
+				</div> <!-- .container (sidebar-left-inner) -->
+
+			</div> <!-- .col-3 (sidebar-left)-->
+
+
+			<div class="col-9"> <!-- Основная колонка с таблицей -->
+				<!-- ================ START table-HEADER =================== -->
+				<div class="row"> <!-- Ряд с заголовком и строкой поиска -->
+
+					<div class="col-8 p-0"> <!-- Заголовок -->
+						<h1 class="title display-3 d-flex justify-content-center">Мои Жанры</h1>
+					</div> <!-- .col-8 -->
+
+					<div class="col-4  align-self-center search-wrapper"> <!-- Поле поиска -->
+						<div class="input-group">
+							<label for = "input-search" class="search-icon" id="myInpSearch"></label>
+							<input type="text" class="form-control" id="input-search" data-search-object-property="genre" aria-describedby="myInpSearch" placeholder="Найти по названию">
+						</div>
+					</div> <!-- .col-4 -->
+
+				</div> <!-- .row (title) -->
+				<!-- ================ END table-HEADER =================== -->
+				
+				<!-- ======================== START TABLE =========================== -->
+				<div class="row justify-content-center"> <!-- Ряд с таблицей -->
+
+					<div class="col p-0"> <!-- Колонка с таблицей -->
+
+						<table id="table-genres" class="table">
+							<thead class="thead-dark">
+								<tr >
+									<th scope ="col" data-object-key-bind ="genre">Название жанра &#9660;</th>
+								</tr>
+							</thead>
+							<tbody> </tbody>
+						</table>
+
+					</div> <!-- .col -->	
+
+				</div> <!-- .row (table) -->
+				<!-- ======================== END TABLE =========================== -->
+				
+			</div> <!-- .col-9 -->
+
+		</div> <!-- .row -->
+
+	</div> <!-- .container -->
 
 </body>
 </html>
