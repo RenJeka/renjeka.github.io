@@ -2,13 +2,11 @@ import { $, changeClass } from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import "./css/style1.scss";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./index.html";
 
 window.addEventListener("load", ()=>{
 
-	let formAuthor = new Form(document.forms[0], "id");
-	let tableAuthor = new Table('#table-authors',formAuthor);
+	let formAuthor = new Form(document.forms[0], "id"),
+		tableAuthor = new Table('#table-authors',formAuthor);
 
 	formAuthor.checkForm();
 	tableAuthor.addObservers(tableAuthor, formAuthor);
@@ -25,19 +23,19 @@ window.addEventListener("load", ()=>{
 		if (returnedObject == false) {
 		   return false;
 		}
+		tableBook.tableData.push(returnedObject);
 		tableAuthor.addRows(returnedObject);
-		tableAuthor.notify();
-		console.dir(formAuthor.currentForm.elements);
-	   
+		tableBook.nullifySelection();
+		tableAuthor.notify();   
    });
 
    	// ОБРАБОТЧИК КНОПКИ "edit"
 	$('#edit').addEventListener("click", function() {
 
-		let newArray = formAuthor.editObject();
-		if (newArray) {
+		let currentArray = formAuthor.editObject();
+		if (currentArray) {
 			tableAuthor.cleanTable();
-			tableAuthor.tableData = newArray;
+			tableAuthor.tableData = currentArray;
 			tableAuthor.notify()
 			tableAuthor.fillTable();
 		}else{
@@ -48,10 +46,11 @@ window.addEventListener("load", ()=>{
 	// ОБРАБОТЧИК КНОПКИ "delete"
 	$('#delete').addEventListener("click", function() {
 
-		let newArray = formAuthor.deleteObject();
-		if (newArray) {
+		let currentArray = formAuthor.deleteObject();
+		if (currentArray) {
 			tableAuthor.cleanTable();
-			tableAuthor.tableData = newArray;
+			tableAuthor.tableData = currentArray;
+			tableBook.nullifySelection();
 			tableAuthor.notify()
 			tableAuthor.fillTable();
 		}else{
@@ -63,6 +62,7 @@ window.addEventListener("load", ()=>{
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formAuthor.cleanInputs();
+		tableBook.nullifySelection();
 		
 	});
 
@@ -72,7 +72,6 @@ window.addEventListener("load", ()=>{
 		// Очищаем текущую таблицу
 		tableAuthor.cleanTable();
 
-		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
 		tableAuthor.tableData = tableAuthor.search(e.target, e.target.dataset.searchObjectProperty);
 		tableAuthor.notify()
 		tableAuthor.fillTable()

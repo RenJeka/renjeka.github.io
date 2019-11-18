@@ -2,17 +2,18 @@ import { $ } from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import './css/style1.scss';
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./index.html";
 
 window.addEventListener("load", ()=>{
 
-	let formGenre = new Form(document.forms[0], "id");
-	let tableGenre = new Table('#table-genres',formGenre);
+	let formGenre = new Form(document.forms[0], "id"),
+		tableGenre = new Table('#table-genres',formGenre);
 
 	formGenre.checkForm();
 	tableGenre.addObservers(tableGenre, formGenre);
 	tableGenre.fillTable();
+
+	// Всплывающее меню
+	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open");
 
 	// ОБРАБОТЧИК КНОПКИ "add"
 	$('#add').addEventListener("click", function() {
@@ -22,17 +23,19 @@ window.addEventListener("load", ()=>{
 		if (returnedObject == false) {
 			return false;
 		}
+		tableBook.tableData.push(returnedObject);
 		tableGenre.addRows(returnedObject);
+		tableBook.nullifySelection();
 		tableGenre.notify(); 
    });
 
     // ОБРАБОТЧИК КНОПКИ "edit"
 	$('#edit').addEventListener("click", function() {
 
-		let newArray = formGenre.editObject();
-		if (newArray) {
+		let currentArray = formGenre.editObject();
+		if (currentArray) {
 			tableGenre.cleanTable();
-			tableGenre.tableData = newArray;
+			tableGenre.tableData = currentArray;
 			tableGenre.notify()
 			tableGenre.fillTable();
 		}else{
@@ -43,10 +46,11 @@ window.addEventListener("load", ()=>{
 	// ОБРАБОТЧИК КНОПКИ "delete"
 	$('#delete').addEventListener("click", function() {
 
-		let newArray = formGenre.deleteObject();
-		if (newArray) {
+		let currentArray = formGenre.deleteObject();
+		if (currentArray) {
 			tableGenre.cleanTable();
-			tableGenre.tableData = newArray;
+			tableGenre.tableData = currentArray;
+			tableBook.nullifySelection();
 			tableGenre.notify()
 			tableGenre.fillTable();
 		}else{
@@ -58,6 +62,7 @@ window.addEventListener("load", ()=>{
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formGenre.cleanInputs();
+		tableBook.nullifySelection();
 		
 	});
 
@@ -67,7 +72,6 @@ window.addEventListener("load", ()=>{
 		// Очищаем текущую таблицу
 		tableGenre.cleanTable();
 
-		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
 		tableGenre.tableData = tableGenre.search(e.target, e.target.dataset.searchObjectProperty);
 		tableGenre.notify()
 		tableGenre.fillTable()

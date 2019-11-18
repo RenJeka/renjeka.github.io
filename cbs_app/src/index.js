@@ -1,31 +1,17 @@
-// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-// ♦ Реализовать множественный выбор строк у Автора (список книг)
-// ♦ Продумать, как будет реализовываться валидация полей по заданным регулярным выражениям (можно РВ поместить в атрибуты).  
-// TODO ♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦♦
-
 import {$, changeClass} from './myHelperLib';
 import { Table } from './generalClasses/table.class';
 import { Form } from './generalClasses/form.class';
 import "./css/style1.scss";
-// import "./img/theater.svg"
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./add_author.html";
-// import "./add_genre.html";
 
 window.addEventListener("load", () =>{
 
-	
-	// Создаем объект "formBook" класса "Form"
+	// Создаем объект  класса "Form"
+	// ? Нужна ли двухсторонняя зависимость formBook и tableBook.
 	// let formBook = new Form(document.forms[0], "id", tableBook);
 	let formBook = new Form(document.forms[0], "id");
 	
 	// Создаем объект "tableBook" класса "Table" 
 	let tableBook = new Table('#table-books',formBook);
-	
-	// formBook.tableObject = tableBook;
-
-	// Всплывающее меню
-	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open"); 
 	
 	// Проверяем форму на нужные поля ввода, которые необходимо заполнить по привязке
 	formBook.checkForm();
@@ -35,14 +21,17 @@ window.addEventListener("load", () =>{
 
 	// Заполняем таблицу
 	tableBook.fillTable();
-	console.dir(tableBook);
-	//Сообщаем наблюдателям об изменении
+	////Сообщаем наблюдателям об изменении
 	// tableBook.notify();
 
+	// Всплывающее меню
+	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open"); 
+	
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "add"
+	// ОБРАБОТЧИК КНОПКИ "add" (Добавить объект)
 	$('#add').addEventListener("click", function() {
 
+		// Создаем переменную -- возвращаемый объект, которым в последствии заполним строку таблицы
 		let returnedObject = formBook.addButtonHandler();
 
 		if (returnedObject == false) {
@@ -52,21 +41,20 @@ window.addEventListener("load", () =>{
 		tableBook.addRows(returnedObject);
 		tableBook.nullifySelection();
 		tableBook.notify();
-		console.dir(tableBook);
-		console.dir(formBook);
-		
 	});
 	
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "edit"
+	// ОБРАБОТЧИК КНОПКИ "edit" (Изменить объект)
 	$('#edit').addEventListener("click", function() {
 
-		let newArray = formBook.editObject();
-		if (newArray) {
+		let currentArray = formBook.editObject();
+		if (currentArray) {
 			tableBook.cleanTable();
-			tableBook.tableData = newArray;
+			tableBook.tableData = currentArray;
 			tableBook.notify()
 			tableBook.fillTable();
+
+			// TODO Реализовать стилизацию при нажатии кнопки "edit". Выбранная строка должна сохранять стиль нажатого ряда.
 			// tableBook.currentTable.rows[tableBook.selectedRowIndex].className = "row-selected"
 		}else{
 			alert("Какую строку вы хотите изменить? Пожалуйста выберите строку.")
@@ -74,13 +62,13 @@ window.addEventListener("load", () =>{
 	});
 
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "delete"
+	// ОБРАБОТЧИК КНОПКИ "delete" (удалить объект)
 	$('#delete').addEventListener("click", function() {
 
-		let newArray = formBook.deleteObject();
-		if (newArray) {
+		let currentArray = formBook.deleteObject();
+		if (currentArray) {
 			tableBook.cleanTable();
-			tableBook.tableData = newArray;
+			tableBook.tableData = currentArray;
 			tableBook.nullifySelection();
 			tableBook.notify()
 			tableBook.fillTable();
@@ -91,7 +79,7 @@ window.addEventListener("load", () =>{
 	});
 
 	//===========================================================================================
-	// ОБРАБОТЧИК КНОПКИ "clearInputs"
+	// ОБРАБОТЧИК КНОПКИ "clearInputs" (Очистить поля формы)
 	$('#cleanInputs').addEventListener("click", function() {
 
 		formBook.cleanInputs();
@@ -100,12 +88,12 @@ window.addEventListener("load", () =>{
 	});
 
 	//===========================================================================================
-	// ОБРАБОТЧИК ПОИСКА
+	// ОБРАБОТЧИК ПОЛЯ ПОИСКА
 	$('#input-search').addEventListener("keyup", (e)=>{
 		// Очищаем текущую таблицу
 		tableBook.cleanTable();
 
-		// Заполняем таблицу тем массивам, который возвращает фун-я "tableWorker.search". Возращаем массив с данными.
+		// Заполняем таблицу новым массивом, который возвращает метод "search" класса "Table"
 		tableBook.tableData = tableBook.search(e.target, e.target.dataset.searchObjectProperty);
 		tableBook.notify()
 		tableBook.fillTable()
