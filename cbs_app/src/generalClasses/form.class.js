@@ -14,8 +14,20 @@ export class Form{
 	 * @param {Array} dataArray (не обязательный) Массив данных, (набор объектов, что заполняется в форме). По умолчанию данные записываются в  localStorage.
 	 */
 	constructor(currentForm, idName, dataArray){
+
+		/**
+		 * Текущая <HTML>-форма, которая привязывается к данному объекту
+		 */
 		this.currentForm = currentForm;
+
+		/**
+		 * название ID для идентификации каждого объекта
+		 */
 		this.idName = idName;
+
+		/**
+		 * (не обязательный) Массив данных, (набор объектов, что заполняется в форме). По умолчанию данные записываются в  localStorage.
+		 */
 		this.dataArray = [];
 
 		/**	
@@ -74,22 +86,6 @@ export class Form{
 			return false;
 		}
 
-		// Проверка и создание объекта нужного типа. 
-		switch (this.getObjectType()) {
-
-			case "book":
-				this.lastFilledObject =  new Book;
-				break;
-
-			case "author":
-				this.lastFilledObject =  new Author;
-				break;
-
-			case "genre":
-				this.lastFilledObject =  new Genre;
-				break;
-		}
-
 		// Заполнение созданного объекта
 		this.fillObject();
 
@@ -121,9 +117,23 @@ export class Form{
 			fillableObject, // Объект, который будет заполнен и возвращен методом.
 			accumulateValues = ""; // Переменная, куда будут накапливаться значения в случае множественного выбора из <select>
 
+		// Проверка и создание объекта нужного типа. 
+		switch (this.getObjectType()) {
 
-		// Очищаем свойство "this.lastFilledObject" от старых значений. 
-		for (var prop in this.lastFilledObject) delete this.lastFilledObject[prop];
+			case "book":
+				this.lastFilledObject =  new Book;
+				break;
+
+			case "author":
+				this.lastFilledObject =  new Author;
+				break;
+
+			case "genre":
+				this.lastFilledObject =  new Genre;
+				break;
+		}
+		// // Очищаем свойство "this.lastFilledObject" от старых значений. 
+		// for (var prop in this.lastFilledObject) delete this.lastFilledObject[prop]; // ! РАЗОБРАТЬСЯ И УДАЛИТЬ ЗА НЕНАДОБНОСТЬЮ
 
 		// Если мы передали "id" заполняемого объекта -- используем его в качестве id, если нет --генерируем новый id
 		if (id) {
@@ -151,7 +161,7 @@ export class Form{
 					// После этого создаем свойство в объекте и записываем результат конкатенации в это свойство.
 					this.lastFilledObject[elements[i].getAttribute("id")] = accumulateValues;
 
-				// Иначе просто создаем свойство у объекта с таким же именем, как и значение "id" в input
+				// Иначе просто создаем свойство у объекта с таким же именем, как и значение атрибута "id" в input
 				}else{
 					this.lastFilledObject[elements[i].getAttribute("id")] = elements[i].value;
 				}
@@ -159,7 +169,7 @@ export class Form{
 			} 
 		}
 
-		// Клонируем объект, чтобы метод смог его вернуть;
+		// Клонируем объект, чтобы метод смог его вернуть как отдельный объект, а не ссылку;
 		fillableObject = Object.assign({},this.lastFilledObject)
 		return fillableObject;
 	}
