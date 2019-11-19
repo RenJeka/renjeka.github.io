@@ -1,5 +1,5 @@
 //  Моя вспомогательная библиотека. Тут находятся функции-помощники, чтобы не подключать JQuery.
-
+import menuIcon from"./img/arrow-d.svg";
 /**
  * Функция захвата DOM-элемента
  * @param {string} selector Селектор, по которому необходимо вернуть элемент
@@ -19,11 +19,20 @@ function $(selector) {
  * @return {void} Ничего не возвращает
  */
 function changeClass(event, eventElement, targetElement, ...classOpened){
+
+	addImage(eventElement, menuIcon);
 	eventElement.addEventListener(event, () => {
 		for (let i = 0; i < classOpened.length; i++) {
 			targetElement.classList.toggle(classOpened[i])
 		}
 	});
+}
+
+function addImage(element,src) {
+	let image = new Image(),
+		parent = element.parentNode;
+	image.src = src;
+	parent.appendChild(image);
 }
 
 export {$, changeClass};

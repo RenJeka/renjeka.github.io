@@ -92,7 +92,8 @@ html, body{
 	margin: $topTitleMarginTopAndBottom 0;
 	transition: 1s;
 	overflow: hidden;
-	min-height: $logoSize + 15;
+	min-height: $logoSize + 10px;
+	overflow: hidden;
 }
 
 .wrapper-logo-open{
@@ -127,6 +128,9 @@ html, body{
 	&:active{
 		filter: drop-shadow(0 0 3px rgb(70, 68, 66));
 	}
+	// &:first-child::before{
+	// 	content: "some-text";
+	// }
 }
 
 .title{
