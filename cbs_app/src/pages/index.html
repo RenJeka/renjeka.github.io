@@ -8,12 +8,10 @@
 
 </head>
 <body>
-	
-	<div class="container-fluid"> <!-- Основной контейнер (для всей программы) --> 
 		
-		<div class="row main-row">  <!-- Основной ряд (для всей программы) -->
+		<div class="grid-wrapper">  <!-- Основной ряд (для всей программы) -->
 
-			<div class="col-12 col-md-3 sidebar-left pt-0"> <!-- Колонка с сайдбаром -->
+			<div class="sidebar-left"> <!-- Колонка с сайдбаром -->
 
 				<div class="container-fluid sidebar-left-inner p-0"> <!-- Внутрений контейнер для сайдбара -->
 
@@ -95,31 +93,31 @@
 
 			</div> <!-- .col-3 (sidebar-left)-->
 
+			<!-- ================ START table-HEADER =================== -->
+			<div class="header-wrapper"> <!-- Ряд с заголовком и строкой поиска -->
 
-			<div class="col-12 col-md-9"> <!-- Основная колонка с таблицей -->
-				<!-- ================ START table-HEADER =================== -->
-				<div class="row"> <!-- Ряд с заголовком и строкой поиска -->
+				<div class=""> <!-- Заголовок -->
+					<h1 class="title d-flex ">Мои Книги</h1>
+				</div> <!-- .col-8 -->
 
-					<div class="col-8 p-0"> <!-- Заголовок -->
-						<h1 class="title d-flex ">Мои Книги</h1>
-					</div> <!-- .col-8 -->
+				<div class="align-self-center search-wrapper"> <!-- Поле поиска -->
+					<div class="input-group">
+						<label for = "input-search" class="search-icon" id="myInpSearch"></label>
+							<!-- <span class="input-group-text" id="myInpSearch">Найти</span> -->
+						<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
+					</div>
+				</div> <!-- .col-4 -->
 
-					<div class="col-4  align-self-center search-wrapper"> <!-- Поле поиска -->
-						<div class="input-group">
-							<label for = "input-search" class="search-icon" id="myInpSearch"></label>
-								<!-- <span class="input-group-text" id="myInpSearch">Найти</span> -->
-							<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
-						</div>
-					</div> <!-- .col-4 -->
+				<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
+			</div> <!-- .row (title) -->
+			<!-- ================ END table-HEADER =================== -->			
 
-					<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
-				</div> <!-- .row (title) -->
-				<!-- ================ END table-HEADER =================== -->
-				
+			<div class="table-wrapper"> <!-- Основная колонка с таблицей -->
+
 				<!-- ======================== START TABLE =========================== -->
 				<div class="row justify-content-center"> <!-- Ряд с таблицей -->
 
-					<div class="col p-0"> <!-- Колонка с таблицей -->
+					<div class="col"> <!-- Колонка с таблицей -->
 
 						<table id="table-books" class="table">
 							<thead class="thead-dark">
@@ -140,8 +138,6 @@
 			</div> <!-- .col-9 -->
 
 		</div> <!-- .row -->
-
-	</div> <!-- .container -->
 
 </body>
 </html>

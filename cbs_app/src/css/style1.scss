@@ -5,7 +5,7 @@ $topTitleMarginTopAndBottom: 15px;
 $logoSize: 75px;
 $media1: 1200px;
 $media2: 940px;
-// $media3: 400px;
+$media3: 600px;
 
 @font-face{
 	font-family:'Comfortaa';
@@ -19,6 +19,11 @@ $media2: 940px;
 }
 @mixin phone {
     @media screen and (max-width:$media2){
+        @content;
+    }
+}
+@mixin small-phone {
+    @media screen and (max-width:$media3){
         @content;
     }
 }
@@ -47,6 +52,33 @@ $media2: 940px;
 html, body{
 	height: 100%;
 }
+
+
+
+.grid-wrapper{
+	display: grid;
+	// grid-template-columns: 3fr 7fr;
+	height: 100%;
+	grid-template-columns: 3fr 8fr;
+	grid-template-rows: 1fr 9fr;
+	grid-template-areas: 	"sidebar_w  header_w  "
+							"sidebar_w 	table_w  ";
+	
+	.sidebar-left{
+		grid-area: sidebar_w;
+	}
+	.header-wrapper{
+		grid-area: header_w;
+		display:grid;
+		grid-template-columns: 2fr 1fr;
+		grid-template-areas: "title search"
+	}
+
+	.table-wrapper{
+		grid-area: table_w;
+	}
+}
+
 
 .main-row{
 	height: 100vw;
@@ -105,21 +137,13 @@ html, body{
 	font-size: 5rem;
 	justify-content: center;
 	align-items: center;
+	grid-area: title;
 	
 }
-@include tablet{
-	.title{
-		font-size: 4rem;
-	}
-}
-@include phone{
-	.title{
-		font-size: 3rem;
-	}
-}
+
 
 .search-wrapper{
-	height: 100%;
+	grid-area: search;
 }
 
 .search-icon{
@@ -238,4 +262,46 @@ tr:active{
 .row-selected{
 	background: rgb(151, 151, 151);
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
+}
+
+@include tablet{
+	.title{
+		font-size: 4rem;
+	}
+}
+@include phone{
+	.title{
+		font-size: 3rem;
+	}
+	.grid-wrapper{
+		grid-template-columns: 1fr;
+		grid-template-areas: 	"header_w  "
+								"sidebar_w "
+								"table_w ";
+		.header-wrapper{
+			grid-template-columns: 4fr 3fr;
+		}
+	}
+	.search-wrapper{
+		padding-right: 10px;
+	}
+	
+}
+@include small-phone{
+	.title{
+		height: 50px;
+		font-size: 3rem;
+	}
+	.search-wrapper{
+		padding: 0 20px 10px;
+	}
+	
+	.grid-wrapper .header-wrapper{
+		grid-area: header_w;
+		display:grid;
+		grid-template-columns: 1fr;
+		grid-template-areas: 	"title" 
+								"search"
+	}
+
 }
