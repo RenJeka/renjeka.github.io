@@ -3,8 +3,8 @@
 $topTitleHeight: 75px;
 $topTitleMarginTopAndBottom: 15px;
 $logoSize: 75px;
-$media1: 1000px;
-$media2: 768px;
+$media1: 1200px;
+$media2: 940px;
 // $media3: 400px;
 
 @font-face{
@@ -103,6 +103,8 @@ html, body{
 	text-align: center;
 	font-family: 'Comfortaa';
 	font-size: 5rem;
+	justify-content: center;
+	align-items: center;
 	
 }
 @include tablet{
