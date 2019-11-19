@@ -25,21 +25,28 @@ export class Table{
 		this.formObject = formObject;
 
 		/**
-		 * Данные, которые заполняются в таблицу.
+		 * Ключ от localStorage, где хранится массив данных с объектами, которые представлены в данной таблице
+		 * @type {string}
 		 */
-		this.tableData = tableData;
+		this.localStorageKey = formObject.localStorageKey
+
+		if (tableData) {
+			/**
+			 * Данные, которые заполняются в таблицу.
+			 */
+			this.tableData = tableData;	
+		}else if(this.getTableData()){
+			this.tableData = this.getTableData();
+		}else{
+			this.tableData = [];
+		}
+		
 
 		/**	
 		 * Привязанная форма под данную таблицу. Объект класса "Form".
 		 * @type {object}
 		 */
 		this.boundForm = formObject.currentForm;
-
-		/**
-		 * Ключ от localStorage, где хранится массив данных с объектами, которые представлены в данной таблице
-		 * @type {string}
-		 */
-		this.localStorageKey = formObject.localStorageKey
 
 		/**	
 		 * Список подписчиков (паттерн Observer)

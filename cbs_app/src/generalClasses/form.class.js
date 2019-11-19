@@ -81,6 +81,8 @@ export class Form{
 	 */
 	addButtonHandler(dublicateKey = this.idName) {
 
+		// let isDatabaseCreated = localStorage.getItem(this.localStorageKey); // Переменная, которая указывает, создана ли база данных. 
+
 		// Проверка валидации. Если валидация вернула "false" — то закончить выполнение текущего метода
 		if (this.validate() == false) {
 			return false;
@@ -99,6 +101,7 @@ export class Form{
 		
 		// Добавляем настроенный объект в базу данных.
 		this.addToDatabase();
+
 
 		//Возвращаем созданный объект
 		return this.lastFilledObject;
