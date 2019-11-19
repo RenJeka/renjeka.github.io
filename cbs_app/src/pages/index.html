@@ -3,141 +3,136 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 	<title>Мои Книги</title>
 
 </head>
 <body>
 		
-		<div class="grid-wrapper">  <!-- Основной ряд (для всей программы) -->
+	<div class="grid-wrapper"> <!--Блок для сайдбара -->
 
-			<div class="sidebar-left"> <!-- Колонка с сайдбаром -->
+		<div class="sidebar-left"> <!--Блок для сайдбара -->
 
-				<div class="container-fluid sidebar-left-inner p-0"> <!-- Внутрений контейнер для сайдбара -->
+			<div class="container-fluid sidebar-left-inner p-0"> <!-- Внутрений контейнер для сайдбара -->
 
-					<div class=" row no-gutters wrapper-logo"> <!-- ряд меню -->
+				<div class=" row no-gutters wrapper-logo"> <!-- ряд меню -->
 
-						<div class="container-fluid"> <!-- Внутрений контейнер с меню -->
+					<div class="container-fluid"> <!-- Внутрений контейнер с меню -->
 
-							<div class="row">
-								<!-- <img class="image-arrow" src="../img/arrow-l.svg" alt="Arrow-left"> -->
-								<img class="image-logo" src="../img/book_3.svg" alt="Book">
-								<!-- <img class="image-arrow" src="../img/arrow-r.svg" alt="Arrow-right"> -->
-							</div> <!-- .row -->
+						<div class="row">
+							<!-- <img class="image-arrow" src="../img/arrow-l.svg" alt="Arrow-left"> -->
+							<img class="image-logo" src="../img/book_3.svg" alt="Book">
+							<!-- <img class="image-arrow" src="../img/arrow-r.svg" alt="Arrow-right"> -->
+						</div> <!-- .row -->
+
+						<div class="row .justify-content-center">
+							<a href="./add_genre.html" class="d-block w-100">
+								<img class="image-logo image-hide" src="../img/genre-2.svg" alt="Genre" data-title="Перейти к таблице Жанры" title="Перейти к таблице 'Жанры'">
+							</a>
+						</div> <!-- .row -->
+
+						<div class="row .justify-content-center">
+							<a href="./add_author.html" class="d-block w-100">
+								<img class="image-logo image-hide" src="../img/author-3.svg" alt="Author" data-title="Перейти к таблице Авторы" title="Перейти к таблице 'Авторы'">
+							</a>
+						</div> <!-- .row -->
+
+					</div> <!-- .container-fluid -->
+
+				</div><!-- .row (wrapper-logo) -->
+					
+				<hr>
+
+				<div class="row no-gutters justify-content-center"> <!-- Заголовок сверху формы -->
+					<h3 class="form-header">Добавить книгу</h3>
+				</div><!-- .row -->
+
+				<!-- ===================== START FORM========================= -->
+				<div class="row no-gutters"> <!-- Ряд с формой -->
+
+					<form id="form-book" class="form-input" name="form-book">
 	
-							<div class="row .justify-content-center">
-								<a href="./add_genre.html" class="d-block w-100">
-									<img class="image-logo image-hide" src="../img/genre-2.svg" alt="Genre" data-title="Перейти к таблице Жанры" title="Перейти к таблице 'Жанры'">
-								</a>
-							</div> <!-- .row -->
+						<input type="hidden" id="objtype" value="book">
+			
+						<p class="input-wrapper">
+							<label for="name" class="input-lable">Название книги</label>
+							<p id="msgName" class="invalid-message"></p>
+							<input type="text" id="name" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
+						</p>
+			
+						<p class="input-wrapper">
+							<label for="page_num" class="input-lable">Количество страниц</label>
+							<p id="msgPage_num" class="invalid-message"></p>
+							<input type="text" id="page_num" class="form-control"  data-pattern ="^\d{1,}$" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
+						</p>
+
+						<p class="input-wrapper">
+							<label for="genre" class="input-lable">Жанр</label>
+							<p id="msgGenre" class="invalid-message"></p>
+							<select id="genre" class="form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
+							</select>
+						</p>
+
+					</form>
+
+				</div><!-- .row (form) -->
+				<!-- ===================== END FORM ========================= -->
 	
-							<div class="row .justify-content-center">
-								<a href="./add_author.html" class="d-block w-100">
-									<img class="image-logo image-hide" src="../img/author-3.svg" alt="Author" data-title="Перейти к таблице Авторы" title="Перейти к таблице 'Авторы'">
-								</a>
-							</div> <!-- .row -->
-
-						</div> <!-- .container-fluid -->
-
-					</div><!-- .row (wrapper-logo) -->
+				<!-- ===== START BUTTONS BLOCK ===== -->
+				<div class="row no-gutters justify-content-around buttons-wrapper">	<!-- Ряд с кнопками под формой -->		
 						
-					<hr>
+					<button class=" button-form btn btn-warning btn-sm" type="button" id="edit" ignore >Изменить</button>
+					<button class=" button-form btn btn-light btn-sm" type="button" id="cleanInputs" ignore >Очистить поля</button>
+					<button class=" button-form btn btn-danger btn-sm" type="button" id="delete" ignore >Удалить</button>
+					<button class=" button-form btn btn-success btn-sm" type="button" id="add" ignore >Добавить</button>
 
-					<div class="row no-gutters justify-content-center"> <!-- Заголовок сверху формы -->
-						<h3 class="form-header">Добавить книгу</h3>
-					</div><!-- .row -->
+				</div><!-- .row -->
+				<!-- ===== END BUTTONS BLOCK ===== -->
 
-					<!-- ===================== START FORM========================= -->
-					<div class="row no-gutters pl-3"> <!-- Ряд с формой -->
+			</div> <!-- .container (sidebar-left-inner) -->
 
-						<form id="form-book" class="form-input" name="form-book">
-		
-							<input type="hidden" id="objtype" value="book">
-				
-							<p class="input-wrapper">
-								<label for="name" class="input-lable">Название книги</label>
-								<p id="msgName" class="invalid-message"></p>
-								<input type="text" id="name" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
-							</p>
-				
-							<p class="input-wrapper">
-								<label for="page_num" class="input-lable">Количество страниц</label>
-								<p id="msgPage_num" class="invalid-message"></p>
-								<input type="text" id="page_num" class="form-control"  data-pattern ="^\d{1,}$" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
-							</p>
+		</div> <!--.sidebar-left -->
 
-							<p class="input-wrapper">
-								<label for="genre" class="input-lable">Жанр</label>
-								<p id="msgGenre" class="invalid-message"></p>
-								<select id="genre" class="form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
-								</select>
-							</p>
-	
-						</form>
+		<div class="header-wrapper"> <!--Блок для заголовка -->
 
-					</div><!-- .row (form) -->
-					<!-- ===================== END FORM ========================= -->
-		
-					<!-- ===== START BUTTONS BLOCK ===== -->
-					<div class="row no-gutters justify-content-around">	<!-- Ряд с кнопками под формой -->		
-							
-						<button class=" button-form btn btn-warning btn-sm" type="button" id="edit" ignore >Изменить книгу</button>
-						<button class=" button-form btn btn-light btn-sm" type="button" id="cleanInputs" ignore >Очистить поля</button>
-						<button class=" button-form btn btn-danger btn-sm" type="button" id="delete" ignore >Удалить книгу</button>
-						<button class=" button-form btn btn-success btn-sm" type="button" id="add" ignore >Добавить книгу</button>
+			<div > <!-- Заголовок -->
+				<h1 class="title d-flex ">Мои Книги</h1>
+			</div> <!-- .col-8 -->
 
-					</div><!-- .row -->
-					<!-- ===== END BUTTONS BLOCK ===== -->
+			<div class="align-self-center search-wrapper"> <!-- Поле поиска -->
+				<div class="input-group">
+					<label for = "input-search" class="search-icon" id="myInpSearch"></label>
+					<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
+				</div>
+			</div> <!-- .col-4 -->
 
-				</div> <!-- .container (sidebar-left-inner) -->
+		</div> <!--.header-wrapper -->
 
-			</div> <!-- .col-3 (sidebar-left)-->
+		<div class="table-wrapper"> <!--Блок для таблицы -->
 
-			<!-- ================ START table-HEADER =================== -->
-			<div class="header-wrapper"> <!-- Ряд с заголовком и строкой поиска -->
+			<!-- ======================== START TABLE =========================== -->
+			<div class="row justify-content-center no-gutters"> <!-- Ряд с таблицей -->
 
-				<div class=""> <!-- Заголовок -->
-					<h1 class="title d-flex ">Мои Книги</h1>
-				</div> <!-- .col-8 -->
+				<div class="col"> <!-- Колонка с таблицей -->
 
-				<div class="align-self-center search-wrapper"> <!-- Поле поиска -->
-					<div class="input-group">
-						<label for = "input-search" class="search-icon" id="myInpSearch"></label>
-							<!-- <span class="input-group-text" id="myInpSearch">Найти</span> -->
-						<input type="text" class="form-control" id="input-search" data-search-object-property="name" aria-describedby="myInpSearch" placeholder="Найти по названию">
-					</div>
-				</div> <!-- .col-4 -->
+					<table id="table-books" class="table">
+						<thead class="thead-dark">
+							<tr >
+								<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
+								<th scope ="col" data-object-key-bind ="page_num">Количество страниц &#9660;</th>
+								<th scope ="col" data-object-key-bind ="genre">Жанр &#9660;</th>
+							</tr>
+						</thead>
+						<tbody> </tbody>
+					</table>
 
-				<!-- <img src="dist/img/author-icon-small.jpg" alt="" srcset=""> -->
-			</div> <!-- .row (title) -->
-			<!-- ================ END table-HEADER =================== -->			
+				</div> <!-- .col -->	
 
-			<div class="table-wrapper"> <!-- Основная колонка с таблицей -->
+			</div> <!-- .row (table) -->
+			<!-- ======================== END TABLE =========================== -->
+			
+		</div> <!-- .table-wrapper -->
 
-				<!-- ======================== START TABLE =========================== -->
-				<div class="row justify-content-center"> <!-- Ряд с таблицей -->
-
-					<div class="col"> <!-- Колонка с таблицей -->
-
-						<table id="table-books" class="table">
-							<thead class="thead-dark">
-								<tr >
-									<th scope ="col" data-object-key-bind ="name">Название книги &#9660;</th>
-									<th scope ="col" data-object-key-bind ="page_num">Количество страниц &#9660;</th>
-									<th scope ="col" data-object-key-bind ="genre">Жанр &#9660;</th>
-								</tr>
-							</thead>
-							<tbody> </tbody>
-						</table>
-
-					</div> <!-- .col -->	
-
-				</div> <!-- .row (table) -->
-				<!-- ======================== END TABLE =========================== -->
-				
-			</div> <!-- .col-9 -->
-
-		</div> <!-- .row -->
+	</div> <!--.grid-wrapper -->
 
 </body>
 </html>
