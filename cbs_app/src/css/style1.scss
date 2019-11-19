@@ -244,12 +244,16 @@ html, body{
 }
 .buttons-wrapper{
 	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 10px;
+	buttons{
+		display:block;
+	}
 }
 
 .button-form{
 	margin: 10px 0;
 }
-
 
 
 // ========================  TABLE =============================
