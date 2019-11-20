@@ -68,10 +68,12 @@ html, body{
 		grid-area: sidebar_w;
 	}
 	.header-wrapper{
+
 		grid-area: header_w;
 		display:grid;
 		grid-template-columns: 2fr 1fr;
-		grid-template-areas: "title search"
+		grid-template-areas: "title search";
+		align-items: center;
 	}
 
 	.table-wrapper{
@@ -134,6 +136,7 @@ html, body{
 }
 
 .title{
+	display: flex;
 	height: $topTitleHeight;
 	margin: $topTitleMarginTopAndBottom 0;
 	text-align: center;
