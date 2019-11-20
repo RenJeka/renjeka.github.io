@@ -2,6 +2,7 @@
 
 $topTitleHeight: 75px;
 $topTitleMarginTopAndBottom: 15px;
+$wrapperLogoExpandIconSize: 25px;
 $logoSize: 75px;
 $media1: 1200px;
 $media2: 940px;
@@ -28,32 +29,9 @@ $media3: 600px;
     }
 }
 
-
-
-
-/* .myTable1{
-	border: 1px solid black;
-	margin-left: 25px;
-} */
-
-/* .myTable1 td{
-	padding: 5px;
-	border: 1px solid gray;
-
-	text-align: center;
-} */
-
-
-/* .myTable1 th{
-	min-height: 50px;
-} */
-
-
 html, body{
 	height: 100vw;
 }
-
-
 
 .grid-wrapper{
 	display: grid;
@@ -67,6 +45,7 @@ html, body{
 	.sidebar-left{
 		grid-area: sidebar_w;
 	}
+
 	.header-wrapper{
 
 		grid-area: header_w;
@@ -81,63 +60,8 @@ html, body{
 	}
 }
 
-
 .main-row{
 	height: 100vw;
-}
-.wrapper-logo{
-	// width: 100px;
-	height: $topTitleHeight;
-	// background-image: url("../img/book.svg");
-	/* background-color: blue; */
-	// background-size: contain;
-	margin: $topTitleMarginTopAndBottom 0;
-	transition: 1s;
-	overflow: hidden;
-	min-height: $logoSize + 10px;
-	overflow: hidden;
-}
-
-.wrapper-logo-open{
-	background-color: #858585;
-	min-height: 300px;
-	// overflow-y: auto;
-
-	// transform: scaleY(1.5);
-}
-
-.wrapper-logo-expand-icon{
-	width: 25px;
-	height: 25px;
-}
-
-.image-logo{
-	display: block;
-	height: $logoSize;
-	width: $logoSize;
-	margin: 5px auto;
-	&:hover{
-		filter: drop-shadow(0 0 3px rgb(255, 129, 27));
-		// &:after{
-		// 	content: attr(data-title); /* Выводим текст */
-		// 	// position: absolute; /* Абсолютное позиционирование */
-		// 	// left: 0; right: 0; bottom: 5px; /* Положение подсказки */
-		// 	// z-index: 1; /* Отображаем подсказку поверх других элементов */
-		// 	// background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
-		// 	// color: #fff; /* Цвет текста */
-		// 	// text-align: center; /* Выравнивание текста по центру */
-		// 	// font-family: Arial, sans-serif; /* Гарнитура шрифта */
-		// 	// font-size: 11px; /* Размер текста подсказки */
-		// 	// padding: 5px 10px; /* Поля */
-		// 	// border: 1px solid #333; /* Параметры рамки */
-		// }
-	}
-	&:active{
-		filter: drop-shadow(0 0 3px rgb(70, 68, 66));
-	}
-	// &:first-child::before{
-	// 	content: "some-text";
-	// }
 }
 
 .title{
@@ -153,7 +77,6 @@ html, body{
 	
 }
 
-
 .search-wrapper{
 	grid-area: search;
 }
@@ -164,39 +87,110 @@ html, body{
 	margin: 0;
 	background-image: url("../img/search_65.svg");
 	background-repeat: no-repeat;
-
 }
 
 #input-search{
 	
 }
+
 #input-search:focus{
 	border-color: rgb(250, 115, 58);
 	box-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
-	// border-color: #80bdff;
-	// box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 // ======================= SIDEBAR ======================
 .sidebar-left{
-	// background-color: #BEC3C9;
-	// background-color:#646F75;
-	// background-color:#979797;
 	background-color:#757575;
 	padding: 10px;
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
-	// height: 100%;
+
 	.sidebar-left-inner{
 		position: sticky;
 		top: 5px;
 		left: 0;
+
+		.wrapper-logo{
+			height: $topTitleHeight;
+			margin: $topTitleMarginTopAndBottom 0;
+			transition: 1s;
+			overflow: hidden;
+			min-height: $logoSize + $wrapperLogoExpandIconSize ;
+			overflow: hidden;
+			justify-content: center;
+			// &:first-child{
+			// 	background-color: red;
+			// }
+		}
+		
+		.wrapper-logo-open{
+			background-color: #858585;
+			min-height: 300px;
+			// overflow-y: auto;
+		}
+		
+		.main-logo{
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+		
+			.wrapper-logo-expand-icon{
+				opacity: 1;
+				width: $wrapperLogoExpandIconSize;
+				height: $wrapperLogoExpandIconSize;
+				// margin-top:-15px;
+				transition: opacity 1s;
+				&:hover{
+					filter: drop-shadow(0 0 3px rgb(255, 129, 27));
+				}
+				&:active{
+					filter: drop-shadow(0 0 3px rgb(70, 68, 66));
+				}
+				
+			}
+			.wrapper-logo-expand-icon-hide{
+				opacity: 0;
+			}
+		
+		}
+		
+		.image-logo{
+			display: block;
+			height: $logoSize;
+			width: $logoSize;
+			margin: 0 auto;
+			&:hover{
+				filter: drop-shadow(0 0 3px rgb(255, 129, 27));
+				// &:after{
+				// 	content: attr(data-title); /* Выводим текст */
+				// 	// position: absolute; /* Абсолютное позиционирование */
+				// 	// left: 0; right: 0; bottom: 5px; /* Положение подсказки */
+				// 	// z-index: 1; /* Отображаем подсказку поверх других элементов */
+				// 	// background: rgba(0,42,167,0.6); /* Полупрозрачный цвет фона */
+				// 	// color: #fff; /* Цвет текста */
+				// 	// text-align: center; /* Выравнивание текста по центру */
+				// 	// font-family: Arial, sans-serif; /* Гарнитура шрифта */
+				// 	// font-size: 11px; /* Размер текста подсказки */
+				// 	// padding: 5px 10px; /* Поля */
+				// 	// border: 1px solid #333; /* Параметры рамки */
+				// }
+			}
+			&:active{
+				filter: drop-shadow(0 0 3px rgb(70, 68, 66));
+			}
+			// &:first-child::before{
+			// 	content: "some-text";
+			// }
+		}
+		
 		.image-arrow{
 			height: 75px;
 		}
+
 		.image-arrow:hover{
 			// text-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
 			filter: drop-shadow(1px 1px 2px #ff811b);
 		}
+
 		.image-arrow:active{
 			// text-shadow: 0 0 0 0.2rem rgba(243, 81, 13, 0.5);
 			filter: drop-shadow(1px 1px 2px #ff811b);
@@ -205,7 +199,9 @@ html, body{
 	}
 }
 
-// ===========================  FORM ==================
+// =================== END SIDEBAR ======================
+
+// ======================  FORM =========================
 .form-header{
 	font-family:'Comfortaa' ;
 	font-size: 1,75em;
@@ -231,19 +227,16 @@ html, body{
 	background-color: white;
 }
 .inputs-valid{
-	// background-color: green;
 	border-color: rgb(44, 204, 11);
 	box-shadow: 0 0 0 0.2rem rgba(44, 196, 13, 0.5);
 }
 
 .inputs-invalid{
-	// background-color: red;
 	border-color: rgb(250, 58, 58);
 	box-shadow: 0 0 0 0.2rem rgba(224, 21, 21, 0.5);
 }
 .invalid-message{
 	min-height: 25px;
-	// max-width: 250px;
 	padding: 7px;
 	display: block;
 	color: rgb(161, 24, 24);
@@ -267,8 +260,9 @@ html, body{
 	margin: 10px 0;
 }
 
+// ===================== END  FORM ======================
 
-// ========================  TABLE =============================
+// ===================== TABLE ==========================
 
 tr:hover{
 	background: #ddd;
@@ -284,6 +278,8 @@ tr:active{
 	background: rgb(151, 151, 151);
 	box-shadow:  0 2px 3px rgba(0,0,0,0.5) inset;
 }
+
+// ===================== END TABLE =======================
 
 @include tablet{
 	.title{

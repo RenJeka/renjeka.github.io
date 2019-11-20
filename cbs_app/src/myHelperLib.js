@@ -20,11 +20,18 @@ function $(selector) {
  */
 function changeClass(event, eventElement, targetElement, ...classOpened){
 
-	addImage(eventElement, menuIcon, "wrapper-logo-expand-icon");
+	let expandIcon = addImage(eventElement, menuIcon, "wrapper-logo-expand-icon");
 	eventElement.addEventListener(event, () => {
 		for (let i = 0; i < classOpened.length; i++) {
 			targetElement.classList.toggle(classOpened[i])
 		}
+		expandIcon.classList.toggle("wrapper-logo-expand-icon-hide");
+	});
+	expandIcon.addEventListener(event, () => {
+		for (let i = 0; i < classOpened.length; i++) {
+			targetElement.classList.toggle(classOpened[i])
+		}
+		expandIcon.classList.toggle("wrapper-logo-expand-icon-hide");
 	});
 }
 
@@ -34,6 +41,7 @@ function changeClass(event, eventElement, targetElement, ...classOpened){
  * @param {string} src путь к иконке
  * @param {string} cssClass css класс, который необходимо применить к иконке
  * @description Необходимо добавить элемент в "import",чтобы иконка была в наличии.
+ * @returns {object} Функция возвращает DOM-элемент -- настроенную иконку. (объект класса Image)
  */
 function addImage(element,src,cssClass) {
 	let image = new Image(),
@@ -41,6 +49,8 @@ function addImage(element,src,cssClass) {
 	image.src = src;
 	image.classList.add(cssClass);
 	parent.appendChild(image);
+
+	return image;
 }
 
 export {$, changeClass};
