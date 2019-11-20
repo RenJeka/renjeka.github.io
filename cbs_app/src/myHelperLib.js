@@ -20,7 +20,7 @@ function $(selector) {
  */
 function changeClass(event, eventElement, targetElement, ...classOpened){
 
-	addImage(eventElement, menuIcon);
+	addImage(eventElement, menuIcon, "wrapper-logo-expand-icon");
 	eventElement.addEventListener(event, () => {
 		for (let i = 0; i < classOpened.length; i++) {
 			targetElement.classList.toggle(classOpened[i])
@@ -28,10 +28,18 @@ function changeClass(event, eventElement, targetElement, ...classOpened){
 	});
 }
 
-function addImage(element,src) {
+/**
+ * Функция добавляет дополнительную иконку в раскрывающееся меню после указанного элемента
+ * @param {object} element DOM-элемент, после которого необходимо добавить иконку
+ * @param {string} src путь к иконке
+ * @param {string} cssClass css класс, который необходимо применить к иконке
+ * @description Необходимо добавить элемент в "import",чтобы иконка была в наличии.
+ */
+function addImage(element,src,cssClass) {
 	let image = new Image(),
 		parent = element.parentNode;
 	image.src = src;
+	image.classList.add(cssClass);
 	parent.appendChild(image);
 }
 
