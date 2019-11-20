@@ -161,7 +161,13 @@ let JekaWebpackConfiguration = {
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				use: [
-					'file-loader',
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+						}
+					}
+					
 				],
 			},
 
