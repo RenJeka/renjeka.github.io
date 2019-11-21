@@ -42,14 +42,14 @@
 				<!-- ===================== START FORM========================= -->
 				<div class="row no-gutters"> <!-- Ряд с формой -->
 
-					<form id="form-genres" class="form-input" name="form-genres">
+					<form id="form-genres" class="form-input" name="form-genres" novalidate>
 	
 						<input type="hidden" id="objtype" value="genre">
 			
 						<p class="input-wrapper">
 							<label for="genre" class="input-lable">Название жанра</label>
 							<p id="msgGenre" class="invalid-message"></p>
-							<input type="text" id="genre" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести жанр" data-bound-id="msgGenre">
+							<input type="text" id="genre" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести жанр" data-bound-id="msgGenre" required>
 						</p>
 					</form>
 

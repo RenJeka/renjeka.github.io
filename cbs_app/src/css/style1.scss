@@ -220,12 +220,26 @@ html, body{
 	margin-bottom: 0;
 }
 
+.input-required{
+	&::after{
+		content: " * обязательно ";
+		color: #ff5656;
+		text-shadow: 1px 1px 1px #000000;
+		vertical-align: top;
+		font-size: 12px;
+		margin-left: 5px;
+		border-radius: 4px;
+	}
+}
+
 .input-wrapper{
 	margin-bottom: 0;
 }
+
 .inputs-clean{
 	background-color: white;
 }
+
 .inputs-valid{
 	border-color: rgb(44, 204, 11);
 	box-shadow: 0 0 0 0.2rem rgba(44, 196, 13, 0.5);
@@ -235,6 +249,7 @@ html, body{
 	border-color: rgb(250, 58, 58);
 	box-shadow: 0 0 0 0.2rem rgba(224, 21, 21, 0.5);
 }
+
 .invalid-message{
 	min-height: 25px;
 	padding: 7px;

@@ -42,26 +42,26 @@
 				<!-- ===================== START FORM========================= -->
 				<div class="row no-gutters"> <!-- Ряд с формой -->
 
-					<form id="form-book" class="form-input" name="form-book">
+					<form id="form-book" class="form-input" name="form-book" novalidate>
 	
 						<input type="hidden" id="objtype" value="book">
 			
 						<p class="input-wrapper">
 							<label for="name" class="input-lable">Название книги</label>
 							<p id="msgName" class="invalid-message"></p>
-							<input type="text" id="name" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName">
+							<input type="text" id="name" class="form-control" data-pattern ="\S+" data-message ="Нужно ввести название книги" data-bound-id="msgName" required>
 						</p>
 			
 						<p class="input-wrapper">
 							<label for="page_num" class="input-lable">Количество страниц</label>
 							<p id="msgPage_num" class="invalid-message"></p>
-							<input type="text" id="page_num" class="form-control"  data-pattern ="^\d{1,}$" data-message ="Допускаются только цифры" data-bound-id="msgPage_num">
+							<input type="text" id="page_num" class="form-control"  data-pattern ="^\d{1,}$" data-message ="Допускаются только цифры" data-bound-id="msgPage_num" required>
 						</p>
 
 						<p class="input-wrapper">
 							<label for="genre" class="input-lable">Жанр</label>
 							<p id="msgGenre" class="invalid-message"></p>
-							<select id="genre" class="form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre">
+							<select id="genre" class="form-control" data-object-property-bind = "genre" data-local-storage-key-bind = "genre-library"  data-pattern ="\S+" data-message ="Нужно выбрать из списка" data-bound-id="msgGenre" required>
 							</select>
 						</p>
 

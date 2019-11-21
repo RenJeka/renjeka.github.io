@@ -268,17 +268,19 @@ export class Form{
 		
 		let counterOfInvalid = 0, // Счетчик полей, которые не прошли валидацию
 			elements = this.currentForm.elements; // Список элементов формы
-
+			console.log(elements);
+			
 		for (let i = 0; i < elements.length; i++) {
 
-			let pattern 	 = elements[i].dataset.pattern, // регуляр. выраж., по которому будет происходить проверка валидации.
-				message 	 = elements[i].dataset.message, // Сообщение, которое выводится в случае невалидности элемента
-				boundId		 = elements[i].dataset.boundId, // id элемента, в который выводить сообщении
-				boundElement = document.querySelector(`#${boundId}`), // элемент, в который будет выводится сообщение
-				valid 		 = elements[i].value.search(pattern); // соответствие введеного значения -- паттерну
+			let pattern 	 	= elements[i].dataset.pattern, // регуляр. выраж., по которому будет происходить проверка валидации.
+				message 	 	= elements[i].dataset.message, // Сообщение, которое выводится в случае невалидности элемента
+				boundId		 	= elements[i].dataset.boundId, // id элемента, в который выводить сообщении
+				boundElement 	= document.querySelector(`#${boundId}`), // элемент, в который будет выводится сообщение
+				valid 		 	= elements[i].value.search(pattern), // соответствие введеного значения -- паттерну
+				required		= elements[i].required; // является ли поле обязательным для заполнения.
 
 			// Валидацию будет проходить только тот элемент, у которого имеется свойство "pattern"
-			if (pattern) {
+			if (required) {
 
 				if (valid == -1) {
 					elements[i].classList.remove("inputs-valid");
@@ -450,20 +452,31 @@ export class Form{
 	 */
 	checkForm(){
 
-		let localStorageKeyBind,
-			objectPropertyBind ,
-			arrayOfObjects;
+		let currentElement, 	 // текущий элемент "input" формы. 
+			required,			 // В переменную будет записано, нуждается ли поле в валидации.
+			localStorageKeyBind, // Атрибут для привязки к имени массива объектов в локальном хранилище.
+			objectPropertyBind , // Атрибут для привязки к имени свойства объекта в локальном хранилище.
+			arrayOfObjects,		 // Переменная, куда будут помещен массив из локального хранилища.
+			inputLable;			 // Переменная с DOM-элементом "lable" для конкретного input.	
 
 		// Перебираем все элементы формы
 		for (let i = 0; i < this.currentForm.elements.length; i++) {
 
-			localStorageKeyBind = this.currentForm.elements[i].dataset.localStorageKeyBind;
-			objectPropertyBind = this.currentForm.elements[i].dataset.objectPropertyBind;
-			arrayOfObjects = JSON.parse(window.localStorage.getItem(localStorageKeyBind));
+			currentElement		= this.currentForm.elements[i];
+			localStorageKeyBind = currentElement.dataset.localStorageKeyBind;
+			objectPropertyBind 	= currentElement.dataset.objectPropertyBind;
+			arrayOfObjects 		= JSON.parse(window.localStorage.getItem(localStorageKeyBind));
+			required			= currentElement.required // Является ли поле обязательным для заполнения. 
+
+			// Добавляем к полю ввода подпись "обязательно".
+			if (required) {
+				inputLable = currentElement.labels[currentElement.labels.length - 1];
+				inputLable.classList.add("input-required");
+			}
 
 			// Если перебираемое поле для ввода содержит какую -либо из привязок -- тогда заполняем это поле объектами 
 			if (localStorageKeyBind && objectPropertyBind) {
-				this.fillInput(this.currentForm.elements[i], arrayOfObjects);
+				this.fillInput(currentElement, arrayOfObjects);
 
 			// Если пользователь привязал что-то одно (из двух необходимых атрибутов) -- выбрасываем исключение
 			} else if(localStorageKeyBind){
