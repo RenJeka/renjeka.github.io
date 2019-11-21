@@ -26,7 +26,6 @@ window.addEventListener("load", () =>{
 
 	// Всплывающее меню
 	changeClass("click", $(".image-logo"), $(".wrapper-logo"), "wrapper-logo-open"); 
-	console.log(formBook)
 	//===========================================================================================
 	// ОБРАБОТЧИК КНОПКИ "add" (Добавить объект)
 	$('#add').addEventListener("click", function() {

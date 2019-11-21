@@ -148,7 +148,7 @@ export class Form{
 		
 		// Перебираем все поля ввода
 		for (let i = 0; i < elements.length; i++) {
-			// console.dir(elements[i]);
+
 			// Если элемент формы не имеет атрибута 'ignore'-- заполняем объект, если атрибут имеется -- игнорируем заполнения объекта
 			if (elements[i].hasAttribute('ignore') == false) {
 
@@ -268,7 +268,6 @@ export class Form{
 		
 		let counterOfInvalid = 0, // Счетчик полей, которые не прошли валидацию
 			elements = this.currentForm.elements; // Список элементов формы
-			console.log(elements);
 			
 		for (let i = 0; i < elements.length; i++) {
 
