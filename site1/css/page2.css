@@ -44,9 +44,10 @@ header{
 }
 
 nav{
-    /* padding: 40px; */
+    padding: 6px;
     height: 30px;
     top: 40px;
+    height: 50px;
 }
 
 .ul1 li{
