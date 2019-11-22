@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Верстка страницы по шаблону stickers (на основе блочных элементов)</title>
+    <link rel="stylesheet" href="../../css/layout_variants.css">
+    <style>
+         body{
+            margin: 10px 10px 0px 3px;
+        }
+         body::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header1_block">
+        <div class="divInnerHeader">Id=header1</div>
+    </div>
+
+    <div id="header2_block">
+        <div class="divInnerHeader">Id=header2</div>
+    </div>
+
+    <div id="header3_block">
+        <div class="divInnerHeader">Id=header3</div>
+    </div>
+
+
+    <div id="col1_block">
+        <div class="divInnerCol">Id=col1</div>
+    </div>
+
+    <div id="col2_block">
+        <div class="divInnerCol">Id=col2</div>
+    </div>
+
+    <div id="col3_block">
+        <div class="divInnerCol">Id=col3</div>
+    </div>
+
+</body>
+</html>

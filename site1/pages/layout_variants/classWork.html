@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)file:///F:/HW_5/index.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блочная верстка сайта</title>
+<style>
+
+    .header{
+        height: 200px;
+        background-color: rgb(199, 202, 11);
+    }
+
+    .header  a{
+        color: #d2d3ff;
+        text-decoration: none;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .header  a:hover{
+        color: #ffffff;
+    }
+
+    ul li{
+        display: inline-block;
+    }
+
+    ul{
+        width: 600px;
+        padding: 0;
+        background: rgb(161, 21, 21);
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .main{
+        min-height: 500px;
+        background-color: rgb(56, 161, 56);
+        padding: 15px 30px;
+    }
+
+    .footer{
+        height: 100px;
+        background-color: rgb(66, 66, 196);
+    }
+
+    .outer-div{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .div-wrapper{
+        margin: 0 auto;
+        width: 850px;
+    }
+
+    .div-wrapper::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .inner-div-1, .inner-div-2, .inner-div-3,.inner-div-4{
+        height: 150px;
+    }
+
+    .inner-div-1, .inner-div-2, .inner-div-3{
+        width: 150px;
+        margin-left: 100px;
+        float: left;
+    }
+
+    .inner-div-1{
+        background-color: lightblue;
+    }
+
+    .inner-div-2{
+        background-color: olive;
+    }
+
+    .inner-div-3{
+        background-color: orange;
+    }
+
+    .inner-div-4{
+        width: 800px;
+        background-color: pink;
+        margin: 20px auto 0;
+        clear: both;
+        position: relative;
+    }
+
+</style></head>
+
+<body>
+
+    <div class="header">
+        <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Портфолио</a></li>
+            <li><a href="#">Галлерея</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam amet, labore animi quia repellat modi natus non? Dolores natus illum dolorum earum minus libero, consequuntur fuga aut vitae! Eius, numquam.
+            Magnam dicta labore quidem nobis nam. Reprehenderit ut quidem laboriosam itaque officia, praesentium corporis est cupiditate consequuntur esse magnam. Totam cumque laboriosam quaerat esse ipsa reiciendis, aliquam repudiandae eveniet accusantium.
+            Id nemo harum neque quos nulla maiores vero, iste odio optio numquam repudiandae a consequuntur fugit libero cumque quae esse non eligendi vel nisi eveniet iure? Mollitia facilis eos repellendus!
+            Sed similique deserunt provident iusto rerum rem tenetur veniam, fugiat perspiciatis eos possimus recusandae ab, in corporis officia. Velit consequatur aliquid consectetur qui ullam minima dignissimos asperiores quae deserunt quaerat.
+            Dignissimos, possimus dicta nostrum atque cumque voluptas molestiae voluptatum nam ipsam ab non culpa blanditiis deserunt eos facilis tempore provident sequi animi laboriosam nulla dolorum ad inventore nemo consequuntur. Quam?
+            Dolores ullam enim neque! Placeat ipsam accusamus quam velit facere quidem qui doloribus fuga sed ratione, doloremque in repellendus sequi tenetur, recusandae excepturi? Recusandae aperiam itaque, natus temporibus cum magni?
+            Voluptates, odit autem quae, laudantium, quo excepturi atque iusto fuga ipsam velit magnam commodi ab pariatur esse praesentium harum. Dolores doloribus porro modi ad tenetur doloremque eveniet deleniti inventore tempora.
+            Accusamus atque libero, cupiditate, quos veniam voluptatem deserunt ea dignissimos error suscipit fugiat soluta nesciunt, aperiam optio id quis beatae neque tempore fuga! Corrupti, mollitia! Corporis in dolorum vel dolorem.
+
+        </p> 
+
+        <div class="outer-div">
+            <div class="div-wrapper">
+                <div class="inner-div-1"></div>
+                <div class="inner-div-2"></div>
+                <div class="inner-div-3"></div>
+            </div>
+            
+            <div class="inner-div-4"></div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+</body></html>

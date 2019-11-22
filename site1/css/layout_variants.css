@@ -1,0 +1,178 @@
+/* 
+СОДЕРЖАНИЕ
+
+1. Доп. задание — Создайте на странице 10 параграфов зеленого цвета, размером 100рх х 100рх. Задайте им зелёный цвет 
+и расположите горизонтально друг за другом.
+
+2. Задание 2 — Сверстайте структуру HTML страницы по шаблону block в папке с домашним заданием. 
+
+3. Задание 3 — Реализуйте разметку, подобную изображению stickers в папке с домашними заданиями. 
+
+*/
+
+
+/* 
+1. Доп. задание — Создайте на странице 10 параграфов зеленого цвета, размером 100рх х 100рх. Задайте им зелёный цвет 
+*/
+
+.div1{
+    width: 100px;
+    height: 100px;
+    float: left;
+    background-color: green;
+    margin: 2px;
+    color: aliceblue;
+    text-align: center;
+    /* display: block; */
+}
+
+/* 
+2. Задание 2 — Сверстайте структуру HTML страницы по шаблону block в папке с домашним заданием.  
+*/
+body{
+    margin: 0;
+}
+
+#head{
+    width: 100%;
+    height: 100px;
+    background-color: cyan;
+}
+
+.main1{
+    width: 100%;
+    height: 45px;
+    background-color:lightcoral;
+    float: left;
+}
+
+.main2{
+    width: 20%;
+    min-height: 500px;
+    background-color:lightgreen;
+    float: left;
+}
+
+.main3{
+    width: 80%;
+    min-height: 500px;    background-color:lightgray;
+    float: left;
+}
+#footer{
+    width: 100%;
+    height: 80px;
+    background-color: navy;
+    clear: both;
+    color: white;
+}
+
+
+/* 
+3. Задание 3 — Реализуйте разметку, подобную изображению stickers в папке с домашними заданиями. 
+
+Ниже заданы стили для табличного типа сайта с названием "Task3_table_page.html"*/
+
+table{
+    width: 100%;
+    min-height: 700px;
+    border: 0;
+    color: white;
+    border-collapse: separate;
+    border-spacing: 5px;
+    font-family: sans-serif;
+}
+
+#header1_table, #header2_table, #header3_table{
+    height: 100px;
+    font-size: 3em;
+    border: 3px solid #376092;
+}
+#header1_table{
+    background-color:#984807 ;
+}
+#header2_table{
+    background-color:#77933C;
+}
+#header3_table{
+    background-color:#376092;
+}
+#col1_table, #col2_table, #col3_table{
+    border-spacing: 2px;
+    text-align: center;
+    vertical-align: top;
+    font-size: 5em;   
+    color: black;  
+    border: 3px solid #376092;
+}
+#col1_table{
+    background-color:#FAC090;
+}
+#col2_table{
+    background-color:#C3D69B;
+}
+#col3_table{
+    background-color:#95B3D7;
+}
+
+/* Ниже заданы стили для блочного типа сайта с названием "Task3_block_page.html"*/
+#header1_block, #header2_block, #header3_block,#col1_block, #col2_block, #col3_block{
+    width: 32%;
+    margin: 0px 5px 5px;
+    float: left;
+    border: 3px solid #376092;
+    text-align: center;
+}
+
+#header1_block, #header2_block, #header3_block {
+    height: 100px;
+    font-size: 2.3vw;
+    color: white;
+}
+
+#header1_block{
+    background-color:#984807 ;
+}
+
+#header2_block{
+    background-color:#77933C;
+}
+
+#header3_block{
+    background-color:#376092;
+}
+
+.divInnerHeader{
+    position: relative;
+    height: 3rem;
+    top: 25%;
+    bottom: auto;
+    margin: 5px;
+}
+
+#col1_block, #col2_block, #col3_block {
+    color: black; 
+    font-size: 5vw;
+    border-spacing: 2px;
+    min-height: 500px;
+    vertical-align: top;
+}
+
+#col1_block{
+    clear: both;
+    background-color:#FAC090;
+}
+
+#col2_block{
+    background-color:#C3D69B;
+}
+
+#col3_block{
+    background-color:#95B3D7;
+}
+.divInnerCol{
+    position: relative;
+    height: 5rem;
+    margin: 5px;
+}
+
+/* Для сайта на основе Bootstrap 4 все стили прописаны в самом HTML документе с названием "Task3_bootstrap4_page.html" */
