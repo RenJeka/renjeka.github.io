@@ -1,0 +1,130 @@
+/* 1.GENERAL */
+
+body {
+    margin: 0;
+}
+
+
+/* 2. HEADER */
+
+header {}
+
+nav {
+    min-height: 70px;
+    background-color: #ddd;
+}
+
+.innerNav {
+    float: left;
+}
+
+ul {
+    margin: 0;
+}
+
+.innerNav li {
+    float: left;
+    position: relative;
+    padding: 15px;
+    /* display: inline; */
+    list-style-type: none;
+}
+
+.innerNav li:hover {
+    background-color: #ccc;
+}
+
+.logo {
+    background-image: url(../img/simple_landing/logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    float: right;
+    position: relative;
+    right: 0;
+    width: 150px;
+    height: 70px;
+    /* text-align: center;
+    background-color: #90EE90; */
+}
+
+
+/* .logo img {
+    text-align: center;
+    position: relative;
+    height: 100%;
+} */
+
+
+/* 3.MAIN */
+
+main {
+    margin: 10px 0;
+    min-height: 600px;
+}
+
+main::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.sidebar {
+    box-sizing: border-box;
+    float: left;
+    min-height: 100px;
+    background-color: #FFD700;
+    width: 25%;
+}
+
+.sidebar ul {
+    margin: 15px 0;
+}
+
+.sidebar li {
+    font-size: 1.25em;
+    line-height: 1.6;
+}
+
+article {
+    margin-left: 10px;
+    box-sizing: border-box;
+    float: left;
+    min-height: 600px;
+    width: 65%;
+    border: 3px solid lightgrey;
+    border-radius: 20px;
+}
+
+.innerArticle {
+    padding: 20px 30px;
+}
+
+.h3-1 {
+    font-size: 2em;
+}
+
+img.fig {
+    float: right;
+    width: 200px;
+}
+
+img.fig2 {
+    float: left;
+    width: 200px;
+}
+
+
+/* 4.FOOTER */
+
+footer {
+    /* clear: both; */
+    height: 100px;
+    background-color: #FFA500;
+    margin: 10px 0;
+}
+
+.innerFooter {
+    float: left;
+    position: relative;
+    margin: 45px 30px;
+}

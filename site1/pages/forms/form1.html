@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма 1. Домашнее задание</title>
+    <style>
+        .wrappedDiv {
+            width: 500px;
+            margin: 0 auto;
+        }
+        
+        legend {
+            color: navy;
+            font-weight: bold;
+            border: 0;
+        }
+        
+        label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: inline-block;
+            width: 125px;
+        }
+        
+        .label-bold {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="" method="GET" target="_blank">
+
+        <div class="wrappedDiv">
+            <fieldset>
+                <legend>Personal information</legend>
+
+                <p>
+                    <label for="fName" class="label-bold">* First name</label>
+                    <input type="text" name="fName" id="fName" required>
+                </p>
+                <p>
+                    <label for="mName">Middle name</label>
+                    <input type="text" name="mName" id="mName">
+                </p>
+                <p>
+                    <label for="lName" class="label-bold">* Last name</label>
+                    <input type="text" name="lName" id="lName" required>
+                </p>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Address</legend>
+
+                <p>
+                    <label for="adr">Address</label>
+                    <input type="text" name="address" id="adr">
+                </p>
+
+                <p>
+                    <label for="sot">City or Town </label>
+                    <input type="text" name="sot" id="sot">
+                </p>
+
+                <p>
+                    <label for="state">State</label>
+                    <select name="state" id="state">
+                        <option selected disabled>Choose a State</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IA">Iowa</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                    </select>
+
+                </p>
+
+                <p>
+                    <label for="zip" class="label-bold">* Zip code</label>
+                    <input type="text" name="zipCode" id="zip" required maxlength="5" pattern="[0-9]{5}">
+                </p>
+
+            </fieldset>
+
+            <p>
+                <input type="submit" value="Отправить">
+            </p>
+        </div>
+
+    </form>
+</body>
+
+</html>
