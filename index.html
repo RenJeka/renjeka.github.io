@@ -8,6 +8,118 @@
 	<title>Portfolio</title>
 </head>
 <body>
+
+	<!-- ========== Начало шаблона ========== -->
+	<template id="template-card">
+		<!-- ----- Начало стилей шаблона -----  -->
+		<style>
+
+			#slot-link{
+				display: none;
+			}
+
+			.item-card {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+					-ms-flex-flow: column;
+						flex-flow: column;
+				-webkit-box-pack: start;
+					-ms-flex-pack: start;
+						justify-content: flex-start;
+				width: 310px;
+				height: 450px;
+				background-color: rgba(255, 255, 240, 0.7);
+				margin: 0 25px 25px;
+				border-radius: 3px;
+				padding: 0 10px 10px;
+				-webkit-box-align: center;
+					-ms-flex-align: center;
+				align-items: center;
+			}
+
+
+			.item-card .item {
+				width: 300px;
+				height: 200px;
+				background-color: #a8a8a8;
+				margin: 10px 0;
+				-webkit-box-align: center;
+					-ms-flex-align: center;
+				align-items: center;
+				text-align: center;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-pack: center;
+					-ms-flex-pack: center;
+				justify-content: center;
+				background-position: center;
+				background-size: cover;
+			}
+
+			.item-card .item:hover {
+				-webkit-box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
+				box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
+				cursor: pointer;
+			}
+
+			.item-card .item:active {
+				width: 300px;
+				height: 200px;
+				background-color: #d6d6d6;
+			}
+			
+			.item-card h3 {
+				text-align: center;
+				color: #1c92d2;;
+			}
+			.item-card h3:hover {
+				filter: brightness(1.5) drop-shadow(0px 0px 2px blue);
+				
+			}
+
+			.item-card .card-discription {
+				width: 100%;
+				height: 170px;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-ms-flex-wrap: wrap;
+					flex-wrap: wrap;
+				-webkit-box-pack: start;
+					-ms-flex-pack: start;
+				justify-content: flex-start;
+				overflow-y: scroll;
+			}
+
+		</style>
+		<!-- ----- Конец стилей шаблона -----  -->
+
+		<div class="item-card">
+
+			<slot name="slot-link" id="slot-link"></slot>
+
+			<slot name="slot-image" id="slot-image" class="item"></slot>
+
+			<h3>
+				<slot name="slot-name" id="slot-name"></slot>
+			</h3>
+
+			<slot name="slot-description" class="card-discription"></slot>
+
+		</div><!-- .item -->
+
+
+
+
+	</template>
+	<!-- ========== Конец шаблона ========== -->
+
+
+	<!-- ============ НАЧАЛО САЙТА ============ -->
 	<div class="container">
 		<div class=" container-inner">
 			<div class="top-text">
@@ -18,7 +130,20 @@
 			<div class="container-items">
 
 				<h2>Мои полнеценные проекты</h2>
-				
+
+				<!-- ====== КАСТОМНЫЙ ЭЛЕМЕНТ ======-->
+				<card-element>
+
+					<span slot="slot-link">site2/index.html</span>
+					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/thumbnail-2.jpg"></span>
+					<span slot="slot-name" >Лендинг #1</span>
+					<span slot="slot-description">
+						Одностраничный сайт-лендинг. Создавался на чистом HTML5 и CSS3 без использования JavaScript. Мой первый полноценный проэкт. Создание сайта заняло несколько дней.
+					</span>
+					
+				</card-element>
+				<!-- ====== КАСТОМНЫЙ ЭЛЕМЕНТ ======-->
+
 				<div class="item-card">
 
 					<div class="item" data-href="site2/index.html" data-bg="../img/thumbnailSiteImages/thumbnail-2.jpg">
@@ -83,6 +208,62 @@
 			<img src="img/Li_icon-w.png" alt="Li-icon" data-href="https://www.linkedin.com/in/yevheniipetrushenko">
 		</div>
 	</footer>
-<script src="js/main.js"></script>
+
+	<!-- ============ КОНЕЦ САЙТА ============ -->
+
+<!-- СКРИПТ для WEB COMPONENTS -->
+<script>
+	window.addEventListener("load", ()=>{
+	
+
+		class CardElement extends HTMLElement {
+
+			constructor() {
+				super();
+			}
+
+			connectedCallback(){
+
+				let templateCard 	= document.querySelector("#template-card"),
+					cloneTemplate 	= document.importNode(templateCard.content, true),
+					shadowRoot		= this.attachShadow({mode:"open"});
+
+				shadowRoot.appendChild(cloneTemplate);
+				// Конец стандартной настройки кастомного элемента----------------------
+
+				let slotLink 				 = shadowRoot.querySelector("#slot-link"), 
+					slotLinkAssignedElement  = slotLink.assignedElements()[0],
+					cardLinkTo				 = slotLinkAssignedElement.innerHTML, // Ссылка для перехода на определенный сайт
+					slotImage				 = shadowRoot.querySelector("#slot-image"), 
+					bgPath					 = slotImage.assignedElements()[0].dataset.bg, // путь к изображению в карточке.
+					slotName				 = shadowRoot.querySelector("#slot-name");
+
+				// Обработчики событий по нажатию на необходимые элементы
+				slotImage.addEventListener("click", ()=>{
+					location.href = cardLinkTo;
+				});
+				slotName.addEventListener("click", ()=>{
+					location.href = cardLinkTo;
+				});
+
+				if (bgPath) {
+			
+					let itemBgImage = bgPath.substr(1, bgPath.length -1); // Парсим строку, чтобы избавиться от кавычек, чтобы потом поместить его как фон для 
+					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // Помеще
+					// items[i].style.backgroundImage = "url("+items[i].dataset.bg+");";
+				
+				}
+				
+				
+			}
+		}
+
+		customElements.define("card-element", CardElement);
+
+	})
+</script>
+
+<script src="dist/main.js"></script>
+
 </body>
 </html>
