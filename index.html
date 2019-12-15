@@ -40,7 +40,6 @@
 				align-items: center;
 			}
 
-
 			.item-card .item {
 				width: 300px;
 				height: 200px;
@@ -95,6 +94,16 @@
 				overflow-y: scroll;
 			}
 
+			@media screen and (max-width: 400px){
+				.item-card {
+					margin-left:0;
+					margin-right:0;
+
+					box-sizing: border-box;
+
+				}
+			}
+
 		</style>
 		<!-- ----- Конец стилей шаблона -----  -->
 
@@ -131,7 +140,6 @@
 
 				<h2>Мои полнеценные проекты</h2>
 
-				<!-- ====== КАСТОМНЫЙ ЭЛЕМЕНТ ======-->
 				<card-element>
 
 					<span slot="slot-link">site2/index.html</span>
@@ -142,47 +150,29 @@
 					</span>
 					
 				</card-element>
-				<!-- ====== КАСТОМНЫЙ ЭЛЕМЕНТ ======-->
+				<card-element>
 
-				<div class="item-card">
-
-					<div class="item" data-href="site2/index.html" data-bg="../img/thumbnailSiteImages/thumbnail-2.jpg">
-						<!-- <span>Сайт №1</!-->
-					</div>
-					<h3><a href="site2/index.html">Лендинг #1</a></h3>
-					<p>
-						Одностраничный сайт-лендинг. Создавался на чистом HTML5 и CSS3 без использования JavaScript. Мой первый полноценный проэкт. Создание сайта заняло несколько дней.
-					</p>
-
-				</div><!-- .item -->
-				
-
-				<div class="item-card">
-
-					<div class="item" data-href="site3/index.html"  data-bg="../img/thumbnailSiteImages/thumbnail-3.jpg">
-					</div>
-					<h3><a href="site3/index.html">Лендинг #2</a></h3>
-					<p>
+					<span slot="slot-link">site3/index.html</span>
+					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/thumbnail-3.jpg"></span>
+					<span slot="slot-name" >Лендинг #2</span>
+					<span slot="slot-description">
 						Одностраничный сайт-лендинг. Создавался на основе готового макета, применяя технологию Flex-box . Использовал HTML5 и CSS3 с помощью препроцессора SASS Также для придания интерактивности кнопкам использовал небольшое количество JavaScript. Есть небольшая адаптивность с помощью медиазапросов.
-					</p>
-
-				</div><!-- .item -->
+					</span>
+						
+				</card-element>
 
 
 				<div class="separator"></div>
 				<h2>Мои учебные проекты</h2>
 
-				
-				<div class="item-card">
-
-					<div class="item" data-href="site1/index.html" data-bg="../img/thumbnailSiteImages/thumbnail-1.png">
-					</div>
-					<h3>Первые шаги</h3>
-					<p>
+				<card-element>
+					<span slot="slot-link">site1/index.html</span>
+					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/thumbnail-1.png"></span>
+					<span slot="slot-name" >Первые шаги</span>
+					<span slot="slot-description">
 						Мой первые шаги в HTML5 и CSS3. Без JavaScript. Только верстка. Только хардкор. =)
-					</p>
-	
-				</div><!-- .item -->
+					</span>		
+				</card-element>
 
 
 			</div><!-- container-items -->
