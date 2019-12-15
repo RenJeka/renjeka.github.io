@@ -1,5 +1,5 @@
 # Убрать из репозитория папку "node_modules"
 
-cbs_app/node_modules/ 
+node_modules/
 *.rar
 *.zip

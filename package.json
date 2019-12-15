@@ -1,0 +1,36 @@
+{
+  "name": "renjeka-portfolio",
+  "version": "1.0.0",
+  "description": "Here is my portfolio",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p",
+    "build-dev": "webpack --mode development",
+    "dev": "webpack-dev-server --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenJeka/renjeka.github.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend"
+  ],
+  "author": "Ren Jeka",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^4.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "bugs": {
+    "url": "https://github.com/RenJeka/renjeka.github.io/issues"
+  },
+  "homepage": "https://github.com/RenJeka/renjeka.github.io#readme"
+}
