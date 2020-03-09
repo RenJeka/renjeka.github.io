@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="css/styly.css">
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>Portfolio</title>
 </head>
 <body>
@@ -63,6 +64,7 @@
 				-webkit-box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
 				box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
 				cursor: pointer;
+				transition: 0.2s;
 			}
 
 			.item-card .item:active {
@@ -77,7 +79,7 @@
 			}
 			.item-card h3:hover {
 				filter: brightness(1.5) drop-shadow(0px 0px 2px blue);
-				
+				cursor: pointer;
 			}
 
 			.item-card .card-discription {
@@ -205,7 +207,6 @@
 <script>
 	window.addEventListener("load", ()=>{
 	
-
 		class CardElement extends HTMLElement {
 
 			constructor() {
@@ -230,21 +231,21 @@
 
 				// Обработчики событий по нажатию на необходимые элементы
 				slotImage.addEventListener("click", ()=>{
-					location.href = cardLinkTo;
+					window.open(cardLinkTo, "_blank");
+
 				});
 				slotName.addEventListener("click", ()=>{
-					location.href = cardLinkTo;
+					window.open(cardLinkTo, "_blank");
 				});
 
 				if (bgPath) {
 			
 					let itemBgImage = bgPath.substr(1, bgPath.length -1); // Парсим строку, чтобы избавиться от кавычек, чтобы потом поместить его как фон для 
-					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // Помеще
+					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // Помещаем картинку в качестве эскиза 
 					// items[i].style.backgroundImage = "url("+items[i].dataset.bg+");";
 				
 				}
-				
-				
+
 			}
 		}
 
