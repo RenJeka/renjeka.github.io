@@ -528,19 +528,24 @@ h1 span {
 }
 
 .input {
-    padding: 0;
     margin: 0;
-    font-family: 'Open Sans';
-    font-weight: 400;
-    font-size: 16px;
     padding: 0 40px;
+    box-sizing: border-box;
     border: none;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 16px;
     color: #585858;
+}
+
+.input:focus{
+    outline: none;
+    border: 1.5px solid rgba(88, 88, 88, 0.1);
 }
 
 .input.email {
@@ -551,14 +556,14 @@ h1 span {
 
 .input.name {
     height: 72px;
-    width: 35%;
+    width: 47%;
     float: left;
     background-color: #e5e5e5;
 }
 
 .input.email2 {
     height: 72px;
-    width: 35%;
+    width: 47%;
     float: right;
     background-color: #e5e5e5;
 }
@@ -632,6 +637,8 @@ h1 span {
 
 .textarea:focus {
     padding: 30px 60px;
+    outline: none;
+    border: 1.5px solid rgba(88, 88, 88, 0.1);
 }
 
 .contactInfo-conteiner {
@@ -682,7 +689,7 @@ footer::after {
 }
 
 .fotterWrapper {
-    width: 1280px;
+    width: 100%;
     padding: 0 18px;
     margin: 0 auto;
     box-sizing: border-box;
