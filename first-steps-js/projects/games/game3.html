@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Example</title>
+	<style>
+
+		h3{
+			position: absolute;
+			top: 150px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			margin: 0;
+			text-align: center;
+			font-size: 30px;
+			color: rgba(124, 124, 124, 0.2);
+			-webkit-text-stroke: 1px #bbbbbb;
+		}
+		.div1 {
+			width: 100px;
+			height: 100px;
+			position: relative;
+			z-index: 1;
+			
+		}
+
+		.ufo1{
+			background: url('img/UFO_1.png') round;
+		}
+
+		.ufo2{
+			background: url('img/UFO_2.png') round;
+		}
+
+		input {
+			width: 50px;
+			height: 35px;
+			font-size: 20px;
+			margin: 1px 10px;
+		}
+
+		div div {
+			text-align: center;
+			position: relative;
+			z-index: 2;
+		}
+
+		.change-img{
+			z-index: 100;
+			position: absolute;
+			top: 50px;
+			left: 100px;
+			padding: 10px;
+			border: none;
+			outline: none;
+			border-radius: 5px;
+			background-color: rgba(62, 41, 181, 0.7);
+			color: white;
+			transition: 0.3s;
+			
+		}
+		.change-img:hover{
+			transform: scale(1.5);	
+			border: 3px solid rgba(62, 41, 181, 0.25);;
+		}
+
+		.change-img:active{
+			transform: scale(1.4);	
+			background-color: rgba(59, 40, 161, 0.75);
+		}
+	</style>
+</head>
+
+<body>
+	<script src="js/game3.js">
+
+	</script>
+	<button class="change-img" id="changeImg">Поменять корабль</button>
+	<div>
+		<h3>Двигайте летающего завоевателя с помощью стрелок выше</h3> 
+		<div>
+			<input type="button" value="▲" id="btn_top" accesskey="w">
+		</div>
+		<div>
+			<input type="button" value="◄" id="btn_left" accesskey="a">
+			<input type="button" value="►" id="btn_right" accesskey="e">
+		</div>
+		<div>
+			<input type="button" value="▼" id="btn_bottom" accesskey="s">
+		</div>
+		<div class="div1"></div>
+	</div>
+	
+</body>
+
+</html>

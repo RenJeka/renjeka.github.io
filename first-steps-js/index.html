@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Мой Первый Сайт</title>
+    <style>
+
+        h1, h4 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 1.5em 0 ;
+            text-align: center;
+        }
+
+        h4{
+            text-align: left;
+        }
+
+        a{
+            text-decoration: none;
+            color: #0ECCA3;
+        }
+
+        a:hover{
+            color: #2ae7be;
+        }
+
+        body{
+            padding: 2em;
+            width: 900px;
+            height: 20em;
+            background-color: #0E2A36;
+            position: relative;
+            text-align: justify;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            color: #00B988;
+        }
+
+        p{  
+            font-family:Arial, Helvetica, sans-serif;            
+            line-height: 1.5em;
+            text-align-last:center; 
+            text-indent: 1em;
+        }
+
+        li{
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .btn-back{
+            text-align: center;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            font-size: 1rem;
+        }
+        .btn-back a{
+            text-decoration: none;
+        }
+        .btn-back img{
+            width: 40px;
+            height: 40px;
+            display: block;
+            margin: 0 auto;
+        }
+        .btn-back img:hover{
+            filter: brightness(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="btn-back">
+        <a href="../index.html">
+            <img src="btn-back.svg" alt="button back">
+            <span>На главную</span>
+        </a>
+    </div>
+
+
+    <div>
+        <h1>Мои первые шаги в JS!</h1>
+        <p>Сдесь история того, как я осваивал JavaScript</p>  
+    </div>
+
+    <div style="text-align: left;">
+        
+
+        <h4><a href="projects/geolocationSite/geolocation.html">  &#9733 Сайт с элементами геолокации. Привязка Google-карты</a></h4>
+        <h4><a href="projects/canvasImage/canvasImage.html">  &#9733 Рисунок с помощью технологии Canvas</a></h4>
+        <h3> &#9827 Первые игры на JS </h3>
+        <ul>
+            <li><a href="projects/games/game1.html">Отгадай число!</a></li>
+            <li><a href="projects/games/game2.html">Попробуй поймать скидку!</a></li>
+            <li><a href="projects/games/game3.html">Управляй летающей тарелкой!</a></li>
+            <li><a href="projects/games/game4.html">Почтальйон - путешествинник</a></li>
+        </ul>
+    </div>
+    
+</body>
+</html>
