@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Evclid Algoritm</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script> -->
+
+	<style>
+		.top-space {
+			margin-top: 100px;
+		}
+
+		.bottom-space {
+			margin-bottom: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row bottom-space">
+			<div class="col-md-12 col-lg-6 m-auto text-center ">
+				<h1 class="display-4">Алгоритм Эвклида</h1>
+				<h5 class="h5">Этот алгоритм вычисляет Наибольший общий делитель (НОД) среди заданных чисел</h5>
+				<h6 class="h6 text-black-50">НОД — это максимальное целое число, на которое может поделится каждое из Ваших заданных чисел</h6>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-lg-3 m-auto">
+				<h5 class="h5">Введите числа в поля</h5>
+				<form>
+					<div class="form-group">
+						<label for="num1">Введите первое число</label>
+						<input class="form-control" type="text" id="num1">
+						<label for="num2">Введите второе число</label>
+						<input class="form-control" type="text" id="num2">
+						<br>
+						<p class="text-center"><button type="submit" class="btn btn-primary" id="submit"> Вычислить</button></p>
+					</div>
+
+					<div class="form-group">
+						<label for="result">Результат:</label>
+						<label for="result" class="text-black-50">(Каждое из вашех чисел делится на)</label>
+						<input class="form-control" disabled="disabled" id="result">
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script src="algoritm.js"> </script>
+
+</html>
