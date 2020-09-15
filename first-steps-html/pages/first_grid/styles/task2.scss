@@ -1,0 +1,232 @@
+body, html{
+	margin: 0;
+}
+
+.grid{
+	max-width: 1900px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: .75fr 350px .2fr 4fr;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 25px 10px; 
+
+	grid-template-areas: 	"hl nav nav nav "
+							"mi mi mt mt "
+							"hn hn hn hn ";
+                            // "ni"; 
+                            
+}
+
+.header-logo{
+	grid-area: hl;
+	background-image: url("../img/logo-1.png");
+	background-size: contain;
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+.nav{
+	grid-area: nav;
+	align-items: flex-start;
+	justify-content: end;
+	grid-template-columns: repeat(auto-fit,minmax(75px, 130px));
+	display: grid;
+	
+
+	div{	
+		margin-right: 1px;
+		margin-bottom: 1px;
+		font-size: 16px;
+		text-align: center;
+		
+		a{
+			font-size: 18px;
+			color: #fff;
+			text-decoration: none;
+			font-weight: bold;
+			background-color: #009EF5;
+			display: block;
+			padding: 8px 7px ;
+
+
+			&:hover{
+				opacity: .7;
+			}
+			
+			&:active{
+				opacity: .6;
+
+			}
+		}
+	}
+
+	
+}
+
+.main-news-image{
+	grid-area: mi;
+	background-image: url("../img/sport1.jpg");
+	background-size: contain;
+	background-position: top left;
+	background-repeat: no-repeat;
+	//width: 500px;
+
+	img{
+		width: 100%;
+		// object-fit: contain;
+	}
+}
+
+
+.main-news-text{
+	grid-area: mt;
+
+	height: 340px;
+	overflow-y:scroll ;
+	padding: 0 20px;
+	h2{
+		margin-top: 5px;
+		font-size: 2em;
+	}
+	
+	p{
+		font-size: 1.5rem;
+
+	}
+}
+
+.header-news{
+	grid-area: hn;
+	font-size: 2em;
+	padding: 0 20px;
+	align-self: center;
+}
+
+.news-item{
+	//TODO  Спросить, как правильно реализовать это "ni" ?
+	// grid-area: ni;
+
+	display: grid;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+	h4, p, time, a{
+		padding:0 15px;
+
+	}
+
+	h4{
+		font-size: 1.5em;
+		margin:  15px 0;
+	}
+	img{
+		width: 100%;
+
+		
+	}
+	a{
+		color: black;
+		text-decoration: none;
+		font-size: 1em;
+		font-weight: bold;
+		width: 90px;
+		min-height: 10px;
+		border-radius: 15px;
+		padding: 5px 15px 5px 20px;
+		margin-left: 10px;
+		text-align: center;
+
+		&:hover{
+			opacity: .8;
+			transform: scale(1.05);
+		}
+	}
+
+	&:hover{
+		opacity: .9;
+		box-shadow: 0 0 15px black;
+
+		a{
+
+			box-shadow: 0 0 15px black;
+			background-color: #ccc;
+		}
+	}
+}
+
+@media(max-width:800px){
+
+	.grid{
+		grid-template-rows: 1fr .5fr 3fr 2fr;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: 	"hl hl"
+		"nav nav"
+		"mi mi"
+		"mt mt"
+		"hn hn";
+		
+	}
+	.main-news-image{
+		// TODO Как сделать, чтобы  при уменьшении размера экрана блок с картинкой динамически подстраивался по высоте?
+		background-position: top center;
+		// background-size: cover;
+	}
+	.main-news-text{
+	
+		height: 250px;
+
+		h2{
+			font-size: 1.75rem;
+		}
+		
+		p{
+			font-size: 1.15rem;
+	
+		}
+
+	}
+	.nav{
+		justify-content: center;
+	}
+
+}
+
+// @media(max-width:700px){
+// 	.grid{
+// 		grid-template-rows: 1fr .5fr 2fr 2fr;
+		
+// 	}
+// }
+
+
+
+@media(max-width:410px){
+
+	.grid{
+		grid-template-rows: .5fr 1fr 1fr 1.25fr .3fr;
+		grid-template-columns: 1fr;
+		grid-template-areas: 	"hl "
+								"nav"
+								"mi"
+								"mt"
+								"hn";
+								
+	}
+	.main-news-image{
+		background-position: top center;
+	}
+
+	.nav{
+		justify-content: center;
+	}
+
+	.news-item{
+		p,time,h4{
+			display: none;
+		}
+		a{
+			margin-top: 10px;
+		}
+
+	}
+
+}

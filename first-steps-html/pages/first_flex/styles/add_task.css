@@ -1,0 +1,293 @@
+
+*{
+	font-family: Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif;
+}
+
+
+html, body{
+	padding: 0;
+	margin: 0;
+}
+
+.container, .article, .body{
+	display: flex;
+	width: 100%;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+
+/* ==============HEADER================= */
+
+.header{
+	width: 100%;
+	/* min-height: 200px; */
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	background-color: lightgray;
+	background-image: url("../img/header-2.jpg");
+	background-position: center;
+	background-repeat: no-repeat;	
+	background-size:  cover;
+}
+
+.header .main-news{
+	width: 100%;
+	height: 30%;
+	background-color: rgba(255, 255, 255, .7);
+	
+	display: flex;
+	flex-flow: row 	;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px ;
+	box-sizing: border-box;
+}
+.main-news div span{
+	color: #761312;
+	font-weight: bold;
+	font-size: 1.4em;
+}
+
+.main-news-text{
+	width: 90%;
+	height: 100%;
+	font-size: 0.9rem;
+	overflow-y: scroll;
+}
+
+.main-news-text p{
+	margin: 0;
+	margin-top: 8px;
+	font-size: 1.2em;
+}
+
+.btn{
+	width: 150px;
+	height: 50%;
+	background-color: brown;
+	border: 1px solid rgb(145, 36, 36);
+	color: #fff;
+	font-size: 1.1em;
+}
+/* ==============BODY================= */
+
+
+.body{
+	/* flex-wrap: nowrap; */
+	padding-top: 20px;
+	background-color: #151515;
+}
+.section, .nav{
+
+	min-height: 300px;
+}
+.section{
+	width: 65%;
+	background-color: #fff;
+}
+
+
+
+.nav{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: left;
+	align-content: flex-start;
+	width: 35%;
+	background-color: #E9DECC;
+	color: #761312;
+}
+
+
+.nav-item-block{
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	min-width: 20%;
+	min-height: 100px;
+	margin: 10px;
+	
+	/* box-sizing:initial; */
+}
+.login-item{
+	justify-content: flex-end;
+	height: 175px;
+	
+}
+.nav-item-block h4{
+	font-weight: bold;
+	margin: 10px 0;
+	font-size: 18px;
+}
+.nav-item-block label{
+	font-weight: bold;
+	margin-top: 10px;
+	color: black;
+}
+.nav-item-block label span{
+	font-weight: bold;
+	color: #761312;
+}
+.nav-item-block input{
+	width: 140px;
+	height: 25px;
+	border: 0;
+}
+.nav-item-block a{
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	margin-top: 10px;
+	color: #761312;
+
+}
+
+
+.btn-login{
+	width: 90px;
+	height: 35px;
+	margin-top: 20px;
+}
+
+.navigation{
+	width: 100%;
+}
+.navigation details{
+	color: black;
+}
+
+.navigation span{
+	color: #761312;
+}
+
+.navigation ul{
+	padding-left: 20px;
+}
+
+.article{
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+	min-height: 150px;
+}
+
+.article-name{
+
+}
+
+.article-name h4{
+	padding: 0;
+	margin: 15px 15px 5px;
+	color: #761312;
+	text-transform: capitalize;
+	font-size: 1.2em;
+}
+
+.article-name p{
+	margin: 5px 15px;
+	font-style: italic;
+	font-size: .9em;
+	color: gray;
+
+}
+
+
+.article-body{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	padding: 10px 0;
+}
+
+.thumbnail{
+	width: 30%;
+	min-height: 150px;	
+	display: flex;
+	align-items: flex-start;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.thumbnail img{
+	width: 100%;
+}
+
+.article-text{
+
+	width: 70%;
+	box-sizing: border-box;
+	padding: 5px 10px ;
+	max-height: 200px;
+	overflow: scroll;
+	
+}
+
+.article-text p{
+	margin: 0;
+	font-size: .9em;
+}
+
+
+.status-bar{
+	width: 95%;
+	min-height: 10px;
+	background-color: #761312;
+	align-self: flex-start;
+	padding: 6px;
+	font-size: 0.75rem;
+}
+
+.status-bar a{
+	color:  #fff;
+	margin-left: 10px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.status-bar span{
+	color:  #fff;
+	margin-left: 10px;
+}
+
+@media screen and (max-width:800px){
+
+	.body{
+		flex-direction: column;
+	}
+	.section{
+		width: 100%;
+	}
+	.nav{
+		width: 100%;
+		flex-flow: row wrap;
+	}
+}
+@media screen and (max-width:500px){
+
+	.article-body{
+		flex-flow: column nowrap;
+		align-items: center;
+		padding: 8px 15px;
+		
+	}
+
+	.thumbnail{
+		width: 100%;
+		padding: 0;
+	}
+
+	.article-text{
+		width: 100%;
+		padding: 20px 0;
+	}
+
+	.main-news div span{
+		font-size: 1em;
+	}
+
+	.main-news-text p{
+		font-size: .9em;
+	}
+}

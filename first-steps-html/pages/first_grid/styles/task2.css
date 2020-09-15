@@ -1,0 +1,217 @@
+body, html {
+  margin: 0;
+}
+
+.grid {
+  max-width: 1900px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: .75fr 350px .2fr 4fr;
+      grid-template-rows: .75fr 350px .2fr 4fr;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px 10px;
+      grid-template-areas: "hl nav nav nav " "mi mi mt mt " "hn hn hn hn ";
+}
+
+.header-logo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: hl;
+  background-image: url("../img/logo-1.png");
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.nav {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
+  grid-area: nav;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -ms-grid-columns: (minmax(75px, 130px))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(75px, 130px));
+  display: -ms-grid;
+  display: grid;
+}
+
+.nav div {
+  margin-right: 1px;
+  margin-bottom: 1px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.nav div a {
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #009EF5;
+  display: block;
+  padding: 8px 7px;
+}
+
+.nav div a:hover {
+  opacity: .7;
+}
+
+.nav div a:active {
+  opacity: .6;
+}
+
+.main-news-image {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: mi;
+  background-image: url("../img/sport1.jpg");
+  background-size: contain;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.main-news-image img {
+  width: 100%;
+}
+
+.main-news-text {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 2;
+  grid-area: mt;
+  height: 340px;
+  overflow-y: scroll;
+  padding: 0 20px;
+}
+
+.main-news-text h2 {
+  margin-top: 5px;
+  font-size: 2em;
+}
+
+.main-news-text p {
+  font-size: 1.5rem;
+}
+
+.header-news {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: hn;
+  font-size: 2em;
+  padding: 0 20px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.news-item {
+  display: -ms-grid;
+  display: grid;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.news-item h4, .news-item p, .news-item time, .news-item a {
+  padding: 0 15px;
+}
+
+.news-item h4 {
+  font-size: 1.5em;
+  margin: 15px 0;
+}
+
+.news-item img {
+  width: 100%;
+}
+
+.news-item a {
+  color: black;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  width: 90px;
+  min-height: 10px;
+  border-radius: 15px;
+  padding: 5px 15px 5px 20px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.news-item a:hover {
+  opacity: .8;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.news-item:hover {
+  opacity: .9;
+  -webkit-box-shadow: 0 0 15px black;
+          box-shadow: 0 0 15px black;
+}
+
+.news-item:hover a {
+  -webkit-box-shadow: 0 0 15px black;
+          box-shadow: 0 0 15px black;
+  background-color: #ccc;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    -ms-grid-rows: 1fr .5fr 3fr 2fr;
+        grid-template-rows: 1fr .5fr 3fr 2fr;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "hl hl" "nav nav" "mi mi" "mt mt" "hn hn";
+  }
+  .main-news-image {
+    background-position: top center;
+  }
+  .main-news-text {
+    height: 250px;
+  }
+  .main-news-text h2 {
+    font-size: 1.75rem;
+  }
+  .main-news-text p {
+    font-size: 1.15rem;
+  }
+  .nav {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (max-width: 410px) {
+  .grid {
+    -ms-grid-rows: .5fr 1fr 1fr 1.25fr .3fr;
+        grid-template-rows: .5fr 1fr 1fr 1.25fr .3fr;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: "hl " "nav" "mi" "mt" "hn";
+  }
+  .main-news-image {
+    background-position: top center;
+  }
+  .nav {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .news-item p, .news-item time, .news-item h4 {
+    display: none;
+  }
+  .news-item a {
+    margin-top: 10px;
+  }
+}
+/*# sourceMappingURL=task2.css.map */
