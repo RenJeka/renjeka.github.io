@@ -10,9 +10,10 @@
 </head>
 <body>
 
-	<!-- ========== Начало шаблона ========== -->
+	<!-- ========== Web components template start ========== -->
 	<template id="template-card">
-		<!-- ----- Начало стилей шаблона -----  -->
+
+		<!-- ----- Web components template styles start -----  -->
 		<style>
 
 			#slot-link{
@@ -109,8 +110,9 @@
 			}
 
 		</style>
-		<!-- ----- Конец стилей шаблона -----  -->
+		<!-- ----- Web components template styles end -----  -->
 
+		<!-- Card template start -->
 		<div class="item-card">
 
 			<slot name="slot-link" id="slot-link"></slot>
@@ -123,16 +125,14 @@
 
 			<slot name="slot-description" class="card-discription"></slot>
 
-		</div><!-- .item -->
-
-
-
+		</div>
+		<!-- Card template end -->
 
 	</template>
-	<!-- ========== Конец шаблона ========== -->
+	<!-- ========== Web components template end ========== -->
 
 
-	<!-- ============ НАЧАЛО САЙТА ============ -->
+	<!-- ============ Site layout start ============ -->
 	<div class="container">
 		<div class=" container-inner">
 			<div class="top-text">
@@ -262,11 +262,10 @@
 				<img src="img/Li_icon-w.png" alt="Li-icon" data-href="https://www.linkedin.com/in/yevheniipetrushenko">
 			</div>
 		</footer>
-	</div><!-- .container -->
+	</div>
+	<!-- ============ Site layout end ============ -->
 
-	<!-- ============ КОНЕЦ САЙТА ============ -->
-
-<!-- СКРИПТ для WEB COMPONENTS -->
+<!-- Scripts for placing web component -->
 <script>
 	window.addEventListener("load", ()=>{
 	
@@ -283,16 +282,16 @@
 					shadowRoot		= this.attachShadow({mode:"open"});
 
 				shadowRoot.appendChild(cloneTemplate);
-				// Конец стандартной настройки кастомного элемента----------------------
+				// End of standard custom element setup----------------------
 
 				let slotLink 				 = shadowRoot.querySelector("#slot-link"), 
 					slotLinkAssignedElement  = slotLink.assignedElements()[0],
-					cardLinkTo				 = slotLinkAssignedElement.innerHTML, // Ссылка для перехода на определенный сайт
+					cardLinkTo				 = slotLinkAssignedElement.innerHTML, // Link to go to a specific site
 					slotImage				 = shadowRoot.querySelector("#slot-image"), 
-					bgPath					 = slotImage.assignedElements()[0].dataset.bg, // путь к изображению в карточке.
+					bgPath					 = slotImage.assignedElements()[0].dataset.bg, //path to the image in the card.
 					slotName				 = shadowRoot.querySelector("#slot-name");
 
-				// Обработчики событий по нажатию на необходимые элементы
+				// Event handlers for clicking on the required elements
 				slotImage.addEventListener("click", ()=>{
 					window.open(cardLinkTo, "_blank");
 
@@ -303,17 +302,13 @@
 
 				if (bgPath) {
 			
-					let itemBgImage = bgPath.substr(1, bgPath.length -1); // Парсим строку, чтобы избавиться от кавычек, чтобы потом поместить его как фон для 
-					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // Помещаем картинку в качестве эскиза 
+					let itemBgImage = bgPath.substr(1, bgPath.length -1); // We parse the background path to get rid of the quotes so that we can later place it as a background for the card
+					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // placing an image as a background
 					// items[i].style.backgroundImage = "url("+items[i].dataset.bg+");";
-				
 				}
-
 			}
 		}
-
 		customElements.define("card-element", CardElement);
-
 	})
 </script>
 
