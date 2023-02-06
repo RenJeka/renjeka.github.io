@@ -1,0 +1,316 @@
+html, body {
+  margin: 0;
+}
+
+* {
+  font-family: "Segoe UI", "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(to top, #1c92d2, #f2fcfe);
+  background-repeat: repeat;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.container-inner {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 700px;
+  border-radius: 10px;
+  width: 90%;
+}
+.container-inner .top-text {
+  letter-spacing: 4px;
+  word-spacing: 10px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+.container-inner .top-text h1, .container-inner .top-text h2 {
+  padding: 13px;
+}
+.container-inner .container-items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+}
+.container-inner .container-items h2 {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+.container-inner .container-items .separator {
+  width: 80%;
+  height: 2.5px;
+  background-color: rgba(219, 219, 219, 0.7);
+  border-radius: 5px;
+  margin: 25px 0;
+}
+.container-inner .container-items .item-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  width: 310px;
+  background-color: rgba(255, 255, 240, 0.7);
+  margin: 0 25px 25px;
+  border-radius: 3px;
+  padding: 0 10px;
+  align-items: center;
+}
+.container-inner .container-items .item-card h3 {
+  text-align: center;
+}
+.container-inner .container-items .item-card .card-discription {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.container-inner .container-items .item-card .item {
+  width: 300px;
+  height: 200px;
+  background-color: rgb(168, 168, 168);
+  margin: 10px 0;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+}
+.container-inner .container-items .item-card .item span {
+  font-size: 1.5rem;
+  padding: 0 10px;
+}
+.container-inner .container-items .item-card .item:hover {
+  box-shadow: 0 0 10px rgba(134, 134, 134, 0.7);
+  cursor: pointer;
+}
+.container-inner .container-items .item-card .item:active {
+  width: 300px;
+  height: 200px;
+  background-color: rgb(214, 214, 214);
+}
+.container footer {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 150px;
+  color: #fff;
+  margin-top: 15px;
+  background-image: url(../img/footer_bg-2.jpg);
+  background-image: url(../img/footer_3.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px 0;
+}
+.container footer .title {
+  margin: 0;
+  padding-left: 50px;
+  box-sizing: border-box;
+  font-size: 25px;
+  font-weight: bold;
+}
+.container footer .contacts {
+  height: 90%;
+  width: 30%;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+.container footer .contacts h4 {
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+.container footer .contacts p {
+  font-size: 15px;
+  margin: 5px 5px;
+  padding-left: 10px;
+  width: 100%;
+}
+.container footer .contacts p span {
+  margin-left: 10px;
+}
+.container footer .social-icons {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  height: 40%;
+  margin-left: 100px;
+}
+.container footer .social-icons img {
+  height: 85%;
+  margin-left: 20px;
+  transition: 0.2s;
+}
+.container footer .social-icons img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.container footer .social-icons img:active {
+  transform: scale(0.95);
+  cursor: pointer;
+}
+
+.info-icon {
+  display: block;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+}
+.info-icon:hover {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+.info-icon:active {
+  filter: none;
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  width: 30em;
+  max-width: 90%;
+  left: 50%;
+  top: 50%;
+  max-height: 90vh;
+  flex-direction: column;
+  text-align: left;
+  border-radius: 0.5em;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+.modal-visible {
+  display: flex;
+}
+.modal .modal-title {
+  color: #111827;
+  padding: 1.5em 2em;
+  position: relative;
+}
+.modal .modal-title h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: normal;
+}
+.modal .modal-content {
+  border-top: 1px solid #e0e0e0;
+  padding: 2em;
+  overflow: auto;
+}
+.modal .modal-close {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #111827;
+}
+.modal .modal-close svg {
+  display: block;
+  width: 25px;
+  height: 25px;
+  color: #565656;
+}
+
+.modal-overlay {
+  height: 0;
+  position: fixed;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background: rgba(15, 23, 42, 0.8);
+}
+.modal-overlay-visible {
+  opacity: 1;
+  height: auto;
+  transition: opacity 0.3s ease-out;
+}
+
+@media screen and (max-width: 860px) {
+  .container footer {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: stretch;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    color: #fff;
+    margin-top: 15px;
+    padding: 10px 0;
+  }
+  .container footer .title {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 5vw;
+    padding: 0;
+    font-weight: bold;
+  }
+  .container footer .contacts {
+    height: 100px;
+    width: 50%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 0;
+  }
+  .container footer .contacts h4 {
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  .container footer .contacts p {
+    font-size: 2.5vw;
+    margin: 5px 5px;
+    padding-left: 10px;
+    width: 100%;
+  }
+  .container footer .contacts p span {
+    margin-left: 10px;
+  }
+  .container footer .social-icons {
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    justify-content: space-between;
+    height: 100px;
+    width: 15%;
+    margin-left: 20px;
+  }
+  .container footer .social-icons img {
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+    transition: 0.2s;
+  }
+  .container footer .social-icons img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  .container footer .social-icons img:active {
+    transform: scale(0.95);
+    cursor: pointer;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
