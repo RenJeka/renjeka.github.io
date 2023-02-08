@@ -32,7 +32,7 @@
 					-ms-flex-pack: start;
 						justify-content: flex-start;
 				width: 310px;
-				height: 450px;
+				height: 465px;
 				background-color: rgba(255, 255, 240, 0.7);
 				margin: 0 25px 25px;
 				border-radius: 3px;
@@ -81,7 +81,7 @@
 				color: #1c92d2;
 			}
 			.item-card h3:hover {
-				filter: brightness(1.5) drop-shadow(0px 0px 2px blue);
+				filter: brightness(1.5) drop-shadow(0px 0px 1px blue);
 				cursor: pointer;
 			}
 
@@ -97,6 +97,25 @@
 					-ms-flex-pack: start;
 				justify-content: flex-start;
 				overflow-y: auto;
+			}
+
+			.item-card .card-repository-link {
+				width: 100%;
+				display: block;
+				text-align: center;
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+				font-weight: 700;
+				color: #1c92d2;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			.item-card .card-repository-link:hover {
+				filter: brightness(1.3)
+			}
+
+			.item-card .card-repository-link:active {
+				filter: none;
 			}
 
 			@media screen and (max-width: 400px){
@@ -119,12 +138,13 @@
 
 			<slot name="slot-image" id="slot-image" class="item"></slot>
 
-			<h3>
-				<slot name="slot-name" id="slot-name"></slot>
+			<h3 id="slot-name">
+				<slot name="slot-name"></slot>
 			</h3>
 
 			<slot name="slot-description" class="card-discription"></slot>
 
+			<slot name="slot-repository-link" id="slot-repository-link" class="card-repository-link">Github Link</slot>
 		</div>
 		<!-- Card template end -->
 
@@ -315,7 +335,8 @@
 					cardLinkTo				 = slotLinkAssignedElement.innerHTML, // Link to go to a specific site
 					slotImage				 = shadowRoot.querySelector("#slot-image"), 
 					bgPath					 = slotImage.assignedElements()[0].dataset.bg, //path to the image in the card.
-					slotName				 = shadowRoot.querySelector("#slot-name");
+					slotName				 = shadowRoot.querySelector("#slot-name"),
+					slotRepositoryLink		 = shadowRoot.querySelector("#slot-repository-link");
 
 				// Event handlers for clicking on the required elements
 				slotImage.addEventListener("click", ()=>{
@@ -324,6 +345,11 @@
 				});
 				slotName.addEventListener("click", ()=>{
 					window.open(cardLinkTo, "_blank");
+				});
+
+				slotRepositoryLink.addEventListener("click", () => {
+					const repositoryLink = slotRepositoryLink.assignedElements()[0].innerHTML;
+					window.open(repositoryLink, "_blank");
 				});
 
 				if (bgPath) {
