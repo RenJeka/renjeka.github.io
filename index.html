@@ -4,6 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Portfolio">
+	<meta property="og:description"
+		  content="Yevhenii Petrushenko's portfolio. Angular 8+, JavaScript, TypeScript base SPA and websites.">
+	<meta property="og:image" content="http://yevhenii.website/img/portfolio_title.jpg">
+	<meta property="og:url" content="http://yevhenii.website/ ">
+	<meta property="og:site_name" content="Yevhenii's Portfolio.">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 	<title>Portfolio</title>
@@ -16,7 +23,7 @@
 		<!-- ----- Web components template styles start -----  -->
 		<style>
 
-			#slot-link{
+			#slot-link, #slot-repository-link{
 				display: none;
 			}
 
@@ -32,7 +39,7 @@
 					-ms-flex-pack: start;
 						justify-content: flex-start;
 				width: 310px;
-				height: 450px;
+				height: 465px;
 				background-color: rgba(255, 255, 240, 0.7);
 				margin: 0 25px 25px;
 				border-radius: 3px;
@@ -81,7 +88,7 @@
 				color: #1c92d2;
 			}
 			.item-card h3:hover {
-				filter: brightness(1.5) drop-shadow(0px 0px 2px blue);
+				filter: brightness(1.5) drop-shadow(0px 0px 1px blue);
 				cursor: pointer;
 			}
 
@@ -97,6 +104,25 @@
 					-ms-flex-pack: start;
 				justify-content: flex-start;
 				overflow-y: auto;
+			}
+
+			.item-card .repository-link {
+				width: 100%;
+				display: block;
+				text-align: center;
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+				font-weight: 700;
+				color: #1c92d2;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			.item-card .repository-link:hover {
+				filter: brightness(1.3)
+			}
+
+			.item-card .repository-link:active {
+				filter: none;
 			}
 
 			@media screen and (max-width: 400px){
@@ -119,12 +145,13 @@
 
 			<slot name="slot-image" id="slot-image" class="item"></slot>
 
-			<h3>
-				<slot name="slot-name" id="slot-name"></slot>
+			<h3 id="slot-name">
+				<slot name="slot-name"></slot>
 			</h3>
 
 			<slot name="slot-description" class="card-discription"></slot>
-
+			<a class="repository-link" id="repository-link">Github Link</a>
+			<slot name="slot-repository-link" id="slot-repository-link"></slot>
 		</div>
 		<!-- Card template end -->
 
@@ -176,14 +203,16 @@
 					<span slot="slot-description">
 						This is my project on angular. If it does not work, then the hosting was not paid. 
 					</span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/Rijksmuseum</span>
 				</card-element>
 				<card-element>
 					<span slot="slot-link">cbs_app/dist/index.html</span>
 					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/my_library.jpg"></span>
 					<span slot="slot-name" >First SPA "My Library"</span>
 					<span slot="slot-description">
-						Used JQuery, Own Observable pattern and vanilia JavaScript 
+						Used JQuery, Own Observable pattern and vanilia JavaScript
 					</span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/renjeka.github.io/tree/master/cbs_app</span>
 				</card-element>
 
 				<div class="separator"></div>
@@ -197,6 +226,7 @@
 						This is a simple Angular application to show ngrx working. The project used Reducer, Action,
 						Store, Selectors and Effects
 					</span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/Study/tree/master/NgRx/first-app</span>
 				</card-element>
 				<card-element>
 					<span slot="slot-link">http://renjeka-todo-bucket.s3-website.us-east-2.amazonaws.com/</span>
@@ -206,6 +236,7 @@
 						Application written using AWS technologies. The project used 'Lambda function', 'DynamoDB', 'S3
 						bucket Storage', 'API GateWay' and 'IAM'
 					</span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/Study/tree/master/AWS/todo_project</span>
 				</card-element>
 				<card-element>
 					<span slot="slot-link">http://firebase-organizer.s3-website-us-east-1.amazonaws.com/</span>
@@ -215,6 +246,7 @@
 						Simple month planner using FireBase technologies (database). Project based on YouTube lesson.
 						The project used Angular, RxJS, FireBase, MomentJS, pico CSS.
 					</span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/Angular_Projects/tree/master/organiser</span>
 				</card-element>
 
 				<div class="separator"></div>
@@ -231,7 +263,8 @@
 						One page landing site. Created in pure HTML5 and CSS3 without the use of JavaScript. My first
 						full project. The creation of the site took several days.
 					</span>
-					
+					<span slot="slot-repository-link">https://github.com/RenJeka/renjeka.github.io/tree/master/site2</span>
+
 				</card-element>
 				<card-element>
 
@@ -242,7 +275,8 @@
 						One page landing site. It was created on the basis of a ready-made layout using Flex-box
 						technology. Used HTML5 and CSS3 using the SASS preprocessor. Also used a small amount of JavaScript to make the buttons interactive. There is a bit of adaptability with media queries.
 					</span>
-						
+					<span slot="slot-repository-link">https://github.com/RenJeka/renjeka.github.io/tree/master/site3</span>
+
 				</card-element>
 
 
@@ -253,17 +287,19 @@
 					<span slot="slot-name" >First steps in HTML & CSS </span>
 					<span slot="slot-description">
 						My first steps in HTML5 and CSS3. Without JavaScript. Only layout. Only hardcore. =)
-					</span>		
+					</span>
 					<span slot="slot-link">first-steps-html/index.html</span>
 					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/thumbnail-1.png"></span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/renjeka.github.io/tree/master/first-steps-html</span>
 				</card-element>
 				<card-element>
 					<span slot="slot-name" >First steps in JavaScript</span>
 					<span slot="slot-description">
 						My first steps in JavaScript programming. Primitive programs, but I got a lot enjoy!
-					</span>		
+					</span>
 					<span slot="slot-link">first-steps-js/index.html</span>
 					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/thumbnail-4.png"></span>
+					<span slot="slot-repository-link">https://github.com/RenJeka/renjeka.github.io/tree/master/first-steps-js</span>
 				</card-element>
 
 			</div><!-- container-items -->
@@ -311,11 +347,12 @@
 				// End of standard custom element setup----------------------
 
 				let slotLink 				 = shadowRoot.querySelector("#slot-link"), 
-					slotLinkAssignedElement  = slotLink.assignedElements()[0],
-					cardLinkTo				 = slotLinkAssignedElement.innerHTML, // Link to go to a specific site
+					cardLinkTo				 = slotLink.assignedElements()[0].innerHTML, // Link to go to a specific site
 					slotImage				 = shadowRoot.querySelector("#slot-image"), 
 					bgPath					 = slotImage.assignedElements()[0].dataset.bg, //path to the image in the card.
-					slotName				 = shadowRoot.querySelector("#slot-name");
+					slotName				 = shadowRoot.querySelector("#slot-name"),
+					slotRepositoryLink		 = shadowRoot.querySelector("#slot-repository-link"),
+					repositoryLink 			 = shadowRoot.querySelector("#repository-link");
 
 				// Event handlers for clicking on the required elements
 				slotImage.addEventListener("click", ()=>{
@@ -324,6 +361,11 @@
 				});
 				slotName.addEventListener("click", ()=>{
 					window.open(cardLinkTo, "_blank");
+				});
+
+				repositoryLink.addEventListener("click", () => {
+					const link = slotRepositoryLink.assignedElements()[0].innerHTML;
+					window.open(link, "_blank");
 				});
 
 				if (bgPath) {
