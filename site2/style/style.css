@@ -1,9 +1,19 @@
-renjeka.github.io/* GENERAL */
+/* GENERAL */
+
+:root {
+    --basic-width: 1280px;
+}
+
 html{margin: 0;}
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
     color: #585858;
+}
+
+input[type='button'],
+input[type='submit'] {
+    cursor: pointer;
 }
 
 main::after {
@@ -66,7 +76,7 @@ p {
 
 section {
     min-height: 200px;
-    max-width: 1280px;
+    max-width: var(--basic-width);
     box-sizing: border-box;
     margin: 0 auto;
     padding: 110px 18px 110px 17px;
@@ -116,9 +126,15 @@ nav a:hover {
 
 /* HOME SECTION=========== */
 
-.home-conteiner-left {
-    width: 50%;
-    float: left;
+.home-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.home-container-left {
+    width: calc(var(--basic-width) / 2);
+    /* float: left; */
     text-align: justify;
 }
 
@@ -126,21 +142,32 @@ h1 span {
     letter-spacing: 10px;
 }
 
-.home-conteiner-left p {
+.home-container-left p {
     margin: 20px 107px 48px 0;
 }
 
 .home-video {
     width: 550px;
     height: 355px;
+    margin-left: auto;
     position: relative;
-    float: right;
+    overflow: hidden;
+    /* float: right; */
     box-shadow: -10px -7px 80px -8px rgb(160, 160, 160);
-    background-color: #c4c0b1;
+    /* background-color: #c4c0b1; */
+    /* background-image: url('../img/img_1.jpg'); */
 
 }
 
-.videoPlay {
+.home-video-preview {
+    height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video-play-btn {
     width: 75px;
     margin: -35px 0 0 -35px;
     display: block;
@@ -216,52 +243,56 @@ h1 span {
 
 /* PROVIDING SECTION =========*/
 
-.providing-conteiner-left {
+.providing-container {
+    display: flex;
+}
+
+.providing-container-left {
     width: 503px;
     float: left;
     text-align: justify;
 }
 
-.providing-conteiner-left p {
+.providing-container-left p {
     width: 500px;
     margin: 42px 0 51px 0;
     color: black;
 }
 
-.providing-conteiner-rigth {
+.providing-container-rigth {
     width: 615px;
     float: left;
     margin-left: 123px;
 }
 
-.providing-conteiner-rigth::after {
+.providing-container-rigth::after {
     content: "";
     display: block;
     clear: both;
 }
 
-.mini-Conteiner {
+.mini-container {
     float: left;
     width: 290px;
     height: 265px;
     padding: 10px 0 32px 0;
 }
 
-.mini-Conteiner.margin {
+.mini-container.margin {
     margin-left: 34px;
 }
 
-.mini-Conteiner.notPadding {
+.mini-container.notPadding {
     padding: 0;
 }
 
-.mini-Conteiner h4 {
+.mini-container h4 {
     text-transform: none;
     margin-top: 25px;
     margin-bottom: 23px;
 }
 
-.mini-Conteiner p {
+.mini-container p {
     margin: 0;
 }
 
@@ -279,42 +310,42 @@ h1 span {
 
 /* PORTFOLIO SECTION ===== */
 
-.innerConteiner {
+.inner-container {
     width: 40%;
     margin-bottom: 60px;
     margin-top: 0;
 }
 
-.innerConteiner p.narrow {
+.inner-container p.narrow {
     margin: 20px 0 25px 0;
 }
 
-.innerConteiner p.wide {
+.inner-container p.wide {
     margin: 27px 0 30px 0;
 }
 
-.innerConteiner p.superWide {
+.inner-container p.superWide {
     margin: 34px 0 50px 0;
 }
 
-.innerConteiner.center {
+.inner-container.center {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-.innerConteiner.center h2 {
+.inner-container.center h2 {
     text-align: center;
 }
 
-.innerConteiner.left {
+.inner-container.left {
     margin-left: 0;
     margin-right: auto;
     text-align: left;
     margin-bottom: 76px;
 }
 
-.innerConteiner.wide {
+.inner-container.wide {
     width: 732px;
 }
 
@@ -335,7 +366,7 @@ h1 span {
     background-color: red;
 }
 
-.tabConteiner {
+.tab-container {
     width: 80%;
     text-align: center;
     margin: 85px 125px 60px;
@@ -343,7 +374,7 @@ h1 span {
     text-transform: uppercase;
 }
 
-.tabConteiner a {
+.tab-container a {
     margin-right: 57px;
     font-weight: 600;
     font-size: 22px;
@@ -352,22 +383,22 @@ h1 span {
     color: #585858;
 }
 
-.tabConteiner a.noMargin {
+.tab-container a.noMargin {
     margin: 0;
 }
 
-.tabConteiner a:hover {
+.tab-container a:hover {
     color: red;
 }
 
-.templateConteiner {
+.template-container {
     margin: 0 auto;
     font-size: 0;
     /* Чтобы не было пробелов */
     text-align: center;
 }
 
-.templateConteiner::after {
+.template-container::after {
     content: "";
     display: block;
     clear: both;
@@ -448,6 +479,10 @@ h1 span {
     text-align: left;
 }
 
+.aboutUs-templateConteiner img{
+    height: 100%;
+}
+
 .aboutUs-templateConteiner::after {
     content: "";
     display: block;
@@ -462,6 +497,13 @@ h1 span {
     background-color: #f5f0dd;
     position: relative;
     overflow: hidden;
+}
+
+.aboutUs-template img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .noMargin-sec-4-temp {
