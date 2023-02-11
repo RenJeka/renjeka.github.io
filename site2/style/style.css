@@ -420,42 +420,51 @@ h1 span {
 }
 
 
-/* aboutUs CONTEINER ======= */
+/* about-us CONTEINER ======= */
 
-.aboutUs {
+.about-us {
     padding-top: 10px;
     padding-bottom: 113px;
 }
 
-.aboutUs-bottom::after {
+.about-us-bottom::after {
     content: "";
     display: block;
     clear: both;
 }
 
-.aboutUs-left {
+.about-us-left {
+    position: relative;
     width: 322px;
     height: 460px;
     float: left;
+    overflow: hidden;
     background-color: #f5f0dd;
 }
 
-.aboutUs-right {
+.about-us-left img{
+    position: relative;
+    top: 0;
+    left: -35%;
+    height: 100%;
+}
+
+.about-us-right {
     width: 855px;
     margin-left: 68px;
     float: right;
 }
 
-.aboutUs-right h3 {
+.about-us-right h3 {
     margin: 5px 0 0 0;
 }
 
-.aboutUs-right p {
+.about-us-right p {
     margin: 22px 0 37px 0;
     width: 632px;
 }
 
-.aboutUs::after {
+.about-us::after {
     content: "";
     display: block;
     clear: both;
@@ -474,24 +483,24 @@ h1 span {
     color: #a8a8a8;
 }
 
-.aboutUs-templateConteiner {
+.about-us-templateConteiner {
     margin: 60px auto 0;
     font-size: 0;
     /* Чтобы не было пробелов */
     text-align: left;
 }
 
-.aboutUs-templateConteiner img{
+.about-us-templateConteiner img{
     height: 100%;
 }
 
-.aboutUs-templateConteiner::after {
+.about-us-templateConteiner::after {
     content: "";
     display: block;
     clear: both;
 }
 
-.aboutUs-template {
+.about-us-template {
     width: 197px;
     height: 216px;
     margin-left: 18px;
@@ -501,7 +510,7 @@ h1 span {
     overflow: hidden;
 }
 
-.aboutUs-template img {
+.about-us-template img {
     position: relative;
     top: 50%;
     left: 50%;
@@ -510,6 +519,17 @@ h1 span {
 
 .noMargin-sec-4-temp {
     margin: 0;
+}
+
+.about-us-template:hover .template-boxHower, 
+.about-us-left:hover .template-boxHower{
+    bottom: 0;
+    opacity: .5;
+    transition: .7s;
+    -webkit-transition: .7s;
+    -moz-transition: .7s;
+    -ms-transition: .7s;
+    -o-transition: .7s;
 }
 
 .template-boxHower{
@@ -522,17 +542,6 @@ h1 span {
     bottom: -38px;
     opacity: 0; 
     background: #2d2d2d;  
-}
-
-
-.aboutUs-template:hover .template-boxHower{
-    bottom: 0;
-    opacity: .5;
-    transition: .7s;
-    -webkit-transition: .7s;
-    -moz-transition: .7s;
-    -ms-transition: .7s;
-    -o-transition: .7s;
 }
 
 .template-boxHower span{
