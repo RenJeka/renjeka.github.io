@@ -2,6 +2,7 @@
 
 :root {
     --basic-width: 1280px;
+    --section-padding: 110px;
 }
 
 html{margin: 0;}
@@ -79,7 +80,7 @@ section {
     max-width: var(--basic-width);
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 110px 18px 110px 17px;
+    padding: var(--section-padding) 18px var(--section-padding) 17px;
 }
 
 section::after {
@@ -223,12 +224,9 @@ h1 span {
 }
 
 .btn.message {
-    position: absolute;
-    bottom: 0px;
     width: 100%;
     height: 72px;
     text-transform: uppercase;
-    display: block;
 }
 
 
@@ -631,40 +629,58 @@ h1 span {
 
 /* getInTouch CONTEINER ======= */
 
-.getInTouch {
-    max-width: none;
-    width: 100%;
-    margin: 0;
-    padding: 100px 0 110px 0;
+.get-in-touch {
+    padding-bottom: 0;
+    margin-bottom: 60px;
 }
 
-.getInTouch-center-conteiner {
+.outer-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: var(--section-padding);
+}
+
+.get-in-touch-contacts {
     padding-top: 0;
     padding-bottom: 0;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.getInTouch-left {
-    width: 50%;
-    float: left;
-}
-
-.getInTouch-right {
-    width: 33%;
+.contactInfo-conteiner {
+    position: absolute;
+    top: 0;
+    right: 0;
     float: right;
+    flex-grow: 1;
+    width: 39.5%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    margin-left: 25px;
+    padding: 0 60px;
+    background-color: #2d2d2d;
+    
 }
 
-.getInTouch-bottom::after {
-    content: "";
-    display: block;
-    clear: both;
+.contactInfo {
+    color: rgb(199, 199, 199);
 }
+
+.contactInfo h5 {
+    margin: 0 0 30px;
+    color: #e0e0e0
+}
+
+/* ----- FORM ----- */
 
 .form-getInTouch {
     height: 482px;
     width: 732px;
-    float: right;
     position: relative;
-    right: -105px;
+    box-sizing: border-box;
 }
 
 .input.textarea {
@@ -695,38 +711,7 @@ h1 span {
     border: 1.5px solid rgba(88, 88, 88, 0.1);
 }
 
-.contactInfo-conteiner {
-    box-sizing: border-box;
-    width: 100%;
-    height: 482px;
-    float: left;
-    position: relative;
-    background-color: #2d2d2d;
-    color: rgb(199, 199, 199);
-}
 
-.contactInfo-conteiner::after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-.contactInfo {
-    width: 290px;
-    position: absolute;
-    top: 50%;
-    left: 77px;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-}
-
-.contactInfo h5 {
-    margin: 0 0 30px;
-    color: #e0e0e0
-}
 
 
 /* FOOTER ==================================*/
@@ -743,6 +728,8 @@ footer::after {
 }
 
 .fotterWrapper {
+    display: flex;
+    justify-content: center;
     width: 100%;
     padding: 0 18px;
     margin: 0 auto;
@@ -822,5 +809,28 @@ footer::after {
     .home-video {
         flex-basis: auto;
         margin-top: 100px;
+    }
+
+    .outer-container {
+        margin: calc(var(--section-padding) / 2) 0 0;
+    }
+
+    .get-in-touch-contacts {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .contactInfo-conteiner {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        padding: 50px 0;
+    }
+
+    .contactInfo,
+    .contactInfo *{
+        width: 100%;
+        text-align: center;
     }
 }
