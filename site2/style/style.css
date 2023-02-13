@@ -83,17 +83,17 @@ section {
     padding: var(--section-padding) 18px var(--section-padding) 17px;
 }
 
-section::after {
-    content: "";
-    display: block;
-    clear: both;
-}
+/*section::after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    clear: both;*/
+/*}*/
 
 
 /* HEADER =================================*/
 
 header {
-    padding: 20px 0 0 0;
+    /*padding: 20px 0 0 0;*/
     background-color: #F6F2F2;
 }
 
@@ -243,7 +243,7 @@ h1 span {
 
 .providing-container-left {
     flex-basis: 50%;
-    float: left;
+    /*float: left;*/
     text-align: justify;
 }
 
@@ -425,11 +425,11 @@ h1 span {
     padding-bottom: 113px;
 }
 
-.about-us-bottom::after {
-    content: "";
-    display: block;
-    clear: both;
-}
+/*.about-us-bottom::after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    clear: both;*/
+/*}*/
 
 .about-us-left {
     position: relative;
@@ -553,7 +553,6 @@ h1 span {
 
 .section-form {
     text-align: center;
-    background-color: #F5F0DD;
     width: 100%;
     margin: 0 auto;
     max-width: none;
@@ -719,28 +718,19 @@ h1 span {
 footer {
     height: 112px;
     background-color: #313030;
-}
-
-footer::after {
-    content: "";
-    display: block;
-    clear: both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fotterWrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 0 18px;
-    margin: 0 auto;
     box-sizing: border-box;
     position: relative;
-    top: 50%;
-    transform: translateY(-15%);
-    -webkit-transform: translateY(-15%);
-    -moz-transform: translateY(-15%);
-    -ms-transform: translateY(-15%);
-    -o-transform: translateY(-15%);
 }
 
 .fotterWrapper::after {
@@ -786,15 +776,31 @@ footer::after {
 
     section {
         padding: 50px 30px;
+        max-width: 100%;
     }
 
+    /* ----- HEADER ------ */
+
+    nav {
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* ----- HOME ------ */
+
     .home-container {
+        max-width: 100%;
         flex-direction: column;
         align-items: center;
     }
 
     .home-container * {
         text-align: center;
+    }
+
+    .home-container h1 {
+        font-size: 48px;
     }
 
     .home-container p {
@@ -807,10 +813,39 @@ footer::after {
     }
 
     .home-video {
-        flex-basis: auto;
-        margin-top: 100px;
+        /*flex-basis: auto;*/
+        width: 100%;
+        margin-top: 70px;
     }
 
+    .home-video-preview {
+        width: 100%;
+    }
+
+    /* ----- PROVIDING ------ */
+
+    .providing-container {
+        flex-direction: column;
+    }
+
+    .providing-container-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .providing-container-left h2{
+        font-size: 36px;
+        text-align: center;
+    }
+
+
+
+    .providing-items {
+        justify-content: space-evenly;
+    }
+
+    /* ----- GET - IN - TOUCH ------ */
     .outer-container {
         margin: calc(var(--section-padding) / 2) 0 0;
     }
@@ -819,6 +854,11 @@ footer::after {
         flex-direction: column;
         align-items: center;
         padding: 0;
+    }
+
+    .form-getInTouch {
+        width: 100%;
+        padding: 0 30px;
     }
 
     .contactInfo-conteiner {
@@ -833,4 +873,36 @@ footer::after {
         width: 100%;
         text-align: center;
     }
+}
+
+@media screen and (max-width: 769px){
+    /* ----- HEADER ------ */
+    /* ----- HOME ------ */
+    /* ----- PROVIDING ------ */
+    .providing-items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .providing-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        padding: 0;
+    }
+
+    /* ----- PRODUCTS ------ */
+
+    .tab-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .tab-container a {
+        margin: 0;
+        white-space: nowrap;
+    }
+    /* ----- GET - IN - TOUCH ------ */
 }
