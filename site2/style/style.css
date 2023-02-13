@@ -109,12 +109,13 @@ nav {
     background-color: #313030;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 nav a {
     text-decoration: none;
     text-transform: uppercase;
-    padding: 33px 40px;
+    padding: 15px 40px;
     display: inline-block;
     font-size: 14pt;
     font-weight: 700;
@@ -310,42 +311,42 @@ h1 span {
 
 /* PORTFOLIO SECTION ===== */
 
-.inner-container {
+.products-header {
     width: 40%;
     margin-bottom: 60px;
     margin-top: 0;
 }
 
-.inner-container p.narrow {
+.products-header p.narrow {
     margin: 20px 0 25px 0;
 }
 
-.inner-container p.wide {
+.products-header p.wide {
     margin: 27px 0 30px 0;
 }
 
-.inner-container p.superWide {
+.products-header p.superWide {
     margin: 34px 0 50px 0;
 }
 
-.inner-container.center {
+.products-header.center {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-.inner-container.center h2 {
+.products-header.center h2 {
     text-align: center;
 }
 
-.inner-container.left {
+.products-header.left {
     margin-left: 0;
     margin-right: auto;
     text-align: left;
     margin-bottom: 76px;
 }
 
-.inner-container.wide {
+.products-header.wide {
     width: 732px;
 }
 
@@ -724,34 +725,25 @@ footer {
 }
 
 .fotterWrapper {
+    width: 100%;
+    position: relative;
+    padding: 0 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    padding: 0 18px;
     box-sizing: border-box;
-    position: relative;
 }
 
-.fotterWrapper::after {
-    content: "";
-    display: block;
-    clear: both;
-}
+/*.fotterWrapper::after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    clear: both;*/
+/*}*/
 
 .copyritingConteiner {
     width: 40%;
-    position: relative;
-    top: 50%;
-    float: left;
-    color: #9d9d9d;
-}
-
-.copyritingConteiner p {
     margin: 0;
-    position: relative;
-    top: 50%;
-    float: left;
+    color: #9d9d9d;
 }
 
 .footerIcons {
@@ -773,6 +765,36 @@ footer {
 }
 
 @media screen and (max-width: 1250px){
+
+    h1,h2,h3,h4,h5 {
+        text-align: center;
+    }
+
+    h1, h1 span{
+        font-size: 42px;
+        line-height: 50px;
+        letter-spacing: 3px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
+    h6 {
+        font-size: 1.3em;
+    }
 
     section {
         padding: 50px 30px;
@@ -797,10 +819,6 @@ footer {
 
     .home-container * {
         text-align: center;
-    }
-
-    .home-container h1 {
-        font-size: 48px;
     }
 
     .home-container p {
@@ -834,15 +852,35 @@ footer {
         align-items: center;
     }
 
-    .providing-container-left h2{
-        font-size: 36px;
-        text-align: center;
+    .providing-container-left p{
+        width: 100%;
     }
-
-
 
     .providing-items {
         justify-content: space-evenly;
+    }
+
+    .products-header {
+        width: 80%;
+    }
+
+    .form1 {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input.email {
+        width: 80%;
+        height: 82px;
+        margin: 0;
+    }
+
+    .btn.subscribe {
+        height: 82px;
+        margin-top: 20px;
     }
 
     /* ----- GET - IN - TOUCH ------ */
@@ -873,9 +911,49 @@ footer {
         width: 100%;
         text-align: center;
     }
+
+    .fotterWrapper {
+        justify-content: space-around;
+    }
+
+    .copyritingConteiner {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 769px){
+
+    h1, h1 span{
+        font-size: 30px;
+        line-height: 35px;
+        letter-spacing: 2px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
+    h6 {
+        font-size: 1.1em;
+    }
+
+    section {
+        padding: 35px 20px;
+    }
+
     /* ----- HEADER ------ */
     /* ----- HOME ------ */
     /* ----- PROVIDING ------ */
@@ -894,6 +972,9 @@ footer {
     }
 
     /* ----- PRODUCTS ------ */
+    .products-header {
+        width: 100%;
+    }
 
     .tab-container {
         width: 100%;
@@ -905,4 +986,12 @@ footer {
         white-space: nowrap;
     }
     /* ----- GET - IN - TOUCH ------ */
+
+    .contactInfo-conteiner {
+        padding: 50px 20px;
+    }
+
+    .fotterWrapper {
+        flex-direction: column;
+    }
 }
