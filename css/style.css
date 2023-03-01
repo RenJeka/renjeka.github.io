@@ -138,8 +138,9 @@ html, body {
   padding-left: 10px;
   width: 100%;
 }
-.container footer .contacts p span {
+.container footer .contacts p a {
   margin-left: 10px;
+  color: white;
 }
 .container footer .social-icons {
   display: flex;
