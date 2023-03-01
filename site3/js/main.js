@@ -3,7 +3,7 @@ window.addEventListener("load", function () {
         var btnBottom = document.querySelector(".btn-bottom");
         var message = document.querySelector(".message");
         var messageFlag = false;
-        var delayAnimation = parseFloat(message.dataset.delay)*1000;
+        var delayAnimation = parseFloat(message.dataset.delay) * 1000;
         console.log(delayAnimation);
         
         btnTop.addEventListener("click", function () {
@@ -11,13 +11,13 @@ window.addEventListener("load", function () {
         });
         btnBottom.addEventListener("click", function () {
             var timer;
-            if (messageFlag == false) {
+            if (messageFlag === false) {
                 message.style.display = "block";
-                message.innerHTML = "Мы с Вами свяжемся в ближайшее время"
+                message.innerHTML = "We will contact you shortly";
                 messageFlag = true;
             }else{
                 message.style.display = "block";
-                message.innerHTML = "Вы уже заказали консультацию!"
+                message.innerHTML = "You have already booked a consultation!"
                 
             }
 
@@ -25,7 +25,6 @@ window.addEventListener("load", function () {
 
             function timeFunc() {
                 message.style.display = "none";
-            };
-
+            }
         });
     });

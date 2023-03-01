@@ -167,6 +167,7 @@ section h4 {
 }
 
 .main-center img {
+  max-width: 280px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -182,10 +183,6 @@ section h4 {
 
 .main-center h2 {
   font-weight: bold;
-}
-
-.main-center h3 {
-  margin-top: 50px;
 }
 
 .main-center p {
