@@ -35,6 +35,8 @@ I am an active and team player. I can both take the initiative and work under th
 [![](img/Li_icon-w-sm.png "LinkedIn")](https://www.linkedin.com/in/yevheniipetrushenko/)
 [![](img/tg_icon_w-sm.png "Telegram")](https://t.me/RenJeka)
 
+Skype: henrivid
+
 ---
 
 
