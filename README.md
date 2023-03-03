@@ -36,8 +36,20 @@ I am an active and team player. I can both take the initiative and work under th
 <img src="img/Li_icon-w.png" data-href="https://www.linkedin.com/in/yevheniipetrushenko/" alt= "LinkedIn" width="50" height="50" style="margin-left: 20px">
 <img src="img/tg_icon_w.png" data-href="https://t.me/RenJeka" alt= "Telegram" width="50" height="50" style="margin-left: 20px">
 
+--- FIGURE START--- 
+
+<figure class="image">
+    <img src="img/fb_icon-w.png" alt="figure facebook">
+    <figcaption>Facebook</figcaption>
+    <a href="[Facebook](https://www.facebook.com/profile.php?id=100004312697047)">link</a>
+</figure>
+
+--- FIGURE END--- 
+
+<a href="[Facebook](https://www.facebook.com/profile.php?id=100004312697047)">link Facebook</a>
+
+[![](img/fb_icon-w.png "Facebook")](https://www.facebook.com/profile.php?id=100004312697047)
  
-[Facebook](https://www.facebook.com/profile.php?id=100004312697047)
 
 [LinkedIn](https://www.linkedin.com/in/yevheniipetrushenko/)
 
