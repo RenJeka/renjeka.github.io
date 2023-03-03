@@ -32,15 +32,16 @@ I am an active and team player. I can both take the initiative and work under th
  Feel free to contact me via social networks, Skype or Telegram:
  
  
-<img src="img/fb_icon-w.png" alt= "" width="100" height="100">
+<img src="img/fb_icon-w.png" data-href="https://www.facebook.com/profile.php?id=100004312697047" alt= "Facebook" width="50" height="50" style="margin-left: 20px">
+<img src="img/Li_icon-w.png" data-href="https://www.linkedin.com/in/yevheniipetrushenko/" alt= "LinkedIn" width="50" height="50" style="margin-left: 20px">
+<img src="img/tg_icon_w.png" data-href="https://t.me/RenJeka" alt= "Telegram" width="50" height="50" style="margin-left: 20px">
 
-[![](img/fb_icon-w.png "Facebook")](https://www.facebook.com/profile.php?id=100004312697047)
  
 [Facebook](https://www.facebook.com/profile.php?id=100004312697047)
 
-[LinkedIn]( https://www.linkedin.com/in/yevheniipetrushenko/)
+[LinkedIn](https://www.linkedin.com/in/yevheniipetrushenko/)
 
-[Telegram]( https://t.me/RenJeka)
+[Telegram](https://t.me/RenJeka)
 
 
 ---
