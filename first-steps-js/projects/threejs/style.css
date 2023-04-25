@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+canvas {
+    display: block;
+    width: 100%;
+    height: 1000px;
+}

@@ -1,0 +1,18 @@
+{
+  "name": "threejs_example",
+  "version": "1.0.0",
+  "description": "Project, that shows simple example how to work with graphic and animations using three.js library",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx vite"
+  },
+  "author": "yepetrushenko@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "three": "0.151.3"
+  },
+  "devDependencies": {
+    "vite": "4.3.1"
+  }
+}
