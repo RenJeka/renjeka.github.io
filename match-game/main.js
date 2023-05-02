@@ -1,7 +1,6 @@
 import {MatchGrid} from "./models/MatchGrid.js";
 import {GridItem} from "./models/GridItem.js";
 import {Game} from "./models/Game.js";
-import anime from "./libs/anime.es.js";
 
 window.onload = () => {
     const startBtn = document.querySelector("#start_btn");
@@ -36,5 +35,4 @@ window.onload = () => {
     });
 
     game.start();
-
 }

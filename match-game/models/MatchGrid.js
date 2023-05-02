@@ -50,8 +50,8 @@ export class MatchGrid {
         this._timeLimit = this._normalizeInteger(timeLimit, this._minTime, this._maxTime);
         this._width = this._normalizeWidth(width, this._minWidth, this._maxWidth);
         this._height = this._normalizeHeight(height, this._minHeight, this._maxHeight);
-        this._themeColor = this._normalizeColor(themeColor, this._defaultThemeColor) ;
-        this._themeFont = this._normalizeColor(themeFont, this._defaultFontColor) ;
+        this._themeColor = this._normalizeColor(themeColor, this._defaultThemeColor);
+        this._themeFont = this._normalizeColor(themeFont, this._defaultFontColor);
         this._timeLimit = timeLimit;
     }
 
@@ -67,12 +67,12 @@ export class MatchGrid {
 
     _normalizeWidth(width, limit) {
         const gridWidth = this._normalizeInteger(width, limit);
-        return gridWidth + (this. _columnsNumber * this._gridGap);
+        return gridWidth + (this._columnsNumber * this._gridGap);
     }
 
     _normalizeHeight(height, limit) {
         const gridHeight = this._normalizeInteger(height, limit);
-        return gridHeight + (this. _rowsNumber * this._gridGap);
+        return gridHeight + (this._rowsNumber * this._gridGap);
     }
 
     _normalizeInteger(number, limitBottom, limitTop) {
@@ -103,24 +103,28 @@ export class MatchGrid {
     _countGridItems() {
         const userProposedItemsNumber = this._columnsNumber * this._rowsNumber;
         const maxItems = this._maxColumns * this._maxRows
-        if (userProposedItemsNumber > 0 && userProposedItemsNumber < maxItems) {
-            return userProposedItemsNumber;
+        if (userProposedItemsNumber > 1 && userProposedItemsNumber < maxItems) {
+            if (userProposedItemsNumber % 2 === 0) {
+                return userProposedItemsNumber;
+            } else {
+                return userProposedItemsNumber - 1;
+            }
         } else {
             return maxItems;
         }
     }
 
     get gridItemSize() {
-        let  itemWidth = Math.round(this._width / this._columnsNumber) - this._gridGap;
-        let  itemHeight = Math.round(this._height / this._rowsNumber) - this._gridGap;
+        let itemWidth = Math.round(this._width / this._columnsNumber) - this._gridGap;
+        let itemHeight = Math.round(this._height / this._rowsNumber) - this._gridGap;
         const MINIMAL_ITEM_WIDTH = 20;
         const MINIMAL_ITEM_HEIGHT = 20;
 
-        if (itemWidth < MINIMAL_ITEM_WIDTH ) {
+        if (itemWidth < MINIMAL_ITEM_WIDTH) {
             itemWidth = MINIMAL_ITEM_WIDTH
         }
 
-        if (itemHeight < MINIMAL_ITEM_HEIGHT ) {
+        if (itemHeight < MINIMAL_ITEM_HEIGHT) {
             itemHeight = MINIMAL_ITEM_HEIGHT
         }
 
@@ -134,7 +138,7 @@ export class MatchGrid {
         const itemSize = this.gridItemSize;
         this.gridElement.style.width = this._width + 'px';
         this.gridElement.style.height = this._height + 'px';
-        this.gridElement.style.gridTemplateColumns = `repeat(${this._columnsNumber }, ${itemSize.width}px)`;
+        this.gridElement.style.gridTemplateColumns = `repeat(${this._columnsNumber}, ${itemSize.width}px)`;
         this.gridElement.style.gridTemplateRows = `repeat(${this._rowsNumber}, ${itemSize.height}px)`;
         this.gridElement.style.gap = `${this._gridGap}px`;
         this.gridElement.style.backgroundColor = this._themeColor;
@@ -142,7 +146,7 @@ export class MatchGrid {
     }
 
     _putItems() {
-        const gridItemIdsSet =  GridItem.getConsistentIdsSet(this._countGridItems());
+        const gridItemIdsSet = GridItem.getConsistentIdsSet(this._countGridItems());
         const idTextPairsMap = GridItem.generateRandomIdPairsMap(gridItemIdsSet)
 
         for (const gridItemId of gridItemIdsSet) {
@@ -157,17 +161,4 @@ export class MatchGrid {
         this.gridItems = [];
         this.gridElement.innerHTML = '';
     }
-
-
-
-    // _getItem() {
-    //     const gridItem = new GridItem(this.gridItemSize.width, this.gridItemSize.height);
-    //     gridItem.style.width = this.gridItemSize.width + 'px';
-    //     gridItem.style.height = this.gridItemSize.height + 'px';
-    //
-    // }
-
-
-
-
 }

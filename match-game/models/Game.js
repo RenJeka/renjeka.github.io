@@ -201,5 +201,4 @@ export class Game {
             }, 1000)
         }
     }
-
-};
+}

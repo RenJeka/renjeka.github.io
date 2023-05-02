@@ -8,7 +8,6 @@ export class GridItem extends HTMLDivElement{
     _selected = false;
     _text = '';
 
-
     get id() {
         return this._id;
     }

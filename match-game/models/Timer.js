@@ -1,4 +1,4 @@
-export class Timer{
+export class Timer {
 
     _seconds;
     _isCompleted = false;
@@ -85,7 +85,6 @@ export class Timer{
         this.clear();
         this.timerElement.innerText = '0';
     }
-
 
     _mouseLeaveHandler() {
         if (this.inProcess) {

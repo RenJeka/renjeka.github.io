@@ -1,33 +1,23 @@
 # matching_game
 
-
- In this game the user's objective is to find matching elements from a grid of interactable elements that obscure their id in some way until they are interacted with.
-
-Example for reference:
-"Memory" playing card game
----
-
-### Requirements:
-
-##### Must include the declaration:
-
-new MatchGrid(args)
-
-Where "args" contains initialization data for (at minimum):
-
-* width and height of activity
-* number of columns and rows
-* time limit
-* theme (colors, font, etc)
-
----
-
-Game must have a clear "Start" and "End".
-
-Game must have the ability to "Replay" without reloading.
-
-Game must "Pause" whenever the mouse is outside of the activity.
-
-At least one element must be animated using the Anime.js library.
-
-Use numbers to display the Match ID of the element when interacted with.
+| Category of requirenments | Descriptions                                                                                                                                                                                                       |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Brief                     | In this game the user's objective is to find matching elements  from a grid of interactable elements that obscure their id in  some way until they are interacted with.                                            |
+|                           | Example for reference: "Memory" playing card game                                                                                                                                                                  |
+|                           |                                                                                                                                                                                                                    |
+| Requirements              | Must include the declaration: new MatchGrid(args)Where "args" contains initialization data for (at minimum):  • width and height of activity • number of columns and rows • time limit • theme (colors, font, etc) |
+|                           | Game must have a clear "Start" and "End".                                                                                                                                                                          |
+|                           | Game must have the ability to "Replay" without reloading.                                                                                                                                                          |
+|                           | Game must "Pause" whenever the mouse is outside of the  activity.                                                                                                                                                  |
+|                           | At least one element must be animated using the Anime.js  library.                                                                                                                                                 |
+|                           | Use numbers to display the Match ID of the element when  interacted with                                                                                                                                           |
+|                           |                                                                                                                                                                                                                    |
+| Restrictions              | Use only:  Javascript (ES6) HTML5 CSS                                                                                                                                                                              |
+|                           | No images. Any styling using CSS is allowed.                                                                                                                                                                       |
+|                           | No audio or sfx                                                                                                                                                                                                    |
+|                           | No external libraries (other than those specified)                                                                                                                                                                 |
+|                           | All code (other than approved external libraries) must be written by the candidate.                                                                                                                                |
+|                           | Spend no more than 8 hours on this project.                                                                                                                                                                        |
+|                           |                                                                                                                                                                                                                    |
+| Deliverable               | The project should be uploaded to to a repository (gitHub /bitbucket/etc) for review.                                                                                                                              |
+|                           |                                                                                                                                                                                                                    |
