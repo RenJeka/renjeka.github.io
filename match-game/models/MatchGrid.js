@@ -10,7 +10,8 @@ export class MatchGrid {
     _rowsNumber;
     _timeLimit;
     _themeColor;
-    _themeFont;
+    _fontColor;
+    _fontSize;
     _maxWidth = 1000;
     _maxHeight = 1000;
     _maxColumns = 20;
@@ -21,10 +22,16 @@ export class MatchGrid {
     _minColumns = 2;
     _minRows = 2;
     _minTime = 15;
+    _minFontSize = 5;
+    _maxFontSize = 60;
     _defaultThemeColor = '#656565';
     _defaultFontColor = '#000000';
     _gridGap = 5;
     _gridItems = [];
+    _gridItemSize = {
+        height: 0,
+        width: 0
+    }
 
 
     get gridElement() {
@@ -43,16 +50,18 @@ export class MatchGrid {
         return this._timeLimit;
     }
 
-    constructor({width, height, columnsNumber, rowsNumber, timeLimit, themeColor, themeFont}) {
+    constructor({width, height, columnsNumber, rowsNumber, timeLimit, themeColor, fontColor, fontSize}) {
 
         this._columnsNumber = this._normalizeInteger(columnsNumber, this._minColumns, this._maxColumns);
         this._rowsNumber = this._normalizeInteger(rowsNumber, this._minRows, this._maxRows);
         this._timeLimit = this._normalizeInteger(timeLimit, this._minTime, this._maxTime);
         this._width = this._normalizeWidth(width, this._minWidth, this._maxWidth);
         this._height = this._normalizeHeight(height, this._minHeight, this._maxHeight);
+        this._fontSize = this._normalizeInteger(fontSize, this._minFontSize, this._maxFontSize);
         this._themeColor = this._normalizeColor(themeColor, this._defaultThemeColor);
-        this._themeFont = this._normalizeColor(themeFont, this._defaultFontColor);
+        this._fontColor = this._normalizeColor(fontColor, this._defaultFontColor);
         this._timeLimit = timeLimit;
+        this._gridItemSize = this._getGridItemSize()
     }
 
     createGrid() {
@@ -65,18 +74,18 @@ export class MatchGrid {
 
     }
 
-    _normalizeWidth(width, limit) {
-        const gridWidth = this._normalizeInteger(width, limit);
-        return gridWidth + (this._columnsNumber * this._gridGap);
+    _normalizeWidth(width, minLimit, maxLimit) {
+        const gridWidth = this._normalizeInteger(width, minLimit, maxLimit);
+        return gridWidth + ((this._columnsNumber - 1) * this._gridGap);
     }
 
-    _normalizeHeight(height, limit) {
-        const gridHeight = this._normalizeInteger(height, limit);
-        return gridHeight + (this._rowsNumber * this._gridGap);
+    _normalizeHeight(height, minLimit, maxLimit) {
+        const gridHeight = this._normalizeInteger(height, minLimit, maxLimit);
+        return gridHeight + ((this._rowsNumber - 1) * this._gridGap);
     }
 
     _normalizeInteger(number, limitBottom, limitTop) {
-        const currentNumber = parseInt(number);
+        const currentNumber = Math.abs(parseInt(number));
 
         if (isNaN(currentNumber)) {
             console.warn(`You passed incorrect number in Grid settings! Number ${number} changed to ${limitBottom}`);
@@ -92,7 +101,7 @@ export class MatchGrid {
             console.warn(`You passed too high number in Grid settings! Number ${number} changed to ${limitTop}`);
             return limitTop;
         }
-        return Math.abs(parseInt(number));
+        return currentNumber;
     }
 
     _normalizeColor(strColor, defaultColor) {
@@ -114,9 +123,9 @@ export class MatchGrid {
         }
     }
 
-    get gridItemSize() {
-        let itemWidth = Math.round(this._width / this._columnsNumber) - this._gridGap;
-        let itemHeight = Math.round(this._height / this._rowsNumber) - this._gridGap;
+    _getGridItemSize() {
+        let itemWidth = Math.round((this._width - this._gridGap * (this._columnsNumber - 1)) / this._columnsNumber);
+        let itemHeight = Math.round((this._height  - this._gridGap * (this._rowsNumber - 1)) / this._rowsNumber);
         const MINIMAL_ITEM_WIDTH = 20;
         const MINIMAL_ITEM_HEIGHT = 20;
 
@@ -135,14 +144,14 @@ export class MatchGrid {
     }
 
     _setUpGrid() {
-        const itemSize = this.gridItemSize;
+        const itemSize = this._gridItemSize;
         this.gridElement.style.width = this._width + 'px';
         this.gridElement.style.height = this._height + 'px';
         this.gridElement.style.gridTemplateColumns = `repeat(${this._columnsNumber}, ${itemSize.width}px)`;
         this.gridElement.style.gridTemplateRows = `repeat(${this._rowsNumber}, ${itemSize.height}px)`;
         this.gridElement.style.gap = `${this._gridGap}px`;
         this.gridElement.style.backgroundColor = this._themeColor;
-        this.gridElement.style.color = this._themeFont;
+        this.gridElement.style.color = this._fontColor;
     }
 
     _putItems() {
@@ -150,9 +159,9 @@ export class MatchGrid {
         const idTextPairsMap = GridItem.generateRandomIdPairsMap(gridItemIdsSet)
 
         for (const gridItemId of gridItemIdsSet) {
-            const gridItem = new GridItem(gridItemId, this.gridItemSize.width, this.gridItemSize.height);
+            const gridItem = new GridItem(gridItemId, this._gridItemSize.width, this._gridItemSize.height);
             this._gridItems.push(gridItem);
-            gridItem.setTextToItem(idTextPairsMap.get(gridItemId), 36);
+            gridItem.setTextToItem(idTextPairsMap.get(gridItemId), this._fontSize);
             this.gridElement.appendChild(gridItem);
         }
     }

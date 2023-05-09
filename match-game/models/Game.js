@@ -145,11 +145,11 @@ export class Game {
         }
 
         if (!this.selectedFirstItem) {
-            currentItem.selectItem();
+            currentItem.toggleItem();
             this.selectedFirstItem = currentItem;
         } else if (!this.selectedSecondItem) {
             if (this.selectedFirstItem && this.selectedFirstItem.id !== currentItem.id) {
-                currentItem.selectItem();
+                currentItem.toggleItem();
                 this.selectedSecondItem = currentItem;
                 this._handleMatches();
                 this._checkGameOver();
@@ -158,7 +158,7 @@ export class Game {
             this._clearItems();
             this.selectedFirstItem = currentItem;
             setTimeout(() => {
-                currentItem.selectItem()
+                currentItem.toggleItem()
             }, 600)
         }
     }

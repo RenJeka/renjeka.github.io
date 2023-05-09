@@ -1,6 +1,6 @@
 import anime from '../libs/anime.es.js';
 
-export class GridItem extends HTMLDivElement{
+export class GridItem extends HTMLDivElement {
 
     _id;
     _isVisible = false;
@@ -70,7 +70,7 @@ export class GridItem extends HTMLDivElement{
         return consistentIdsSet;
     }
 
-    static generateRandomText(textLength, characters= '0123456789') {
+    static generateRandomText(textLength, characters = '0123456789') {
         characters = Array.isArray(characters) ? characters.join('') : characters.toString();
         let result = '';
         const charactersLength = characters.length;
@@ -82,7 +82,7 @@ export class GridItem extends HTMLDivElement{
         return result;
     }
 
-    static getRandomTextSet(sizeOfSet= 1, idLength = 3) {
+    static getRandomTextSet(sizeOfSet = 1, idLength = 3) {
         const symbolsSet = new Set();
         for (let i = 0; i < sizeOfSet; i++) {
             let uniqText = GridItem.generateRandomText(idLength);
@@ -99,7 +99,7 @@ export class GridItem extends HTMLDivElement{
         // Need half as much as the number of idSet to make pairs.
         const randomTextSet = GridItem.getRandomTextSet(Math.round(idSet.size / 2), textLength);
         const randomTextSetCopy = new Set(randomTextSet);
-        const shuffledTextArray = this.shuffleArray([...randomTextSet ].concat([...randomTextSetCopy]));
+        const shuffledTextArray = this.shuffleArray([...randomTextSet].concat([...randomTextSetCopy]));
 
         const idsSetIterator = idSet.values();
         shuffledTextArray.forEach((text) => {
@@ -120,26 +120,26 @@ export class GridItem extends HTMLDivElement{
 
         this._text = text.toString();
         backSide.innerText = text.toString();
-        this.style.fontSize = (Math.abs(parseInt(fontSize)) || 16) + 'px';
+        this.style.fontSize = fontSize + 'px';
     }
 
-        selectItem() {
+    toggleItem() {
         this.selected = !this.selected;
         if (this.selected) {
             this.classList.add('item-selected');
             anime({
                 targets: this,
-                rotateY: {value: "-0.5turn"}, //"-=180"
+                rotateY: {value: '-0.5turn'}, //"-=180"
                 duration: 350,
-                easing: 'linear'
+                easing: 'linear',
             }).play();
         } else {
             this.classList.remove('item-selected');
             anime({
                 targets: this,
-                rotateY: {value: "0turn"}, //"+=180"
+                rotateY: {value: '0turn'}, //"+=180"
                 duration: 350,
-                easing: 'linear'
+                easing: 'linear',
             }).play();
         }
     }
@@ -148,9 +148,9 @@ export class GridItem extends HTMLDivElement{
         if (this.selected && !this.isGuessed) {
             anime({
                 targets: this,
-                rotateY: {value: "0turn"}, // "+=180"
+                rotateY: {value: '0turn'}, // "+=180"
                 duration: 350,
-                easing: 'linear'
+                easing: 'linear',
             }).play();
         }
         this.selected = false;
@@ -160,11 +160,6 @@ export class GridItem extends HTMLDivElement{
     markGuessed() {
         this.isGuessed = true;
         this.classList.add('item-guessed');
-    }
-
-    unmarkGuessed() {
-        this.isGuessed = false;
-        this.classList.remove('item-guessed');
     }
 
     _appendItemSides() {
