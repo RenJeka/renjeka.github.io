@@ -80,7 +80,7 @@
 				height: 200px;
 				background-color: #d6d6d6;
 			}
-			
+
 			.item-card h3 {
 				width: 100%;
 				min-height: 55px;
@@ -169,7 +169,7 @@
 		<div class="modal-overlay"></div>
 
 		<div class="modal">
-			
+
 			<div class="modal-title">
 				<h1>Links and details</h1>
 			</div>
@@ -186,13 +186,13 @@
 			</div>
 		</div>
 		<!-- ----- Modal end ----- -->
-		
+
 		<div class=" container-inner">
 			<div class="top-text">
 				<!-- <h2>Welcome to my</h2> -->
 				<h1>Portfolio</h1>
 			</div>
-	
+
 			<div class="container-items">
 
 				<h2>My SPAs</h2>
@@ -244,7 +244,7 @@
 
 				<h2>Full-stack projects</h2>
 				<card-element>
-					<span slot="slot-link">http://vps58018.hyperhost.name/</span>
+					<span slot="slot-link">http://vps60559.hyperhost.name/</span>
 					<span slot="slot-image" data-bg="../img/thumbnailSiteImages/todo_thumbnail.jpg"></span>
 					<span slot="slot-name" >NodeJS Todo app</span>
 					<span slot="slot-description">
@@ -359,9 +359,9 @@
 				</card-element>
 
 			</div><!-- container-items -->
-			
+
 		</div><!-- container-inner -->
-		
+
 
 		<footer>
 			<div class="title">Contact with me : </div>
@@ -382,7 +382,7 @@
 <!-- Scripts for placing web component -->
 <script>
 	window.addEventListener("load", ()=>{
-	
+
 		class CardElement extends HTMLElement {
 
 			constructor() {
@@ -398,9 +398,9 @@
 				shadowRoot.appendChild(cloneTemplate);
 				// End of standard custom element setup----------------------
 
-				let slotLink 				 = shadowRoot.querySelector("#slot-link"), 
+				let slotLink 				 = shadowRoot.querySelector("#slot-link"),
 					cardLinkTo				 = slotLink.assignedElements()[0].innerHTML, // Link to go to a specific site
-					slotImage				 = shadowRoot.querySelector("#slot-image"), 
+					slotImage				 = shadowRoot.querySelector("#slot-image"),
 					bgPath					 = slotImage.assignedElements()[0].dataset.bg, //path to the image in the card.
 					slotName				 = shadowRoot.querySelector("#slot-name"),
 					slotRepositoryLink		 = shadowRoot.querySelector("#slot-repository-link"),
@@ -421,7 +421,7 @@
 				});
 
 				if (bgPath) {
-			
+
 					let itemBgImage = bgPath.substr(1, bgPath.length -1); // We parse the background path to get rid of the quotes so that we can later place it as a background for the card
 					slotImage.style.backgroundImage = "url("+itemBgImage+")";  // placing an image as a background
 					// items[i].style.backgroundImage = "url("+items[i].dataset.bg+");";
